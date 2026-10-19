@@ -30,18 +30,31 @@ describe('Mobile Responsiveness & Usability Verification', () => {
     expect(css).toMatch(/@media\s*\(max-width:\s*768px\)[\s\S]*?button\.tab-btn \.tab-label\s*\{[^}]*display:\s*block/);
   });
 
-  it('verifies navigation dispatch drawer is accessible and properly toggleable on mobile', () => {
-    // btnToggleNavDrawer must be inside the drawer panel-header so it is always visible and clickable
-    expect(html).toMatch(/<aside id="navDispatchPanel"[\s\S]*?<div class="panel-header" id="navDispatchHeader"[\s\S]*?id="btnToggleNavDrawer"/);
+  it('verifies tactical map is a dedicated slide-out drawer on mobile for full visibility', () => {
+    // HTML includes trigger button in dispatch console and slide-out map viewport with header and footer
+    expect(html).toContain('id="btnOpenMapDrawer"');
+    expect(html).toContain('id="mapViewport"');
+    expect(html).toContain('class="map-drawer-header"');
+    expect(html).toContain('id="btnCloseMapDrawer"');
+    expect(html).toContain('id="btnCenterConvoy"');
+    expect(html).toContain('id="mapCanvasContainer"');
+    expect(html).toContain('class="map-drawer-footer"');
+    expect(html).toContain('id="mapDrawerTargetInfo"');
+    expect(html).toContain('id="btnMapDrawerSelect"');
+    expect(html).toContain('id="btnMapDrawerDispatch"');
 
-    // CSS defines sliding drawer transition
-    expect(css).toMatch(/@media\s*\(max-width:\s*768px\)[\s\S]*?\.nav-dispatch-panel\s*\{[^}]*transform:\s*translateY\(calc\(100% - 44px\)\)/);
-    expect(css).toMatch(/@media\s*\(max-width:\s*768px\)[\s\S]*?\.nav-dispatch-panel\.drawer-open\s*\{[^}]*transform:\s*translateY\(0\)/);
+    // CSS defines fixed slide-out drawer transition and large 950x580 canvas for mobile usability
+    expect(css).toMatch(/@media\s*\(max-width:\s*768px\)[\s\S]*?\.map-viewport\s*\{[^}]*position:\s*fixed/);
+    expect(css).toMatch(/@media\s*\(max-width:\s*768px\)[\s\S]*?\.map-viewport\s*\{[^}]*transform:\s*translateX\(100%\)/);
+    expect(css).toMatch(/@media\s*\(max-width:\s*768px\)[\s\S]*?\.map-viewport\.map-drawer-open\s*\{[^}]*transform:\s*translateX\(0\)/);
+    expect(css).toMatch(/@media\s*\(max-width:\s*768px\)[\s\S]*?canvas#worldMapCanvas\s*\{[^}]*width:\s*950px/);
 
-    // main.ts auto-expands drawer on mobile node tap
-    expect(mainTs).toContain('this.navDispatchPanel.classList.add(\'drawer-open\')');
-    // main.ts auto-collapses drawer on dispatch
-    expect(mainTs).toContain('this.navDispatchPanel.classList.remove(\'drawer-open\')');
+    // main.ts manages drawer lifecycle and centering
+    expect(mainTs).toContain('openMapDrawer(');
+    expect(mainTs).toContain('closeMapDrawer(');
+    expect(mainTs).toContain('centerMapOnCurrentNode(');
+    expect(mainTs).toContain("this.mapViewport.classList.add('map-drawer-open')");
+    expect(mainTs).toContain("this.mapViewport.classList.remove('map-drawer-open')");
   });
 
   it('verifies iOS Safari auto-zoom prevention on form controls', () => {
@@ -49,7 +62,7 @@ describe('Mobile Responsiveness & Usability Verification', () => {
     expect(css).toMatch(/@media\s*\(max-width:\s*768px\)[\s\S]*?select\.term-select,\s*input\.chat-text-input,\s*input\.callsign-text-input\s*\{[^}]*font-size:\s*16px/);
   });
 
-  it('verifies touch-action none on map canvas for smooth touch controls', () => {
+  it('verifies touch-action on map canvas for smooth touch interaction', () => {
     expect(css).toMatch(/canvas#worldMapCanvas\s*\{[^}]*touch-action:\s*none/);
   });
 });

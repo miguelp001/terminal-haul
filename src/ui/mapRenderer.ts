@@ -123,6 +123,10 @@ export class MapRenderer {
     this.otherConvoys = convoys;
   }
 
+  public resize(): void {
+    this.handleResize();
+  }
+
   private handleResize(): void {
     const rect = this.canvas.getBoundingClientRect();
     const dpr = window.devicePixelRatio || 1;

@@ -641,6 +641,19 @@ main.terminal-main {
   z-index: 5;
   pointer-events: none;
 }
+
+.map-canvas-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.map-drawer-header,
+.map-drawer-footer,
+.open-map-drawer-btn {
+  display: none;
+}
 .viewport-corner-tag.top-left {
   top: 6px;
   left: 12px;
@@ -2541,8 +2554,9 @@ button.trade-btn:disabled {
     overflow: hidden;
   }
 
-  /* Tactical Map & Sliding Dispatch Console */
+  /* Tactical Map View & Slide-Out Drawer */
   .map-view-panel {
+    display: flex;
     flex-direction: column;
     position: relative;
     width: 100%;
@@ -2550,69 +2564,203 @@ button.trade-btn:disabled {
     overflow: hidden;
   }
 
-  .map-viewport {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
-
+  /* Navigation Dispatch is the primary full-width screen on mobile */
   .nav-dispatch-panel {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    max-height: 76%;
-    z-index: 50;
-    transform: translateY(calc(100% - 44px));
-    transition: transform 0.28s cubic-bezier(0.1, 0.9, 0.2, 1);
-    box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.95);
-    border-top: 1.5px solid var(--neon-cyan);
-    background: #060e19;
+    width: 100% !important;
+    height: 100% !important;
+    flex: 1;
+    position: relative;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    max-height: 100%;
+    transform: none !important;
+    border: none;
+    box-shadow: none;
     display: flex;
     flex-direction: column;
-  }
-
-  .nav-dispatch-panel.drawer-open {
-    transform: translateY(0);
-  }
-
-  .nav-dispatch-panel .panel-header {
-    cursor: pointer;
-    min-height: 44px;
-    padding: 6px 12px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: #081627;
-    user-select: none;
-    -webkit-user-select: none;
+    background: #060e19;
   }
 
   .nav-drawer-toggle {
-    display: inline-flex !important;
-    position: static;
-    transform: none;
-    padding: 4px 12px;
-    font-size: 0.72rem;
-    background: rgba(0, 240, 255, 0.15);
-    border: 1px solid var(--neon-cyan);
+    display: none !important;
+  }
+
+  .open-map-drawer-btn {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 12px;
+    font-size: 0.88rem;
+    font-weight: 800;
     color: var(--neon-cyan);
-    font-weight: bold;
+    background: rgba(0, 240, 255, 0.12);
+    border: 1.5px solid var(--neon-cyan);
+    box-shadow: 0 0 16px rgba(0, 240, 255, 0.35);
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+    min-height: 44px;
     cursor: pointer;
   }
 
-  .header-tech-tag {
-    display: none !important;
+  .open-map-drawer-btn:active {
+    background: var(--neon-cyan);
+    color: #000;
+  }
+
+  /* The Map Viewport is the Full-Screen Slide-Out Drawer on Mobile! */
+  .map-viewport {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw !important;
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+    z-index: 1000 !important;
+    background: #020407;
+    display: flex !important;
+    flex-direction: column !important;
+    transform: translateX(100%);
+    transition: transform 0.3s cubic-bezier(0.1, 0.9, 0.2, 1);
+    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.95);
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .map-viewport.map-drawer-open {
+    transform: translateX(0) !important;
+  }
+
+  /* Mobile Map Drawer Header */
+  .map-drawer-header {
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    padding-top: max(8px, env(safe-area-inset-top));
+    background: #060e19;
+    border-bottom: 1.5px solid var(--neon-cyan);
+    flex-shrink: 0;
+    z-index: 20;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.8);
+  }
+
+  .map-drawer-title {
+    font-size: 0.76rem;
+    font-weight: bold;
+    color: var(--neon-cyan);
+    letter-spacing: 1px;
+  }
+
+  .map-drawer-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .center-convoy-btn {
+    font-size: 0.72rem;
+    padding: 4px 10px;
+    color: var(--neon-green);
+    border-color: var(--neon-green);
+    --aug-border-bg: var(--neon-green);
+    background: rgba(0, 255, 136, 0.12);
+  }
+
+  .close-drawer-btn {
+    font-size: 0.72rem;
+    padding: 4px 12px;
+    color: var(--neon-red);
+    border-color: var(--neon-red);
+    --aug-border-bg: var(--neon-red);
+    background: rgba(255, 42, 109, 0.15);
+    font-weight: bold;
+  }
+
+  /* Scrollable / Pan-able Map Canvas Container */
+  .map-canvas-container {
+    position: relative !important;
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    overflow: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    background: #020407;
+    touch-action: pan-x pan-y pinch-zoom;
+  }
+
+  /* Large, visible, beautiful map canvas on mobile! */
+  .map-canvas-container canvas#worldMapCanvas {
+    position: relative !important;
+    width: 950px !important;
+    height: 580px !important;
+    min-width: 950px !important;
+    min-height: 580px !important;
+    display: block;
+    cursor: pointer;
+  }
+
+  /* Mobile Map Drawer Footer */
+  .map-drawer-footer {
+    display: flex !important;
+    flex-direction: column;
+    gap: 6px;
+    padding: 8px 12px;
+    padding-bottom: max(8px, env(safe-area-inset-bottom));
+    background: #060e19;
+    border-top: 1.5px solid var(--border-color);
+    flex-shrink: 0;
+    z-index: 20;
+    box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.85);
+  }
+
+  .map-drawer-target-info {
+    font-size: 0.74rem;
+    font-weight: bold;
+    color: var(--neon-cyan);
+    letter-spacing: 0.6px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .map-drawer-actions {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .select-close-btn {
+    flex: 1;
+    padding: 9px;
+    font-size: 0.78rem;
+    font-weight: bold;
+    color: var(--text-primary);
+    background: #0d1e33;
+    border-color: var(--neon-cyan);
+  }
+
+  .drawer-dispatch-btn {
+    flex: 1;
+    padding: 9px;
+    font-size: 0.78rem;
+    font-weight: bold;
+    color: #000;
+    background: var(--neon-cyan);
+    --aug-inlay-bg: var(--neon-cyan);
+    border-color: var(--neon-cyan);
+    box-shadow: 0 0 14px rgba(0, 240, 255, 0.5);
   }
 
   .dispatch-body {
     padding: 10px 12px;
     gap: 8px;
     overflow-y: auto;
-    max-height: calc(76vh - 44px);
+    flex: 1;
     -webkit-overflow-scrolling: touch;
   }
 
@@ -2628,12 +2776,16 @@ button.trade-btn:disabled {
   }
 
   .transit-banner {
-    bottom: 52px;
+    position: fixed !important;
+    bottom: 60px;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
     min-width: 0;
     width: calc(100% - 24px);
     max-width: 380px;
     padding: 8px 12px;
     font-size: 0.72rem;
+    z-index: 1050;
   }
 
   /* Form Inputs (Disable iOS Safari 16px auto-zoom) */

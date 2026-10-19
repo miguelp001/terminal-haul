@@ -61,6 +61,14 @@ class TerminalApp {
   private commsViewContainer = document.getElementById('commsViewContainer') as HTMLElement | null;
   private btnToggleNavDrawer = document.getElementById('btnToggleNavDrawer') as HTMLButtonElement | null;
   private navDispatchPanel = document.getElementById('navDispatchPanel') as HTMLElement | null;
+  private mapViewport = document.getElementById('mapViewport') as HTMLElement | null;
+  private mapCanvasContainer = document.getElementById('mapCanvasContainer') as HTMLElement | null;
+  private btnOpenMapDrawer = document.getElementById('btnOpenMapDrawer') as HTMLButtonElement | null;
+  private btnCloseMapDrawer = document.getElementById('btnCloseMapDrawer') as HTMLButtonElement | null;
+  private btnCenterConvoy = document.getElementById('btnCenterConvoy') as HTMLButtonElement | null;
+  private mapDrawerTargetInfo = document.getElementById('mapDrawerTargetInfo') as HTMLElement | null;
+  private btnMapDrawerSelect = document.getElementById('btnMapDrawerSelect') as HTMLButtonElement | null;
+  private btnMapDrawerDispatch = document.getElementById('btnMapDrawerDispatch') as HTMLButtonElement | null;
 
   private leaderboardTableBody = document.getElementById('leaderboardTableBody')!;
   private playerLeaderboardRankBadge = document.getElementById('playerLeaderboardRankBadge')!;
@@ -226,6 +234,7 @@ class TerminalApp {
       this.activeCenterTab = tab;
       if (tab !== 'map') {
         this.mapHoverHud.style.display = 'none';
+        this.closeMapDrawer();
       }
       this.tabMap.classList.toggle('active', tab === 'map');
       this.tabMarket.classList.toggle('active', tab === 'market');
@@ -254,7 +263,12 @@ class TerminalApp {
       if (tab === 'leaderboard') this.renderLeaderboardView();
     };
 
-    this.tabMap.addEventListener('click', () => setTab('map'));
+    this.tabMap.addEventListener('click', () => {
+      setTab('map');
+      if (window.innerWidth <= 768) {
+        this.openMapDrawer();
+      }
+    });
     this.tabMarket.addEventListener('click', () => setTab('market'));
     this.tabContracts.addEventListener('click', () => setTab('contracts'));
     this.tabQualities.addEventListener('click', () => setTab('qualities'));
@@ -360,6 +374,55 @@ class TerminalApp {
       navDispatchHeader.addEventListener('click', () => {
         if (window.innerWidth <= 768) {
           toggleNavDrawer();
+        }
+      });
+    }
+
+    // Mobile Slide-Out Tactical Map Drawer
+    if (this.btnOpenMapDrawer) {
+      this.btnOpenMapDrawer.addEventListener('click', () => {
+        soundFX.playClick();
+        this.openMapDrawer();
+      });
+    }
+
+    if (this.btnCloseMapDrawer) {
+      this.btnCloseMapDrawer.addEventListener('click', () => {
+        soundFX.playClick();
+        this.closeMapDrawer();
+      });
+    }
+
+    if (this.btnCenterConvoy) {
+      this.btnCenterConvoy.addEventListener('click', () => {
+        soundFX.playClick();
+        this.centerMapOnCurrentNode();
+      });
+    }
+
+    if (this.btnMapDrawerSelect) {
+      this.btnMapDrawerSelect.addEventListener('click', () => {
+        soundFX.playClick();
+        this.closeMapDrawer();
+      });
+    }
+
+    if (this.btnMapDrawerDispatch) {
+      this.btnMapDrawerDispatch.addEventListener('click', () => {
+        soundFX.playClick();
+        if (this.selectedDestinationNode) {
+          const autoAdvance = this.chkAutoAdvance.checked;
+          gameStore.departTo(this.selectedDestinationNode.id, autoAdvance);
+        }
+        this.closeMapDrawer();
+      });
+    }
+
+    if (this.transitBanner) {
+      this.transitBanner.addEventListener('click', () => {
+        if (window.innerWidth <= 768) {
+          soundFX.playClick();
+          this.openMapDrawer();
         }
       });
     }
@@ -474,12 +537,6 @@ class TerminalApp {
   private handleMapNodeClick(node: WorldNode): void {
     this.selectDestination(node);
     this.destinationSelect.value = node.id;
-    if (window.innerWidth <= 768 && this.navDispatchPanel) {
-      this.navDispatchPanel.classList.add('drawer-open');
-      if (this.btnToggleNavDrawer) {
-        this.btnToggleNavDrawer.textContent = '▼ HIDE DISPATCH';
-      }
-    }
   }
 
   private selectDestination(node: WorldNode): void {
@@ -515,15 +572,62 @@ class TerminalApp {
 
       this.targetDistance.textContent = `Total Route: ${totalDist} km`;
       this.targetDuration.textContent = `Est. Transit: ${totalDur}s`;
+
+      if (this.mapDrawerTargetInfo) {
+        this.mapDrawerTargetInfo.textContent = `TARGET: ${node.name.toUpperCase()} (${hops} HOPS | ${totalDist} KM)`;
+        if (this.btnMapDrawerSelect) this.btnMapDrawerSelect.style.display = 'block';
+        if (this.btnMapDrawerDispatch) this.btnMapDrawerDispatch.style.display = !inTransit && !isCurrent ? 'block' : 'none';
+      }
     } else {
       this.targetRouteHops.textContent = isCurrent ? 'Route: Current Station' : 'Route: Unreachable';
       this.targetWaypoints.textContent = 'Waypoints: —';
       this.targetDistance.textContent = 'Total Route: 0 km';
       this.targetDuration.textContent = 'Est. Transit: 0s';
+
+      if (this.mapDrawerTargetInfo) {
+        this.mapDrawerTargetInfo.textContent = isCurrent
+          ? `TARGET: ${node.name.toUpperCase()} (CURRENT DOCK)`
+          : `TARGET: ${node.name.toUpperCase()} (UNREACHABLE)`;
+        if (this.btnMapDrawerSelect) this.btnMapDrawerSelect.style.display = 'block';
+        if (this.btnMapDrawerDispatch) this.btnMapDrawerDispatch.style.display = 'none';
+      }
     }
 
     this.btnDispatch.disabled = isCurrent || inTransit;
     this.btnDispatch.textContent = isCurrent ? 'CURRENT LOCATION' : 'ENGAGE ENGINES [DISPATCH]';
+  }
+
+  private openMapDrawer(): void {
+    if (!this.mapViewport) return;
+    this.mapViewport.classList.add('map-drawer-open');
+    if (this.mapRenderer) {
+      this.mapRenderer.resize();
+    }
+    setTimeout(() => {
+      if (this.mapRenderer) {
+        this.mapRenderer.resize();
+      }
+      this.centerMapOnCurrentNode();
+    }, 60);
+  }
+
+  private closeMapDrawer(): void {
+    if (!this.mapViewport) return;
+    this.mapViewport.classList.remove('map-drawer-open');
+  }
+
+  private centerMapOnCurrentNode(): void {
+    if (!this.mapCanvasContainer || !this.mapRenderer) return;
+    const currentNode = gameStore.getCurrentNode();
+    if (!currentNode) return;
+    const pos = this.mapRenderer.getNodeScreenCoords(currentNode);
+    if (!pos) return;
+
+    this.mapCanvasContainer.scrollTo({
+      left: Math.max(0, pos.x - this.mapCanvasContainer.clientWidth / 2),
+      top: Math.max(0, pos.y - this.mapCanvasContainer.clientHeight / 2),
+      behavior: 'smooth'
+    });
   }
 
   private populateDestinations(): void {

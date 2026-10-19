@@ -105,36 +105,58 @@
   <main class="terminal-main">
     <!-- View 1: Tactical Grid & Map with Integrated Route Dispatch Console -->
     <section id="mapViewContainer" class="view-panel map-view-panel">
-      <!-- Tactical Map Viewport -->
-      <div class="map-viewport" data-augmented-ui="tl-clip tr-clip br-clip bl-clip both">
+      <!-- Tactical Map Viewport (Slide-Out Drawer on Mobile) -->
+      <div id="mapViewport" class="map-viewport" data-augmented-ui="tl-clip tr-clip br-clip bl-clip both">
+        <!-- Mobile Map Drawer Header -->
+        <div class="map-drawer-header">
+          <div class="header-left">
+            <span class="header-led"></span>
+            <span class="map-drawer-title">TACTICAL CONTINENTAL MAP [WGS84]</span>
+          </div>
+          <div class="map-drawer-controls">
+            <button type="button" id="btnCenterConvoy" class="term-btn mini-btn center-convoy-btn" title="Center on your rig">📍 RIG</button>
+            <button type="button" id="btnCloseMapDrawer" class="term-btn mini-btn close-drawer-btn" title="Close map drawer">✕ CLOSE</button>
+          </div>
+        </div>
+
         <div class="viewport-corner-tag top-left">// WGS84 SAT-LINK ACTIVE</div>
         <div class="viewport-corner-tag top-right">SECTOR: CONTINENTAL GRID</div>
 
-        <canvas id="worldMapCanvas"></canvas>
+        <div id="mapCanvasContainer" class="map-canvas-container">
+          <canvas id="worldMapCanvas"></canvas>
 
-        <!-- Hover Node Tooltip Overlay -->
-        <div id="mapHoverHud" class="map-hud-overlay map-node-tooltip" style="display: none;">
-          <div class="hud-target-reticle"></div>
-          <div id="hoverTitle" class="hud-node-title">Node</div>
-          <div id="hoverSector" class="hud-node-sub">Sector</div>
-          <div id="hoverFaction" class="hud-node-sub">Faction</div>
-          <div id="hoverDesc" class="hud-node-desc">Description</div>
+          <!-- Hover Node Tooltip Overlay -->
+          <div id="mapHoverHud" class="map-hud-overlay map-node-tooltip" style="display: none;">
+            <div class="hud-target-reticle"></div>
+            <div id="hoverTitle" class="hud-node-title">Node</div>
+            <div id="hoverSector" class="hud-node-sub">Sector</div>
+            <div id="hoverFaction" class="hud-node-sub">Faction</div>
+            <div id="hoverDesc" class="hud-node-desc">Description</div>
+          </div>
+
+          <!-- In-Transit Telemetry Banner -->
+          <div id="transitBanner" class="transit-banner" data-augmented-ui="tl-clip tr-clip br-clip bl-clip both" style="display: none;">
+            <div class="banner-pulse-beacon"></div>
+            <div id="transitTargetText" class="transit-target-text">
+              TRANSIT IN PROGRESS: NEO-SYRACUSE &rarr; CHIBA-ON-HUDSON
+            </div>
+            <div class="progress-bar-container transit-bar-wrap" data-augmented-ui="tl-clip br-clip border">
+              <div id="transitProgressBar" class="progress-bar-fill" style="width: 0%;"></div>
+            </div>
+            <div id="transitTelemetry" class="transit-telemetry-text">
+              PROGRESS: 0% | REMAINING: 0s
+            </div>
+          </div>
         </div>
 
-        <!-- In-Transit Telemetry Banner -->
-        <div id="transitBanner" class="transit-banner" data-augmented-ui="tl-clip tr-clip br-clip bl-clip both" style="display: none;">
-          <div class="banner-pulse-beacon"></div>
-          <div id="transitTargetText" class="transit-target-text">
-            TRANSIT IN PROGRESS: NEO-SYRACUSE &rarr; CHIBA-ON-HUDSON
-          </div>
-          <div class="progress-bar-container transit-bar-wrap" data-augmented-ui="tl-clip br-clip border">
-            <div id="transitProgressBar" class="progress-bar-fill" style="width: 0%;"></div>
-          </div>
-          <div id="transitTelemetry" class="transit-telemetry-text">
-            PROGRESS: 0% | REMAINING: 0s
+        <!-- Mobile Map Drawer Bottom Action Bar -->
+        <div id="mapDrawerFooter" class="map-drawer-footer">
+          <div id="mapDrawerTargetInfo" class="map-drawer-target-info">TAP A CITY TO PLOT ROUTE</div>
+          <div class="map-drawer-actions">
+            <button type="button" id="btnMapDrawerSelect" class="term-btn mini-btn select-close-btn" style="display: none;">SET DESTINATION</button>
+            <button type="button" id="btnMapDrawerDispatch" class="term-btn mini-btn drawer-dispatch-btn" style="display: none;">⚡ DISPATCH NOW</button>
           </div>
         </div>
-
       </div>
 
       <!-- Docked Navigation Dispatch Console -->
@@ -150,6 +172,12 @@
           <span class="header-tech-tag">NAV.v4</span>
         </div>
         <div class="panel-content dispatch-body">
+          <!-- Mobile Open Tactical Map Drawer Button -->
+          <button type="button" id="btnOpenMapDrawer" class="term-btn open-map-drawer-btn" data-augmented-ui="tl-clip br-clip both">
+            <span class="btn-icon">🗺️</span>
+            <span>VIEW TACTICAL MAP [FULL DRAWER]</span>
+          </button>
+
           <div class="form-group">
             <label class="status-label">SECTOR FILTER</label>
             <div class="select-wrapper" data-augmented-ui="tl-clip br-clip both">
