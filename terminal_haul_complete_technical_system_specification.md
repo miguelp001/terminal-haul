@@ -163,6 +163,33 @@ export interface StoryletOption {
 * **Transit Encounters:** Triggered automatically at $50\%$ transit progress between nodes if eligible storylets match the player's active qualities, core stats, and location.
 * **Direct Cargo Salvage:** Options rewarding `rewards.cargo` automatically verify chassis capacity and add the commodities into the player's hold.
 
+### 4.6 Non-Repeatable Narrative Arc: "The Chilled Defector" (10-Card Chain)
+A major narrative arc revolving around an unregistered cryogenic coffin hauled as contraband, containing Dr. Elena Vance—Chief Quantum Architect of Aegis Security defecting to escape liquidation:
+
+```mermaid
+flowchart TD
+    S1["1. The Sub-Zero Consignment<br/>(Dock Pickup, Contraband Cryo)"] --> S2["2. The Heartbeat in the Chill<br/>(BRANCH 1: Slicing vs Power Routing)"]
+    S2 --> S3["3. Aegis Black-Ops Sweeper<br/>(BRANCH 2: Evasion, Bluff, Ramming, or Cipher)"]
+    S3 --> S4["4. Thermal Runaway<br/>(BRANCH 3: Revive Dr. Vance vs Splicing vs Torch-Weld)"]
+    S4 --> S5["5. The Defector's Confession<br/>(Alliance, Neural Hardware, or Swiss Vault)"]
+    S5 --> S6["6. The Gridlock Extortion<br/>(BRANCH 4: Decoy Bio-Canister, Nitro Vault, Ram, or Killcode)"]
+    S6 --> S7["7. Orbital Hunter-Killer Ping<br/>(Radar Decoy, Black Rock Tunnel, or Blast-Shields)"]
+    S7 --> S8["8. The Extraction Crossroads<br/>(BRANCH 5: Freehold vs Solaris vs Neuralfront)"]
+    S8 --> S9["9. Commander Thorne's Last Stand<br/>(Titan Mech Boss Fight: EMP, Knee Ram, or Underbelly Slide)"]
+    S9 --> S10["10. The Defector's Safe Harbor<br/>(Grand Finale: 6,000-10,000 ₵, Rare Prototypes, +Core Stat)"]
+```
+
+* **Non-Repeatability Guarantee:** Every stage card defines `repeatable: false` and is tracked in `PlayerState.completedStorylets` and sequential quest stage qualities (`Cryo Extraction: 1` through `9`, terminating at `99`).
+* **5 Critical Branch Points:**
+  1. *Investigate vs Preserve Seal:* Uncovers Dr. Vance's identity early (`Corpo Truth Known = 1`) or protects capsule integrity (`Cryo Capsule Health = 100`).
+  2. *Aegis Sweeper Response:* Choice between high-speed canyon evasion (+EDGE), forged manifest bluff (+COOL), kinetic ramming (+GRIT), or Vance's secret recall cipher.
+  3. *Thermal Thaw Crisis:* Option to initiate emergency controlled thaw, awakening Dr. Vance as an active conscious cabin companion (`Dr Vance Awakened = 1`).
+  4. *Syndicate Extortion Roadblock:* Choice between toxic canister deception (+COOL), nitro-boost jump (+EDGE), armored plow crush (+GRIT), or remote ECM kill-code (+CYBER).
+  5. *The Destination Crossroads:* Determines the receiving faction:
+     - **Freehold Frontier:** High honor, rig prototype armor, $+35$ Rustworks rep, 7,500 ₵.
+     - **Solaris Clean Energy:** Executive pardon, 10,000 ₵ bounty, $+35$ Solaris rep, permanent Enclave Permits.
+     - **Neuralfront Collective:** Open-source AI mesh, $+40$ Neuralfront rep, military cyberware, 6,000 ₵.
+
 ---
 
 ## 5. GOAP AI Economy & Synchronized Market

@@ -13,6 +13,7 @@ export interface SavedGamePayload {
   completedContractsCount: number;
   eventLogs: string[];
   activeContracts?: CourierContract[];
+  completedStorylets?: string[];
   convoy?: ConvoyRig;
   activeRoute?: ActiveRoute | null;
   version?: string;
@@ -43,6 +44,7 @@ export class PersistenceManager {
       completedContractsCount: state.completedContractsCount,
       eventLogs: [...state.eventLogs],
       activeContracts: [...activeContracts],
+      completedStorylets: state.completedStorylets ? [...state.completedStorylets] : [],
       convoy: { ...state.convoy },
       activeRoute: state.activeRoute ? { ...state.activeRoute } : null,
       version: this.CURRENT_VERSION,

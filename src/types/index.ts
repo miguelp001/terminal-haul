@@ -140,6 +140,7 @@ export interface PlayerState {
   completedContractsCount: number;
   eventLogs: string[];
   activeStorylet: import('./storylet').Storylet | null;
+  completedStorylets?: string[];
   availableContracts: import('./contracts').CourierContract[];
   activeContracts: import('./contracts').CourierContract[];
 }

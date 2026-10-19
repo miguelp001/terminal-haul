@@ -104,6 +104,11 @@ export class NarrativeEngine {
     triggerType: StoryletTriggerType
   ): Storylet[] {
     return this.storylets.filter((storylet) => {
+      // Check repeatable constraint
+      if (storylet.repeatable === false && state.completedStorylets?.includes(storylet.id)) {
+        return false;
+      }
+
       // Check trigger type
       if (storylet.triggerType !== 'ANY' && storylet.triggerType !== triggerType) {
         return false;

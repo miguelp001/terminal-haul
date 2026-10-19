@@ -1,6 +1,7 @@
 import { Storylet } from '../types/storylet';
+import { CRYO_QUEST_STORYLETS } from './cryoQuestStorylets';
 
-export const STORYLET_POOL: Storylet[] = [
+export const BASE_STORYLET_POOL: Storylet[] = [
   {
     id: 'story_border_patrol',
     title: 'Aegis Enclave Checkpoint 09',
@@ -708,3 +709,9 @@ export const STORYLET_POOL: Storylet[] = [
     ]
   }
 ];
+
+export const STORYLET_POOL: Storylet[] = [
+  ...BASE_STORYLET_POOL,
+  ...CRYO_QUEST_STORYLETS
+];
+

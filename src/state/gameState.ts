@@ -99,6 +99,7 @@ export class GameStore {
         `Docked at ${initialLocation.name} [${initialLocation.sector.toUpperCase()}]. Market feeds synchronized.`
       ],
       activeStorylet: null,
+      completedStorylets: [],
       availableContracts: [],
       activeContracts: []
     };
@@ -537,6 +538,14 @@ export class GameStore {
     }
 
     // Storylet resolved
+    if (storylet.repeatable === false) {
+      if (!this.state.completedStorylets) {
+        this.state.completedStorylets = [];
+      }
+      if (!this.state.completedStorylets.includes(storylet.id)) {
+        this.state.completedStorylets.push(storylet.id);
+      }
+    }
     this.state.activeStorylet = null;
     this.checkEmergencyHullSOS();
     this.autoSave();
@@ -1084,6 +1093,7 @@ export class GameStore {
       completedContractsCount: 0,
       eventLogs: ['SYSTEM RESET: Convoy profile re-initialized.'],
       activeStorylet: null,
+      completedStorylets: [],
       availableContracts: ContractEngine.generateContractsForNode(initialLocation, WORLD_NODES, 1.0),
       activeContracts: []
     };
@@ -1136,6 +1146,7 @@ export class GameStore {
     this.state.completedContractsCount = payload.completedContractsCount || 0;
     this.state.eventLogs = payload.eventLogs || [];
     this.state.activeContracts = payload.activeContracts || [];
+    this.state.completedStorylets = payload.completedStorylets ? [...payload.completedStorylets] : [];
     this.state.activeRoute = payload.activeRoute || null;
     if (payload.convoy) {
       this.state.convoy = { ...payload.convoy };

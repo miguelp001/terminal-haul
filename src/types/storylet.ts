@@ -50,5 +50,6 @@ export interface Storylet {
   reqs?: StoryletRequirement;
   text: string;
   options: StoryletOption[];
+  repeatable?: boolean; // If false, triggers once per playthrough
 }
 

@@ -200,6 +200,20 @@ Inspired by *Sunless Sea* and *Fallen London*, the game features quality-evaluat
 - **Dynamic Skill Checks**: Choices verify whether your carrier possesses requisite qualities (e.g., `Tech Literacy >= 3` or `Street Cred >= 10`).
 - **Branching Outcomes**: Decisions grant rewards (bonus credits, cargo salvage, faction reputation) or inflict penalties (hull damage, cargo loss, increased Heat).
 
+#### Featured Quest Arc: "The Chilled Defector" (10-Storylet Chain)
+An epic non-repeatable multi-stage narrative adventure revolving around an unregistered cryogenic coffin hauled as contraband:
+- **The Mystery & The Twist:** What begins as a shady Class-IV bio-contraband courier job turns into a high-stakes corporate extraction when you discover the frozen occupant is **Dr. Elena Vance**, Chief Quantum Systems Architect of Aegis Security defecting to prevent deployment of an autonomous kill-grid.
+- **5 Major Branching Decision Points:**
+  1. *Telemetry Slicing vs Stasis Preservation:* Uncover her identity early or prioritize capsule refrigeration integrity.
+  2. *Aegis Sweeper Ambush:* Evade into canyons (+EDGE), fast-talk with forged manifests (+COOL), ram interceptors (+GRIT), or transmit Vance's backdoored override cipher (+CYBER).
+  3. *Thermal Runaway Crisis:* Hotwire the cooling pumps, flash-freeze with plasma torches, or initiate emergency resuscitation to revive Dr. Vance early as an active cabin companion.
+  4. *Gridlock Syndicate Blockade:* Outsmart the raiders with a decoy toxic canister, nitro-jump their flaming barricade, plow through their gun-trucks, or broadcast a zero-day engine kill-code.
+  5. *Extraction Crossroads:* Choose which faction receives Dr. Vance and her quantum architecture:
+     - **Freehold Frontier:** Honor, prototype armor plating, $+35$ Rustworks rep, 7,500 ₵.
+     - **Solaris Clean Energy:** Full corporate pardon, 10,000 ₵ payout, $+35$ Solaris rep, Enclave Permits +3.
+     - **Neuralfront Collective:** Open-source AI mesh, $+40$ Neuralfront rep, military cyberware, 6,000 ₵.
+- **Grand Finale Rewards:** Successful completion awards up to 10,000 Credits, permanent Core Stat bumps (`+1 CYBER`, `+1 EDGE`, or `+1 COOL`), rare prototype commodities (Cyberware, Neural Chips, Cryo Pods), and universal diplomatic immunity.
+
 ### Courier Contracts & Cargo Loading
 Procedural delivery contracts are generated at every node with specified parameters:
 - **Cargo Reservation**: Accepting a contract reserves the necessary tonnage in your cargo hold.
