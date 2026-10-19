@@ -313,5 +313,45 @@ describe('Persistent Multiplayer Backend & Synchronized Economy', () => {
       expect(reloadedChat.length).toBe(1);
       expect(reloadedChat[0].text).toBe('Testing global frequency.');
     });
+
+    it('ranks players strictly on Net Worth in descending order', () => {
+      const storage = new ServerPersistence(TEST_STORAGE_PATH);
+
+      storage.updateLeaderboardEntry({
+        playerId: 'p_low',
+        callsign: 'Low Hauler',
+        netWorth: 3000,
+        credits: 2000,
+        completedContractsCount: 1,
+        totalDistanceTraveled: 100,
+        careerScore: 3500,
+        rankTitle: 'Rookie Hauler',
+        lastSeen: Date.now(),
+        isOnline: true
+      });
+
+      storage.updateLeaderboardEntry({
+        playerId: 'p_high',
+        callsign: 'Tycoon Hauler',
+        netWorth: 45000,
+        credits: 30000,
+        completedContractsCount: 25,
+        totalDistanceTraveled: 6000,
+        careerScore: 60000,
+        rankTitle: 'Grid Overlord',
+        lastSeen: Date.now(),
+        isOnline: true
+      });
+
+      const board = storage.getLeaderboard();
+      expect(board.length).toBeGreaterThanOrEqual(2);
+      expect(board[0].playerId).toBe('p_high');
+      expect(board[0].netWorth).toBe(45000);
+
+      // Verify strict descending order by net worth
+      for (let i = 1; i < board.length; i++) {
+        expect(board[i - 1].netWorth).toBeGreaterThanOrEqual(board[i].netWorth);
+      }
+    });
   });
 });

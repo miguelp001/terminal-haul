@@ -1,5 +1,5 @@
 import { CommodityId } from '../types';
-import { ClientMessage, ServerMessage, RemotePlayerConvoy, SharedMarketAdjustment, GlobalTradeEvent, ChatMessage } from '../server/types';
+import { ClientMessage, ServerMessage, RemotePlayerConvoy, SharedMarketAdjustment, GlobalTradeEvent, ChatMessage, LeaderboardEntry } from '../server/types';
 
 export type NetworkStatus = 'ONLINE' | 'CONNECTING' | 'OFFLINE';
 
@@ -8,6 +8,7 @@ export type MarketUpdateListener = (adjustments: Record<CommodityId, SharedMarke
 export type TradeBroadcastListener = (trade: GlobalTradeEvent) => void;
 export type StatusChangeListener = (status: NetworkStatus, playerCount: number) => void;
 export type ChatListener = (chat: ChatMessage) => void;
+export type LeaderboardListener = (leaderboard: LeaderboardEntry[]) => void;
 
 export class MultiplayerClient {
   private ws: WebSocket | null = null;
@@ -25,6 +26,7 @@ export class MultiplayerClient {
   private tradeListeners: Set<TradeBroadcastListener> = new Set();
   private statusListeners: Set<StatusChangeListener> = new Set();
   private chatListeners: Set<ChatListener> = new Set();
+  private leaderboardListeners: Set<LeaderboardListener> = new Set();
 
   constructor(serverUrl: string = 'ws://localhost:8080') {
     this.serverUrl = serverUrl;
@@ -50,7 +52,17 @@ export class MultiplayerClient {
     this.callsign = callsign;
   }
 
-  public connect(currentLocationId: string = 'node_002'): void {
+  public connect(
+    currentLocationId: string = 'node_002',
+    initialTelemetry?: {
+      netWorth?: number;
+      credits?: number;
+      completedContractsCount?: number;
+      totalDistanceTraveled?: number;
+      careerScore?: number;
+      rankTitle?: string;
+    }
+  ): void {
     if (this.ws && (this.ws.readyState === WebSocket.OPEN || this.ws.readyState === WebSocket.CONNECTING)) {
       return;
     }
@@ -66,7 +78,8 @@ export class MultiplayerClient {
           type: 'C2S_JOIN',
           playerId: this.playerId,
           callsign: this.callsign,
-          currentLocationId
+          currentLocationId,
+          ...initialTelemetry
         });
 
         this.startHeartbeat();
@@ -158,6 +171,9 @@ export class MultiplayerClient {
             this.notifyChat(c);
           }
         }
+        if (msg.leaderboard) {
+          this.notifyLeaderboard(msg.leaderboard);
+        }
         break;
       }
 
@@ -186,6 +202,17 @@ export class MultiplayerClient {
         this.notifyChat(msg.chat);
         break;
       }
+
+      case 'S2C_LEADERBOARD_SYNC': {
+        this.notifyLeaderboard(msg.leaderboard);
+        break;
+      }
+    }
+  }
+
+  private notifyLeaderboard(leaderboard: LeaderboardEntry[]): void {
+    for (const listener of this.leaderboardListeners) {
+      listener(leaderboard);
     }
   }
 
@@ -294,6 +321,28 @@ export class MultiplayerClient {
   public onChatMessage(listener: ChatListener): () => void {
     this.chatListeners.add(listener);
     return () => this.chatListeners.delete(listener);
+  }
+
+  public broadcastLeaderboard(data: {
+    netWorth: number;
+    credits: number;
+    completedContractsCount: number;
+    totalDistanceTraveled: number;
+    careerScore: number;
+    rankTitle: string;
+    currentLocationName?: string;
+  }): void {
+    this.send({
+      type: 'C2S_LEADERBOARD_UPDATE',
+      playerId: this.playerId,
+      callsign: this.callsign,
+      ...data
+    });
+  }
+
+  public onLeaderboardSync(listener: LeaderboardListener): () => void {
+    this.leaderboardListeners.add(listener);
+    return () => this.leaderboardListeners.delete(listener);
   }
 
   public disconnect(): void {

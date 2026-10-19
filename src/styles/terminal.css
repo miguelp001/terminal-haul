@@ -894,3 +894,147 @@ select.term-select:focus {
   padding-top: 6px;
 }
 
+/* Net Worth Leaderboard Styles */
+.leaderboard-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 14px;
+  overflow-y: auto;
+  gap: 14px;
+}
+
+.leaderboard-header-banner {
+  background: rgba(0, 240, 255, 0.05);
+  border: 1px solid var(--neon-cyan);
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 2px;
+}
+
+.leaderboard-title {
+  font-size: 1.15rem;
+  font-weight: bold;
+  color: var(--neon-cyan);
+  letter-spacing: 1px;
+  text-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+}
+
+.my-rank-badge {
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: var(--neon-amber);
+  background: rgba(255, 170, 0, 0.1);
+  border: 1px solid var(--neon-amber);
+  padding: 6px 12px;
+  border-radius: 2px;
+  letter-spacing: 1px;
+}
+
+.leaderboard-table-wrap {
+  overflow-x: auto;
+  background: #060a10;
+  border: 1px solid var(--border-color);
+  border-radius: 2px;
+}
+
+.leaderboard-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.76rem;
+  font-family: var(--font-mono);
+}
+
+.leaderboard-table th {
+  background: #08121a;
+  color: var(--neon-cyan);
+  text-align: left;
+  padding: 10px 8px;
+  border-bottom: 2px solid var(--border-color);
+  font-weight: normal;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+.leaderboard-table td {
+  padding: 9px 8px;
+  border-bottom: 1px solid #101c28;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.leaderboard-table tr:hover {
+  background: rgba(0, 240, 255, 0.03);
+}
+
+.leaderboard-row.my-row {
+  background: rgba(0, 240, 255, 0.08);
+  border-left: 3px solid var(--neon-cyan);
+}
+
+.leaderboard-row.my-row td {
+  font-weight: bold;
+}
+
+.rank-pill {
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 2px;
+  font-weight: bold;
+  font-size: 0.72rem;
+  text-align: center;
+  min-width: 24px;
+}
+
+.rank-gold {
+  color: #000;
+  background: #ffd700;
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
+}
+
+.rank-silver {
+  color: #000;
+  background: #e0e0e0;
+  box-shadow: 0 0 6px rgba(224, 224, 224, 0.5);
+}
+
+.rank-bronze {
+  color: #fff;
+  background: #cd7f32;
+  box-shadow: 0 0 6px rgba(205, 127, 50, 0.5);
+}
+
+.rank-standard {
+  color: var(--text-muted);
+}
+
+.hauler-callsign {
+  font-weight: bold;
+  color: #fff;
+}
+
+.hauler-status-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin-right: 6px;
+}
+
+.hauler-status-dot.online {
+  background: var(--neon-green);
+  box-shadow: 0 0 6px var(--neon-green);
+}
+
+.hauler-status-dot.offline {
+  background: #555;
+}
+
+.net-worth-val {
+  color: var(--neon-cyan);
+  font-weight: bold;
+  font-size: 0.82rem;
+}
+

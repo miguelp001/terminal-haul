@@ -23,8 +23,6 @@
         </div>
         <button id="btnAudioToggle" class="term-btn active">AUDIO: ON</button>
         <button id="btnThemeToggle" class="term-btn">PALETTE: CYAN</button>
-        <button id="btnSaveGame" class="term-btn" style="border-color: var(--neon-green); color: var(--neon-green);">SAVE</button>
-        <button id="btnLoadGame" class="term-btn">LOAD</button>
         <button id="btnResetGame" class="term-btn" style="border-color: var(--neon-red); color: var(--neon-red);">RESET</button>
       </div>
     </div>
@@ -92,6 +90,7 @@
           <button id="tabMarket" class="tab-btn">COMMODITY EXCHANGE</button>
           <button id="tabContracts" class="tab-btn">CONTRACTS</button>
           <button id="tabQualities" class="tab-btn">PILOT & FACTIONS</button>
+          <button id="tabLeaderboard" class="tab-btn">NET WORTH LEADERBOARD</button>
         </div>
         <span id="currentLocationBadge" class="status-value">NEO-SYRACUSE</span>
       </div>
@@ -189,6 +188,39 @@
         </div>
         <div id="factionsList">
           <!-- Dynamic Factions Reputations -->
+        </div>
+      </div>
+
+      <!-- Net Worth Leaderboard View -->
+      <div id="leaderboardViewContainer" class="leaderboard-container" style="display: none;">
+        <div class="leaderboard-header-banner">
+          <div>
+            <div style="font-size: 0.7rem; color: var(--text-muted); letter-spacing: 1px;">GLOBAL HAULER REGISTRY // 1X REAL-TIME PERSISTENT FEED</div>
+            <div class="leaderboard-title">NET WORTH & ASSET LEADERBOARD</div>
+          </div>
+          <div class="leaderboard-stats-right">
+            <span id="playerLeaderboardRankBadge" class="my-rank-badge">YOUR RANK: #1</span>
+          </div>
+        </div>
+
+        <div class="leaderboard-table-wrap">
+          <table class="leaderboard-table">
+            <thead>
+              <tr>
+                <th style="width: 50px;">RANK</th>
+                <th>CALLSIGN & STATUS</th>
+                <th>NET WORTH</th>
+                <th>LIQUID CREDITS</th>
+                <th>DELIVERIES</th>
+                <th>DISTANCE</th>
+                <th>CAREER SCORE</th>
+                <th>PRESTIGE TITLE</th>
+              </tr>
+            </thead>
+            <tbody id="leaderboardTableBody">
+              <!-- Dynamic rows -->
+            </tbody>
+          </table>
         </div>
       </div>
     </section>

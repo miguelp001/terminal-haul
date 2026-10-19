@@ -73,7 +73,9 @@ export class TerminalHaulServer {
         if (client) {
           this.activeClients.delete(ws);
           this.activeConvoys.delete(client.playerId);
+          this.persistence.setPlayerOnline(client.playerId, false);
           this.broadcastPlayersSync();
+          this.broadcastLeaderboardSync();
         }
       });
 
@@ -100,6 +102,20 @@ export class TerminalHaulServer {
           lastUpdated: Date.now()
         });
 
+        this.persistence.updateLeaderboardEntry({
+          playerId: msg.playerId,
+          callsign: msg.callsign,
+          netWorth: msg.netWorth || 2500,
+          credits: msg.credits || 2500,
+          completedContractsCount: msg.completedContractsCount || 0,
+          totalDistanceTraveled: msg.totalDistanceTraveled || 0,
+          careerScore: msg.careerScore || 2500,
+          rankTitle: msg.rankTitle || 'Rookie Hauler',
+          currentLocationName: msg.currentLocationId,
+          lastSeen: Date.now(),
+          isOnline: true
+        });
+
         const welcome: ServerMessage = {
           type: 'S2C_WELCOME',
           serverGameDays: this.serverGameDays,
@@ -107,10 +123,12 @@ export class TerminalHaulServer {
           marketAdjustments: this.marketManager.getAdjustments(),
           activeConvoys: Array.from(this.activeConvoys.values()),
           recentTrades: this.persistence.getData().recentTrades,
-          recentChat: this.persistence.getRecentChat()
+          recentChat: this.persistence.getRecentChat(),
+          leaderboard: this.persistence.getLeaderboard()
         };
         this.send(ws, welcome);
         this.broadcastPlayersSync();
+        this.broadcastLeaderboardSync();
         break;
       }
 
@@ -186,6 +204,24 @@ export class TerminalHaulServer {
         break;
       }
 
+      case 'C2S_LEADERBOARD_UPDATE': {
+        this.persistence.updateLeaderboardEntry({
+          playerId: msg.playerId,
+          callsign: msg.callsign,
+          netWorth: msg.netWorth,
+          credits: msg.credits,
+          completedContractsCount: msg.completedContractsCount,
+          totalDistanceTraveled: msg.totalDistanceTraveled,
+          careerScore: msg.careerScore,
+          rankTitle: msg.rankTitle,
+          currentLocationName: msg.currentLocationName,
+          lastSeen: Date.now(),
+          isOnline: true
+        });
+        this.broadcastLeaderboardSync();
+        break;
+      }
+
       case 'C2S_HEARTBEAT': {
         const client = this.activeClients.get(ws);
         if (client) {
@@ -216,6 +252,14 @@ export class TerminalHaulServer {
       type: 'S2C_PLAYERS_SYNC',
       activeConvoys: Array.from(this.activeConvoys.values()),
       activePlayerCount: this.activeClients.size
+    };
+    this.broadcast(message);
+  }
+
+  private broadcastLeaderboardSync(): void {
+    const message: ServerMessage = {
+      type: 'S2C_LEADERBOARD_SYNC',
+      leaderboard: this.persistence.getLeaderboard()
     };
     this.broadcast(message);
   }

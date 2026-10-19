@@ -7,12 +7,12 @@ import { COMMODITIES, SECTORS, FACTIONS } from './constants/worldData';
 import { RouteGraph } from './sim/routeGraph';
 import { soundFX } from './audio/soundFX';
 import { multiplayerClient } from './network/multiplayerClient';
-import type { ChatMessage } from './server/types';
+import type { ChatMessage, LeaderboardEntry } from './server/types';
 
 class TerminalApp {
   private mapRenderer!: MapRenderer;
   private selectedDestinationNode: WorldNode | null = null;
-  private activeCenterTab: 'map' | 'market' | 'contracts' | 'qualities' = 'map';
+  private activeCenterTab: 'map' | 'market' | 'contracts' | 'qualities' | 'leaderboard' = 'map';
   private currentTheme: 'cyan' | 'amber' | 'green' = 'cyan';
   private prevConvoyStatus: string = 'DOCKED';
 
@@ -22,8 +22,6 @@ class TerminalApp {
   private netStatusText = document.getElementById('netStatusText')!;
   private btnAudioToggle = document.getElementById('btnAudioToggle') as HTMLButtonElement;
   private btnThemeToggle = document.getElementById('btnThemeToggle') as HTMLButtonElement;
-  private btnSaveGame = document.getElementById('btnSaveGame') as HTMLButtonElement;
-  private btnLoadGame = document.getElementById('btnLoadGame') as HTMLButtonElement;
   private btnResetGame = document.getElementById('btnResetGame') as HTMLButtonElement;
 
   // Left Column Telemetry
@@ -42,11 +40,17 @@ class TerminalApp {
   private tabMarket = document.getElementById('tabMarket') as HTMLButtonElement;
   private tabContracts = document.getElementById('tabContracts') as HTMLButtonElement;
   private tabQualities = document.getElementById('tabQualities') as HTMLButtonElement;
+  private tabLeaderboard = document.getElementById('tabLeaderboard') as HTMLButtonElement;
 
   private mapViewContainer = document.getElementById('mapViewContainer')!;
   private marketViewContainer = document.getElementById('marketViewContainer')!;
   private contractsViewContainer = document.getElementById('contractsViewContainer')!;
   private qualitiesViewContainer = document.getElementById('qualitiesViewContainer')!;
+  private leaderboardViewContainer = document.getElementById('leaderboardViewContainer')!;
+
+  private leaderboardTableBody = document.getElementById('leaderboardTableBody')!;
+  private playerLeaderboardRankBadge = document.getElementById('playerLeaderboardRankBadge')!;
+  private latestLeaderboard: LeaderboardEntry[] = [];
 
   private marketTableBody = document.getElementById('marketTableBody')!;
   private marketIntelText = document.getElementById('marketIntelText')!;
@@ -147,28 +151,32 @@ class TerminalApp {
   }
 
   private initTabs(): void {
-    const setTab = (tab: 'map' | 'market' | 'contracts' | 'qualities') => {
+    const setTab = (tab: 'map' | 'market' | 'contracts' | 'qualities' | 'leaderboard') => {
       soundFX.playClick();
       this.activeCenterTab = tab;
       this.tabMap.classList.toggle('active', tab === 'map');
       this.tabMarket.classList.toggle('active', tab === 'market');
       this.tabContracts.classList.toggle('active', tab === 'contracts');
       this.tabQualities.classList.toggle('active', tab === 'qualities');
+      this.tabLeaderboard.classList.toggle('active', tab === 'leaderboard');
 
       this.mapViewContainer.style.display = tab === 'map' ? 'flex' : 'none';
       this.marketViewContainer.style.display = tab === 'market' ? 'flex' : 'none';
       this.contractsViewContainer.style.display = tab === 'contracts' ? 'flex' : 'none';
       this.qualitiesViewContainer.style.display = tab === 'qualities' ? 'flex' : 'none';
+      this.leaderboardViewContainer.style.display = tab === 'leaderboard' ? 'flex' : 'none';
 
       if (tab === 'market') this.renderMarketTable();
       if (tab === 'contracts') this.renderContractsView();
       if (tab === 'qualities') this.renderQualitiesView();
+      if (tab === 'leaderboard') this.renderLeaderboardView();
     };
 
     this.tabMap.addEventListener('click', () => setTab('map'));
     this.tabMarket.addEventListener('click', () => setTab('market'));
     this.tabContracts.addEventListener('click', () => setTab('contracts'));
     this.tabQualities.addEventListener('click', () => setTab('qualities'));
+    this.tabLeaderboard.addEventListener('click', () => setTab('leaderboard'));
   }
 
   private initControls(): void {
@@ -201,15 +209,15 @@ class TerminalApp {
       }
     });
 
-    this.btnSaveGame.addEventListener('click', () => {
-      soundFX.playClick();
-      gameStore.saveGame();
+    // Auto-save on page exit / refresh
+    window.addEventListener('beforeunload', () => {
+      gameStore.autoSave();
     });
 
-    this.btnLoadGame.addEventListener('click', () => {
-      soundFX.playClick();
-      gameStore.loadGame();
-    });
+    // Continuous background autosave every 10 seconds
+    setInterval(() => {
+      gameStore.autoSave();
+    }, 10000);
 
     this.btnResetGame.addEventListener('click', () => {
       soundFX.playClick();
@@ -426,24 +434,125 @@ class TerminalApp {
       }
     });
 
-    // Connect to server
-    multiplayerClient.connect(gameStore.getState().currentLocationId);
+    // Real-time Leaderboard Listener
+    multiplayerClient.onLeaderboardSync((leaderboard) => {
+      this.latestLeaderboard = leaderboard;
+      this.updateMyLeaderboardRankBadge();
+      if (this.activeCenterTab === 'leaderboard') {
+        this.renderLeaderboardView();
+      }
+    });
 
-    // Periodic convoy position broadcast (every 1 second)
+    // Connect to server with current player profile telemetry
+    const state = gameStore.getState();
+    multiplayerClient.connect(state.currentLocationId, {
+      netWorth: gameStore.calculateNetWorth(),
+      credits: state.credits,
+      completedContractsCount: state.completedContractsCount,
+      totalDistanceTraveled: state.totalDistanceTraveled,
+      careerScore: gameStore.calculateCareerScore(),
+      rankTitle: gameStore.getCareerRankTitle()
+    });
+
+    // Periodic telemetry & position broadcast
     setInterval(() => {
-      const state = gameStore.getState();
-      if (state.status === 'IN_TRANSIT' && state.transit) {
+      const curState = gameStore.getState();
+      if (curState.status === 'IN_TRANSIT' && curState.transit) {
         multiplayerClient.broadcastPosition(
-          state.currentLocationId,
+          curState.currentLocationId,
           'IN_TRANSIT',
-          state.transit.originId,
-          state.transit.destinationId,
-          state.transit.progressPercent
+          curState.transit.originId,
+          curState.transit.destinationId,
+          curState.transit.progressPercent
         );
       } else {
-        multiplayerClient.broadcastPosition(state.currentLocationId, 'DOCKED');
+        multiplayerClient.broadcastPosition(curState.currentLocationId, 'DOCKED');
       }
+      this.broadcastCurrentTelemetry();
     }, 1000);
+  }
+
+  private broadcastCurrentTelemetry(): void {
+    const curState = gameStore.getState();
+    const currentNode = gameStore.getCurrentNode();
+    multiplayerClient.broadcastLeaderboard({
+      netWorth: gameStore.calculateNetWorth(),
+      credits: curState.credits,
+      completedContractsCount: curState.completedContractsCount,
+      totalDistanceTraveled: curState.totalDistanceTraveled,
+      careerScore: gameStore.calculateCareerScore(),
+      rankTitle: gameStore.getCareerRankTitle(),
+      currentLocationName: currentNode.name
+    });
+  }
+
+  private updateMyLeaderboardRankBadge(): void {
+    const myId = multiplayerClient.getPlayerId();
+    const sorted = this.getSortedLeaderboard();
+    const index = sorted.findIndex((e) => e.playerId === myId);
+    if (index !== -1) {
+      this.playerLeaderboardRankBadge.textContent = `YOUR RANK: #${index + 1} OF ${sorted.length} HAULERS`;
+    } else {
+      this.playerLeaderboardRankBadge.textContent = `YOUR RANK: #1`;
+    }
+  }
+
+  private getSortedLeaderboard(): LeaderboardEntry[] {
+    const list = [...this.latestLeaderboard];
+    const myId = multiplayerClient.getPlayerId();
+    const found = list.some((e) => e.playerId === myId);
+    if (!found) {
+      const curState = gameStore.getState();
+      list.push({
+        playerId: myId,
+        callsign: curState.convoy.name,
+        netWorth: gameStore.calculateNetWorth(),
+        credits: curState.credits,
+        completedContractsCount: curState.completedContractsCount,
+        totalDistanceTraveled: curState.totalDistanceTraveled,
+        careerScore: gameStore.calculateCareerScore(),
+        rankTitle: gameStore.getCareerRankTitle(),
+        currentLocationName: gameStore.getCurrentNode().name,
+        lastSeen: Date.now(),
+        isOnline: true
+      });
+    }
+    return list.sort((a, b) => b.netWorth - a.netWorth);
+  }
+
+  private renderLeaderboardView(): void {
+    const sorted = this.getSortedLeaderboard();
+    this.updateMyLeaderboardRankBadge();
+
+    this.leaderboardTableBody.innerHTML = '';
+
+    for (let i = 0; i < sorted.length; i++) {
+      const entry = sorted[i];
+      const rank = i + 1;
+      const isSelf = entry.playerId === multiplayerClient.getPlayerId();
+
+      const tr = document.createElement('tr');
+      tr.className = `leaderboard-row ${isSelf ? 'my-row' : ''}`;
+
+      const rankClass = rank === 1 ? 'rank-gold' : rank === 2 ? 'rank-silver' : rank === 3 ? 'rank-bronze' : 'rank-standard';
+
+      tr.innerHTML = `
+        <td><span class="rank-pill ${rankClass}">#${rank}</span></td>
+        <td>
+          <span class="hauler-status-dot ${entry.isOnline ? 'online' : 'offline'}" title="${entry.isOnline ? 'Active on cluster' : 'Docked / Offline'}"></span>
+          <span class="hauler-callsign">${entry.callsign}${isSelf ? ' <span style="color: var(--neon-cyan); font-size: 0.7rem;">[YOU]</span>' : ''}</span>
+          ${entry.currentLocationName ? `<span style="color: var(--text-muted); font-size: 0.68rem; margin-left: 6px;">[${entry.currentLocationName}]</span>` : ''}
+        </td>
+        <td class="net-worth-val">${entry.netWorth.toLocaleString()} ₵</td>
+        <td style="color: var(--neon-green); font-weight: bold;">${entry.credits.toLocaleString()} ₵</td>
+        <td>${entry.completedContractsCount}</td>
+        <td>${entry.totalDistanceTraveled.toLocaleString()} km</td>
+        <td style="color: var(--neon-amber);">${entry.careerScore.toLocaleString()} PTS</td>
+        <td style="color: var(--text-muted); font-size: 0.72rem;">${entry.rankTitle}</td>
+      `;
+
+      this.leaderboardTableBody.appendChild(tr);
+    }
   }
 
   private handleSendChat(): void {
@@ -548,6 +657,10 @@ class TerminalApp {
       if (this.activeCenterTab === 'qualities') {
         this.renderQualitiesView();
       }
+      if (this.activeCenterTab === 'leaderboard') {
+        this.renderLeaderboardView();
+      }
+      this.updateMyLeaderboardRankBadge();
       this.checkStoryletModal(state);
     });
   }
