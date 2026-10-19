@@ -5,9 +5,11 @@ export const SIREN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_siren_01_frozen_distress",
     "title": "Frostbite on the Northern Frequency",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "coastal",
+    "layer": "coastal",
     "repeatable": false,
     "reqs": {
+      "coastalOnly": true,
       "maxQualities": {
         "Siren Stage": 0
       }
@@ -107,9 +109,11 @@ export const SIREN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_siren_02_blizzard_pass",
     "title": "The Howling Pass",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "coastal",
+    "layer": "coastal",
     "repeatable": false,
     "reqs": {
+      "coastalOnly": true,
       "qualities": {
         "Siren Stage": 1
       },
@@ -206,9 +210,11 @@ export const SIREN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_siren_03_permafrost_depot",
     "title": "The Black Ice Rendezvous",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "coastal",
+    "layer": "coastal",
     "repeatable": false,
     "reqs": {
+      "coastalOnly": true,
       "qualities": {
         "Siren Stage": 2
       },
@@ -303,6 +309,7 @@ export const SIREN_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "coastalOnly": true,
           "cargo": {
             "cryo": 1
           }
@@ -314,9 +321,11 @@ export const SIREN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_siren_04_drone_patrol",
     "title": "The Arctic Hunter Grid",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "coastal",
+    "layer": "coastal",
     "repeatable": false,
     "reqs": {
+      "coastalOnly": true,
       "qualities": {
         "Siren Stage": 3
       },
@@ -413,9 +422,11 @@ export const SIREN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_siren_05_leaking_manifold",
     "title": "Thermal Shock in the Cylinders",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "coastal",
+    "layer": "coastal",
     "repeatable": false,
     "reqs": {
+      "coastalOnly": true,
       "qualities": {
         "Siren Stage": 4
       },
@@ -514,9 +525,11 @@ export const SIREN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_siren_06_raider_ice_trucks",
     "title": "The Frost Harvesters",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "coastal",
+    "layer": "coastal",
     "repeatable": false,
     "reqs": {
+      "coastalOnly": true,
       "qualities": {
         "Siren Stage": 5
       },
@@ -639,9 +652,11 @@ export const SIREN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_siren_07_frozen_town",
     "title": "The Shivering Citadel",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "coastal",
+    "layer": "coastal",
     "repeatable": false,
     "reqs": {
+      "coastalOnly": true,
       "qualities": {
         "Siren Stage": 6
       },
@@ -746,9 +761,11 @@ export const SIREN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_siren_08_frost_mutation",
     "title": "The Awakening Sample",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "coastal",
+    "layer": "coastal",
     "repeatable": false,
     "reqs": {
+      "coastalOnly": true,
       "qualities": {
         "Siren Stage": 7
       },
@@ -850,9 +867,11 @@ export const SIREN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_siren_09_bridge_collapse",
     "title": "The Fissure of the Frozen Lake",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "coastal",
+    "layer": "coastal",
     "repeatable": false,
     "reqs": {
+      "coastalOnly": true,
       "qualities": {
         "Siren Stage": 8
       },
@@ -951,9 +970,11 @@ export const SIREN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_siren_10_the_crossroads",
     "title": "The Crucible of the Cold [CRUCIAL CROSSROAD]",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "coastal",
+    "layer": "coastal",
     "repeatable": false,
     "reqs": {
+      "coastalOnly": true,
       "qualities": {
         "Siren Stage": 9
       },
@@ -1005,9 +1026,11 @@ export const SIREN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_siren_11_airdrop_blockade",
     "title": "The Blizzard Blockade",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "coastal",
+    "layer": "coastal",
     "repeatable": false,
     "reqs": {
+      "coastalOnly": true,
       "qualities": {
         "Siren Stage": 10
       },
@@ -1105,9 +1128,11 @@ export const SIREN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_siren_12_cryo_surge",
     "title": "The Superconducting Pulse",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "coastal",
+    "layer": "coastal",
     "repeatable": false,
     "reqs": {
+      "coastalOnly": true,
       "qualities": {
         "Siren Stage": 11
       },
@@ -1203,9 +1228,11 @@ export const SIREN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_siren_13_air_cavalry",
     "title": "The Last Cordon of Fire",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "coastal",
+    "layer": "coastal",
     "repeatable": false,
     "reqs": {
+      "coastalOnly": true,
       "qualities": {
         "Siren Stage": 12
       },
@@ -1327,9 +1354,11 @@ export const SIREN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_siren_14_arctic_climax",
     "title": "The Sub-Zero Horizon [CLIMAX GAUNTLET]",
     "triggerType": "ANY",
-    "triggerLocation": "Any",
+    "triggerLocation": "coastal",
+    "layer": "coastal",
     "repeatable": false,
     "reqs": {
+      "coastalOnly": true,
       "qualities": {
         "Siren Stage": 13
       },
@@ -1374,6 +1403,7 @@ export const SIREN_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "coastalOnly": true,
           "qualities": {
             "Siren Chosen Path": 1
           }
@@ -1415,6 +1445,7 @@ export const SIREN_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "coastalOnly": true,
           "qualities": {
             "Siren Chosen Path": 2
           }
@@ -1455,6 +1486,7 @@ export const SIREN_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "coastalOnly": true,
           "qualities": {
             "Siren Chosen Path": 3
           }
@@ -1466,9 +1498,11 @@ export const SIREN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_siren_15_finale",
     "title": "The Frost Sovereign [FINALE]",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "coastal",
+    "layer": "coastal",
     "repeatable": false,
     "reqs": {
+      "coastalOnly": true,
       "qualities": {
         "Siren Stage": 14
       },
@@ -1504,6 +1538,7 @@ export const SIREN_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "coastalOnly": true,
           "qualities": {
             "Siren Chosen Path": 1
           }
@@ -1536,6 +1571,7 @@ export const SIREN_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "coastalOnly": true,
           "qualities": {
             "Siren Chosen Path": 2
           }
@@ -1568,6 +1604,7 @@ export const SIREN_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "coastalOnly": true,
           "qualities": {
             "Siren Chosen Path": 3
           }

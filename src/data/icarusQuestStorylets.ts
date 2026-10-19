@@ -5,9 +5,11 @@ export const ICARUS_QUEST_STORYLETS: Storylet[] = [
     "id": "story_icarus_01_cable_snap",
     "title": "The Sky-Anchor Severed",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "corporate_arcology",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["corporate_arcology"],
       "maxQualities": {
         "Icarus Stage": 0
       }
@@ -103,9 +105,11 @@ export const ICARUS_QUEST_STORYLETS: Storylet[] = [
     "id": "story_icarus_02_falling_stars",
     "title": "The Sonic Reentry Trail",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "corporate_arcology",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["corporate_arcology"],
       "qualities": {
         "Icarus Stage": 1
       },
@@ -204,9 +208,11 @@ export const ICARUS_QUEST_STORYLETS: Storylet[] = [
     "id": "story_icarus_03_first_crater_scramble",
     "title": "The First Crater Scramble",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "corporate_arcology",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["corporate_arcology"],
       "qualities": {
         "Icarus Stage": 2
       },
@@ -337,9 +343,11 @@ export const ICARUS_QUEST_STORYLETS: Storylet[] = [
     "id": "story_icarus_04_plasma_cell_siphon",
     "title": "The Magnetic Flux Siphon",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "corporate_arcology",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["corporate_arcology"],
       "qualities": {
         "Icarus Stage": 3
       },
@@ -440,9 +448,11 @@ export const ICARUS_QUEST_STORYLETS: Storylet[] = [
     "id": "story_icarus_05_mercenary_interception",
     "title": "The Black Sun Interceptors [BRANCH 1]",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "corporate_arcology",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["corporate_arcology"],
       "qualities": {
         "Icarus Stage": 4
       },
@@ -576,9 +586,11 @@ export const ICARUS_QUEST_STORYLETS: Storylet[] = [
     "id": "story_icarus_06_antimatter_containment",
     "title": "The Magnetic Flux Collapse",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "corporate_arcology",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["corporate_arcology"],
       "qualities": {
         "Icarus Stage": 5
       },
@@ -678,9 +690,11 @@ export const ICARUS_QUEST_STORYLETS: Storylet[] = [
     "id": "story_icarus_07_orbital_defense_laser",
     "title": "The Eye of Olympus",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "corporate_arcology",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["corporate_arcology"],
       "qualities": {
         "Icarus Stage": 6
       },
@@ -780,9 +794,11 @@ export const ICARUS_QUEST_STORYLETS: Storylet[] = [
     "id": "story_icarus_08_salt_flat_sonic_boom",
     "title": "The Sonic Speed Run [BRANCH 2]",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "corporate_arcology",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["corporate_arcology"],
       "qualities": {
         "Icarus Stage": 7
       },
@@ -914,9 +930,11 @@ export const ICARUS_QUEST_STORYLETS: Storylet[] = [
     "id": "story_icarus_09_kinetic_strike_evasion",
     "title": "Rods from God",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "corporate_arcology",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["corporate_arcology"],
       "qualities": {
         "Icarus Stage": 8
       },
@@ -1015,9 +1033,11 @@ export const ICARUS_QUEST_STORYLETS: Storylet[] = [
     "id": "story_icarus_10_the_second_capsule",
     "title": "The Antimatter Dilemma [BRANCH 3]",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "corporate_arcology",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["corporate_arcology"],
       "qualities": {
         "Icarus Stage": 9
       },
@@ -1123,9 +1143,11 @@ export const ICARUS_QUEST_STORYLETS: Storylet[] = [
     "id": "story_icarus_11_thermal_venting_dilemma",
     "title": "The Frontier Town Dilemma",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "corporate_arcology",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["corporate_arcology"],
       "qualities": {
         "Icarus Stage": 10
       },
@@ -1227,9 +1249,11 @@ export const ICARUS_QUEST_STORYLETS: Storylet[] = [
     "id": "story_icarus_12_hyperflux_assembly",
     "title": "The Hyper-Flux Turbine Assembly",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "corporate_arcology",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["corporate_arcology"],
       "qualities": {
         "Icarus Stage": 11
       },
@@ -1329,9 +1353,11 @@ export const ICARUS_QUEST_STORYLETS: Storylet[] = [
     "id": "story_icarus_13_space_mercenary_dreadnought",
     "title": "The Dreadnought in the Dust [BRANCH 4]",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "corporate_arcology",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["corporate_arcology"],
       "qualities": {
         "Icarus Stage": 12
       },
@@ -1465,9 +1491,11 @@ export const ICARUS_QUEST_STORYLETS: Storylet[] = [
     "id": "story_icarus_14_third_capsule_impact",
     "title": "The Trinity of Fire",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "corporate_arcology",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["corporate_arcology"],
       "qualities": {
         "Icarus Stage": 13
       },
@@ -1572,9 +1600,11 @@ export const ICARUS_QUEST_STORYLETS: Storylet[] = [
     "id": "story_icarus_15_tether_terminal_crossroads",
     "title": "The Icarus Crossroads [BRANCH 5: Lock In Path]",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "corporate_arcology",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["corporate_arcology"],
       "qualities": {
         "Icarus Stage": 14
       },
@@ -1626,9 +1656,11 @@ export const ICARUS_QUEST_STORYLETS: Storylet[] = [
     "id": "story_icarus_16_falling_tether_debris",
     "title": "The Sky is Falling",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "corporate_arcology",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["corporate_arcology"],
       "qualities": {
         "Icarus Stage": 15
       },
@@ -1753,9 +1785,11 @@ export const ICARUS_QUEST_STORYLETS: Storylet[] = [
     "id": "story_icarus_17_orbital_bombardment_run",
     "title": "The Final Satellite Salvo",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "corporate_arcology",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["corporate_arcology"],
       "qualities": {
         "Icarus Stage": 16
       },
@@ -1855,9 +1889,11 @@ export const ICARUS_QUEST_STORYLETS: Storylet[] = [
     "id": "story_icarus_18_anti_gravity_junction",
     "title": "The Sovereign Border Breach",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "corporate_arcology",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["corporate_arcology"],
       "qualities": {
         "Icarus Stage": 17
       },
@@ -1981,9 +2017,11 @@ export const ICARUS_QUEST_STORYLETS: Storylet[] = [
     "id": "story_icarus_19_superluminal_climax",
     "title": "The Velocity of Light [CLIMAX GAUNTLET]",
     "triggerType": "ANY",
-    "triggerLocation": "Any",
+    "triggerLocation": "corporate_arcology",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["corporate_arcology"],
       "qualities": {
         "Icarus Stage": 18
       },
@@ -2027,6 +2065,7 @@ export const ICARUS_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "archetypes": ["corporate_arcology"],
           "qualities": {
             "Icarus Chosen Path": 1
           }
@@ -2066,6 +2105,7 @@ export const ICARUS_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "archetypes": ["corporate_arcology"],
           "qualities": {
             "Icarus Chosen Path": 2
           }
@@ -2105,6 +2145,7 @@ export const ICARUS_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "archetypes": ["corporate_arcology"],
           "qualities": {
             "Icarus Chosen Path": 3
           }
@@ -2116,9 +2157,11 @@ export const ICARUS_QUEST_STORYLETS: Storylet[] = [
     "id": "story_icarus_20_finale",
     "title": "The Skyward Triumph [FINALE]",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "corporate_arcology",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["corporate_arcology"],
       "qualities": {
         "Icarus Stage": 19
       },
@@ -2154,6 +2197,7 @@ export const ICARUS_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "archetypes": ["corporate_arcology"],
           "qualities": {
             "Icarus Chosen Path": 1
           }
@@ -2185,6 +2229,7 @@ export const ICARUS_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "archetypes": ["corporate_arcology"],
           "qualities": {
             "Icarus Chosen Path": 2
           }
@@ -2216,6 +2261,7 @@ export const ICARUS_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "archetypes": ["corporate_arcology"],
           "qualities": {
             "Icarus Chosen Path": 3
           }

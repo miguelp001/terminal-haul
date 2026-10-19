@@ -5,9 +5,11 @@ export const KINGPIN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_kingpin_01_fallen_patriarch",
     "title": "The Don in the Shadows",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "black_market_sprawl",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["black_market_sprawl"],
       "maxQualities": {
         "Kingpin Stage": 0
       }
@@ -103,9 +105,11 @@ export const KINGPIN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_kingpin_02_blackout_cordon",
     "title": "The City-Wide Blockade",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "black_market_sprawl",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["black_market_sprawl"],
       "qualities": {
         "Kingpin Stage": 1
       },
@@ -207,9 +211,11 @@ export const KINGPIN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_kingpin_03_hitman_chase",
     "title": "The Traitor's Wolves",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "black_market_sprawl",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["black_market_sprawl"],
       "qualities": {
         "Kingpin Stage": 2
       },
@@ -307,9 +313,11 @@ export const KINGPIN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_kingpin_04_first_safehouse",
     "title": "The Meatpacking Safehouse",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "black_market_sprawl",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["black_market_sprawl"],
       "qualities": {
         "Kingpin Stage": 3
       },
@@ -411,9 +419,11 @@ export const KINGPIN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_kingpin_05_toll_ambush",
     "title": "The Corrupt Bridge Toll",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "black_market_sprawl",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["black_market_sprawl"],
       "qualities": {
         "Kingpin Stage": 4
       },
@@ -514,9 +524,11 @@ export const KINGPIN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_kingpin_06_server_overheat",
     "title": "The Boiling Crypto-Cores",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "black_market_sprawl",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["black_market_sprawl"],
       "qualities": {
         "Kingpin Stage": 5
       },
@@ -610,6 +622,7 @@ export const KINGPIN_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "archetypes": ["black_market_sprawl"],
           "cargo": {
             "cyberware": 1
           }
@@ -621,9 +634,11 @@ export const KINGPIN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_kingpin_07_underworld_motel",
     "title": "The Crossroads Motel",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "black_market_sprawl",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["black_market_sprawl"],
       "qualities": {
         "Kingpin Stage": 6
       },
@@ -726,9 +741,11 @@ export const KINGPIN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_kingpin_08_highway_ambush_convoy",
     "title": "The Gun-Truck Gauntlet",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "black_market_sprawl",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["black_market_sprawl"],
       "qualities": {
         "Kingpin Stage": 7
       },
@@ -852,9 +869,11 @@ export const KINGPIN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_kingpin_09_the_baryon_shroud",
     "title": "The Prototype Shroud",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "black_market_sprawl",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["black_market_sprawl"],
       "qualities": {
         "Kingpin Stage": 8
       },
@@ -952,9 +971,11 @@ export const KINGPIN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_kingpin_10_the_crossroads",
     "title": "The Council of Shadows [CRUCIAL CROSSROAD]",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "black_market_sprawl",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["black_market_sprawl"],
       "qualities": {
         "Kingpin Stage": 9
       },
@@ -1006,9 +1027,11 @@ export const KINGPIN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_kingpin_11_usurper_assault",
     "title": "The Siege of the Estate",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "black_market_sprawl",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["black_market_sprawl"],
       "qualities": {
         "Kingpin Stage": 10
       },
@@ -1107,9 +1130,11 @@ export const KINGPIN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_kingpin_12_stealth_tuning",
     "title": "The Phantom Calibration",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "black_market_sprawl",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["black_market_sprawl"],
       "qualities": {
         "Kingpin Stage": 11
       },
@@ -1208,9 +1233,11 @@ export const KINGPIN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_kingpin_13_border_lockdown",
     "title": "The Last Checkpoint of the Divide",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "black_market_sprawl",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["black_market_sprawl"],
       "qualities": {
         "Kingpin Stage": 12
       },
@@ -1307,9 +1334,11 @@ export const KINGPIN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_kingpin_14_underworld_climax",
     "title": "The King of the Highway [CLIMAX GAUNTLET]",
     "triggerType": "ANY",
-    "triggerLocation": "Any",
+    "triggerLocation": "black_market_sprawl",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["black_market_sprawl"],
       "qualities": {
         "Kingpin Stage": 13
       },
@@ -1354,6 +1383,7 @@ export const KINGPIN_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "archetypes": ["black_market_sprawl"],
           "qualities": {
             "Kingpin Chosen Path": 1
           }
@@ -1396,6 +1426,7 @@ export const KINGPIN_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "archetypes": ["black_market_sprawl"],
           "qualities": {
             "Kingpin Chosen Path": 2
           }
@@ -1437,6 +1468,7 @@ export const KINGPIN_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "archetypes": ["black_market_sprawl"],
           "qualities": {
             "Kingpin Chosen Path": 3
           }
@@ -1448,9 +1480,11 @@ export const KINGPIN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_kingpin_15_finale",
     "title": "The Shadow Sovereign [FINALE]",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "black_market_sprawl",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["black_market_sprawl"],
       "qualities": {
         "Kingpin Stage": 14
       },
@@ -1486,6 +1520,7 @@ export const KINGPIN_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "archetypes": ["black_market_sprawl"],
           "qualities": {
             "Kingpin Chosen Path": 1
           }
@@ -1517,6 +1552,7 @@ export const KINGPIN_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "archetypes": ["black_market_sprawl"],
           "qualities": {
             "Kingpin Chosen Path": 2
           }
@@ -1550,6 +1586,7 @@ export const KINGPIN_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "archetypes": ["black_market_sprawl"],
           "qualities": {
             "Kingpin Chosen Path": 3
           }

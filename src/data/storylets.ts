@@ -23,6 +23,7 @@ export const BASE_STORYLET_POOL: Storylet[] = [
     title: 'Aegis Enclave Checkpoint 09',
     triggerType: 'ANY',
     triggerLocation: 'Any',
+    layer: 'faction',
     reqs: { qualities: { 'Street Cred': 0 } },
     text: 'Heavy autonomous drones hover overhead as Aegis enforcers aim laser sight targeters at your convoy rig. A synthetic voice barks: "IDENTIFY CARGO MANIFEST AND SUBMIT TO HARDWARE SCAN."',
     options: [
@@ -140,7 +141,9 @@ export const BASE_STORYLET_POOL: Storylet[] = [
     id: 'story_solaris_ambush',
     title: 'Solaris Highway Interceptors',
     triggerType: 'TRANSIT_ENCOUNTER',
-    triggerLocation: 'Any',
+    triggerLocation: 'inland',
+    layer: 'inland',
+    reqs: { inlandOnly: true, sectors: ['southwest_wasteland', 'midwest'] },
     text: 'Twin heavily-armored dune buggies roar out from the irradiated scrubland, pacing your hauler with mounted harpoon guns and acoustic sound cannons. The clan leader hails you over shortband radio demanding the Nomad road toll.',
     options: [
       {
@@ -252,7 +255,9 @@ export const BASE_STORYLET_POOL: Storylet[] = [
     id: 'story_syndicate_drop',
     title: 'Gridlock Dead-Drop Broker',
     triggerType: 'DOCK',
-    triggerLocation: 'Any',
+    triggerLocation: 'black_market_sprawl',
+    layer: 'archetype',
+    reqs: { archetypes: ['black_market_sprawl'], factions: ['gridlock'] },
     text: 'In the shadows behind the loading gantry, a cybernetically-augmented courier wearing Gridlock Syndicate tattoos taps on your cabin window. "Got a secure consignment that needs moving. Discretion guaranteed... if you have the nerve."',
     options: [
       {
@@ -369,6 +374,8 @@ export const BASE_STORYLET_POOL: Storylet[] = [
     title: 'Neural Front Ghost Transmission',
     triggerType: 'TRANSIT_ENCOUNTER',
     triggerLocation: 'Any',
+    layer: 'faction',
+    reqs: { factions: ['neuralfront'] },
     text: 'A burst of static shrieks across your audio monitors. A rogue AI sub-routine fragments your navigational display, flickering with binary code: "WE OBSERVE THE ROAD. ASSIST THE DECENTRALIZED MESH."',
     options: [
       {
@@ -467,6 +474,8 @@ export const BASE_STORYLET_POOL: Storylet[] = [
     title: 'Derelict Maglev Freight Crash',
     triggerType: 'TRANSIT_ENCOUNTER',
     triggerLocation: 'Any',
+    layer: 'archetype',
+    reqs: {},
     text: 'A derailed maglev freight train lies crumpled beside the embankment, smoke rising from crushed shipping containers. Rustworks union workers are cutting through the titanium hulls with plasma torches.',
     options: [
       {
@@ -556,6 +565,7 @@ export const BASE_STORYLET_POOL: Storylet[] = [
     title: 'Synaptic Optic Feedback Loop',
     triggerType: 'ANY',
     triggerLocation: 'Any',
+    layer: 'global',
     reqs: { qualities: { 'Cyberware Level': 1 } },
     text: 'A blinding surge of neon-pink visual artifacting floods your ocular implant. Warning HUD indicators scream in red: "CRITICAL SYNAPTIC VOLTAGE SPIKE. NEURAL BUFFER OVERFLOW."',
     options: [
@@ -631,7 +641,9 @@ export const BASE_STORYLET_POOL: Storylet[] = [
     id: 'story_wasteland_sandstorm',
     title: 'Irradiated Dust Squall',
     triggerType: 'TRANSIT_ENCOUNTER',
-    triggerLocation: 'Any',
+    triggerLocation: 'inland',
+    layer: 'inland',
+    reqs: { inlandOnly: true, sectors: ['southwest_wasteland', 'midwest'] },
     text: 'A wall of rust-red radioactive dust hundreds of meters high surges across the highway, blinding navigational sensors and threatening to capsize your hauler in 90 km/h crosswinds.',
     options: [
       {
@@ -721,6 +733,160 @@ export const BASE_STORYLET_POOL: Storylet[] = [
             qualities: { 'Street Cred': 1 }
           }
         }
+      }
+    ]
+  },
+  {
+    id: 'story_coastal_fog',
+    title: 'Pacific & Atlantic Sea Fog',
+    triggerType: 'TRANSIT_ENCOUNTER',
+    triggerLocation: 'coastal',
+    layer: 'coastal',
+    reqs: { coastalOnly: true },
+    text: 'A wall of dense ocean fog banks across the coastal highway, smelling of brine, diesel fumes, and decaying kelp. Moisture condensates across your windshield while acoustic lighthouse buoys clang rhythmically in the breakers below the sea-wall.',
+    options: [
+      {
+        id: 'opt_fog_lidar',
+        label: 'Calibrate lidar through sea fog [ROLL +CYBER]',
+        statRoll: 'cyber',
+        qualityBonusKey: 'Tech Literacy',
+        qualityBonusThreshold: 2,
+        effectText: 'You adjust optical filters to burn through the dense saltwater marine haze.',
+        rewards: {},
+        strongHit: {
+          effectText: 'STRONG HIT: Your lidar sweeps punch cleanly through the ocean mist, tracking safe coastal asphalt and spotting salvage crates washed up on the shoreline!',
+          rewards: {
+            credits: 350,
+            qualities: { 'Tech Literacy': 2, 'Street Cred': 3 }
+          }
+        },
+        weakHit: {
+          effectText: 'WEAK HIT: Navigational beacons lock on, guiding your rig safely through the fog at reduced speed.',
+          rewards: {
+            qualities: { 'Tech Literacy': 1, 'Street Cred': 1 }
+          }
+        },
+        miss: {
+          effectText: 'MISS: Salt condensation shorts an optical sensor housing! You clip a maritime warning barrier, scraping your lower fender.',
+          rewards: {
+            hullIntegrity: -10,
+            qualities: { 'Glitch Rating': 1 }
+          }
+        }
+      },
+      {
+        id: 'opt_fog_horn',
+        label: 'Sound maritime airhorns and maintain steady speed [ROLL +COOL]',
+        statRoll: 'cool',
+        qualityBonusKey: 'Street Cred',
+        qualityBonusThreshold: 3,
+        effectText: 'You blast your dual pneumatic horns, declaring right-of-way along the ocean highway.',
+        rewards: {},
+        strongHit: {
+          effectText: 'STRONG HIT: Other coastal haulers yield with respectful return blasts. You cruise through the sound corridor with consummate road authority.',
+          rewards: {
+            qualities: { 'Street Cred': 3 }
+          }
+        },
+        weakHit: {
+          effectText: 'WEAK HIT: You navigate the fog steadily, though brake pads groan under damp sea air.',
+          rewards: {
+            hullIntegrity: -4,
+            qualities: { 'Street Cred': 1 }
+          }
+        },
+        miss: {
+          effectText: 'MISS: A startled salvage crawler swerves blindly out of the mist, clipping your rear trailer bumper!',
+          rewards: {
+            hullIntegrity: -15,
+            qualities: { 'Street Cred': 1 }
+          }
+        }
+      },
+      {
+        id: 'opt_fog_pier_rest',
+        label: 'Pull into a coastal pier to dry filters and inspect docks',
+        effectText: 'You idle in a sheltered salt-air slipway, letting engines breathe.',
+        rewards: {
+          hullIntegrity: 5,
+          qualities: { 'Street Cred': 1 }
+        }
+      }
+    ]
+  },
+  {
+    id: 'story_submersible_contraband',
+    title: 'Submersible Smuggler at the Sea-Wall',
+    triggerType: 'DOCK',
+    triggerLocation: 'coastal',
+    layer: 'coastal',
+    reqs: { coastalOnly: true },
+    text: 'Behind the automated maritime sea-wall docks, an unmetered titanium submersible surfaces with a hiss of compressed ballast air. A diver clad in synthetic neoprene hauls sealed containers of oceanic contraband up the ladder and hails your rig.',
+    options: [
+      {
+        id: 'opt_sub_smuggle_deal',
+        label: 'Negotiate marine contraband consignment [ROLL +COOL]',
+        statRoll: 'cool',
+        qualityBonusKey: 'Contraband Mastery',
+        qualityBonusThreshold: 2,
+        effectText: 'You examine the waterproof pressure canisters of deep-sea synthetic enzymes.',
+        rewards: {},
+        strongHit: {
+          effectText: 'STRONG HIT: Outstanding trade! The submersible captain sells you rare bio-enzymes at a steep discount with a generous cred kickback.',
+          rewards: {
+            cargo: { toxins: 1 },
+            credits: 500,
+            qualities: { 'Contraband Mastery': 2, 'Street Cred': 3, 'Heat': 4 }
+          }
+        },
+        weakHit: {
+          effectText: 'WEAK HIT: Deal completed, but harbor patrol sonar sweeps register the underwater wake.',
+          rewards: {
+            cargo: { toxins: 1 },
+            qualities: { 'Contraband Mastery': 1, 'Heat': 8 }
+          }
+        },
+        miss: {
+          effectText: 'MISS: Port security drones sweep the dock with searchlights! The diver dives back into the water, leaving you with hot cargo under harbor alert.',
+          rewards: {
+            cargo: { toxins: 1 },
+            qualities: { 'Heat': 16, 'Contraband Mastery': 1 }
+          }
+        }
+      },
+      {
+        id: 'opt_sub_tech_inspect',
+        label: 'Inspect deep-water submersible propulsion drive [ROLL +CYBER]',
+        statRoll: 'cyber',
+        qualityBonusKey: 'Tech Literacy',
+        qualityBonusThreshold: 2,
+        effectText: 'You study the magnetic hydrodynamic impeller drives mounted to the vessel.',
+        rewards: {},
+        strongHit: {
+          effectText: 'STRONG HIT: The engineer shares encrypted blueprints for marine anti-corrosion and hydrodynamic intake modding!',
+          rewards: {
+            qualities: { 'Tech Literacy': 3, 'Street Cred': 2 }
+          }
+        },
+        weakHit: {
+          effectText: 'WEAK HIT: You learn useful tips for sealing hauler electrical connectors against saltwater brine.',
+          rewards: {
+            hullIntegrity: 10,
+            qualities: { 'Tech Literacy': 1 }
+          }
+        },
+        miss: {
+          effectText: 'MISS: The diver misinterprets your probe scan as corporate espionage and locks down his hatch with hostile curses.',
+          rewards: {
+            qualities: { 'Street Cred': -1 }
+          }
+        }
+      },
+      {
+        id: 'opt_sub_ignore',
+        label: 'Decline and keep clear of the water’s edge',
+        effectText: 'You walk back to your cab, leaving the oceanic runners to their business.',
+        rewards: {}
       }
     ]
   }

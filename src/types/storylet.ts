@@ -1,4 +1,13 @@
-import { FactionId, SectorId, CommodityId, CoreStatKey } from './index';
+import { FactionId, SectorId, CommodityId, CoreStatKey, NodeArchetype } from './index';
+
+export type StoryletLayer =
+  | 'global'
+  | 'sector'
+  | 'coastal'
+  | 'inland'
+  | 'archetype'
+  | 'faction'
+  | 'signature';
 
 export interface StoryletRequirement {
   qualities?: Record<string, number>; // Minimum required quality value
@@ -8,7 +17,15 @@ export interface StoryletRequirement {
   cargo?: Partial<Record<CommodityId, number>>; // Minimum cargo required
   factionRep?: Partial<Record<FactionId, number>>; // Minimum faction rep required
   sector?: SectorId;
+  sectors?: SectorId[];
   locationId?: string;
+  locationIds?: string[];
+  archetype?: NodeArchetype;
+  archetypes?: NodeArchetype[];
+  coastalOnly?: boolean;
+  inlandOnly?: boolean;
+  factions?: FactionId[];
+  layer?: StoryletLayer;
 }
 
 export interface StoryletReward {
@@ -52,7 +69,8 @@ export interface Storylet {
   id: string;
   title: string;
   triggerType: StoryletTriggerType;
-  triggerLocation?: string; // 'Any' or specific nodeId or sector
+  triggerLocation?: string; // 'Any' or specific nodeId or sector or 'coastal' or 'inland'
+  layer?: StoryletLayer;
   reqs?: StoryletRequirement;
   text: string;
   options: StoryletOption[];

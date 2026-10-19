@@ -11,8 +11,10 @@ export const LOVERS_QUEST_STORYLETS: Storylet[] = [
     title: 'The Ashline Rendezvous',
     triggerType: 'DOCK',
     triggerLocation: 'Any',
+    layer: 'archetype',
     repeatable: false,
     reqs: {
+      archetypes: ['corporate_arcology', 'black_market_sprawl', 'freehold_outpost'],
       qualities: { 'Street Cred': 2 },
       maxQualities: { 'Lovers Stage': 0 }
     },
@@ -98,8 +100,10 @@ export const LOVERS_QUEST_STORYLETS: Storylet[] = [
     title: 'The Scramble at the Gate',
     triggerType: 'TRANSIT_ENCOUNTER',
     triggerLocation: 'Any',
+    layer: 'archetype',
     repeatable: false,
     reqs: {
+      archetypes: ['corporate_arcology', 'black_market_sprawl', 'freehold_outpost'],
       qualities: { 'Lovers Stage': 1 },
       maxQualities: { 'Lovers Stage': 1 }
     },
@@ -200,8 +204,10 @@ export const LOVERS_QUEST_STORYLETS: Storylet[] = [
     title: 'Static & Cigarettes',
     triggerType: 'DOCK',
     triggerLocation: 'Any',
+    layer: 'archetype',
     repeatable: false,
     reqs: {
+      archetypes: ['corporate_arcology', 'black_market_sprawl', 'freehold_outpost'],
       qualities: { 'Lovers Stage': 2 },
       maxQualities: { 'Lovers Stage': 2 }
     },
@@ -262,7 +268,8 @@ export const LOVERS_QUEST_STORYLETS: Storylet[] = [
       {
         id: 'opt_lovers03_demand_order',
         label: 'Lay down convoy law: keep it quiet or get off the rig [Grit 2+]',
-        reqs: { stats: { grit: 2 } },
+        reqs: {
+      archetypes: ['corporate_arcology', 'black_market_sprawl', 'freehold_outpost'], stats: { grit: 2 } },
         effectText: 'You rap your wrench against the iron bulkheads. "My cab, my rules. Keep your voices down before you bring the heat down on all of us."',
         rewards: {
           qualities: { 'Lovers Stage': 1, 'Lovers Bond': 5, 'Street Cred': 2 }
@@ -277,8 +284,10 @@ export const LOVERS_QUEST_STORYLETS: Storylet[] = [
     title: 'The Hydro-Stabilizer Run',
     triggerType: 'DOCK',
     triggerLocation: 'Any',
+    layer: 'archetype',
     repeatable: false,
     reqs: {
+      archetypes: ['corporate_arcology', 'black_market_sprawl', 'freehold_outpost'],
       qualities: { 'Lovers Stage': 3 },
       maxQualities: { 'Lovers Stage': 3 }
     },
@@ -316,7 +325,8 @@ export const LOVERS_QUEST_STORYLETS: Storylet[] = [
       {
         id: 'opt_lovers04_buy_black_market',
         label: 'Buy the medicine from an underworld broker [400 Credits]',
-        reqs: { credits: 400 },
+        reqs: {
+      archetypes: ['corporate_arcology', 'black_market_sprawl', 'freehold_outpost'], credits: 400 },
         effectText: 'You hand 400 Credits to a street-doc who passes over clean pharmaceutical ampoules without asking questions.',
         rewards: {
           credits: -400,
@@ -326,7 +336,8 @@ export const LOVERS_QUEST_STORYLETS: Storylet[] = [
       {
         id: 'opt_lovers04_trade_battery',
         label: 'Trade a Hydro-Battery directly for the medical stims [1 Battery]',
-        reqs: { cargo: { batteries: 1 } },
+        reqs: {
+      archetypes: ['corporate_arcology', 'black_market_sprawl', 'freehold_outpost'], cargo: { batteries: 1 } },
         effectText: 'The clinic operator readily trades the vials for a pristine high-capacity industrial power cell.',
         rewards: {
           cargo: { batteries: -1 },
@@ -342,8 +353,10 @@ export const LOVERS_QUEST_STORYLETS: Storylet[] = [
     title: 'The Intercepted Bounty',
     triggerType: 'TRANSIT_ENCOUNTER',
     triggerLocation: 'Any',
+    layer: 'archetype',
     repeatable: false,
     reqs: {
+      archetypes: ['corporate_arcology', 'black_market_sprawl', 'freehold_outpost'],
       qualities: { 'Lovers Stage': 4 },
       maxQualities: { 'Lovers Stage': 4 }
     },
@@ -446,8 +459,10 @@ export const LOVERS_QUEST_STORYLETS: Storylet[] = [
     title: 'The Twin Rings of Rustworks',
     triggerType: 'DOCK',
     triggerLocation: 'Any',
+    layer: 'archetype',
     repeatable: false,
     reqs: {
+      archetypes: ['corporate_arcology', 'black_market_sprawl', 'freehold_outpost'],
       qualities: { 'Lovers Stage': 5 },
       maxQualities: { 'Lovers Stage': 5 }
     },
@@ -507,8 +522,10 @@ export const LOVERS_QUEST_STORYLETS: Storylet[] = [
     title: 'The Iron Jackals Ambush',
     triggerType: 'TRANSIT_ENCOUNTER',
     triggerLocation: 'Any',
+    layer: 'archetype',
     repeatable: false,
     reqs: {
+      archetypes: ['corporate_arcology', 'black_market_sprawl', 'freehold_outpost'],
       qualities: { 'Lovers Stage': 6 },
       maxQualities: { 'Lovers Stage': 6 }
     },
@@ -608,8 +625,10 @@ export const LOVERS_QUEST_STORYLETS: Storylet[] = [
     title: 'The Forger of Chiba',
     triggerType: 'DOCK',
     triggerLocation: 'Any',
+    layer: 'archetype',
     repeatable: false,
     reqs: {
+      archetypes: ['corporate_arcology', 'black_market_sprawl', 'freehold_outpost'],
       qualities: { 'Lovers Stage': 7 },
       maxQualities: { 'Lovers Stage': 7 }
     },
@@ -618,7 +637,8 @@ export const LOVERS_QUEST_STORYLETS: Storylet[] = [
       {
         id: 'opt_lovers08_pay_forger',
         label: 'Pay Ren for high-tier forged civilian identities [600 Credits]',
-        reqs: { credits: 600 },
+        reqs: {
+      archetypes: ['corporate_arcology', 'black_market_sprawl', 'freehold_outpost'], credits: 600 },
         effectText: 'Ren burns clean civilian identities into their temple ports, wiping their faction fingerprints from customs databases.',
         rewards: {
           credits: -600,
@@ -655,7 +675,8 @@ export const LOVERS_QUEST_STORYLETS: Storylet[] = [
       {
         id: 'opt_lovers08_trade_cyberware',
         label: 'Trade 1x Cyberware Optics unit to settle the forgery bill',
-        reqs: { cargo: { cyberware: 1 } },
+        reqs: {
+      archetypes: ['corporate_arcology', 'black_market_sprawl', 'freehold_outpost'], cargo: { cyberware: 1 } },
         effectText: 'Ren greedily inspects the optics. "A fair trade, hauler." He issues their identity chips immediately.',
         rewards: {
           cargo: { cyberware: -1 },
@@ -671,8 +692,10 @@ export const LOVERS_QUEST_STORYLETS: Storylet[] = [
     title: 'Heartbeat on the CB Radio',
     triggerType: 'DOCK',
     triggerLocation: 'Any',
+    layer: 'archetype',
     repeatable: false,
     reqs: {
+      archetypes: ['corporate_arcology', 'black_market_sprawl', 'freehold_outpost'],
       qualities: { 'Lovers Stage': 8 },
       maxQualities: { 'Lovers Stage': 8 }
     },
@@ -766,8 +789,10 @@ export const LOVERS_QUEST_STORYLETS: Storylet[] = [
     title: 'Aegis Tactical Interception',
     triggerType: 'TRANSIT_ENCOUNTER',
     triggerLocation: 'Any',
+    layer: 'archetype',
     repeatable: false,
     reqs: {
+      archetypes: ['corporate_arcology', 'black_market_sprawl', 'freehold_outpost'],
       qualities: { 'Lovers Stage': 9 },
       maxQualities: { 'Lovers Stage': 9 }
     },
@@ -873,8 +898,10 @@ export const LOVERS_QUEST_STORYLETS: Storylet[] = [
     title: 'Erasing the Genetic Ledger',
     triggerType: 'DOCK',
     triggerLocation: 'Any',
+    layer: 'archetype',
     repeatable: false,
     reqs: {
+      archetypes: ['corporate_arcology', 'black_market_sprawl', 'freehold_outpost'],
       qualities: { 'Lovers Stage': 10 },
       maxQualities: { 'Lovers Stage': 10 }
     },
@@ -914,7 +941,8 @@ export const LOVERS_QUEST_STORYLETS: Storylet[] = [
       {
         id: 'opt_lovers11_bribe_mesh',
         label: 'Pay the Neuralfront collective 1,000 Credits to handle the upload',
-        reqs: { credits: 1000 },
+        reqs: {
+      archetypes: ['corporate_arcology', 'black_market_sprawl', 'freehold_outpost'], credits: 1000 },
         effectText: 'The hacker collective happily accepts the credits and executes the digital erasure on their secure channels.',
         rewards: {
           credits: -1000,
@@ -960,8 +988,10 @@ export const LOVERS_QUEST_STORYLETS: Storylet[] = [
     title: 'The Syndicate Ultimatum',
     triggerType: 'TRANSIT_ENCOUNTER',
     triggerLocation: 'Any',
+    layer: 'archetype',
     repeatable: false,
     reqs: {
+      archetypes: ['corporate_arcology', 'black_market_sprawl', 'freehold_outpost'],
       qualities: { 'Lovers Stage': 11 },
       maxQualities: { 'Lovers Stage': 11 }
     },
@@ -1027,7 +1057,8 @@ export const LOVERS_QUEST_STORYLETS: Storylet[] = [
       {
         id: 'opt_lovers12_bribe_warlord',
         label: 'Pay Torin 1,500 Credits to buy safe passage [BRANCH 4C]',
-        reqs: { credits: 1500 },
+        reqs: {
+      archetypes: ['corporate_arcology', 'black_market_sprawl', 'freehold_outpost'], credits: 1500 },
         effectText: 'You wire the credits. Torin spits on the road, waving his technicals off. "Get out of my sight, deserters."',
         rewards: {
           credits: -1500,
@@ -1043,8 +1074,10 @@ export const LOVERS_QUEST_STORYLETS: Storylet[] = [
     title: 'The Neural Rejection',
     triggerType: 'TRANSIT_ENCOUNTER',
     triggerLocation: 'Any',
+    layer: 'archetype',
     repeatable: false,
     reqs: {
+      archetypes: ['corporate_arcology', 'black_market_sprawl', 'freehold_outpost'],
       qualities: { 'Lovers Stage': 12 },
       maxQualities: { 'Lovers Stage': 12 }
     },
@@ -1141,8 +1174,10 @@ export const LOVERS_QUEST_STORYLETS: Storylet[] = [
     title: 'Raiding the Maglev Depot',
     triggerType: 'DOCK',
     triggerLocation: 'Any',
+    layer: 'archetype',
     repeatable: false,
     reqs: {
+      archetypes: ['corporate_arcology', 'black_market_sprawl', 'freehold_outpost'],
       qualities: { 'Lovers Stage': 13 },
       maxQualities: { 'Lovers Stage': 13 }
     },
@@ -1248,8 +1283,10 @@ export const LOVERS_QUEST_STORYLETS: Storylet[] = [
     title: 'The Point of No Return',
     triggerType: 'DOCK',
     triggerLocation: 'Any',
+    layer: 'archetype',
     repeatable: false,
     reqs: {
+      archetypes: ['corporate_arcology', 'black_market_sprawl', 'freehold_outpost'],
       qualities: { 'Lovers Stage': 14 },
       maxQualities: { 'Lovers Stage': 14 }
     },
@@ -1292,8 +1329,10 @@ export const LOVERS_QUEST_STORYLETS: Storylet[] = [
     title: 'The Redline Run',
     triggerType: 'TRANSIT_ENCOUNTER',
     triggerLocation: 'Any',
+    layer: 'archetype',
     repeatable: false,
     reqs: {
+      archetypes: ['corporate_arcology', 'black_market_sprawl', 'freehold_outpost'],
       qualities: { 'Lovers Stage': 15 },
       maxQualities: { 'Lovers Stage': 15 }
     },
@@ -1395,8 +1434,10 @@ export const LOVERS_QUEST_STORYLETS: Storylet[] = [
     title: 'The Final Cache',
     triggerType: 'DOCK',
     triggerLocation: 'Any',
+    layer: 'archetype',
     repeatable: false,
     reqs: {
+      archetypes: ['corporate_arcology', 'black_market_sprawl', 'freehold_outpost'],
       qualities: { 'Lovers Stage': 16 },
       maxQualities: { 'Lovers Stage': 16 }
     },
@@ -1432,7 +1473,8 @@ export const LOVERS_QUEST_STORYLETS: Storylet[] = [
       {
         id: 'opt_lovers17_quick_refuel',
         label: 'Fuel up and load emergency batteries [1 Battery]',
-        reqs: { cargo: { batteries: 1 } },
+        reqs: {
+      archetypes: ['corporate_arcology', 'black_market_sprawl', 'freehold_outpost'], cargo: { batteries: 1 } },
         effectText: 'You feed an industrial power cell directly into the powertrain for maximum emergency torque.',
         rewards: {
           cargo: { batteries: -1 },
@@ -1477,8 +1519,10 @@ export const LOVERS_QUEST_STORYLETS: Storylet[] = [
     title: 'The Sovereign Gate Lockdown',
     triggerType: 'TRANSIT_ENCOUNTER',
     triggerLocation: 'Any',
+    layer: 'archetype',
     repeatable: false,
     reqs: {
+      archetypes: ['corporate_arcology', 'black_market_sprawl', 'freehold_outpost'],
       qualities: { 'Lovers Stage': 17 },
       maxQualities: { 'Lovers Stage': 17 }
     },
@@ -1579,8 +1623,10 @@ export const LOVERS_QUEST_STORYLETS: Storylet[] = [
     title: 'The Battle of the Divide',
     triggerType: 'ANY',
     triggerLocation: 'Any',
+    layer: 'archetype',
     repeatable: false,
     reqs: {
+      archetypes: ['corporate_arcology', 'black_market_sprawl', 'freehold_outpost'],
       qualities: { 'Lovers Stage': 18 },
       maxQualities: { 'Lovers Stage': 18 }
     },
@@ -1589,7 +1635,8 @@ export const LOVERS_QUEST_STORYLETS: Storylet[] = [
       {
         id: 'opt_lovers19_elopement_run',
         label: 'Execute the Elopement Breakthrough [Drive for the Western Border] [ROLL +EDGE]',
-        reqs: { qualities: { 'Lovers Chosen Path': 1 } },
+        reqs: {
+      archetypes: ['corporate_arcology', 'black_market_sprawl', 'freehold_outpost'], qualities: { 'Lovers Chosen Path': 1 } },
         statRoll: 'edge',
         qualityBonusKey: 'Cyberware Level',
         qualityBonusThreshold: 2,
@@ -1619,7 +1666,8 @@ export const LOVERS_QUEST_STORYLETS: Storylet[] = [
       {
         id: 'opt_lovers19_coup_assault',
         label: 'Execute the Coup: Infiltrate the Joint Command Bunker [ROLL +CYBER]',
-        reqs: { qualities: { 'Lovers Chosen Path': 2 } },
+        reqs: {
+      archetypes: ['corporate_arcology', 'black_market_sprawl', 'freehold_outpost'], qualities: { 'Lovers Chosen Path': 2 } },
         statRoll: 'cyber',
         qualityBonusKey: 'Tech Literacy',
         qualityBonusThreshold: 3,
@@ -1649,7 +1697,8 @@ export const LOVERS_QUEST_STORYLETS: Storylet[] = [
       {
         id: 'opt_lovers19_tragic_standoff',
         label: 'The Irradiated Bridge: Stand and Fight to the Last [TRAGIC STANDOFF] [ROLL +GRIT]',
-        reqs: { qualities: { 'Lovers Chosen Path': 3 } },
+        reqs: {
+      archetypes: ['corporate_arcology', 'black_market_sprawl', 'freehold_outpost'], qualities: { 'Lovers Chosen Path': 3 } },
         statRoll: 'grit',
         effectText: 'Cut off on the middle of a colossal suspension bridge, hunter squads seal both ends. Jax and Valerie stand back-to-back.',
         rewards: {},
@@ -1683,8 +1732,10 @@ export const LOVERS_QUEST_STORYLETS: Storylet[] = [
     title: 'The Dawn at Terminal’s End',
     triggerType: 'DOCK',
     triggerLocation: 'Any',
+    layer: 'archetype',
     repeatable: false,
     reqs: {
+      archetypes: ['corporate_arcology', 'black_market_sprawl', 'freehold_outpost'],
       qualities: { 'Lovers Stage': 19 },
       maxQualities: { 'Lovers Stage': 19 }
     },
@@ -1693,7 +1744,8 @@ export const LOVERS_QUEST_STORYLETS: Storylet[] = [
       {
         id: 'opt_lovers20_ending_elopement',
         label: 'Witness the Sunset Wedding at the Pacific Sanctuary [ENDING 1: ELOPEMENT]',
-        reqs: { qualities: { 'Lovers Chosen Path': 1 } },
+        reqs: {
+      archetypes: ['corporate_arcology', 'black_market_sprawl', 'freehold_outpost'], qualities: { 'Lovers Chosen Path': 1 } },
         effectText: 'Inside a sunlit greenhouse at an off-grid Pacific commune, Valerie and Jax exchange their titanium neural rings before a cheering gathering of Freehold rangers. Valerie hugs you warmly: "You gave us our lives, hauler. Never forget that you are family here." They reward you with their life savings and a permanent sanctuary pass.',
         rewards: {
           credits: 8500,
@@ -1712,7 +1764,8 @@ export const LOVERS_QUEST_STORYLETS: Storylet[] = [
       {
         id: 'opt_lovers20_ending_coup',
         label: 'Accept the Spoils of the Dual Coup [ENDING 2: THE DUAL CROWNS]',
-        reqs: { qualities: { 'Lovers Chosen Path': 2 } },
+        reqs: {
+      archetypes: ['corporate_arcology', 'black_market_sprawl', 'freehold_outpost'], qualities: { 'Lovers Chosen Path': 2 } },
         effectText: 'Standing atop the joint Aegis-Gridlock citadel, Director Valerie Chen and Overboss Jax Morales look down over their unified dominion. Jax claps you on the back: "We promised you the road, hauler. From now on, you pay no tolls, and your word is law in our territory." They wire an immense treasury bounty directly to your account.',
         rewards: {
           credits: 15000,
@@ -1730,7 +1783,8 @@ export const LOVERS_QUEST_STORYLETS: Storylet[] = [
       {
         id: 'opt_lovers20_ending_tragedy',
         label: 'Salvage their Interlinked Rings from the Bridge Ash [ENDING 3: THE IRON REQUIEM]',
-        reqs: { qualities: { 'Lovers Chosen Path': 3 } },
+        reqs: {
+      archetypes: ['corporate_arcology', 'black_market_sprawl', 'freehold_outpost'], qualities: { 'Lovers Chosen Path': 3 } },
         effectText: 'At the far edge of the collapsed canyon bridge, you find their scorched, interlinked titanium rings resting among the cooling slag. They died together so you could live. You mount the rings above your dashboard as an eternal testament to a love that shook the continent.',
         rewards: {
           credits: 6000,

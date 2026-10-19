@@ -9,11 +9,11 @@ import { GameStore } from '../src/state/gameState';
 
 describe('Epic 5 Sagas Verification (100 Storylets)', () => {
   const sagas = [
-    { name: 'Ghost in the Differential', list: GHOST_QUEST_STORYLETS, stageKey: 'Ghost Stage', pathKey: 'Ghost Chosen Path', finaleId: 'story_ghost_20_finale', endingOpt: 'opt_ghost20_ending_symbiosis' },
-    { name: 'Iron Colossus', list: COLOSSUS_QUEST_STORYLETS, stageKey: 'Colossus Stage', pathKey: 'Colossus Chosen Path', finaleId: 'story_colossus_20_finale', endingOpt: 'opt_colossus20_ending_chassis' },
-    { name: 'Smuggler King', list: SMUGGLER_QUEST_STORYLETS, stageKey: 'Smuggler Stage', pathKey: 'Smuggler Chosen Path', finaleId: 'story_smuggler_20_finale', endingOpt: 'opt_smuggler20_ending_monarch' },
-    { name: 'Project Icarus', list: ICARUS_QUEST_STORYLETS, stageKey: 'Icarus Stage', pathKey: 'Icarus Chosen Path', finaleId: 'story_icarus_20_finale', endingOpt: 'opt_icarus20_ending_engine' },
-    { name: 'Biomechanical Plague', list: PLAGUE_QUEST_STORYLETS, stageKey: 'Plague Stage', pathKey: 'Plague Chosen Path', finaleId: 'story_plague_20_finale', endingOpt: 'opt_plague20_ending_humanitarian' }
+    { name: 'Ghost in the Differential', testNodeId: 'node_017', list: GHOST_QUEST_STORYLETS, stageKey: 'Ghost Stage', pathKey: 'Ghost Chosen Path', finaleId: 'story_ghost_20_finale', endingOpt: 'opt_ghost20_ending_symbiosis' },
+    { name: 'Iron Colossus', testNodeId: 'node_095', list: COLOSSUS_QUEST_STORYLETS, stageKey: 'Colossus Stage', pathKey: 'Colossus Chosen Path', finaleId: 'story_colossus_20_finale', endingOpt: 'opt_colossus20_ending_chassis' },
+    { name: 'Smuggler King', testNodeId: 'node_006', list: SMUGGLER_QUEST_STORYLETS, stageKey: 'Smuggler Stage', pathKey: 'Smuggler Chosen Path', finaleId: 'story_smuggler_20_finale', endingOpt: 'opt_smuggler20_ending_monarch' },
+    { name: 'Project Icarus', testNodeId: 'node_001', list: ICARUS_QUEST_STORYLETS, stageKey: 'Icarus Stage', pathKey: 'Icarus Chosen Path', finaleId: 'story_icarus_20_finale', endingOpt: 'opt_icarus20_ending_engine' },
+    { name: 'Biomechanical Plague', testNodeId: 'node_047', list: PLAGUE_QUEST_STORYLETS, stageKey: 'Plague Stage', pathKey: 'Plague Chosen Path', finaleId: 'story_plague_20_finale', endingOpt: 'opt_plague20_ending_humanitarian' }
   ];
 
   it('verifies all 5 sagas contain exactly 20 storylets with at least 3 options and non-repeatable', () => {
@@ -55,7 +55,8 @@ describe('Epic 5 Sagas Verification (100 Storylets)', () => {
     it(`executes full progression and grants permanent rig mod for ${saga.name}`, () => {
       const store = new GameStore();
       const engine = store.getNarrativeEngine();
-      const node = store.getCurrentNode();
+      const node = store.getNode(saga.testNodeId) || store.getCurrentNode();
+      store.state.currentLocationId = node.id;
 
       // Set initial player stats and baseline qualities
       store.state.stats = { grit: 2, edge: 2, cyber: 2, cool: 2 };

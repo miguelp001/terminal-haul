@@ -5,9 +5,11 @@ export const NEUROPLAGUE_QUEST_STORYLETS: Storylet[] = [
     "id": "story_neuroplague_01_static_seizure",
     "title": "The Screaming Radio of the Plains",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "wasteland_hub",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["wasteland_hub", "freehold_outpost"],
       "maxQualities": {
         "Neuroplague Stage": 0
       }
@@ -106,9 +108,11 @@ export const NEUROPLAGUE_QUEST_STORYLETS: Storylet[] = [
     "id": "story_neuroplague_02_crazed_convoy",
     "title": "The Rabid Rigs",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "wasteland_hub",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["wasteland_hub", "freehold_outpost"],
       "qualities": {
         "Neuroplague Stage": 1
       },
@@ -207,9 +211,11 @@ export const NEUROPLAGUE_QUEST_STORYLETS: Storylet[] = [
     "id": "story_neuroplague_03_first_relay_tower",
     "title": "The Pylon of Salvation",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "wasteland_hub",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["wasteland_hub", "freehold_outpost"],
       "qualities": {
         "Neuroplague Stage": 2
       },
@@ -304,6 +310,7 @@ export const NEUROPLAGUE_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "archetypes": ["wasteland_hub", "freehold_outpost"],
           "cargo": {
             "chips": 1
           }
@@ -315,9 +322,11 @@ export const NEUROPLAGUE_QUEST_STORYLETS: Storylet[] = [
     "id": "story_neuroplague_04_the_infected_town",
     "title": "The Screaming Depot",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "wasteland_hub",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["wasteland_hub", "freehold_outpost"],
       "qualities": {
         "Neuroplague Stage": 3
       },
@@ -418,9 +427,11 @@ export const NEUROPLAGUE_QUEST_STORYLETS: Storylet[] = [
     "id": "story_neuroplague_05_highway_sweepers",
     "title": "The Corporate Incinerators",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "wasteland_hub",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["wasteland_hub", "freehold_outpost"],
       "qualities": {
         "Neuroplague Stage": 4
       },
@@ -518,9 +529,11 @@ export const NEUROPLAGUE_QUEST_STORYLETS: Storylet[] = [
     "id": "story_neuroplague_06_neural_hardening",
     "title": "The Titanium Cranial Shield",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "wasteland_hub",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["wasteland_hub", "freehold_outpost"],
       "qualities": {
         "Neuroplague Stage": 5
       },
@@ -617,6 +630,7 @@ export const NEUROPLAGUE_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "archetypes": ["wasteland_hub", "freehold_outpost"],
           "cargo": {
             "cyberware": 1
           }
@@ -628,9 +642,11 @@ export const NEUROPLAGUE_QUEST_STORYLETS: Storylet[] = [
     "id": "story_neuroplague_07_ghost_transmission",
     "title": "The Siren of the Airwaves",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "wasteland_hub",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["wasteland_hub", "freehold_outpost"],
       "qualities": {
         "Neuroplague Stage": 6
       },
@@ -727,9 +743,11 @@ export const NEUROPLAGUE_QUEST_STORYLETS: Storylet[] = [
     "id": "story_neuroplague_08_mad_max_caravan",
     "title": "The Screaming Armada",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "wasteland_hub",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["wasteland_hub", "freehold_outpost"],
       "qualities": {
         "Neuroplague Stage": 7
       },
@@ -826,9 +844,11 @@ export const NEUROPLAGUE_QUEST_STORYLETS: Storylet[] = [
     "id": "story_neuroplague_09_the_mountain_broadcast",
     "title": "The High Summit Dish",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "wasteland_hub",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["wasteland_hub", "freehold_outpost"],
       "qualities": {
         "Neuroplague Stage": 8
       },
@@ -927,9 +947,11 @@ export const NEUROPLAGUE_QUEST_STORYLETS: Storylet[] = [
     "id": "story_neuroplague_10_the_crossroads",
     "title": "The Fate of the Neural Code [CRUCIAL CROSSROAD]",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "wasteland_hub",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["wasteland_hub", "freehold_outpost"],
       "qualities": {
         "Neuroplague Stage": 9
       },
@@ -981,9 +1003,11 @@ export const NEUROPLAGUE_QUEST_STORYLETS: Storylet[] = [
     "id": "story_neuroplague_11_airdrop_blockade",
     "title": "The Corporate Cordon",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "wasteland_hub",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["wasteland_hub", "freehold_outpost"],
       "qualities": {
         "Neuroplague Stage": 10
       },
@@ -1082,9 +1106,11 @@ export const NEUROPLAGUE_QUEST_STORYLETS: Storylet[] = [
     "id": "story_neuroplague_12_chassis_neural_weave",
     "title": "The Synaptic Chassis Weave",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "wasteland_hub",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["wasteland_hub", "freehold_outpost"],
       "qualities": {
         "Neuroplague Stage": 11
       },
@@ -1179,9 +1205,11 @@ export const NEUROPLAGUE_QUEST_STORYLETS: Storylet[] = [
     "id": "story_neuroplague_13_the_final_outbreak",
     "title": "The City of Shadows",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "wasteland_hub",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["wasteland_hub", "freehold_outpost"],
       "qualities": {
         "Neuroplague Stage": 12
       },
@@ -1281,9 +1309,11 @@ export const NEUROPLAGUE_QUEST_STORYLETS: Storylet[] = [
     "id": "story_neuroplague_14_synaptic_climax",
     "title": "The Dawn of the Mind [CLIMAX GAUNTLET]",
     "triggerType": "ANY",
-    "triggerLocation": "Any",
+    "triggerLocation": "wasteland_hub",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["wasteland_hub", "freehold_outpost"],
       "qualities": {
         "Neuroplague Stage": 13
       },
@@ -1329,6 +1359,7 @@ export const NEUROPLAGUE_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "archetypes": ["wasteland_hub", "freehold_outpost"],
           "qualities": {
             "Neuroplague Chosen Path": 1
           }
@@ -1371,6 +1402,7 @@ export const NEUROPLAGUE_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "archetypes": ["wasteland_hub", "freehold_outpost"],
           "qualities": {
             "Neuroplague Chosen Path": 2
           }
@@ -1412,6 +1444,7 @@ export const NEUROPLAGUE_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "archetypes": ["wasteland_hub", "freehold_outpost"],
           "qualities": {
             "Neuroplague Chosen Path": 3
           }
@@ -1423,9 +1456,11 @@ export const NEUROPLAGUE_QUEST_STORYLETS: Storylet[] = [
     "id": "story_neuroplague_15_finale",
     "title": "The Master of the Synapse [FINALE]",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "wasteland_hub",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["wasteland_hub", "freehold_outpost"],
       "qualities": {
         "Neuroplague Stage": 14
       },
@@ -1463,6 +1498,7 @@ export const NEUROPLAGUE_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "archetypes": ["wasteland_hub", "freehold_outpost"],
           "qualities": {
             "Neuroplague Chosen Path": 1
           }
@@ -1494,6 +1530,7 @@ export const NEUROPLAGUE_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "archetypes": ["wasteland_hub", "freehold_outpost"],
           "qualities": {
             "Neuroplague Chosen Path": 2
           }
@@ -1525,6 +1562,7 @@ export const NEUROPLAGUE_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "archetypes": ["wasteland_hub", "freehold_outpost"],
           "qualities": {
             "Neuroplague Chosen Path": 3
           }

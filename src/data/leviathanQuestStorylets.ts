@@ -5,9 +5,11 @@ export const LEVIATHAN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_leviathan_01_tide_salvage",
     "title": "The Drowned Giant of the Pacific Shelf",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "coastal",
+    "layer": "coastal",
     "repeatable": false,
     "reqs": {
+      "coastalOnly": true,
       "maxQualities": {
         "Leviathan Stage": 0
       }
@@ -103,9 +105,11 @@ export const LEVIATHAN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_leviathan_02_salt_spray_corrosion",
     "title": "The Caustic Surf",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "coastal",
+    "layer": "coastal",
     "repeatable": false,
     "reqs": {
+      "coastalOnly": true,
       "qualities": {
         "Leviathan Stage": 1
       },
@@ -202,9 +206,11 @@ export const LEVIATHAN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_leviathan_03_the_drowned_highway",
     "title": "The Submerged Causeway",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "coastal",
+    "layer": "coastal",
     "repeatable": false,
     "reqs": {
+      "coastalOnly": true,
       "qualities": {
         "Leviathan Stage": 2
       },
@@ -301,9 +307,11 @@ export const LEVIATHAN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_leviathan_04_deep_winch_drag",
     "title": "The First Container from the Deep",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "coastal",
+    "layer": "coastal",
     "repeatable": false,
     "reqs": {
+      "coastalOnly": true,
       "qualities": {
         "Leviathan Stage": 3
       },
@@ -405,6 +413,7 @@ export const LEVIATHAN_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "coastalOnly": true,
           "cargo": {
             "batteries": 1
           }
@@ -416,9 +425,11 @@ export const LEVIATHAN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_leviathan_05_coastal_corsairs",
     "title": "The Tide Pirates",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "coastal",
+    "layer": "coastal",
     "repeatable": false,
     "reqs": {
+      "coastalOnly": true,
       "qualities": {
         "Leviathan Stage": 4
       },
@@ -516,9 +527,11 @@ export const LEVIATHAN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_leviathan_06_amphibious_snorkel_mod",
     "title": "The Deep Water Snorkel",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "coastal",
+    "layer": "coastal",
     "repeatable": false,
     "reqs": {
+      "coastalOnly": true,
       "qualities": {
         "Leviathan Stage": 5
       },
@@ -616,9 +629,11 @@ export const LEVIATHAN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_leviathan_07_the_quicksand_surf",
     "title": "The Sinking Shelf",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "coastal",
+    "layer": "coastal",
     "repeatable": false,
     "reqs": {
+      "coastalOnly": true,
       "qualities": {
         "Leviathan Stage": 6
       },
@@ -715,9 +730,11 @@ export const LEVIATHAN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_leviathan_08_the_second_vault",
     "title": "The Gold of the Pacific Titan",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "coastal",
+    "layer": "coastal",
     "repeatable": false,
     "reqs": {
+      "coastalOnly": true,
       "qualities": {
         "Leviathan Stage": 7
       },
@@ -819,9 +836,11 @@ export const LEVIATHAN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_leviathan_09_tidal_surge_escape",
     "title": "The Rogue Wave",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "coastal",
+    "layer": "coastal",
     "repeatable": false,
     "reqs": {
+      "coastalOnly": true,
       "qualities": {
         "Leviathan Stage": 8
       },
@@ -920,9 +939,11 @@ export const LEVIATHAN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_leviathan_10_the_crossroads",
     "title": "The Wealth of the Deep [CRUCIAL CROSSROAD]",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "coastal",
+    "layer": "coastal",
     "repeatable": false,
     "reqs": {
+      "coastalOnly": true,
       "qualities": {
         "Leviathan Stage": 9
       },
@@ -974,9 +995,11 @@ export const LEVIATHAN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_leviathan_11_coastal_gunboat_ambush",
     "title": "The Naval Blockade",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "coastal",
+    "layer": "coastal",
     "repeatable": false,
     "reqs": {
+      "coastalOnly": true,
       "qualities": {
         "Leviathan Stage": 10
       },
@@ -1075,9 +1098,11 @@ export const LEVIATHAN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_leviathan_12_chassis_marine_waterproofing",
     "title": "The Zinc and Ceramic Shield",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "coastal",
+    "layer": "coastal",
     "repeatable": false,
     "reqs": {
+      "coastalOnly": true,
       "qualities": {
         "Leviathan Stage": 11
       },
@@ -1175,9 +1200,11 @@ export const LEVIATHAN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_leviathan_13_storm_breakwater_dash",
     "title": "The Breakwater Sprint",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "coastal",
+    "layer": "coastal",
     "repeatable": false,
     "reqs": {
+      "coastalOnly": true,
       "qualities": {
         "Leviathan Stage": 12
       },
@@ -1275,9 +1302,11 @@ export const LEVIATHAN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_leviathan_14_abyssal_climax",
     "title": "The Sovereign Shore [CLIMAX GAUNTLET]",
     "triggerType": "ANY",
-    "triggerLocation": "Any",
+    "triggerLocation": "coastal",
+    "layer": "coastal",
     "repeatable": false,
     "reqs": {
+      "coastalOnly": true,
       "qualities": {
         "Leviathan Stage": 13
       },
@@ -1322,6 +1351,7 @@ export const LEVIATHAN_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "coastalOnly": true,
           "qualities": {
             "Leviathan Chosen Path": 1
           }
@@ -1364,6 +1394,7 @@ export const LEVIATHAN_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "coastalOnly": true,
           "qualities": {
             "Leviathan Chosen Path": 2
           }
@@ -1405,6 +1436,7 @@ export const LEVIATHAN_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "coastalOnly": true,
           "qualities": {
             "Leviathan Chosen Path": 3
           }
@@ -1416,9 +1448,11 @@ export const LEVIATHAN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_leviathan_15_finale",
     "title": "The Leviathan Reclaimer [FINALE]",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "coastal",
+    "layer": "coastal",
     "repeatable": false,
     "reqs": {
+      "coastalOnly": true,
       "qualities": {
         "Leviathan Stage": 14
       },
@@ -1454,6 +1488,7 @@ export const LEVIATHAN_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "coastalOnly": true,
           "qualities": {
             "Leviathan Chosen Path": 1
           }
@@ -1485,6 +1520,7 @@ export const LEVIATHAN_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "coastalOnly": true,
           "qualities": {
             "Leviathan Chosen Path": 2
           }
@@ -1517,6 +1553,7 @@ export const LEVIATHAN_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "coastalOnly": true,
           "qualities": {
             "Leviathan Chosen Path": 3
           }

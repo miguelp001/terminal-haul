@@ -5,9 +5,12 @@ export const COLOSSUS_QUEST_STORYLETS: Storylet[] = [
     "id": "story_colossus_01_behemoth_wakes",
     "title": "The Behemoth of Rustworks",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "maxQualities": {
         "Colossus Stage": 0
       }
@@ -108,9 +111,12 @@ export const COLOSSUS_QUEST_STORYLETS: Storylet[] = [
     "id": "story_colossus_02_hydraulic_harvest",
     "title": "The High-Pressure Siphon",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "qualities": {
         "Colossus Stage": 1
       },
@@ -214,9 +220,12 @@ export const COLOSSUS_QUEST_STORYLETS: Storylet[] = [
     "id": "story_colossus_03_canyon_demolition",
     "title": "The Blocked Siphon Gorge",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "qualities": {
         "Colossus Stage": 2
       },
@@ -338,9 +347,12 @@ export const COLOSSUS_QUEST_STORYLETS: Storylet[] = [
     "id": "story_colossus_04_nomad_contract",
     "title": "The Council of Boiler-Smiths",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "qualities": {
         "Colossus Stage": 3
       },
@@ -441,9 +453,12 @@ export const COLOSSUS_QUEST_STORYLETS: Storylet[] = [
     "id": "story_colossus_05_fuel_line_raid",
     "title": "The Fuel Line Ambush [BRANCH 1]",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "qualities": {
         "Colossus Stage": 4
       },
@@ -575,9 +590,12 @@ export const COLOSSUS_QUEST_STORYLETS: Storylet[] = [
     "id": "story_colossus_06_reactor_core_retrieval",
     "title": "The Dead Reactor Vault",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "qualities": {
         "Colossus Stage": 5
       },
@@ -687,6 +705,8 @@ export const COLOSSUS_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
           "cargo": {
             "batteries": 2
           }
@@ -698,9 +718,12 @@ export const COLOSSUS_QUEST_STORYLETS: Storylet[] = [
     "id": "story_colossus_07_salt_flat_sandstorm",
     "title": "The Whiteout at 40 Below",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "qualities": {
         "Colossus Stage": 6
       },
@@ -827,9 +850,12 @@ export const COLOSSUS_QUEST_STORYLETS: Storylet[] = [
     "id": "story_colossus_08_warlord_tollgate",
     "title": "The Iron Sovereign Gate [BRANCH 2]",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "qualities": {
         "Colossus Stage": 7
       },
@@ -966,9 +992,12 @@ export const COLOSSUS_QUEST_STORYLETS: Storylet[] = [
     "id": "story_colossus_09_boiler_crisis",
     "title": "The Ruptured Steam Drum",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "qualities": {
         "Colossus Stage": 8
       },
@@ -1071,9 +1100,12 @@ export const COLOSSUS_QUEST_STORYLETS: Storylet[] = [
     "id": "story_colossus_10_lithium_survey",
     "title": "The Shimmering Horizon [BRANCH 3]",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "qualities": {
         "Colossus Stage": 9
       },
@@ -1179,9 +1211,12 @@ export const COLOSSUS_QUEST_STORYLETS: Storylet[] = [
     "id": "story_colossus_11_raider_boarding_pod",
     "title": "Boarders on Deck 3",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "qualities": {
         "Colossus Stage": 10
       },
@@ -1306,9 +1341,12 @@ export const COLOSSUS_QUEST_STORYLETS: Storylet[] = [
     "id": "story_colossus_12_cooling_tower_leak",
     "title": "The Cooling Tower Fracture",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "qualities": {
         "Colossus Stage": 11
       },
@@ -1405,6 +1443,8 @@ export const COLOSSUS_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
           "credits": 600
         }
       }
@@ -1414,9 +1454,12 @@ export const COLOSSUS_QUEST_STORYLETS: Storylet[] = [
     "id": "story_colossus_13_mountain_pass_widening",
     "title": "The Devil’s Needle Pass [BRANCH 4]",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "qualities": {
         "Colossus Stage": 12
       },
@@ -1551,9 +1594,12 @@ export const COLOSSUS_QUEST_STORYLETS: Storylet[] = [
     "id": "story_colossus_14_warlord_fleet_intercept",
     "title": "The Warlord’s Vengeance",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "qualities": {
         "Colossus Stage": 13
       },
@@ -1676,9 +1722,12 @@ export const COLOSSUS_QUEST_STORYLETS: Storylet[] = [
     "id": "story_colossus_15_basin_crossroads",
     "title": "The Basin Crossroads [BRANCH 5: Lock In Path]",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "qualities": {
         "Colossus Stage": 14
       },
@@ -1731,9 +1780,12 @@ export const COLOSSUS_QUEST_STORYLETS: Storylet[] = [
     "id": "story_colossus_16_salt_dreadnought_ambush",
     "title": "The Last Stand of Warlord Vane",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "qualities": {
         "Colossus Stage": 15
       },
@@ -1857,9 +1909,12 @@ export const COLOSSUS_QUEST_STORYLETS: Storylet[] = [
     "id": "story_colossus_17_last_steam_vent",
     "title": "The Salt Basin Depths",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "qualities": {
         "Colossus Stage": 16
       },
@@ -1965,9 +2020,12 @@ export const COLOSSUS_QUEST_STORYLETS: Storylet[] = [
     "id": "story_colossus_18_citadel_gates_breach",
     "title": "The Sovereign Claim",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "qualities": {
         "Colossus Stage": 17
       },
@@ -2092,9 +2150,12 @@ export const COLOSSUS_QUEST_STORYLETS: Storylet[] = [
     "id": "story_colossus_19_basin_terminus_stand",
     "title": "The Dawn of Iron [CLIMAX GAUNTLET]",
     "triggerType": "ANY",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "qualities": {
         "Colossus Stage": 18
       },
@@ -2138,6 +2199,8 @@ export const COLOSSUS_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
           "qualities": {
             "Colossus Chosen Path": 1
           }
@@ -2177,6 +2240,8 @@ export const COLOSSUS_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
           "qualities": {
             "Colossus Chosen Path": 2
           }
@@ -2216,6 +2281,8 @@ export const COLOSSUS_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
           "qualities": {
             "Colossus Chosen Path": 3
           }
@@ -2227,9 +2294,12 @@ export const COLOSSUS_QUEST_STORYLETS: Storylet[] = [
     "id": "story_colossus_20_finale",
     "title": "The Colossus at Rest [FINALE]",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "qualities": {
         "Colossus Stage": 19
       },
@@ -2265,6 +2335,8 @@ export const COLOSSUS_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
           "qualities": {
             "Colossus Chosen Path": 1
           }
@@ -2296,6 +2368,8 @@ export const COLOSSUS_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
           "qualities": {
             "Colossus Chosen Path": 2
           }
@@ -2326,6 +2400,8 @@ export const COLOSSUS_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
           "qualities": {
             "Colossus Chosen Path": 3
           }

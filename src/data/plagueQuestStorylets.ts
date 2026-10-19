@@ -6,8 +6,10 @@ export const PLAGUE_QUEST_STORYLETS: Storylet[] = [
     "title": "The Corrosion of Ash City",
     "triggerType": "DOCK",
     "triggerLocation": "Any",
+    "layer": "sector",
     "repeatable": false,
     "reqs": {
+      "sectors": ["southern", "midwest"],
       "maxQualities": {
         "Plague Stage": 0
       }
@@ -105,8 +107,10 @@ export const PLAGUE_QUEST_STORYLETS: Storylet[] = [
     "title": "The Burning Perimeter",
     "triggerType": "TRANSIT_ENCOUNTER",
     "triggerLocation": "Any",
+    "layer": "sector",
     "repeatable": false,
     "reqs": {
+      "sectors": ["southern", "midwest"],
       "qualities": {
         "Plague Stage": 1
       },
@@ -208,8 +212,10 @@ export const PLAGUE_QUEST_STORYLETS: Storylet[] = [
     "title": "The Clinic of the Damned",
     "triggerType": "DOCK",
     "triggerLocation": "Any",
+    "layer": "sector",
     "repeatable": false,
     "reqs": {
+      "sectors": ["southern", "midwest"],
       "qualities": {
         "Plague Stage": 2
       },
@@ -314,8 +320,10 @@ export const PLAGUE_QUEST_STORYLETS: Storylet[] = [
     "title": "Aerosol Rot in the Redwoods",
     "triggerType": "TRANSIT_ENCOUNTER",
     "triggerLocation": "Any",
+    "layer": "sector",
     "repeatable": false,
     "reqs": {
+      "sectors": ["southern", "midwest"],
       "qualities": {
         "Plague Stage": 3
       },
@@ -415,8 +423,10 @@ export const PLAGUE_QUEST_STORYLETS: Storylet[] = [
     "title": "Zealots of the Holy Decay",
     "triggerType": "TRANSIT_ENCOUNTER",
     "triggerLocation": "Any",
+    "layer": "sector",
     "repeatable": false,
     "reqs": {
+      "sectors": ["southern", "midwest"],
       "qualities": {
         "Plague Stage": 4
       },
@@ -539,8 +549,10 @@ export const PLAGUE_QUEST_STORYLETS: Storylet[] = [
     "title": "The Architect's Confession",
     "triggerType": "ANY",
     "triggerLocation": "Any",
+    "layer": "sector",
     "repeatable": false,
     "reqs": {
+      "sectors": ["southern", "midwest"],
       "qualities": {
         "Plague Stage": 5
       },
@@ -638,8 +650,10 @@ export const PLAGUE_QUEST_STORYLETS: Storylet[] = [
     "title": "The Pyre of the Scorchers",
     "triggerType": "TRANSIT_ENCOUNTER",
     "triggerLocation": "Any",
+    "layer": "sector",
     "repeatable": false,
     "reqs": {
+      "sectors": ["southern", "midwest"],
       "qualities": {
         "Plague Stage": 6
       },
@@ -762,8 +776,10 @@ export const PLAGUE_QUEST_STORYLETS: Storylet[] = [
     "title": "The Bio-Vault Salvage",
     "triggerType": "DOCK",
     "triggerLocation": "Any",
+    "layer": "sector",
     "repeatable": false,
     "reqs": {
+      "sectors": ["southern", "midwest"],
       "qualities": {
         "Plague Stage": 7
       },
@@ -879,8 +895,10 @@ export const PLAGUE_QUEST_STORYLETS: Storylet[] = [
     "title": "The Behemoth of the Underpass",
     "triggerType": "TRANSIT_ENCOUNTER",
     "triggerLocation": "Any",
+    "layer": "sector",
     "repeatable": false,
     "reqs": {
+      "sectors": ["southern", "midwest"],
       "qualities": {
         "Plague Stage": 8
       },
@@ -1005,8 +1023,10 @@ export const PLAGUE_QUEST_STORYLETS: Storylet[] = [
     "title": "The Boiling Chamber",
     "triggerType": "TRANSIT_ENCOUNTER",
     "triggerLocation": "Any",
+    "layer": "sector",
     "repeatable": false,
     "reqs": {
+      "sectors": ["southern", "midwest"],
       "qualities": {
         "Plague Stage": 9
       },
@@ -1105,8 +1125,10 @@ export const PLAGUE_QUEST_STORYLETS: Storylet[] = [
     "title": "The Executive Judas Call",
     "triggerType": "DOCK",
     "triggerLocation": "Any",
+    "layer": "sector",
     "repeatable": false,
     "reqs": {
+      "sectors": ["southern", "midwest"],
       "qualities": {
         "Plague Stage": 10
       },
@@ -1209,8 +1231,10 @@ export const PLAGUE_QUEST_STORYLETS: Storylet[] = [
     "title": "Symbiosis of Steel",
     "triggerType": "ANY",
     "triggerLocation": "Any",
+    "layer": "sector",
     "repeatable": false,
     "reqs": {
+      "sectors": ["southern", "midwest"],
       "qualities": {
         "Plague Stage": 11
       },
@@ -1309,8 +1333,10 @@ export const PLAGUE_QUEST_STORYLETS: Storylet[] = [
     "title": "The Harpoon Swarm",
     "triggerType": "TRANSIT_ENCOUNTER",
     "triggerLocation": "Any",
+    "layer": "sector",
     "repeatable": false,
     "reqs": {
+      "sectors": ["southern", "midwest"],
       "qualities": {
         "Plague Stage": 12
       },
@@ -1434,8 +1460,10 @@ export const PLAGUE_QUEST_STORYLETS: Storylet[] = [
     "title": "The Particulate Maelstrom",
     "triggerType": "TRANSIT_ENCOUNTER",
     "triggerLocation": "Any",
+    "layer": "sector",
     "repeatable": false,
     "reqs": {
+      "sectors": ["southern", "midwest"],
       "qualities": {
         "Plague Stage": 13
       },
@@ -1534,8 +1562,10 @@ export const PLAGUE_QUEST_STORYLETS: Storylet[] = [
     "title": "The Great Mutation [CRUCIAL CROSSROAD]",
     "triggerType": "DOCK",
     "triggerLocation": "Any",
+    "layer": "sector",
     "repeatable": false,
     "reqs": {
+      "sectors": ["southern", "midwest"],
       "qualities": {
         "Plague Stage": 14
       },
@@ -1588,8 +1618,10 @@ export const PLAGUE_QUEST_STORYLETS: Storylet[] = [
     "title": "The Cordon of Gunships",
     "triggerType": "TRANSIT_ENCOUNTER",
     "triggerLocation": "Any",
+    "layer": "sector",
     "repeatable": false,
     "reqs": {
+      "sectors": ["southern", "midwest"],
       "qualities": {
         "Plague Stage": 15
       },
@@ -1689,8 +1721,10 @@ export const PLAGUE_QUEST_STORYLETS: Storylet[] = [
     "title": "The Heart of the Infection",
     "triggerType": "DOCK",
     "triggerLocation": "Any",
+    "layer": "sector",
     "repeatable": false,
     "reqs": {
+      "sectors": ["southern", "midwest"],
       "qualities": {
         "Plague Stage": 16
       },
@@ -1792,8 +1826,10 @@ export const PLAGUE_QUEST_STORYLETS: Storylet[] = [
     "title": "The Iron Inquisitor",
     "triggerType": "TRANSIT_ENCOUNTER",
     "triggerLocation": "Any",
+    "layer": "sector",
     "repeatable": false,
     "reqs": {
+      "sectors": ["southern", "midwest"],
       "qualities": {
         "Plague Stage": 17
       },
@@ -1917,8 +1953,10 @@ export const PLAGUE_QUEST_STORYLETS: Storylet[] = [
     "title": "The Crucible of the Lazarus Matrix [CLIMAX GAUNTLET]",
     "triggerType": "ANY",
     "triggerLocation": "Any",
+    "layer": "sector",
     "repeatable": false,
     "reqs": {
+      "sectors": ["southern", "midwest"],
       "qualities": {
         "Plague Stage": 18
       },
@@ -1963,6 +2001,7 @@ export const PLAGUE_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "sectors": ["southern", "midwest"],
           "qualities": {
             "Plague Chosen Path": 1
           }
@@ -2003,6 +2042,7 @@ export const PLAGUE_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "sectors": ["southern", "midwest"],
           "qualities": {
             "Plague Chosen Path": 2
           }
@@ -2044,6 +2084,7 @@ export const PLAGUE_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "sectors": ["southern", "midwest"],
           "qualities": {
             "Plague Chosen Path": 3
           }
@@ -2056,8 +2097,10 @@ export const PLAGUE_QUEST_STORYLETS: Storylet[] = [
     "title": "The Living Legend [FINALE]",
     "triggerType": "DOCK",
     "triggerLocation": "Any",
+    "layer": "sector",
     "repeatable": false,
     "reqs": {
+      "sectors": ["southern", "midwest"],
       "qualities": {
         "Plague Stage": 19
       },
@@ -2094,6 +2137,7 @@ export const PLAGUE_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "sectors": ["southern", "midwest"],
           "qualities": {
             "Plague Chosen Path": 1
           }
@@ -2126,6 +2170,7 @@ export const PLAGUE_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "sectors": ["southern", "midwest"],
           "qualities": {
             "Plague Chosen Path": 2
           }
@@ -2159,6 +2204,7 @@ export const PLAGUE_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "sectors": ["southern", "midwest"],
           "qualities": {
             "Plague Chosen Path": 3
           }

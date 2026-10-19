@@ -14,16 +14,16 @@ import { GameStore } from '../src/state/gameState';
 
 describe('Ten Rich Branching Sagas Verification (150 Storylets)', () => {
   const tenSagas = [
-    { name: 'Sub-Zero Siren', list: SIREN_QUEST_STORYLETS, stageKey: 'Siren Stage', pathKey: 'Siren Chosen Path', opt15Ending: 'opt_siren15_ending_commune' },
-    { name: 'Railgun of Red Ridge', list: RAILGUN_QUEST_STORYLETS, stageKey: 'Railgun Stage', pathKey: 'Railgun Chosen Path', opt15Ending: 'opt_railgun15_ending_dreadnought' },
-    { name: 'Ghost Highway of 76', list: GHOSTWAY_QUEST_STORYLETS, stageKey: 'Ghostway Stage', pathKey: 'Ghostway Chosen Path', opt15Ending: 'opt_ghostway15_ending_phantom' },
-    { name: 'Black Sun Reactor', list: BLACKSUN_QUEST_STORYLETS, stageKey: 'Blacksun Stage', pathKey: 'Blacksun Chosen Path', opt15Ending: 'opt_blacksun15_ending_darksun' },
-    { name: 'Oracle of the Ash Dunes', list: ORACLE_QUEST_STORYLETS, stageKey: 'Oracle Stage', pathKey: 'Oracle Chosen Path', opt15Ending: 'opt_oracle15_ending_oracle' },
-    { name: 'Iron Leviathan Graveyard', list: LEVIATHAN_QUEST_STORYLETS, stageKey: 'Leviathan Stage', pathKey: 'Leviathan Chosen Path', opt15Ending: 'opt_leviathan15_ending_reclaimer' },
-    { name: 'Syndicate Kingpin Debt', list: KINGPIN_QUEST_STORYLETS, stageKey: 'Kingpin Stage', pathKey: 'Kingpin Chosen Path', opt15Ending: 'opt_kingpin15_ending_shadow' },
-    { name: 'Neuro-Plague Protocol', list: NEUROPLAGUE_QUEST_STORYLETS, stageKey: 'Neuroplague Stage', pathKey: 'Neuroplague Chosen Path', opt15Ending: 'opt_neuro15_ending_fortress' },
-    { name: 'Last Grain of Eden', list: EDEN_QUEST_STORYLETS, stageKey: 'Eden Stage', pathKey: 'Eden Chosen Path', opt15Ending: 'opt_eden15_ending_harvester' },
-    { name: 'Sovereign Skyway', list: SKYWAY_QUEST_STORYLETS, stageKey: 'Skyway Stage', pathKey: 'Skyway Chosen Path', opt15Ending: 'opt_skyway15_ending_comet' }
+    { name: 'Sub-Zero Siren', testNodeId: 'node_004', list: SIREN_QUEST_STORYLETS, stageKey: 'Siren Stage', pathKey: 'Siren Chosen Path', opt15Ending: 'opt_siren15_ending_commune' },
+    { name: 'Railgun of Red Ridge', testNodeId: 'node_009', list: RAILGUN_QUEST_STORYLETS, stageKey: 'Railgun Stage', pathKey: 'Railgun Chosen Path', opt15Ending: 'opt_railgun15_ending_dreadnought' },
+    { name: 'Ghost Highway of 76', testNodeId: 'node_095', list: GHOSTWAY_QUEST_STORYLETS, stageKey: 'Ghostway Stage', pathKey: 'Ghostway Chosen Path', opt15Ending: 'opt_ghostway15_ending_phantom' },
+    { name: 'Black Sun Reactor', testNodeId: 'node_096', list: BLACKSUN_QUEST_STORYLETS, stageKey: 'Blacksun Stage', pathKey: 'Blacksun Chosen Path', opt15Ending: 'opt_blacksun15_ending_darksun' },
+    { name: 'Oracle of the Ash Dunes', testNodeId: 'node_097', list: ORACLE_QUEST_STORYLETS, stageKey: 'Oracle Stage', pathKey: 'Oracle Chosen Path', opt15Ending: 'opt_oracle15_ending_oracle' },
+    { name: 'Iron Leviathan Graveyard', testNodeId: 'node_067', list: LEVIATHAN_QUEST_STORYLETS, stageKey: 'Leviathan Stage', pathKey: 'Leviathan Chosen Path', opt15Ending: 'opt_leviathan15_ending_reclaimer' },
+    { name: 'Syndicate Kingpin Debt', testNodeId: 'node_006', list: KINGPIN_QUEST_STORYLETS, stageKey: 'Kingpin Stage', pathKey: 'Kingpin Chosen Path', opt15Ending: 'opt_kingpin15_ending_shadow' },
+    { name: 'Neuro-Plague Protocol', testNodeId: 'node_017', list: NEUROPLAGUE_QUEST_STORYLETS, stageKey: 'Neuroplague Stage', pathKey: 'Neuroplague Chosen Path', opt15Ending: 'opt_neuro15_ending_fortress' },
+    { name: 'Last Grain of Eden', testNodeId: 'node_065', list: EDEN_QUEST_STORYLETS, stageKey: 'Eden Stage', pathKey: 'Eden Chosen Path', opt15Ending: 'opt_eden15_ending_harvester' },
+    { name: 'Sovereign Skyway', testNodeId: 'node_095', list: SKYWAY_QUEST_STORYLETS, stageKey: 'Skyway Stage', pathKey: 'Skyway Chosen Path', opt15Ending: 'opt_skyway15_ending_comet' }
   ];
 
   it('verifies all 10 sagas contain exactly 15 storylets with at least 3 options and non-repeatable', () => {
@@ -65,7 +65,8 @@ describe('Ten Rich Branching Sagas Verification (150 Storylets)', () => {
     it(`executes full progression and grants permanent rig mod for ${saga.name}`, () => {
       const store = new GameStore();
       const engine = store.getNarrativeEngine();
-      const node = store.getCurrentNode();
+      const node = store.getNode(saga.testNodeId) || store.getCurrentNode();
+      store.state.currentLocationId = node.id;
 
       // Set initial player stats, cargo inventory, and baseline qualities
       store.state.stats = { grit: 2, edge: 2, cyber: 2, cool: 2 };

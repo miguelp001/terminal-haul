@@ -9,8 +9,10 @@ export const CRYO_QUEST_STORYLETS: Storylet[] = [
     title: 'The Sub-Zero Consignment',
     triggerType: 'DOCK',
     triggerLocation: 'Any',
+    layer: 'sector',
     repeatable: false,
     reqs: {
+      sectors: ['northeast', 'north', 'pacific_northwest'],
       qualities: { 'Street Cred': 2 },
       maxQualities: { 'Cryo Extraction': 0 }
     },
@@ -103,8 +105,10 @@ export const CRYO_QUEST_STORYLETS: Storylet[] = [
     title: 'The Heartbeat in the Chill',
     triggerType: 'TRANSIT_ENCOUNTER',
     triggerLocation: 'Any',
+    layer: 'sector',
     repeatable: false,
     reqs: {
+      sectors: ['northeast', 'north', 'pacific_northwest'],
       qualities: { 'Cryo Extraction': 1 },
       maxQualities: { 'Cryo Extraction': 1 }
     },
@@ -168,7 +172,8 @@ export const CRYO_QUEST_STORYLETS: Storylet[] = [
       {
         id: 'opt_cryo02_throttle_power',
         label: 'Throttle stasis power to preserve convoy speed [Contraband Mastery 1+]',
-        reqs: { qualities: { 'Contraband Mastery': 1 } },
+        reqs: {
+      sectors: ['northeast', 'north', 'pacific_northwest'], qualities: { 'Contraband Mastery': 1 } },
         effectText: 'You dial down auxiliary wattage to maintain maximum speed. The capsule begins an erratic low-power hibernation cycle.',
         rewards: {
           qualities: { 'Cryo Extraction': 1, 'Cryo Capsule Health': 80, 'Contraband Mastery': 1 }
@@ -185,8 +190,10 @@ export const CRYO_QUEST_STORYLETS: Storylet[] = [
     title: 'Aegis Black-Ops Sweeper',
     triggerType: 'TRANSIT_ENCOUNTER',
     triggerLocation: 'Any',
+    layer: 'sector',
     repeatable: false,
     reqs: {
+      sectors: ['northeast', 'north', 'pacific_northwest'],
       qualities: { 'Cryo Extraction': 2 },
       maxQualities: { 'Cryo Extraction': 2 }
     },
@@ -257,6 +264,7 @@ export const CRYO_QUEST_STORYLETS: Storylet[] = [
         id: 'opt_cryo03_corpo_override',
         label: 'Transmit Dr. Vance’s executive recall cipher [Tech Literacy 2+] [BRANCH 2C]',
         reqs: {
+      sectors: ['northeast', 'north', 'pacific_northwest'],
           qualities: { 'Corpo Truth Known': 1, 'Tech Literacy': 2 }
         },
         effectText: 'You upload the encrypted security token retrieved from the container diagnostic bus directly to the gunship transponder.',
@@ -304,8 +312,10 @@ export const CRYO_QUEST_STORYLETS: Storylet[] = [
     title: 'Thermal Runaway',
     triggerType: 'ANY',
     triggerLocation: 'Any',
+    layer: 'sector',
     repeatable: false,
     reqs: {
+      sectors: ['northeast', 'north', 'pacific_northwest'],
       qualities: { 'Cryo Extraction': 3 },
       maxQualities: { 'Cryo Extraction': 3 }
     },
@@ -405,8 +415,10 @@ export const CRYO_QUEST_STORYLETS: Storylet[] = [
     title: 'The Defector’s Confession',
     triggerType: 'DOCK',
     triggerLocation: 'Any',
+    layer: 'sector',
     repeatable: false,
     reqs: {
+      sectors: ['northeast', 'north', 'pacific_northwest'],
       qualities: { 'Cryo Extraction': 4 },
       maxQualities: { 'Cryo Extraction': 4 }
     },
@@ -473,7 +485,8 @@ export const CRYO_QUEST_STORYLETS: Storylet[] = [
       {
         id: 'opt_cryo05_demand_vault',
         label: 'Demand access to her offshore cred-vault [Contraband Mastery 2+]',
-        reqs: { qualities: { 'Contraband Mastery': 2 } },
+        reqs: {
+      sectors: ['northeast', 'north', 'pacific_northwest'], qualities: { 'Contraband Mastery': 2 } },
         effectText: 'You point out the monumental corporate heat you are risking and demand a direct Swiss bank debit transfer.',
         rewards: {
           credits: 2000,
@@ -491,8 +504,10 @@ export const CRYO_QUEST_STORYLETS: Storylet[] = [
     title: 'The Gridlock Extortion',
     triggerType: 'TRANSIT_ENCOUNTER',
     triggerLocation: 'Any',
+    layer: 'sector',
     repeatable: false,
     reqs: {
+      sectors: ['northeast', 'north', 'pacific_northwest'],
       qualities: { 'Cryo Extraction': 5 },
       maxQualities: { 'Cryo Extraction': 5 }
     },
@@ -590,7 +605,8 @@ export const CRYO_QUEST_STORYLETS: Storylet[] = [
       {
         id: 'opt_cryo06_transmit_killcode',
         label: 'Broadcast Vance’s corporate kill-code to stall syndicate engines [Tech Literacy 3+] [BRANCH 4D]',
-        reqs: { qualities: { 'Tech Literacy': 3 } },
+        reqs: {
+      sectors: ['northeast', 'north', 'pacific_northwest'], qualities: { 'Tech Literacy': 3 } },
         effectText: 'Dr. Vance transmits a zero-day exploit targeting the civilian ECM units in the syndicate rigs, shutting down their alternators simultaneously.',
         rewards: {
           qualities: { 'Cryo Extraction': 1, 'Tech Literacy': 2, 'Street Cred': 4, 'Heat': -5 },
@@ -608,8 +624,10 @@ export const CRYO_QUEST_STORYLETS: Storylet[] = [
     title: 'Orbital Hunter-Killer Ping',
     triggerType: 'TRANSIT_ENCOUNTER',
     triggerLocation: 'Any',
+    layer: 'sector',
     repeatable: false,
     reqs: {
+      sectors: ['northeast', 'north', 'pacific_northwest'],
       qualities: { 'Cryo Extraction': 6 },
       maxQualities: { 'Cryo Extraction': 6 }
     },
@@ -710,8 +728,10 @@ export const CRYO_QUEST_STORYLETS: Storylet[] = [
     title: 'The Extraction Crossroads',
     triggerType: 'DOCK',
     triggerLocation: 'Any',
+    layer: 'sector',
     repeatable: false,
     reqs: {
+      sectors: ['northeast', 'north', 'pacific_northwest'],
       qualities: { 'Cryo Extraction': 7 },
       maxQualities: { 'Cryo Extraction': 7 }
     },
@@ -757,8 +777,10 @@ export const CRYO_QUEST_STORYLETS: Storylet[] = [
     title: 'Commander Thorne’s Last Stand',
     triggerType: 'TRANSIT_ENCOUNTER',
     triggerLocation: 'Any',
+    layer: 'sector',
     repeatable: false,
     reqs: {
+      sectors: ['northeast', 'north', 'pacific_northwest'],
       qualities: { 'Cryo Extraction': 8 },
       maxQualities: { 'Cryo Extraction': 8 }
     },
@@ -864,8 +886,10 @@ export const CRYO_QUEST_STORYLETS: Storylet[] = [
     title: 'The Defector’s Safe Harbor',
     triggerType: 'DOCK',
     triggerLocation: 'Any',
+    layer: 'sector',
     repeatable: false,
     reqs: {
+      sectors: ['northeast', 'north', 'pacific_northwest'],
       qualities: { 'Cryo Extraction': 9 },
       maxQualities: { 'Cryo Extraction': 9 }
     },
@@ -874,7 +898,8 @@ export const CRYO_QUEST_STORYLETS: Storylet[] = [
       {
         id: 'opt_cryo10_claim_freehold_reward',
         label: 'Accept Freehold Frontier Honors [Freehold Path: Prototype Rig & Freedom Cache]',
-        reqs: { qualities: { 'Delivery Destination': 1 } },
+        reqs: {
+      sectors: ['northeast', 'north', 'pacific_northwest'], qualities: { 'Delivery Destination': 1 } },
         effectText: 'The Freehold Council honors you as an honorary Ranger. They install hardened prototype composite plating onto your rig and transfer an immense salvage fortune.',
         rewards: {
           credits: 7500,
@@ -893,7 +918,8 @@ export const CRYO_QUEST_STORYLETS: Storylet[] = [
       {
         id: 'opt_cryo10_claim_solaris_reward',
         label: 'Accept Solaris Executive Payout [Solaris Path: 10,000 Credits & Diplomatic Immunity]',
-        reqs: { qualities: { 'Delivery Destination': 2 } },
+        reqs: {
+      sectors: ['northeast', 'north', 'pacific_northwest'], qualities: { 'Delivery Destination': 2 } },
         effectText: 'Solaris energy executives applaud your professional delivery. They wire a staggering corporate bounty to your personal account and grant lifelong diplomatic immunity.',
         rewards: {
           credits: 10000,
@@ -911,7 +937,8 @@ export const CRYO_QUEST_STORYLETS: Storylet[] = [
       {
         id: 'opt_cryo10_claim_neuralfront_reward',
         label: 'Accept Neuralfront Ascension [Neuralfront Path: Open Quantum Mesh & Cybernetics]',
-        reqs: { qualities: { 'Delivery Destination': 3 } },
+        reqs: {
+      sectors: ['northeast', 'north', 'pacific_northwest'], qualities: { 'Delivery Destination': 3 } },
         effectText: 'The Neuralfront collective connects Dr. Vance directly to the decentralized mesh. They reward you with top-tier quantum processors and military ocular cybernetics.',
         rewards: {
           credits: 6000,

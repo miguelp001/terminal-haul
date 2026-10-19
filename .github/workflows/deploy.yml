@@ -21,7 +21,7 @@ jobs:
       - name: ⚙️ Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: 'npm'
 
       - name: 📦 Install dependencies
@@ -79,22 +79,13 @@ jobs:
           echo "RESOLVED_TARGET=$DEST" >> $GITHUB_ENV
           echo "Deploying dist/ -> $USER@$HOST:$DEST"
 
-      - name: 🚀 Install SSH Key & Deploy via Rsync (Password Auth)
+      - name: 🚀 Rsync dist/ to DreamHost (Password Auth)
         if: env.HAS_PASSWORD == 'true'
         env:
           SSHPASS: ${{ secrets.DREAMHOST_PASSWORD }}
-          SSH_KEY: ${{ secrets.DREAMHOST_SSH_KEY }}
         run: |
           sudo apt-get update -qq && sudo apt-get install -y -qq sshpass
-          if [ -n "$SSH_KEY" ]; then
-            echo "$SSH_KEY" > /tmp/deploy_key
-            chmod 600 /tmp/deploy_key
-            PUB_KEY=$(ssh-keygen -y -f /tmp/deploy_key)
-            rm -f /tmp/deploy_key
-            echo "Registering deploy key in DreamHost ~/.ssh/authorized_keys..."
-            sshpass -e ssh -o StrictHostKeyChecking=no ${{ secrets.DREAMHOST_USER }}@${{ secrets.DREAMHOST_HOST }} "mkdir -p ~/.ssh && chmod 700 ~/.ssh && touch ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys && (grep -qF \"$PUB_KEY\" ~/.ssh/authorized_keys || echo \"$PUB_KEY\" >> ~/.ssh/authorized_keys)" || echo "SSH key registration notice (proceeding with password deploy)"
-          fi
-          echo "Syncing production files..."
+          echo "Syncing production bundle to DreamHost..."
           sshpass -e rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no" ./dist/ ${{ secrets.DREAMHOST_USER }}@${{ secrets.DREAMHOST_HOST }}:${{ env.RESOLVED_TARGET }}
 
       - name: 🔑 Configure SSH Key (Key Auth)

@@ -35,6 +35,7 @@ export interface WorldNode {
   description: string;
   securityLevel: number; // 1 to 5
   archetype?: NodeArchetype;
+  isCoastal?: boolean;
 }
 
 export function getNodeArchetype(node: WorldNode): NodeArchetype {

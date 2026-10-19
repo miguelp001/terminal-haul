@@ -5,9 +5,12 @@ export const SKYWAY_QUEST_STORYLETS: Storylet[] = [
     "id": "story_skyway_01_the_booster_sled",
     "title": "The Rocket on the Salt Flats",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "maxQualities": {
         "Skyway Stage": 0
       }
@@ -105,9 +108,12 @@ export const SKYWAY_QUEST_STORYLETS: Storylet[] = [
     "id": "story_skyway_02_solid_fuel_salvage",
     "title": "The Missile Silo Salvage",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "qualities": {
         "Skyway Stage": 1
       },
@@ -211,9 +217,12 @@ export const SKYWAY_QUEST_STORYLETS: Storylet[] = [
     "id": "story_skyway_03_the_first_test_burn",
     "title": "The Mach 0.8 Salt Flat Run",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "qualities": {
         "Skyway Stage": 2
       },
@@ -311,9 +320,12 @@ export const SKYWAY_QUEST_STORYLETS: Storylet[] = [
     "id": "story_skyway_04_the_pursuing_interceptors",
     "title": "The Aegis Speed Hunters",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "qualities": {
         "Skyway Stage": 3
       },
@@ -410,9 +422,12 @@ export const SKYWAY_QUEST_STORYLETS: Storylet[] = [
     "id": "story_skyway_05_the_canyon_runway",
     "title": "The Eagle Rim Staging Ground",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "qualities": {
         "Skyway Stage": 4
       },
@@ -506,6 +521,8 @@ export const SKYWAY_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
           "cargo": {
             "chips": 2
           }
@@ -517,9 +534,12 @@ export const SKYWAY_QUEST_STORYLETS: Storylet[] = [
     "id": "story_skyway_06_canard_winglets",
     "title": "The Wings of Iron",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "qualities": {
         "Skyway Stage": 5
       },
@@ -615,9 +635,12 @@ export const SKYWAY_QUEST_STORYLETS: Storylet[] = [
     "id": "story_skyway_07_the_final_countdown",
     "title": "The Ignition Pad",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "qualities": {
         "Skyway Stage": 6
       },
@@ -713,9 +736,12 @@ export const SKYWAY_QUEST_STORYLETS: Storylet[] = [
     "id": "story_skyway_08_the_launch",
     "title": "The Flight of the Iron Nomad",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "qualities": {
         "Skyway Stage": 7
       },
@@ -813,9 +839,12 @@ export const SKYWAY_QUEST_STORYLETS: Storylet[] = [
     "id": "story_skyway_09_the_touchdown",
     "title": "The Parachute Touchdown",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "qualities": {
         "Skyway Stage": 8
       },
@@ -912,9 +941,12 @@ export const SKYWAY_QUEST_STORYLETS: Storylet[] = [
     "id": "story_skyway_10_the_crossroads",
     "title": "The Sovereign Skyway [CRUCIAL CROSSROAD]",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "qualities": {
         "Skyway Stage": 9
       },
@@ -966,9 +998,12 @@ export const SKYWAY_QUEST_STORYLETS: Storylet[] = [
     "id": "story_skyway_11_airdrop_blockade",
     "title": "The Airstrike Retaliation",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "qualities": {
         "Skyway Stage": 10
       },
@@ -1064,9 +1099,12 @@ export const SKYWAY_QUEST_STORYLETS: Storylet[] = [
     "id": "story_skyway_12_chassis_aerospace_refit",
     "title": "The Aerospace Frame Refit",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "qualities": {
         "Skyway Stage": 11
       },
@@ -1164,9 +1202,12 @@ export const SKYWAY_QUEST_STORYLETS: Storylet[] = [
     "id": "story_skyway_13_the_sovereign_escort",
     "title": "The Triumph of the Skyway",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "qualities": {
         "Skyway Stage": 12
       },
@@ -1264,9 +1305,12 @@ export const SKYWAY_QUEST_STORYLETS: Storylet[] = [
     "id": "story_skyway_14_skyway_climax",
     "title": "The Stratospheric Horizon [CLIMAX GAUNTLET]",
     "triggerType": "ANY",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "qualities": {
         "Skyway Stage": 13
       },
@@ -1311,6 +1355,8 @@ export const SKYWAY_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
           "qualities": {
             "Skyway Chosen Path": 1
           }
@@ -1353,6 +1399,8 @@ export const SKYWAY_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
           "qualities": {
             "Skyway Chosen Path": 2
           }
@@ -1394,6 +1442,8 @@ export const SKYWAY_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
           "qualities": {
             "Skyway Chosen Path": 3
           }
@@ -1405,9 +1455,12 @@ export const SKYWAY_QUEST_STORYLETS: Storylet[] = [
     "id": "story_skyway_15_finale",
     "title": "The Stratospheric Comet [FINALE]",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "qualities": {
         "Skyway Stage": 14
       },
@@ -1443,6 +1496,8 @@ export const SKYWAY_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
           "qualities": {
             "Skyway Chosen Path": 1
           }
@@ -1474,6 +1529,8 @@ export const SKYWAY_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
           "qualities": {
             "Skyway Chosen Path": 2
           }
@@ -1506,6 +1563,8 @@ export const SKYWAY_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
           "qualities": {
             "Skyway Chosen Path": 3
           }

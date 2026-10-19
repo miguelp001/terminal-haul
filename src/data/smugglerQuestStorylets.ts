@@ -5,9 +5,11 @@ export const SMUGGLER_QUEST_STORYLETS: Storylet[] = [
     "id": "story_smuggler_01_malorys_key",
     "title": "The Dead Courier’s Key",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "black_market_sprawl",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["black_market_sprawl", "freehold_outpost"],
       "maxQualities": {
         "Smuggler Stage": 0
       }
@@ -111,9 +113,11 @@ export const SMUGGLER_QUEST_STORYLETS: Storylet[] = [
     "id": "story_smuggler_02_dead_drop_whiskey",
     "title": "The Rust-Water Dead Drop",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "black_market_sprawl",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["black_market_sprawl", "freehold_outpost"],
       "qualities": {
         "Smuggler Stage": 1
       },
@@ -228,9 +232,11 @@ export const SMUGGLER_QUEST_STORYLETS: Storylet[] = [
     "id": "story_smuggler_03_satellite_blindspot",
     "title": "The Black Interstate Corridor",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "black_market_sprawl",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["black_market_sprawl", "freehold_outpost"],
       "qualities": {
         "Smuggler Stage": 2
       },
@@ -331,9 +337,11 @@ export const SMUGGLER_QUEST_STORYLETS: Storylet[] = [
     "id": "story_smuggler_04_inquisitor_shakedown",
     "title": "Inquisitor Thorne’s Checkpoint",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "black_market_sprawl",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["black_market_sprawl", "freehold_outpost"],
       "qualities": {
         "Smuggler Stage": 3
       },
@@ -437,9 +445,11 @@ export const SMUGGLER_QUEST_STORYLETS: Storylet[] = [
     "id": "story_smuggler_05_corridor_frequency",
     "title": "The Ghost Frequency [BRANCH 1]",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "black_market_sprawl",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["black_market_sprawl", "freehold_outpost"],
       "qualities": {
         "Smuggler Stage": 4
       },
@@ -548,9 +558,11 @@ export const SMUGGLER_QUEST_STORYLETS: Storylet[] = [
     "id": "story_smuggler_06_biotoxin_cache",
     "title": "The Sunken Chemical Vault",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "black_market_sprawl",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["black_market_sprawl", "freehold_outpost"],
       "qualities": {
         "Smuggler Stage": 5
       },
@@ -660,9 +672,11 @@ export const SMUGGLER_QUEST_STORYLETS: Storylet[] = [
     "id": "story_smuggler_07_undercover_snitch",
     "title": "The Informant in the Mirror",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "black_market_sprawl",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["black_market_sprawl", "freehold_outpost"],
       "qualities": {
         "Smuggler Stage": 6
       },
@@ -785,9 +799,11 @@ export const SMUGGLER_QUEST_STORYLETS: Storylet[] = [
     "id": "story_smuggler_08_black_budget_heist",
     "title": "The Governor’s Slush Fund [BRANCH 2]",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "black_market_sprawl",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["black_market_sprawl", "freehold_outpost"],
       "qualities": {
         "Smuggler Stage": 7
       },
@@ -899,9 +915,11 @@ export const SMUGGLER_QUEST_STORYLETS: Storylet[] = [
     "id": "story_smuggler_09_mole_unmasking",
     "title": "The Mole in the Brotherhood",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "black_market_sprawl",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["black_market_sprawl", "freehold_outpost"],
       "qualities": {
         "Smuggler Stage": 8
       },
@@ -1002,9 +1020,11 @@ export const SMUGGLER_QUEST_STORYLETS: Storylet[] = [
     "id": "story_smuggler_10_brotherhood_tribunal",
     "title": "The Smuggler King’s Mantle [BRANCH 3]",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "black_market_sprawl",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["black_market_sprawl", "freehold_outpost"],
       "qualities": {
         "Smuggler Stage": 9
       },
@@ -1057,9 +1077,11 @@ export const SMUGGLER_QUEST_STORYLETS: Storylet[] = [
     "id": "story_smuggler_11_governor_blackmail",
     "title": "The Citadel Shakedown",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "black_market_sprawl",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["black_market_sprawl", "freehold_outpost"],
       "qualities": {
         "Smuggler Stage": 10
       },
@@ -1155,6 +1177,7 @@ export const SMUGGLER_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "archetypes": ["black_market_sprawl", "freehold_outpost"],
           "credits": 800
         }
       }
@@ -1164,9 +1187,11 @@ export const SMUGGLER_QUEST_STORYLETS: Storylet[] = [
     "id": "story_smuggler_12_baryon_shield_rigging",
     "title": "The Baryon Shield Blueprint",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "black_market_sprawl",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["black_market_sprawl", "freehold_outpost"],
       "qualities": {
         "Smuggler Stage": 11
       },
@@ -1262,6 +1287,7 @@ export const SMUGGLER_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "archetypes": ["black_market_sprawl", "freehold_outpost"],
           "credits": 1000
         }
       }
@@ -1271,9 +1297,11 @@ export const SMUGGLER_QUEST_STORYLETS: Storylet[] = [
     "id": "story_smuggler_13_aegis_interceptor_cordon",
     "title": "The Highway Cordon [BRANCH 4]",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "black_market_sprawl",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["black_market_sprawl", "freehold_outpost"],
       "qualities": {
         "Smuggler Stage": 12
       },
@@ -1407,9 +1435,11 @@ export const SMUGGLER_QUEST_STORYLETS: Storylet[] = [
     "id": "story_smuggler_14_covert_weigh_station",
     "title": "The Phantom Weigh Station",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "black_market_sprawl",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["black_market_sprawl", "freehold_outpost"],
       "qualities": {
         "Smuggler Stage": 13
       },
@@ -1509,9 +1539,11 @@ export const SMUGGLER_QUEST_STORYLETS: Storylet[] = [
     "id": "story_smuggler_15_coronation_crossroads",
     "title": "The Smuggler’s Crossroads [BRANCH 5: Lock In Path]",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "black_market_sprawl",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["black_market_sprawl", "freehold_outpost"],
       "qualities": {
         "Smuggler Stage": 14
       },
@@ -1565,9 +1597,11 @@ export const SMUGGLER_QUEST_STORYLETS: Storylet[] = [
     "id": "story_smuggler_16_state_police_manhunt",
     "title": "The Continental Dragnet",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "black_market_sprawl",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["black_market_sprawl", "freehold_outpost"],
       "qualities": {
         "Smuggler Stage": 15
       },
@@ -1692,9 +1726,11 @@ export const SMUGGLER_QUEST_STORYLETS: Storylet[] = [
     "id": "story_smuggler_17_phantom_runways",
     "title": "The Abandoned Airstrip Run",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "black_market_sprawl",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["black_market_sprawl", "freehold_outpost"],
       "qualities": {
         "Smuggler Stage": 16
       },
@@ -1793,9 +1829,11 @@ export const SMUGGLER_QUEST_STORYLETS: Storylet[] = [
     "id": "story_smuggler_18_governors_fortress_raid",
     "title": "The Sovereign Toll Barrier",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "black_market_sprawl",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["black_market_sprawl", "freehold_outpost"],
       "qualities": {
         "Smuggler Stage": 17
       },
@@ -1920,9 +1958,11 @@ export const SMUGGLER_QUEST_STORYLETS: Storylet[] = [
     "id": "story_smuggler_19_shadow_terminal_climax",
     "title": "The Redwoods Run [CLIMAX GAUNTLET]",
     "triggerType": "ANY",
-    "triggerLocation": "Any",
+    "triggerLocation": "black_market_sprawl",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["black_market_sprawl", "freehold_outpost"],
       "qualities": {
         "Smuggler Stage": 18
       },
@@ -1966,6 +2006,7 @@ export const SMUGGLER_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "archetypes": ["black_market_sprawl", "freehold_outpost"],
           "qualities": {
             "Smuggler Chosen Path": 1
           }
@@ -2005,6 +2046,7 @@ export const SMUGGLER_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "archetypes": ["black_market_sprawl", "freehold_outpost"],
           "qualities": {
             "Smuggler Chosen Path": 2
           }
@@ -2044,6 +2086,7 @@ export const SMUGGLER_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "archetypes": ["black_market_sprawl", "freehold_outpost"],
           "qualities": {
             "Smuggler Chosen Path": 3
           }
@@ -2055,9 +2098,11 @@ export const SMUGGLER_QUEST_STORYLETS: Storylet[] = [
     "id": "story_smuggler_20_finale",
     "title": "The Ghost King of the Pacific [FINALE]",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "black_market_sprawl",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["black_market_sprawl", "freehold_outpost"],
       "qualities": {
         "Smuggler Stage": 19
       },
@@ -2093,6 +2138,7 @@ export const SMUGGLER_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "archetypes": ["black_market_sprawl", "freehold_outpost"],
           "qualities": {
             "Smuggler Chosen Path": 1
           }
@@ -2123,6 +2169,7 @@ export const SMUGGLER_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "archetypes": ["black_market_sprawl", "freehold_outpost"],
           "qualities": {
             "Smuggler Chosen Path": 2
           }
@@ -2154,6 +2201,7 @@ export const SMUGGLER_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "archetypes": ["black_market_sprawl", "freehold_outpost"],
           "qualities": {
             "Smuggler Chosen Path": 3
           }

@@ -1,8 +1,44 @@
-import { PlayerState, WorldNode, CommodityId, FactionId, CoreStatKey } from '../types';
+import { PlayerState, WorldNode, CommodityId, FactionId, CoreStatKey, getNodeArchetype } from '../types';
 import type { Storylet, StoryletRequirement, StoryletReward, StoryletTriggerType, StoryletOption, PbtABranchOutcome } from '../types/storylet';
 import { STORYLET_POOL } from '../data/storylets';
 import { COMMODITIES } from '../constants/worldData';
 import { resolvePbtA, computeQualityRollBonus, PbtARollResult } from './pbta';
+
+/**
+ * Checks whether a given world node is situated on or adjacent to a coastline, ocean, harbor, bay, sound, or major maritime waterfront.
+ */
+export function isCoastalNode(node: WorldNode): boolean {
+  if (typeof node.isCoastal === 'boolean') {
+    return node.isCoastal;
+  }
+  const text = `${node.name} ${node.description}`.toLowerCase();
+  const coastalKeywords = [
+    'coast', 'coastal', 'harbor', 'bay', 'port', 'waterfront', 'ocean', 'sea',
+    'sound', 'cape', 'island', 'beach', 'dock', 'docklands', 'submersible',
+    'marina', 'atlantic', 'pacific', 'gulf', 'wharf', 'pier', 'sub-base',
+    'kelp', 'tide', 'tidal', 'naval', 'fjord', 'estuary', 'deep sea',
+    'seaboard', 'marine', 'shore', 'lake ontario', 'lake erie', 'lake michigan',
+    'lake superior', 'st. lawrence', 'hudson waterfront'
+  ];
+  if (coastalKeywords.some((kw) => text.includes(kw))) {
+    return true;
+  }
+
+  // Pacific coast seaboard (PNW west of -122 longitude)
+  if (node.sector === 'pacific_northwest' && node.lng <= -122.0) {
+    return true;
+  }
+  // East Coast Atlantic seaboard (East of -81.5 longitude and below 45 lat)
+  if (node.sector === 'east_coast' && node.lng >= -81.5) {
+    return true;
+  }
+  // Southern Gulf Coast
+  if (node.sector === 'southern' && node.lat <= 30.8 && node.lng >= -98.0 && node.lng <= -81.0) {
+    return true;
+  }
+
+  return false;
+}
 
 export class NarrativeEngine {
   private storylets: Storylet[];
@@ -79,14 +115,48 @@ export class NarrativeEngine {
       }
     }
 
-    // 6. Sector
+    // 6. Sector & Multiple Sectors
     if (req.sector && currentNode.sector !== req.sector) {
       missing.push(`Must be in ${req.sector.toUpperCase()} sector`);
     }
+    if (req.sectors && !req.sectors.includes(currentNode.sector)) {
+      missing.push(`Must be in one of sectors: ${req.sectors.map((s) => s.toUpperCase()).join(', ')}`);
+    }
 
-    // 7. Location ID
+    // 7. Location ID & Location IDs
     if (req.locationId && currentNode.id !== req.locationId) {
-      missing.push(`Specific location requirement not met`);
+      missing.push(`Specific location requirement not met (${req.locationId})`);
+    }
+    if (req.locationIds && !req.locationIds.includes(currentNode.id)) {
+      missing.push(`Must be at one of nodes: ${req.locationIds.join(', ')}`);
+    }
+
+    // 8. Coastal / Inland Constraints
+    if (req.coastalOnly && !isCoastalNode(currentNode)) {
+      missing.push('Must be at a coastal or maritime waterfront node');
+    }
+    if (req.inlandOnly && isCoastalNode(currentNode)) {
+      missing.push('Must be at an inland interior node away from coasts');
+    }
+
+    // 9. Node Archetypes & Factions
+    if (req.archetype && getNodeArchetype(currentNode) !== req.archetype) {
+      missing.push(`Node archetype must be ${req.archetype}`);
+    }
+    if (req.archetypes && !req.archetypes.includes(getNodeArchetype(currentNode))) {
+      missing.push(`Node archetype must be one of: ${req.archetypes.join(', ')}`);
+    }
+    if (req.factions && !req.factions.includes(currentNode.dominantFaction)) {
+      missing.push(`Dominant faction must be one of: ${req.factions.join(', ')}`);
+    }
+
+    // 10. Layer Constraints
+    if (req.layer) {
+      if (req.layer === 'coastal' && !isCoastalNode(currentNode)) {
+        missing.push('Requires coastal layer environment');
+      } else if (req.layer === 'inland' && isCoastalNode(currentNode)) {
+        missing.push('Requires inland layer environment');
+      }
     }
 
     return {
@@ -116,7 +186,25 @@ export class NarrativeEngine {
 
       // Check trigger location
       if (storylet.triggerLocation && storylet.triggerLocation !== 'Any') {
-        if (storylet.triggerLocation !== currentNode.id && storylet.triggerLocation !== currentNode.sector) {
+        if (storylet.triggerLocation === 'coastal') {
+          if (!isCoastalNode(currentNode)) return false;
+        } else if (storylet.triggerLocation === 'inland') {
+          if (isCoastalNode(currentNode)) return false;
+        } else if (
+          storylet.triggerLocation !== currentNode.id &&
+          storylet.triggerLocation !== currentNode.sector &&
+          storylet.triggerLocation !== getNodeArchetype(currentNode)
+        ) {
+          return false;
+        }
+      }
+
+      // Check storylet layer
+      if (storylet.layer) {
+        if (storylet.layer === 'coastal' && !isCoastalNode(currentNode)) {
+          return false;
+        }
+        if (storylet.layer === 'inland' && isCoastalNode(currentNode)) {
           return false;
         }
       }

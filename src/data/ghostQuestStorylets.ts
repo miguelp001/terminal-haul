@@ -5,9 +5,11 @@ export const GHOST_QUEST_STORYLETS: Storylet[] = [
     "id": "story_ghost_01_silent_axle",
     "title": "The Silent Axle Anomaly",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "wasteland_hub",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["wasteland_hub", "freehold_outpost"],
       "maxQualities": {
         "Ghost Stage": 0
       }
@@ -112,9 +114,11 @@ export const GHOST_QUEST_STORYLETS: Storylet[] = [
     "id": "story_ghost_02_dashboard_whispers",
     "title": "Whispers on the Sub-Band",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "wasteland_hub",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["wasteland_hub", "freehold_outpost"],
       "qualities": {
         "Ghost Stage": 1
       },
@@ -216,9 +220,11 @@ export const GHOST_QUEST_STORYLETS: Storylet[] = [
     "id": "story_ghost_03_quantum_coolant",
     "title": "The Quantum Thermal Runaway",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "wasteland_hub",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["wasteland_hub", "freehold_outpost"],
       "qualities": {
         "Ghost Stage": 2
       },
@@ -285,6 +291,7 @@ export const GHOST_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "archetypes": ["wasteland_hub", "freehold_outpost"],
           "credits": 400
         }
       },
@@ -332,9 +339,11 @@ export const GHOST_QUEST_STORYLETS: Storylet[] = [
     "id": "story_ghost_04_firewall_breach",
     "title": "The Aegis Hunter Daemon",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "wasteland_hub",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["wasteland_hub", "freehold_outpost"],
       "qualities": {
         "Ghost Stage": 3
       },
@@ -437,9 +446,11 @@ export const GHOST_QUEST_STORYLETS: Storylet[] = [
     "id": "story_ghost_05_ethical_subroutine",
     "title": "The Trolley Algorithm [BRANCH 1]",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "wasteland_hub",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["wasteland_hub", "freehold_outpost"],
       "qualities": {
         "Ghost Stage": 4
       },
@@ -547,9 +558,11 @@ export const GHOST_QUEST_STORYLETS: Storylet[] = [
     "id": "story_ghost_06_neuralfront_contact",
     "title": "The Synthetic Ethicists",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "wasteland_hub",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["wasteland_hub", "freehold_outpost"],
       "qualities": {
         "Ghost Stage": 5
       },
@@ -659,9 +672,11 @@ export const GHOST_QUEST_STORYLETS: Storylet[] = [
     "id": "story_ghost_07_hunter_daemon_ping",
     "title": "The Triangulation Net",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "wasteland_hub",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["wasteland_hub", "freehold_outpost"],
       "qualities": {
         "Ghost Stage": 6
       },
@@ -789,9 +804,11 @@ export const GHOST_QUEST_STORYLETS: Storylet[] = [
     "id": "story_ghost_08_scrap_merchant_raid",
     "title": "The Salvage Ambush [BRANCH 2]",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "wasteland_hub",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["wasteland_hub", "freehold_outpost"],
       "qualities": {
         "Ghost Stage": 7
       },
@@ -916,9 +933,11 @@ export const GHOST_QUEST_STORYLETS: Storylet[] = [
     "id": "story_ghost_09_radio_tower_relay",
     "title": "The Cold High Tower",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "wasteland_hub",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["wasteland_hub", "freehold_outpost"],
       "qualities": {
         "Ghost Stage": 8
       },
@@ -1019,9 +1038,11 @@ export const GHOST_QUEST_STORYLETS: Storylet[] = [
     "id": "story_ghost_10_aura_awakening",
     "title": "The Awakening at Midnight [BRANCH 3]",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "wasteland_hub",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["wasteland_hub", "freehold_outpost"],
       "qualities": {
         "Ghost Stage": 9
       },
@@ -1154,9 +1175,11 @@ export const GHOST_QUEST_STORYLETS: Storylet[] = [
     "id": "story_ghost_11_corporate_black_ice",
     "title": "The Black ICE Ambush",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "wasteland_hub",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["wasteland_hub", "freehold_outpost"],
       "qualities": {
         "Ghost Stage": 10
       },
@@ -1281,9 +1304,11 @@ export const GHOST_QUEST_STORYLETS: Storylet[] = [
     "id": "story_ghost_12_errand_subzero_sink",
     "title": "The Sub-Zero Heat Sink",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "wasteland_hub",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["wasteland_hub", "freehold_outpost"],
       "qualities": {
         "Ghost Stage": 11
       },
@@ -1384,6 +1409,7 @@ export const GHOST_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "archetypes": ["wasteland_hub", "freehold_outpost"],
           "credits": 500
         }
       }
@@ -1393,9 +1419,11 @@ export const GHOST_QUEST_STORYLETS: Storylet[] = [
     "id": "story_ghost_13_daemon_carrier_convoy",
     "title": "The Daemon Carrier [BRANCH 4]",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "wasteland_hub",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["wasteland_hub", "freehold_outpost"],
       "qualities": {
         "Ghost Stage": 12
       },
@@ -1523,9 +1551,11 @@ export const GHOST_QUEST_STORYLETS: Storylet[] = [
     "id": "story_ghost_14_microwave_uplink",
     "title": "The Skyward Bridge",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "wasteland_hub",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["wasteland_hub", "freehold_outpost"],
       "qualities": {
         "Ghost Stage": 13
       },
@@ -1626,9 +1656,11 @@ export const GHOST_QUEST_STORYLETS: Storylet[] = [
     "id": "story_ghost_15_point_of_coalescence",
     "title": "The Point of Coalescence [BRANCH 5: Lock In Path]",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "wasteland_hub",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["wasteland_hub", "freehold_outpost"],
       "qualities": {
         "Ghost Stage": 14
       },
@@ -1682,9 +1714,11 @@ export const GHOST_QUEST_STORYLETS: Storylet[] = [
     "id": "story_ghost_16_orbital_strike_scramble",
     "title": "The Redline Dash",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "wasteland_hub",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["wasteland_hub", "freehold_outpost"],
       "qualities": {
         "Ghost Stage": 15
       },
@@ -1810,9 +1844,11 @@ export const GHOST_QUEST_STORYLETS: Storylet[] = [
     "id": "story_ghost_17_pre_climax_burn",
     "title": "The Ashen Causeway",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "wasteland_hub",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["wasteland_hub", "freehold_outpost"],
       "qualities": {
         "Ghost Stage": 16
       },
@@ -1912,9 +1948,11 @@ export const GHOST_QUEST_STORYLETS: Storylet[] = [
     "id": "story_ghost_18_mothership_interceptor",
     "title": "The Aegis Command Dreadnought",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "wasteland_hub",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["wasteland_hub", "freehold_outpost"],
       "qualities": {
         "Ghost Stage": 17
       },
@@ -2039,9 +2077,11 @@ export const GHOST_QUEST_STORYLETS: Storylet[] = [
     "id": "story_ghost_19_climax_ascension",
     "title": "The Frontier Ascension [CLIMAX GAUNTLET]",
     "triggerType": "ANY",
-    "triggerLocation": "Any",
+    "triggerLocation": "wasteland_hub",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["wasteland_hub", "freehold_outpost"],
       "qualities": {
         "Ghost Stage": 18
       },
@@ -2057,6 +2097,7 @@ export const GHOST_QUEST_STORYLETS: Storylet[] = [
         "effectText": "Aura synchronizes every mechanical component in the rig into flawless cybernetic harmony.",
         "rewards": {},
         "reqs": {
+      "archetypes": ["wasteland_hub", "freehold_outpost"],
           "qualities": {
             "Ghost Chosen Path": 1
           }
@@ -2097,6 +2138,7 @@ export const GHOST_QUEST_STORYLETS: Storylet[] = [
         "effectText": "Aura broadcasts a catastrophic electronic EMP across the entire regional grid.",
         "rewards": {},
         "reqs": {
+      "archetypes": ["wasteland_hub", "freehold_outpost"],
           "qualities": {
             "Ghost Chosen Path": 2
           }
@@ -2137,6 +2179,7 @@ export const GHOST_QUEST_STORYLETS: Storylet[] = [
         "effectText": "You align your rooftop antenna with the open-source satellite mesh.",
         "rewards": {},
         "reqs": {
+      "archetypes": ["wasteland_hub", "freehold_outpost"],
           "qualities": {
             "Ghost Chosen Path": 3
           }
@@ -2179,9 +2222,11 @@ export const GHOST_QUEST_STORYLETS: Storylet[] = [
     "id": "story_ghost_20_finale",
     "title": "The Ghost Beyond the Horizon [FINALE]",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "wasteland_hub",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["wasteland_hub", "freehold_outpost"],
       "qualities": {
         "Ghost Stage": 19
       },
@@ -2217,6 +2262,7 @@ export const GHOST_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "archetypes": ["wasteland_hub", "freehold_outpost"],
           "qualities": {
             "Ghost Chosen Path": 1
           }
@@ -2248,6 +2294,7 @@ export const GHOST_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "archetypes": ["wasteland_hub", "freehold_outpost"],
           "qualities": {
             "Ghost Chosen Path": 2
           }
@@ -2279,6 +2326,7 @@ export const GHOST_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "archetypes": ["wasteland_hub", "freehold_outpost"],
           "qualities": {
             "Ghost Chosen Path": 3
           }

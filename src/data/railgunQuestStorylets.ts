@@ -5,9 +5,11 @@ export const RAILGUN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_railgun_01_mountain_rumble",
     "title": "The Iron Cannon of Red Ridge",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "reclaimer_foundry",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["reclaimer_foundry", "wasteland_hub"],
       "maxQualities": {
         "Railgun Stage": 0
       }
@@ -103,9 +105,11 @@ export const RAILGUN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_railgun_02_weight_distribution",
     "title": "The Crushed Asphalt",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "reclaimer_foundry",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["reclaimer_foundry", "wasteland_hub"],
       "qualities": {
         "Railgun Stage": 1
       },
@@ -202,9 +206,11 @@ export const RAILGUN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_railgun_03_supercapacitor_salvage",
     "title": "The Bunker Power Vault",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "reclaimer_foundry",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["reclaimer_foundry", "wasteland_hub"],
       "qualities": {
         "Railgun Stage": 2
       },
@@ -307,6 +313,7 @@ export const RAILGUN_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "archetypes": ["reclaimer_foundry", "wasteland_hub"],
           "cargo": {
             "batteries": 1
           }
@@ -318,9 +325,11 @@ export const RAILGUN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_railgun_04_warlord_patrol",
     "title": "The Ridge Interceptors",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "reclaimer_foundry",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["reclaimer_foundry", "wasteland_hub"],
       "qualities": {
         "Railgun Stage": 3
       },
@@ -445,9 +454,11 @@ export const RAILGUN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_railgun_05_tunnel_clearance",
     "title": "The Low Concrete Arch",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "reclaimer_foundry",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["reclaimer_foundry", "wasteland_hub"],
       "qualities": {
         "Railgun Stage": 4
       },
@@ -545,9 +556,11 @@ export const RAILGUN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_railgun_06_fire_control_splice",
     "title": "The Targeting Link",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "reclaimer_foundry",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["reclaimer_foundry", "wasteland_hub"],
       "qualities": {
         "Railgun Stage": 5
       },
@@ -642,6 +655,7 @@ export const RAILGUN_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "archetypes": ["reclaimer_foundry", "wasteland_hub"],
           "cargo": {
             "chips": 1
           }
@@ -653,9 +667,11 @@ export const RAILGUN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_railgun_07_ambush_gorge",
     "title": "The Box Canyon Stand",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "reclaimer_foundry",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["reclaimer_foundry", "wasteland_hub"],
       "qualities": {
         "Railgun Stage": 6
       },
@@ -755,9 +771,11 @@ export const RAILGUN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_railgun_08_cooling_lines",
     "title": "The Boiling Cryo-Jacket",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "reclaimer_foundry",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["reclaimer_foundry", "wasteland_hub"],
       "qualities": {
         "Railgun Stage": 7
       },
@@ -853,9 +871,11 @@ export const RAILGUN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_railgun_09_bridge_weight",
     "title": "The Groaning Trestle",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "reclaimer_foundry",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["reclaimer_foundry", "wasteland_hub"],
       "qualities": {
         "Railgun Stage": 8
       },
@@ -954,9 +974,11 @@ export const RAILGUN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_railgun_10_the_crossroads",
     "title": "The Destiny of Thunder [CRUCIAL CROSSROAD]",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "reclaimer_foundry",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["reclaimer_foundry", "wasteland_hub"],
       "qualities": {
         "Railgun Stage": 9
       },
@@ -1008,9 +1030,11 @@ export const RAILGUN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_railgun_11_air_strike",
     "title": "The Sky Hunters",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "reclaimer_foundry",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["reclaimer_foundry", "wasteland_hub"],
       "qualities": {
         "Railgun Stage": 10
       },
@@ -1107,9 +1131,11 @@ export const RAILGUN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_railgun_12_chassis_reinforcement",
     "title": "The Bed of Titanium",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "reclaimer_foundry",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["reclaimer_foundry", "wasteland_hub"],
       "qualities": {
         "Railgun Stage": 11
       },
@@ -1208,9 +1234,11 @@ export const RAILGUN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_railgun_13_the_breach",
     "title": "The Sovereign Perimeter Assault",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "reclaimer_foundry",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["reclaimer_foundry", "wasteland_hub"],
       "qualities": {
         "Railgun Stage": 12
       },
@@ -1308,9 +1336,11 @@ export const RAILGUN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_railgun_14_cannon_climax",
     "title": "The Thunder on the Ridge [CLIMAX GAUNTLET]",
     "triggerType": "ANY",
-    "triggerLocation": "Any",
+    "triggerLocation": "reclaimer_foundry",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["reclaimer_foundry", "wasteland_hub"],
       "qualities": {
         "Railgun Stage": 13
       },
@@ -1355,6 +1385,7 @@ export const RAILGUN_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "archetypes": ["reclaimer_foundry", "wasteland_hub"],
           "qualities": {
             "Railgun Chosen Path": 1
           }
@@ -1396,6 +1427,7 @@ export const RAILGUN_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "archetypes": ["reclaimer_foundry", "wasteland_hub"],
           "qualities": {
             "Railgun Chosen Path": 2
           }
@@ -1437,6 +1469,7 @@ export const RAILGUN_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "archetypes": ["reclaimer_foundry", "wasteland_hub"],
           "qualities": {
             "Railgun Chosen Path": 3
           }
@@ -1448,9 +1481,11 @@ export const RAILGUN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_railgun_15_finale",
     "title": "The Master of Artillery [FINALE]",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "reclaimer_foundry",
+    "layer": "archetype",
     "repeatable": false,
     "reqs": {
+      "archetypes": ["reclaimer_foundry", "wasteland_hub"],
       "qualities": {
         "Railgun Stage": 14
       },
@@ -1486,6 +1521,7 @@ export const RAILGUN_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "archetypes": ["reclaimer_foundry", "wasteland_hub"],
           "qualities": {
             "Railgun Chosen Path": 1
           }
@@ -1516,6 +1552,7 @@ export const RAILGUN_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "archetypes": ["reclaimer_foundry", "wasteland_hub"],
           "qualities": {
             "Railgun Chosen Path": 2
           }
@@ -1548,6 +1585,7 @@ export const RAILGUN_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "archetypes": ["reclaimer_foundry", "wasteland_hub"],
           "qualities": {
             "Railgun Chosen Path": 3
           }

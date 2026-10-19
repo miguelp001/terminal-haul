@@ -5,9 +5,11 @@ export const EDEN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_eden_01_botanical_bunker",
     "title": "The Vault of Living Amber",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "pacific_northwest",
+    "layer": "sector",
     "repeatable": false,
     "reqs": {
+      "sector": "pacific_northwest",
       "maxQualities": {
         "Eden Stage": 0
       }
@@ -106,9 +108,11 @@ export const EDEN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_eden_02_alkali_dust_storm",
     "title": "The Alkaline Whiteout",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "pacific_northwest",
+    "layer": "sector",
     "repeatable": false,
     "reqs": {
+      "sector": "pacific_northwest",
       "qualities": {
         "Eden Stage": 1
       },
@@ -205,9 +209,11 @@ export const EDEN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_eden_03_agri_sweepers",
     "title": "The Crop-Burner Patrol",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "pacific_northwest",
+    "layer": "sector",
     "repeatable": false,
     "reqs": {
+      "sector": "pacific_northwest",
       "qualities": {
         "Eden Stage": 2
       },
@@ -305,9 +311,11 @@ export const EDEN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_eden_04_starving_settlement",
     "title": "The Dust Bowl Clinic",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "pacific_northwest",
+    "layer": "sector",
     "repeatable": false,
     "reqs": {
+      "sector": "pacific_northwest",
       "qualities": {
         "Eden Stage": 3
       },
@@ -369,6 +377,7 @@ export const EDEN_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "sector": "pacific_northwest",
           "cargo": {
             "grain": 1
           }
@@ -391,9 +400,11 @@ export const EDEN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_eden_05_refrigeration_failure",
     "title": "The Thermal Thaw Crisis",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "pacific_northwest",
+    "layer": "sector",
     "repeatable": false,
     "reqs": {
+      "sector": "pacific_northwest",
       "qualities": {
         "Eden Stage": 4
       },
@@ -453,6 +464,7 @@ export const EDEN_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "sector": "pacific_northwest",
           "cargo": {
             "cryo": 1
           }
@@ -475,9 +487,11 @@ export const EDEN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_eden_06_corporate_bribe",
     "title": "The OmniDyne Ultimatum",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "pacific_northwest",
+    "layer": "sector",
     "repeatable": false,
     "reqs": {
+      "sector": "pacific_northwest",
       "qualities": {
         "Eden Stage": 5
       },
@@ -579,9 +593,11 @@ export const EDEN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_eden_07_irrigation_canal",
     "title": "The Drowned Sluice Gate",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "pacific_northwest",
+    "layer": "sector",
     "repeatable": false,
     "reqs": {
+      "sector": "pacific_northwest",
       "qualities": {
         "Eden Stage": 6
       },
@@ -678,9 +694,11 @@ export const EDEN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_eden_08_living_seedling",
     "title": "The Green Sprout of Hope",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "pacific_northwest",
+    "layer": "sector",
     "repeatable": false,
     "reqs": {
+      "sector": "pacific_northwest",
       "qualities": {
         "Eden Stage": 7
       },
@@ -778,9 +796,11 @@ export const EDEN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_eden_09_aerial_gunship_ambush",
     "title": "The Sky Fire of OmniDyne",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "pacific_northwest",
+    "layer": "sector",
     "repeatable": false,
     "reqs": {
+      "sector": "pacific_northwest",
       "qualities": {
         "Eden Stage": 8
       },
@@ -878,9 +898,11 @@ export const EDEN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_eden_10_the_crossroads",
     "title": "The Garden of Destinies [CRUCIAL CROSSROAD]",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "pacific_northwest",
+    "layer": "sector",
     "repeatable": false,
     "reqs": {
+      "sector": "pacific_northwest",
       "qualities": {
         "Eden Stage": 9
       },
@@ -932,9 +954,11 @@ export const EDEN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_eden_11_perimeter_tank_blockade",
     "title": "The Last Corporate Wall",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "pacific_northwest",
+    "layer": "sector",
     "repeatable": false,
     "reqs": {
+      "sector": "pacific_northwest",
       "qualities": {
         "Eden Stage": 10
       },
@@ -1033,9 +1057,11 @@ export const EDEN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_eden_12_chassis_bio_restoration",
     "title": "The Living Armor Lattice",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "pacific_northwest",
+    "layer": "sector",
     "repeatable": false,
     "reqs": {
+      "sector": "pacific_northwest",
       "qualities": {
         "Eden Stage": 11
       },
@@ -1131,9 +1157,11 @@ export const EDEN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_eden_13_the_green_plain",
     "title": "The First Sprouting",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "pacific_northwest",
+    "layer": "sector",
     "repeatable": false,
     "reqs": {
+      "sector": "pacific_northwest",
       "qualities": {
         "Eden Stage": 12
       },
@@ -1230,9 +1258,11 @@ export const EDEN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_eden_14_eden_climax",
     "title": "The Bread of the New World [CLIMAX GAUNTLET]",
     "triggerType": "ANY",
-    "triggerLocation": "Any",
+    "triggerLocation": "pacific_northwest",
+    "layer": "sector",
     "repeatable": false,
     "reqs": {
+      "sector": "pacific_northwest",
       "qualities": {
         "Eden Stage": 13
       },
@@ -1277,6 +1307,7 @@ export const EDEN_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "sector": "pacific_northwest",
           "qualities": {
             "Eden Chosen Path": 1
           }
@@ -1319,6 +1350,7 @@ export const EDEN_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "sector": "pacific_northwest",
           "qualities": {
             "Eden Chosen Path": 2
           }
@@ -1360,6 +1392,7 @@ export const EDEN_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "sector": "pacific_northwest",
           "qualities": {
             "Eden Chosen Path": 3
           }
@@ -1371,9 +1404,11 @@ export const EDEN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_eden_15_finale",
     "title": "The Harvester of Eden [FINALE]",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "pacific_northwest",
+    "layer": "sector",
     "repeatable": false,
     "reqs": {
+      "sector": "pacific_northwest",
       "qualities": {
         "Eden Stage": 14
       },
@@ -1409,6 +1444,7 @@ export const EDEN_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "sector": "pacific_northwest",
           "qualities": {
             "Eden Chosen Path": 1
           }
@@ -1440,6 +1476,7 @@ export const EDEN_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "sector": "pacific_northwest",
           "qualities": {
             "Eden Chosen Path": 2
           }
@@ -1472,6 +1509,7 @@ export const EDEN_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "sector": "pacific_northwest",
           "qualities": {
             "Eden Chosen Path": 3
           }

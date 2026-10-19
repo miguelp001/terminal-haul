@@ -5,9 +5,11 @@ export const ORACLE_QUEST_STORYLETS: Storylet[] = [
     "id": "story_oracle_01_silica_whisper",
     "title": "The Silica Whispers of the Ash Basin",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "sector",
     "repeatable": false,
     "reqs": {
+      "sector": "southwest_wasteland",
       "maxQualities": {
         "Oracle Stage": 0
       }
@@ -106,9 +108,11 @@ export const ORACLE_QUEST_STORYLETS: Storylet[] = [
     "id": "story_oracle_02_silica_dust_storm",
     "title": "The Razor Silica Gale",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "sector",
     "repeatable": false,
     "reqs": {
+      "sector": "southwest_wasteland",
       "qualities": {
         "Oracle Stage": 1
       },
@@ -207,9 +211,11 @@ export const ORACLE_QUEST_STORYLETS: Storylet[] = [
     "id": "story_oracle_03_pilgrim_caravan",
     "title": "The Sinking Sanctuary",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "sector",
     "repeatable": false,
     "reqs": {
+      "sector": "southwest_wasteland",
       "qualities": {
         "Oracle Stage": 2
       },
@@ -307,6 +313,7 @@ export const ORACLE_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "sector": "southwest_wasteland",
           "cargo": {
             "grain": 1
           }
@@ -318,9 +325,11 @@ export const ORACLE_QUEST_STORYLETS: Storylet[] = [
     "id": "story_oracle_04_the_first_shrine",
     "title": "The Pylon of Shifting Stone",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "sector",
     "repeatable": false,
     "reqs": {
+      "sector": "southwest_wasteland",
       "qualities": {
         "Oracle Stage": 3
       },
@@ -416,6 +425,7 @@ export const ORACLE_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "sector": "southwest_wasteland",
           "cargo": {
             "chips": 1
           }
@@ -427,9 +437,11 @@ export const ORACLE_QUEST_STORYLETS: Storylet[] = [
     "id": "story_oracle_05_ash_raider_ambush",
     "title": "The Zealots of the Rust Idol",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "sector",
     "repeatable": false,
     "reqs": {
+      "sector": "southwest_wasteland",
       "qualities": {
         "Oracle Stage": 4
       },
@@ -553,9 +565,11 @@ export const ORACLE_QUEST_STORYLETS: Storylet[] = [
     "id": "story_oracle_06_seismic_tremor",
     "title": "The Tectonic Rift",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "sector",
     "repeatable": false,
     "reqs": {
+      "sector": "southwest_wasteland",
       "qualities": {
         "Oracle Stage": 5
       },
@@ -654,9 +668,11 @@ export const ORACLE_QUEST_STORYLETS: Storylet[] = [
     "id": "story_oracle_07_the_mirage_city",
     "title": "The Silica Necropolis",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "sector",
     "repeatable": false,
     "reqs": {
+      "sector": "southwest_wasteland",
       "qualities": {
         "Oracle Stage": 6
       },
@@ -760,9 +776,11 @@ export const ORACLE_QUEST_STORYLETS: Storylet[] = [
     "id": "story_oracle_08_the_temple_approach",
     "title": "The Obsidian Road",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "sector",
     "repeatable": false,
     "reqs": {
+      "sector": "southwest_wasteland",
       "qualities": {
         "Oracle Stage": 7
       },
@@ -858,9 +876,11 @@ export const ORACLE_QUEST_STORYLETS: Storylet[] = [
     "id": "story_oracle_09_the_prophet_communion",
     "title": "The Chamber of the Oracle",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "sector",
     "repeatable": false,
     "reqs": {
+      "sector": "southwest_wasteland",
       "qualities": {
         "Oracle Stage": 8
       },
@@ -961,9 +981,11 @@ export const ORACLE_QUEST_STORYLETS: Storylet[] = [
     "id": "story_oracle_10_the_crossroads",
     "title": "The Vision of Three Futures [CRUCIAL CROSSROAD]",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "sector",
     "repeatable": false,
     "reqs": {
+      "sector": "southwest_wasteland",
       "qualities": {
         "Oracle Stage": 9
       },
@@ -1015,9 +1037,11 @@ export const ORACLE_QUEST_STORYLETS: Storylet[] = [
     "id": "story_oracle_11_corporate_desecration",
     "title": "The Seismic Dreadnought Intercept",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "sector",
     "repeatable": false,
     "reqs": {
+      "sector": "southwest_wasteland",
       "qualities": {
         "Oracle Stage": 10
       },
@@ -1115,9 +1139,11 @@ export const ORACLE_QUEST_STORYLETS: Storylet[] = [
     "id": "story_oracle_12_chassis_harmonic_tuning",
     "title": "The Harmonic Chassis Lattice",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "sector",
     "repeatable": false,
     "reqs": {
+      "sector": "southwest_wasteland",
       "qualities": {
         "Oracle Stage": 11
       },
@@ -1214,9 +1240,11 @@ export const ORACLE_QUEST_STORYLETS: Storylet[] = [
     "id": "story_oracle_13_the_ash_fissure_dash",
     "title": "The Collapsing Basin",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "sector",
     "repeatable": false,
     "reqs": {
+      "sector": "southwest_wasteland",
       "qualities": {
         "Oracle Stage": 12
       },
@@ -1314,9 +1342,11 @@ export const ORACLE_QUEST_STORYLETS: Storylet[] = [
     "id": "story_oracle_14_prophecy_climax",
     "title": "The Voice of the Continent [CLIMAX GAUNTLET]",
     "triggerType": "ANY",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "sector",
     "repeatable": false,
     "reqs": {
+      "sector": "southwest_wasteland",
       "qualities": {
         "Oracle Stage": 13
       },
@@ -1362,6 +1392,7 @@ export const ORACLE_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "sector": "southwest_wasteland",
           "qualities": {
             "Oracle Chosen Path": 1
           }
@@ -1404,6 +1435,7 @@ export const ORACLE_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "sector": "southwest_wasteland",
           "qualities": {
             "Oracle Chosen Path": 2
           }
@@ -1445,6 +1477,7 @@ export const ORACLE_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "sector": "southwest_wasteland",
           "qualities": {
             "Oracle Chosen Path": 3
           }
@@ -1456,9 +1489,11 @@ export const ORACLE_QUEST_STORYLETS: Storylet[] = [
     "id": "story_oracle_15_finale",
     "title": "The Prophet of the Open Road [FINALE]",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "sector",
     "repeatable": false,
     "reqs": {
+      "sector": "southwest_wasteland",
       "qualities": {
         "Oracle Stage": 14
       },
@@ -1496,6 +1531,7 @@ export const ORACLE_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "sector": "southwest_wasteland",
           "qualities": {
             "Oracle Chosen Path": 1
           }
@@ -1526,6 +1562,7 @@ export const ORACLE_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "sector": "southwest_wasteland",
           "qualities": {
             "Oracle Chosen Path": 2
           }
@@ -1557,6 +1594,7 @@ export const ORACLE_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "sector": "southwest_wasteland",
           "qualities": {
             "Oracle Chosen Path": 3
           }

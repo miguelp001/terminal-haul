@@ -5,9 +5,12 @@ export const BLACKSUN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_blacksun_01_containment_leak",
     "title": "The Glowing Ingot of Crater Flats",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "maxQualities": {
         "Blacksun Stage": 0
       }
@@ -106,9 +109,12 @@ export const BLACKSUN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_blacksun_02_geiger_clicks",
     "title": "The Chittering Needle",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "qualities": {
         "Blacksun Stage": 1
       },
@@ -205,9 +211,12 @@ export const BLACKSUN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_blacksun_03_hazmat_checkpoint",
     "title": "The Aegis Decontamination Gate",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "qualities": {
         "Blacksun Stage": 2
       },
@@ -309,9 +318,12 @@ export const BLACKSUN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_blacksun_04_coolant_starvation",
     "title": "The Boiling Heavy Water",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "qualities": {
         "Blacksun Stage": 3
       },
@@ -406,6 +418,8 @@ export const BLACKSUN_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
           "cargo": {
             "batteries": 1
           }
@@ -417,9 +431,12 @@ export const BLACKSUN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_blacksun_05_mercenary_intercept",
     "title": "The OmniDyne Recovery Team",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "qualities": {
         "Blacksun Stage": 4
       },
@@ -542,9 +559,12 @@ export const BLACKSUN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_blacksun_06_tap_the_core",
     "title": "The First Spark of Fusion",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "qualities": {
         "Blacksun Stage": 5
       },
@@ -647,9 +667,12 @@ export const BLACKSUN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_blacksun_07_fallout_refugees",
     "title": "The Irradiated Oasis",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "qualities": {
         "Blacksun Stage": 6
       },
@@ -751,9 +774,12 @@ export const BLACKSUN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_blacksun_08_magnetic_anomaly",
     "title": "The Ion Sinkhole",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "qualities": {
         "Blacksun Stage": 7
       },
@@ -851,9 +877,12 @@ export const BLACKSUN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_blacksun_09_containment_breach_warning",
     "title": "The Critical Threshold",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "qualities": {
         "Blacksun Stage": 8
       },
@@ -951,9 +980,12 @@ export const BLACKSUN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_blacksun_10_the_crossroads",
     "title": "The Solar Eclipse [CRUCIAL CROSSROAD]",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "qualities": {
         "Blacksun Stage": 9
       },
@@ -1005,9 +1037,12 @@ export const BLACKSUN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_blacksun_11_corporate_hunters",
     "title": "The Aegis Gunship Swarm",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "qualities": {
         "Blacksun Stage": 10
       },
@@ -1106,9 +1141,12 @@ export const BLACKSUN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_blacksun_12_chassis_infusion",
     "title": "The Plasma-Hardened Hull",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "qualities": {
         "Blacksun Stage": 11
       },
@@ -1204,9 +1242,12 @@ export const BLACKSUN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_blacksun_13_the_last_barrier",
     "title": "The Nuclear Perimeter Gate",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "qualities": {
         "Blacksun Stage": 12
       },
@@ -1305,9 +1346,12 @@ export const BLACKSUN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_blacksun_14_dark_fusion_climax",
     "title": "The Dark Star Rising [CLIMAX GAUNTLET]",
     "triggerType": "ANY",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "qualities": {
         "Blacksun Stage": 13
       },
@@ -1352,6 +1396,8 @@ export const BLACKSUN_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
           "qualities": {
             "Blacksun Chosen Path": 1
           }
@@ -1393,6 +1439,8 @@ export const BLACKSUN_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
           "qualities": {
             "Blacksun Chosen Path": 2
           }
@@ -1434,6 +1482,8 @@ export const BLACKSUN_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
           "qualities": {
             "Blacksun Chosen Path": 3
           }
@@ -1445,9 +1495,12 @@ export const BLACKSUN_QUEST_STORYLETS: Storylet[] = [
     "id": "story_blacksun_15_finale",
     "title": "The Master of the Dark Star [FINALE]",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "qualities": {
         "Blacksun Stage": 14
       },
@@ -1484,6 +1537,8 @@ export const BLACKSUN_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
           "qualities": {
             "Blacksun Chosen Path": 1
           }
@@ -1514,6 +1569,8 @@ export const BLACKSUN_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
           "qualities": {
             "Blacksun Chosen Path": 2
           }
@@ -1546,6 +1603,8 @@ export const BLACKSUN_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
           "qualities": {
             "Blacksun Chosen Path": 3
           }

@@ -5,9 +5,12 @@ export const GHOSTWAY_QUEST_STORYLETS: Storylet[] = [
     "id": "story_ghostway_01_mirage_frequency",
     "title": "The Phantom Beacon of Interstate '76",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "maxQualities": {
         "Ghostway Stage": 0
       }
@@ -101,9 +104,12 @@ export const GHOSTWAY_QUEST_STORYLETS: Storylet[] = [
     "id": "story_ghostway_02_phased_radar_mod",
     "title": "The Phased Lidar Array",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "qualities": {
         "Ghostway Stage": 1
       },
@@ -204,9 +210,12 @@ export const GHOSTWAY_QUEST_STORYLETS: Storylet[] = [
     "id": "story_ghostway_03_first_mirage_gate",
     "title": "The Shimmering Horizon",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "qualities": {
         "Ghostway Stage": 2
       },
@@ -305,9 +314,12 @@ export const GHOSTWAY_QUEST_STORYLETS: Storylet[] = [
     "id": "story_ghostway_04_electromagnetic_storm",
     "title": "The Ion Tempest",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "qualities": {
         "Ghostway Stage": 3
       },
@@ -404,9 +416,12 @@ export const GHOSTWAY_QUEST_STORYLETS: Storylet[] = [
     "id": "story_ghostway_05_ghost_convoy",
     "title": "The Autonomous Phantoms",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "qualities": {
         "Ghostway Stage": 4
       },
@@ -505,9 +520,12 @@ export const GHOSTWAY_QUEST_STORYLETS: Storylet[] = [
     "id": "story_ghostway_06_fueling_the_matrix",
     "title": "The Sunken Power Substation",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "qualities": {
         "Ghostway Stage": 5
       },
@@ -568,6 +586,8 @@ export const GHOSTWAY_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
           "cargo": {
             "batteries": 1
           }
@@ -589,9 +609,12 @@ export const GHOSTWAY_QUEST_STORYLETS: Storylet[] = [
     "id": "story_ghostway_07_temporal_echo",
     "title": "The Chrono-Static Rift",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "qualities": {
         "Ghostway Stage": 6
       },
@@ -689,9 +712,12 @@ export const GHOSTWAY_QUEST_STORYLETS: Storylet[] = [
     "id": "story_ghostway_08_aegis_interceptor_chase",
     "title": "The Corporate Chasers",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "qualities": {
         "Ghostway Stage": 7
       },
@@ -789,9 +815,12 @@ export const GHOSTWAY_QUEST_STORYLETS: Storylet[] = [
     "id": "story_ghostway_09_fractured_overpass",
     "title": "The Sky Leap of Black Chasm",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "qualities": {
         "Ghostway Stage": 8
       },
@@ -887,9 +916,12 @@ export const GHOSTWAY_QUEST_STORYLETS: Storylet[] = [
     "id": "story_ghostway_10_the_crossroads",
     "title": "The Map of the Impossible [CRUCIAL CROSSROAD]",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "qualities": {
         "Ghostway Stage": 9
       },
@@ -941,9 +973,12 @@ export const GHOSTWAY_QUEST_STORYLETS: Storylet[] = [
     "id": "story_ghostway_11_sensor_overload",
     "title": "The Thermal Blaze on the Roof",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "qualities": {
         "Ghostway Stage": 10
       },
@@ -1039,9 +1074,12 @@ export const GHOSTWAY_QUEST_STORYLETS: Storylet[] = [
     "id": "story_ghostway_12_interceptor_dogfight",
     "title": "The Aegis Gunship Intercept",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "qualities": {
         "Ghostway Stage": 11
       },
@@ -1139,9 +1177,12 @@ export const GHOSTWAY_QUEST_STORYLETS: Storylet[] = [
     "id": "story_ghostway_13_sonic_breach",
     "title": "The Velocity Barrier",
     "triggerType": "TRANSIT_ENCOUNTER",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "qualities": {
         "Ghostway Stage": 12
       },
@@ -1237,9 +1278,12 @@ export const GHOSTWAY_QUEST_STORYLETS: Storylet[] = [
     "id": "story_ghostway_14_mirage_climax",
     "title": "The Convergence of the Grid [CLIMAX GAUNTLET]",
     "triggerType": "ANY",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "qualities": {
         "Ghostway Stage": 13
       },
@@ -1284,6 +1328,8 @@ export const GHOSTWAY_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
           "qualities": {
             "Ghostway Chosen Path": 1
           }
@@ -1325,6 +1371,8 @@ export const GHOSTWAY_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
           "qualities": {
             "Ghostway Chosen Path": 2
           }
@@ -1366,6 +1414,8 @@ export const GHOSTWAY_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
           "qualities": {
             "Ghostway Chosen Path": 3
           }
@@ -1377,9 +1427,12 @@ export const GHOSTWAY_QUEST_STORYLETS: Storylet[] = [
     "id": "story_ghostway_15_finale",
     "title": "The Highway Phantom [FINALE]",
     "triggerType": "DOCK",
-    "triggerLocation": "Any",
+    "triggerLocation": "southwest_wasteland",
+    "layer": "inland",
     "repeatable": false,
     "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
       "qualities": {
         "Ghostway Stage": 14
       },
@@ -1414,6 +1467,8 @@ export const GHOSTWAY_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
           "qualities": {
             "Ghostway Chosen Path": 1
           }
@@ -1446,6 +1501,8 @@ export const GHOSTWAY_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
           "qualities": {
             "Ghostway Chosen Path": 2
           }
@@ -1478,6 +1535,8 @@ export const GHOSTWAY_QUEST_STORYLETS: Storylet[] = [
           }
         },
         "reqs": {
+      "inlandOnly": true,
+      "sector": "southwest_wasteland",
           "qualities": {
             "Ghostway Chosen Path": 3
           }
