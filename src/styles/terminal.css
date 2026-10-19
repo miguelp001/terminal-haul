@@ -24,9 +24,9 @@
   --font-mono: 'Consolas', 'Courier New', 'Fira Code', 'JetBrains Mono', monospace;
 
   /* augmented-ui global defaults */
-  --aug-border: 1.5px;
+  --aug-border-all: 1.5px;
   --aug-border-bg: var(--border-color);
-  --aug-inlay: 2px;
+  --aug-inlay-all: 2px;
   --aug-inlay-bg: var(--panel-bg);
   --aug-tl: 8px;
   --aug-tr: 8px;
@@ -155,9 +155,9 @@ body::after {
    ========================================================================== */
 
 [data-augmented-ui] {
-  --aug-border: 1.5px;
+  --aug-border-all: 1.5px;
   --aug-border-bg: var(--border-color);
-  --aug-inlay: 2px;
+  --aug-inlay-all: 2px;
   --aug-inlay-bg: var(--panel-bg);
   --aug-tl: 8px;
   --aug-tr: 8px;
@@ -192,9 +192,9 @@ header.terminal-header {
   align-items: center;
   padding: 6px 16px;
   background: var(--header-bg);
-  --aug-border: 1.5px;
+  --aug-border-all: 1.5px;
   --aug-border-bg: var(--neon-cyan);
-  --aug-inlay: 2px;
+  --aug-inlay-all: 2px;
   --aug-inlay-bg: var(--header-bg);
   --aug-br: 16px;
   --aug-bl: 16px;
@@ -243,9 +243,9 @@ header.terminal-header {
   padding: 1px 6px;
   color: #000;
   background: var(--neon-cyan);
-  --aug-border: 1px;
+  --aug-border-all: 1px;
   --aug-border-bg: var(--neon-cyan);
-  --aug-inlay: 0px;
+  --aug-inlay-all: 0px;
   --aug-inlay-bg: var(--neon-cyan);
   --aug-tr: 5px;
   --aug-bl: 5px;
@@ -275,9 +275,9 @@ header.terminal-header {
   padding: 4px 10px;
   font-size: 0.74rem;
   white-space: nowrap;
-  --aug-border: 1px;
+  --aug-border-all: 1px;
   --aug-border-bg: var(--border-color);
-  --aug-inlay: 1px;
+  --aug-inlay-all: 1px;
   --aug-inlay-bg: rgba(7, 13, 20, 0.85);
   --aug-tl: 6px;
   --aug-br: 6px;
@@ -315,8 +315,8 @@ header.terminal-header {
   padding: 1px 6px;
   font-weight: bold;
   letter-spacing: 0.5px;
-  --aug-border: 1px;
-  --aug-inlay: 0px;
+  --aug-border-all: 1px;
+  --aug-inlay-all: 0px;
   --aug-tl: 4px;
   --aug-br: 4px;
 }
@@ -338,7 +338,7 @@ header.terminal-header {
   width: 52px;
   height: 6px;
   background: #060c13;
-  --aug-border: 1px;
+  --aug-border-all: 1px;
   --aug-border-bg: var(--border-color);
   --aug-tl: 2px;
   --aug-br: 2px;
@@ -373,11 +373,11 @@ header.terminal-header {
 
 /* Cyberpunk Button Styling with Augmented-UI */
 button.term-btn {
-  background: transparent;
+  background: #0a1420;
   color: var(--neon-cyan);
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  padding: 5px 12px;
+  padding: 6px 14px;
   cursor: pointer;
   transition: all 0.15s ease;
   text-transform: uppercase;
@@ -385,18 +385,27 @@ button.term-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 5px;
-  --aug-border: 1px;
+  gap: 6px;
+  position: relative;
+  z-index: 1;
+  --aug-border-all: 1px;
   --aug-border-bg: var(--neon-cyan);
-  --aug-inlay: 1px;
-  --aug-inlay-bg: rgba(7, 13, 20, 0.85);
+  --aug-inlay-all: 1px;
+  --aug-inlay-bg: #0a1420;
   --aug-tl: 6px;
   --aug-br: 6px;
 }
 
-button.term-btn:hover {
+button.term-btn > * {
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+}
+
+button.term-btn:hover:not(:disabled) {
   --aug-border-bg: #fff;
   --aug-inlay-bg: var(--neon-cyan);
+  background: var(--neon-cyan);
   color: #000;
   font-weight: bold;
   box-shadow: 0 0 14px var(--neon-cyan);
@@ -407,13 +416,17 @@ button.term-btn.mini-btn {
   font-size: 0.65rem;
   --aug-border-bg: var(--neon-green);
   color: var(--neon-green);
+  background: #06101a;
+  --aug-inlay-bg: #06101a;
 }
-button.term-btn.mini-btn:hover {
+button.term-btn.mini-btn:hover:not(:disabled) {
+  background: var(--neon-green);
   --aug-inlay-bg: var(--neon-green);
   color: #000;
 }
 
 button.term-btn.active {
+  background: var(--neon-amber);
   --aug-border-bg: var(--neon-amber);
   --aug-inlay-bg: var(--neon-amber);
   color: #000;
@@ -422,10 +435,13 @@ button.term-btn.active {
 }
 
 button.term-btn.reset-btn {
+  background: rgba(255, 0, 85, 0.12);
+  --aug-inlay-bg: rgba(255, 0, 85, 0.12);
   --aug-border-bg: var(--neon-red);
   color: var(--neon-red);
 }
-button.term-btn.reset-btn:hover {
+button.term-btn.reset-btn:hover:not(:disabled) {
+  background: var(--neon-red);
   --aug-inlay-bg: var(--neon-red);
   color: #fff;
   box-shadow: 0 0 14px var(--neon-red);
@@ -438,7 +454,7 @@ button.term-btn.menu-btn {
   --aug-tl2: 12px;
   --aug-br1: 6px;
   --aug-br2: 12px;
-  --aug-border: 1.5px;
+  --aug-border-all: 1.5px;
   --aug-border-bg: var(--neon-cyan);
 }
 
@@ -462,9 +478,9 @@ nav.terminal-nav {
   gap: 6px;
   overflow-x: auto;
   flex-shrink: 0;
-  --aug-border: 1px;
+  --aug-border-all: 1px;
   --aug-border-bg: var(--border-color);
-  --aug-inlay: 0px;
+  --aug-inlay-all: 0px;
   --aug-inlay-bg: #050a10;
   --aug-tl1: 8px;
   --aug-tl2: 16px;
@@ -491,9 +507,9 @@ button.tab-btn {
   align-items: center;
   gap: 6px;
   position: relative;
-  --aug-border: 1px;
+  --aug-border-all: 1px;
   --aug-border-bg: var(--border-color);
-  --aug-inlay: 1px;
+  --aug-inlay-all: 1px;
   --aug-inlay-bg: rgba(9, 16, 25, 0.75);
   --aug-tl1: 6px;
   --aug-tl2: 12px;
@@ -509,9 +525,9 @@ button.tab-btn:hover {
 button.tab-btn.active {
   color: var(--neon-cyan);
   font-weight: bold;
-  --aug-border: 1.5px;
+  --aug-border-all: 1.5px;
   --aug-border-bg: var(--neon-cyan);
-  --aug-inlay: 2px;
+  --aug-inlay-all: 2px;
   --aug-inlay-bg: var(--panel-bg);
   box-shadow: 0 -4px 14px rgba(0, 240, 255, 0.2);
   text-shadow: 0 0 6px rgba(0, 240, 255, 0.6);
@@ -605,9 +621,9 @@ main.terminal-main {
   flex-direction: column;
   min-height: 0;
   background: #020407;
-  --aug-border: 1.5px;
+  --aug-border-all: 1.5px;
   --aug-border-bg: var(--border-color);
-  --aug-inlay: 2px;
+  --aug-inlay-all: 2px;
   --aug-inlay-bg: #020407;
   --aug-tl1: 8px;
   --aug-tl2: 16px;
@@ -648,9 +664,9 @@ canvas#worldMapCanvas {
   top: 24px;
   left: 12px;
   background: rgba(4, 9, 15, 0.94);
-  --aug-border: 1.5px;
+  --aug-border-all: 1.5px;
   --aug-border-bg: var(--neon-cyan);
-  --aug-inlay: 2px;
+  --aug-inlay-all: 2px;
   --aug-inlay-bg: rgba(4, 9, 15, 0.94);
   --aug-tl: 8px;
   --aug-tr: 8px;
@@ -700,9 +716,9 @@ canvas#worldMapCanvas {
   left: 50%;
   transform: translateX(-50%);
   background: rgba(6, 12, 19, 0.96);
-  --aug-border: 1.5px;
+  --aug-border-all: 1.5px;
   --aug-border-bg: var(--neon-amber);
-  --aug-inlay: 2px;
+  --aug-inlay-all: 2px;
   --aug-inlay-bg: rgba(6, 12, 19, 0.96);
   --aug-tl1: 8px;
   --aug-tl2: 16px;
@@ -760,9 +776,9 @@ canvas#worldMapCanvas {
   z-index: 20;
   background: #08111b;
   color: var(--neon-cyan);
-  --aug-border: 1.5px;
+  --aug-border-all: 1.5px;
   --aug-border-bg: var(--neon-cyan);
-  --aug-inlay: 1px;
+  --aug-inlay-all: 1px;
   --aug-inlay-bg: #08111b;
   --aug-tl1: 8px;
   --aug-tl2: 16px;
@@ -780,9 +796,9 @@ canvas#worldMapCanvas {
 .nav-dispatch-panel {
   width: 330px;
   background: var(--panel-bg);
-  --aug-border: 1.5px;
+  --aug-border-all: 1.5px;
   --aug-border-bg: var(--border-color);
-  --aug-inlay: 2px;
+  --aug-inlay-all: 2px;
   --aug-inlay-bg: var(--panel-bg);
   --aug-tl1: 8px;
   --aug-tl2: 16px;
@@ -809,9 +825,9 @@ canvas#worldMapCanvas {
 }
 
 .select-wrapper {
-  --aug-border: 1px;
+  --aug-border-all: 1px;
   --aug-border-bg: var(--border-color);
-  --aug-inlay: 1px;
+  --aug-inlay-all: 1px;
   --aug-inlay-bg: #050a10;
   --aug-tl: 5px;
   --aug-br: 5px;
@@ -834,9 +850,9 @@ canvas#worldMapCanvas {
 
 .node-detail-card {
   background: rgba(0, 240, 255, 0.03);
-  --aug-border: 1px;
+  --aug-border-all: 1px;
   --aug-border-bg: var(--border-color);
-  --aug-inlay: 1px;
+  --aug-inlay-all: 1px;
   --aug-inlay-bg: rgba(0, 240, 255, 0.03);
   --aug-tl: 6px;
   --aug-tr1: 6px;
@@ -920,9 +936,9 @@ canvas#worldMapCanvas {
   padding: 11px;
   font-weight: bold;
   font-size: 0.84rem;
-  --aug-border: 1.5px;
+  --aug-border-all: 1.5px;
   --aug-border-bg: var(--neon-cyan);
-  --aug-inlay: 1px;
+  --aug-inlay-all: 1px;
   --aug-inlay-bg: rgba(0, 240, 255, 0.1);
   --aug-tl1: 8px;
   --aug-tl2: 16px;
@@ -950,9 +966,9 @@ canvas#worldMapCanvas {
 
 .market-panel {
   background: var(--panel-bg);
-  --aug-border: 1.5px;
+  --aug-border-all: 1.5px;
   --aug-border-bg: var(--border-color);
-  --aug-inlay: 2px;
+  --aug-inlay-all: 2px;
   --aug-inlay-bg: var(--panel-bg);
   --aug-tl1: 8px;
   --aug-tl2: 16px;
@@ -967,9 +983,9 @@ canvas#worldMapCanvas {
 
 .market-intel-banner {
   background: rgba(0, 240, 255, 0.05);
-  --aug-border: 1px;
+  --aug-border-all: 1px;
   --aug-border-bg: rgba(0, 240, 255, 0.4);
-  --aug-inlay: 1px;
+  --aug-inlay-all: 1px;
   --aug-inlay-bg: rgba(0, 240, 255, 0.05);
   --aug-tr1: 8px;
   --aug-tr2: 16px;
@@ -993,7 +1009,7 @@ canvas#worldMapCanvas {
   width: 100%;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  --aug-border: 1px;
+  --aug-border-all: 1px;
   --aug-border-bg: var(--border-color);
   --aug-tl: 4px;
   --aug-br: 4px;
@@ -1053,8 +1069,8 @@ button.trade-btn {
   cursor: pointer;
   background: transparent;
   transition: all 0.15s ease;
-  --aug-border: 1px;
-  --aug-inlay: 0px;
+  --aug-border-all: 1px;
+  --aug-inlay-all: 0px;
 }
 
 button.trade-btn.buy {
@@ -1098,9 +1114,9 @@ button.trade-btn:disabled {
 
 .contracts-panel {
   background: var(--panel-bg);
-  --aug-border: 1.5px;
+  --aug-border-all: 1.5px;
   --aug-border-bg: var(--border-color);
-  --aug-inlay: 2px;
+  --aug-inlay-all: 2px;
   --aug-inlay-bg: var(--panel-bg);
   --aug-tl1: 8px;
   --aug-tl2: 16px;
@@ -1115,9 +1131,9 @@ button.trade-btn:disabled {
 
 .career-banner {
   background: rgba(0, 240, 255, 0.05);
-  --aug-border: 1.5px;
+  --aug-border-all: 1.5px;
   --aug-border-bg: rgba(0, 240, 255, 0.4);
-  --aug-inlay: 1px;
+  --aug-inlay-all: 1px;
   --aug-inlay-bg: rgba(0, 240, 255, 0.05);
   --aug-tl1: 8px;
   --aug-tl2: 16px;
@@ -1171,9 +1187,9 @@ button.trade-btn:disabled {
 
 .contract-card {
   background: #060b12;
-  --aug-border: 1px;
+  --aug-border-all: 1px;
   --aug-border-bg: var(--border-color);
-  --aug-inlay: 1px;
+  --aug-inlay-all: 1px;
   --aug-inlay-bg: #060b12;
   --aug-tl: 6px;
   --aug-tr: 6px;
@@ -1235,9 +1251,9 @@ button.trade-btn:disabled {
 
 .rig-card, .pilot-card {
   background: var(--panel-bg);
-  --aug-border: 1.5px;
+  --aug-border-all: 1.5px;
   --aug-border-bg: var(--border-color);
-  --aug-inlay: 2px;
+  --aug-inlay-all: 2px;
   --aug-inlay-bg: var(--panel-bg);
   --aug-tl1: 8px;
   --aug-tl2: 16px;
@@ -1262,9 +1278,9 @@ button.trade-btn:disabled {
   flex-direction: column;
   gap: 2px;
   padding: 8px;
-  --aug-border: 1px;
+  --aug-border-all: 1px;
   --aug-border-bg: var(--border-color);
-  --aug-inlay: 1px;
+  --aug-inlay-all: 1px;
   --aug-inlay-bg: rgba(0, 240, 255, 0.03);
   --aug-tl: 6px;
   --aug-br: 6px;
@@ -1295,9 +1311,9 @@ button.trade-btn:disabled {
 
 .mini-stat-badge {
   background: #050a10;
-  --aug-border: 1px;
+  --aug-border-all: 1px;
   --aug-border-bg: var(--border-color);
-  --aug-inlay: 1px;
+  --aug-inlay-all: 1px;
   --aug-inlay-bg: #050a10;
   --aug-tl: 5px;
   --aug-tr: 5px;
@@ -1331,9 +1347,9 @@ button.trade-btn:disabled {
 
 .stat-card {
   background: #060b12;
-  --aug-border: 1px;
+  --aug-border-all: 1px;
   --aug-border-bg: var(--border-color);
-  --aug-inlay: 1px;
+  --aug-inlay-all: 1px;
   --aug-inlay-bg: #060b12;
   --aug-tl: 6px;
   --aug-tr: 6px;
@@ -1379,9 +1395,9 @@ button.trade-btn:disabled {
 
 .quality-card {
   background: #060b12;
-  --aug-border: 1px;
+  --aug-border-all: 1px;
   --aug-border-bg: var(--border-color);
-  --aug-inlay: 1px;
+  --aug-inlay-all: 1px;
   --aug-inlay-bg: #060b12;
   --aug-tl: 6px;
   --aug-br: 6px;
@@ -1410,9 +1426,9 @@ button.trade-btn:disabled {
 
 .faction-card {
   background: #060b12;
-  --aug-border: 1px;
+  --aug-border-all: 1px;
   --aug-border-bg: var(--border-color);
-  --aug-inlay: 1px;
+  --aug-inlay-all: 1px;
   --aug-inlay-bg: #060b12;
   --aug-tr: 6px;
   --aug-bl: 6px;
@@ -1443,9 +1459,9 @@ button.trade-btn:disabled {
 
 /* Cargo Row with Augmented-UI */
 .cargo-row {
-  --aug-border: 1px;
+  --aug-border-all: 1px;
   --aug-border-bg: rgba(0, 240, 255, 0.4);
-  --aug-inlay: 1px;
+  --aug-inlay-all: 1px;
   --aug-inlay-bg: rgba(0, 240, 255, 0.05);
   --aug-tl: 4px;
   --aug-br: 4px;
@@ -1457,9 +1473,9 @@ button.trade-btn:disabled {
 
 .comms-panel {
   background: var(--panel-bg);
-  --aug-border: 1.5px;
+  --aug-border-all: 1.5px;
   --aug-border-bg: var(--border-color);
-  --aug-inlay: 2px;
+  --aug-inlay-all: 2px;
   --aug-inlay-bg: var(--panel-bg);
   --aug-tl1: 8px;
   --aug-tl2: 16px;
@@ -1485,9 +1501,9 @@ button.trade-btn:disabled {
   padding: 6px 14px;
   cursor: pointer;
   letter-spacing: 1px;
-  --aug-border: 1px;
+  --aug-border-all: 1px;
   --aug-border-bg: var(--border-color);
-  --aug-inlay: 1px;
+  --aug-inlay-all: 1px;
   --aug-inlay-bg: rgba(7, 13, 20, 0.85);
   --aug-tl: 6px;
   --aug-tr: 6px;
@@ -1568,9 +1584,9 @@ button.trade-btn:disabled {
   padding: 8px 12px;
   outline: none;
   border: none;
-  --aug-border: 1px;
+  --aug-border-all: 1px;
   --aug-border-bg: var(--border-color);
-  --aug-inlay: 1px;
+  --aug-inlay-all: 1px;
   --aug-inlay-bg: #050a10;
   --aug-tl: 6px;
   --aug-br: 6px;
@@ -1587,7 +1603,7 @@ button.trade-btn:disabled {
   --aug-tl2: 12px;
   --aug-br1: 6px;
   --aug-br2: 12px;
-  --aug-border: 1.5px;
+  --aug-border-all: 1.5px;
   --aug-border-bg: var(--neon-cyan);
 }
 
@@ -1597,9 +1613,9 @@ button.trade-btn:disabled {
 
 .leaderboard-panel {
   background: var(--panel-bg);
-  --aug-border: 1.5px;
+  --aug-border-all: 1.5px;
   --aug-border-bg: var(--border-color);
-  --aug-inlay: 2px;
+  --aug-inlay-all: 2px;
   --aug-inlay-bg: var(--panel-bg);
   --aug-tl1: 8px;
   --aug-tl2: 16px;
@@ -1614,9 +1630,9 @@ button.trade-btn:disabled {
 
 .leaderboard-header-banner {
   background: rgba(0, 240, 255, 0.05);
-  --aug-border: 1.5px;
+  --aug-border-all: 1.5px;
   --aug-border-bg: rgba(0, 240, 255, 0.4);
-  --aug-inlay: 1px;
+  --aug-inlay-all: 1px;
   --aug-inlay-bg: rgba(0, 240, 255, 0.05);
   --aug-tr1: 8px;
   --aug-tr2: 16px;
@@ -1644,9 +1660,9 @@ button.trade-btn:disabled {
 
 .my-rank-badge {
   background: rgba(57, 255, 20, 0.12);
-  --aug-border: 1.5px;
+  --aug-border-all: 1.5px;
   --aug-border-bg: var(--neon-green);
-  --aug-inlay: 1px;
+  --aug-inlay-all: 1px;
   --aug-inlay-bg: rgba(57, 255, 20, 0.12);
   --aug-tl: 6px;
   --aug-br: 6px;
@@ -1675,9 +1691,9 @@ button.trade-btn:disabled {
 
 .system-menu-card {
   background: #070d15;
-  --aug-border: 2px;
+  --aug-border-all: 2px;
   --aug-border-bg: var(--neon-cyan);
-  --aug-inlay: 2px;
+  --aug-inlay-all: 2px;
   --aug-inlay-bg: #070d15;
   --aug-tl1: 10px;
   --aug-tl2: 20px;
@@ -1746,8 +1762,8 @@ button.trade-btn:disabled {
   display: flex;
   align-items: center;
   gap: 6px;
-  --aug-border: 1px;
-  --aug-inlay: 0px;
+  --aug-border-all: 1px;
+  --aug-inlay-all: 0px;
   --aug-tl: 5px;
   --aug-br: 5px;
   font-family: var(--font-mono);
@@ -1780,14 +1796,62 @@ button.trade-btn:disabled {
 .menu-btn-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 8px;
+  gap: 12px;
+}
+
+.menu-btn-grid button.term-btn {
+  background: #0d1a29;
+  --aug-inlay-all: 1px;
+  --aug-inlay-bg: #0d1a29;
+  --aug-border-all: 1.5px;
+  --aug-border-bg: var(--neon-cyan);
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  padding: 10px 16px;
+  text-shadow: 0 0 6px var(--neon-cyan);
+  transition: all 0.2s ease;
+  min-height: 42px;
+  position: relative;
+  z-index: 1;
+}
+
+.menu-btn-grid button.term-btn:hover:not(:disabled) {
+  background: var(--neon-cyan);
+  --aug-inlay-bg: var(--neon-cyan);
+  --aug-border-bg: #ffffff;
+  color: #000000;
+  font-weight: 800;
+  text-shadow: none;
+  box-shadow: 0 0 16px var(--neon-cyan);
+}
+
+.menu-btn-grid button.term-btn.active {
+  background: rgba(57, 255, 20, 0.16);
+  --aug-inlay-all: 1px;
+  --aug-inlay-bg: rgba(57, 255, 20, 0.16);
+  --aug-border-all: 1.5px;
+  --aug-border-bg: var(--neon-green);
+  color: var(--neon-green);
+  font-weight: 800;
+  text-shadow: 0 0 8px rgba(57, 255, 20, 0.8);
+  box-shadow: 0 0 12px rgba(57, 255, 20, 0.25);
+}
+
+.menu-btn-grid button.term-btn.active:hover {
+  background: var(--neon-green);
+  --aug-inlay-bg: var(--neon-green);
+  color: #000000;
+  text-shadow: none;
+  box-shadow: 0 0 18px var(--neon-green);
 }
 
 .help-box {
   background: #04080e;
-  --aug-border: 1px;
+  --aug-border-all: 1px;
   --aug-border-bg: var(--border-color);
-  --aug-inlay: 1px;
+  --aug-inlay-all: 1px;
   --aug-inlay-bg: #04080e;
   --aug-tl: 6px;
   --aug-br: 6px;
@@ -1821,14 +1885,35 @@ button.trade-btn:disabled {
 }
 
 .dismiss-menu-btn {
-  padding: 9px 20px;
-  font-weight: bold;
+  background: rgba(0, 240, 255, 0.12);
+  --aug-inlay-all: 1px;
+  --aug-inlay-bg: rgba(0, 240, 255, 0.12);
+  padding: 11px 26px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--neon-cyan);
+  text-shadow: 0 0 8px var(--neon-cyan);
   --aug-tl1: 6px;
   --aug-tl2: 12px;
   --aug-br1: 6px;
   --aug-br2: 12px;
-  --aug-border: 1.5px;
+  --aug-border-all: 1.5px;
   --aug-border-bg: var(--neon-cyan);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 42px;
+  position: relative;
+  z-index: 1;
+}
+
+.dismiss-menu-btn:hover {
+  background: var(--neon-cyan);
+  --aug-inlay-bg: var(--neon-cyan);
+  color: #000000;
+  font-weight: 800;
+  text-shadow: none;
+  box-shadow: 0 0 20px var(--neon-cyan);
 }
 
 /* ==========================================================================
@@ -1849,9 +1934,9 @@ button.trade-btn:disabled {
 
 .storylet-card {
   background: #070d16;
-  --aug-border: 2px;
+  --aug-border-all: 2px;
   --aug-border-bg: var(--neon-cyan);
-  --aug-inlay: 2px;
+  --aug-inlay-all: 2px;
   --aug-inlay-bg: #070d16;
   --aug-tl1: 10px;
   --aug-tl2: 20px;
@@ -1897,9 +1982,9 @@ button.trade-btn:disabled {
 
 .storylet-roll-banner {
   background: #04080e;
-  --aug-border: 1.5px;
+  --aug-border-all: 1.5px;
   --aug-border-bg: var(--neon-amber);
-  --aug-inlay: 1px;
+  --aug-inlay-all: 1px;
   --aug-inlay-bg: #04080e;
   --aug-tl: 6px;
   --aug-tr: 6px;
@@ -1961,56 +2046,133 @@ button.trade-btn:disabled {
 .storylet-options {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-top: 6px;
+  gap: 12px;
+  margin-top: 10px;
 }
 
 .storylet-option-btn {
-  background: rgba(7, 13, 20, 0.85);
-  color: var(--text-primary);
-  padding: 12px 16px;
+  background: #0d1b2a;
+  --aug-inlay-all: 1px;
+  --aug-inlay-bg: #0d1b2a;
+  --aug-border-all: 1.5px;
+  --aug-border-bg: rgba(0, 240, 255, 0.6);
+  --aug-tl: 6px;
+  --aug-br: 6px;
+  color: #ffffff;
+  padding: 14px 18px;
   text-align: left;
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
   font-family: var(--font-mono);
-  transition: all 0.15s ease;
-  --aug-border: 1px;
-  --aug-border-bg: var(--border-color);
-  --aug-inlay: 1px;
-  --aug-inlay-bg: rgba(7, 13, 20, 0.85);
-  --aug-tl: 6px;
-  --aug-br: 6px;
+  font-size: 0.94rem;
+  line-height: 1.5;
+  transition: all 0.18s ease;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  box-sizing: border-box;
 }
-.storylet-option-btn:hover {
+
+.storylet-option-btn > * {
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.storylet-opt-label {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  width: 100%;
+}
+
+.storylet-opt-text {
+  color: #ffffff;
+  font-size: 0.94rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+
+.storylet-option-btn:hover:not(:disabled) {
+  background: rgba(0, 240, 255, 0.2);
+  --aug-inlay-bg: rgba(0, 240, 255, 0.2);
   --aug-border-bg: var(--neon-cyan);
-  --aug-inlay-bg: rgba(0, 240, 255, 0.08);
-  box-shadow: 0 0 12px rgba(0, 240, 255, 0.2);
+  box-shadow: 0 0 22px rgba(0, 240, 255, 0.4);
 }
+
+.storylet-option-btn:hover:not(:disabled) .storylet-opt-text {
+  color: #ffffff;
+  text-shadow: 0 0 8px rgba(0, 240, 255, 0.8);
+}
+
 .storylet-option-btn:disabled {
-  opacity: 0.45;
+  opacity: 0.65;
+  background: #080f17;
+  --aug-inlay-bg: #080f17;
+  --aug-border-bg: #223547;
   cursor: not-allowed;
-  --aug-border-bg: #333;
+  box-shadow: none;
+}
+
+.storylet-option-btn:disabled .storylet-opt-text {
+  color: #728fa5;
 }
 
 .stat-roll-badge {
-  font-size: 0.68rem;
-  color: var(--neon-amber);
-  font-weight: bold;
-  letter-spacing: 0.5px;
-  padding: 2px 6px;
-  --aug-border: 1px;
-  --aug-border-bg: var(--neon-amber);
-  --aug-inlay: 0px;
-  --aug-tr: 4px;
-  --aug-bl: 4px;
+  font-size: 0.72rem;
+  color: #000000;
+  background: var(--neon-amber);
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  padding: 3px 8px;
+  border-radius: 2px;
+  display: inline-flex;
+  align-items: center;
+  box-shadow: 0 0 8px rgba(255, 170, 0, 0.6);
+  flex-shrink: 0;
 }
 
 .req-warning-tag {
   color: var(--neon-red);
-  font-size: 0.68rem;
-  margin-top: 2px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-shadow: 0 0 6px rgba(255, 0, 85, 0.6);
+  margin-top: 4px;
+}
+
+.dismiss-storylet-btn,
+#btnDismissStorylet {
+  background: rgba(57, 255, 20, 0.16);
+  --aug-inlay-all: 1px;
+  --aug-inlay-bg: rgba(57, 255, 20, 0.16);
+  --aug-border-all: 2px;
+  --aug-border-bg: var(--neon-green);
+  color: var(--neon-green);
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  padding: 11px 24px;
+  text-shadow: 0 0 8px var(--neon-green);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 42px;
+  position: relative;
+  z-index: 1;
+}
+
+.dismiss-storylet-btn:hover,
+#btnDismissStorylet:hover {
+  background: var(--neon-green);
+  --aug-inlay-bg: var(--neon-green);
+  color: #000000;
+  font-weight: 800;
+  text-shadow: none;
+  box-shadow: 0 0 20px var(--neon-green);
 }
 
 /* ==========================================================================

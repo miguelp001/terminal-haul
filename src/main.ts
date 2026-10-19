@@ -1273,10 +1273,7 @@ class TerminalApp {
       btn.setAttribute('data-augmented-ui', 'tl-clip br-clip both');
 
       const labelSpan = document.createElement('span');
-      labelSpan.style.display = 'flex';
-      labelSpan.style.alignItems = 'center';
-      labelSpan.style.flexWrap = 'wrap';
-      labelSpan.style.gap = '6px';
+      labelSpan.className = 'storylet-opt-label';
 
       if (option.statRoll) {
         const rollBadge = document.createElement('span');
@@ -1295,6 +1292,7 @@ class TerminalApp {
       }
 
       const textSpan = document.createElement('span');
+      textSpan.className = 'storylet-opt-text';
       textSpan.textContent = option.label;
       labelSpan.appendChild(textSpan);
 
@@ -1306,7 +1304,7 @@ class TerminalApp {
         btn.disabled = true;
         const warnTag = document.createElement('span');
         warnTag.className = 'req-warning-tag';
-        warnTag.textContent = reqCheck.missing[0] || 'LOCKED';
+        warnTag.textContent = reqCheck.missing[0] ? `[LOCKED: ${reqCheck.missing[0]}]` : '[REQUIREMENT NOT MET]';
         btn.appendChild(warnTag);
       } else {
         btn.onclick = () => this.handleOptionChosen(option);
