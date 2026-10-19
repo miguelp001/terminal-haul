@@ -1,37 +1,342 @@
 # TERMINAL HAUL
 
-**Cyberpunk Trade and Convoy Simulation [2099]**
+**Cyberpunk Tactical Trade & Convoy Simulation [2099]**
 
-Built with TypeScript and Vite adhering to the [Open Architecture Technical Specification](terminal_haul_complete_technical_system_specification.md).
-
----
-
-## Features
-
-- **Time Dilation Clock**: 1 Game Day = 2 Real Hours = 7,200 Real Seconds ($1\times$ and $60\times$ Warp Testing modes).
-- **200-Node North American Tactical Grid**: 7 geographic sectors, 5 competing factions (`aegis`, `gridlock`, `solaris`, `rustworks`, `neuralfront`) on an interactive $100 \times 100$ coordinate canvas.
-- **Euclidean Movement Physics**: Real-time convoy transit math, distance ($D_{\text{km}}$), and duration ($T_{\text{sec}}$) formulas.
-- **Dynamic GOAP Economy**: Autonomous faction planning shifts market price multipliers ($M_{\text{goap}}$) dynamically every $\sim 0.05$ Game Days across 6 commodities (*Synthetic Grain, Hydro-Batteries, Cyberware Optics, Neural Processing Chips, Cryo-Medical Pods, Bio-Toxins* [Contraband]).
-- **Quality-Driven Narrative Engine**: *Sunless Sea* / *Fallen London*-style storylets evaluated against player traits, Heat, skills, and inventory with branching consequences.
-- **Procedural Courier Contracts**: Docking contracts with deadlines, cargo reservation, destination verification, and Net Worth scoring.
-- **Pure Web Audio API Synthesizer**: Zero external audio downloads. Real-time procedural waveforms for `click`, `trade`, `event`, and `travel` engine rumble.
-- **Retro-Futuristic CRT Terminal**: Toggleable scanlines, chromatic aberration, and Cyan / Amber / Green phosphor palettes.
-- **Persistence**: Auto-saving and export/import via HTML5 `localStorage` key `TERMINAL_HAUL_SAVE`.
+*Terminal Haul* is an open-architecture, real-time tactical freight simulation set across the fractured highways and sovereign corporate enclaves of post-collapse North America. Operating from the retro-futuristic cockpit of the **Iron Nomad MK-IV** armored transport rig, players navigate an authoritative 200-node tactical grid, exploit real-time dynamic market shifts driven by Goal-Oriented Action Planning (GOAP), complete high-stakes courier contracts, survive quality-driven narrative storylets, chat on global frequencies, and compete on a live Net Worth Leaderboard with other haulers.
 
 ---
 
-## Development & Testing
+## Table of Contents
+1. [Core Premise & Gameplay Loop](#core-premise--gameplay-loop)
+2. [Interface Anatomy & Panel Breakdown](#interface-anatomy--panel-breakdown)
+3. [Game Systems & Mechanics Explained](#game-systems--mechanics-explained)
+   - [Time Dilation & Real-Time Simulation](#time-dilation--real-time-simulation)
+   - [Tactical Geography & Movement Physics](#tactical-geography--movement-physics)
+   - [Dynamic Economy & GOAP Shifts](#dynamic-economy--goap-shifts)
+   - [Commodities & Cargo Manifest](#commodities--cargo-manifest)
+   - [RPG Qualities & Faction Standings](#rpg-qualities--faction-standings)
+   - [Narrative Storylet Engine](#narrative-storylet-engine)
+   - [Courier Contracts & Cargo Loading](#courier-contracts--cargo-loading)
+   - [Net Worth & Career Scoring](#net-worth--career-scoring)
+4. [Multiplayer & Persistent Backend](#multiplayer--persistent-backend)
+   - [Global Frequency Chat](#global-frequency-chat)
+   - [Live Net Worth Leaderboard](#live-net-worth-leaderboard)
+   - [Authoritative Synchronized Economy](#authoritative-synchronized-economy)
+5. [Automatic State Persistence](#automatic-state-persistence)
+6. [Visual & Audio Design](#visual--audio-design)
+7. [Installation & Architecture](#installation--architecture)
+8. [Testing & Verification](#testing--verification)
 
-```bash
-# Install dependencies
+---
+
+## Core Premise & Gameplay Loop
+
+In the year 2099, centralized government is a relic of the past. Continental logistics are sustained by independent haulers piloting armored rigs across seven contested sectors. You begin docked at **Omaha Silo-1** with **2,500 ₵ (Credits)** and a modest starting cargo hold.
+
+### The Hauler Loop:
+```mermaid
+flowchart LR
+    A["Dock at Node"] --> B["Analyze Market & Contracts"]
+    B --> C["Buy Cargo / Accept Courier Jobs"]
+    C --> D["Plot Optimal Route via Tactical Map"]
+    D --> E["Dispatch Convoy into Transit (Real-Time)"]
+    E --> F["Encounter Highway Hazards / Storylets"]
+    F --> G["Arrive at Target Node"]
+    G --> H["Deliver Contracts & Sell Cargo"]
+    H --> A
+```
+
+1. **Dock & Scan**: Review local commodity prices and available delivery contracts at your current location.
+2. **Procure**: Purchase undervalued goods or sign courier contracts that supply mission-specific freight.
+3. **Plot & Dispatch**: Select your destination on the 2D geographic projection. The navigation system calculates shortest-hop trajectories, travel time, and hazard profiles.
+4. **Transit**: Ride out real-time travel across sector highways. Manage random highway encounters, corporate inspections, pirate ambushes, and distress beacons.
+5. **Fulfill & Profit**: Sell commodities to nodes with deficit demand, turn in completed contracts before deadlines expire, repair hull damage, and build your Net Worth.
+
+---
+
+## Interface Anatomy & Panel Breakdown
+
+The terminal layout uses a high-density, three-column CRT monitor interface:
+
+```
++-----------------------------------------------------------------------------------------+
+| [TERMINAL HAUL] RIG: Iron Nomad MK-IV | DAY 1 - 14:20 | NET: LIVE | AUDIO: ON | PALETTE |
++------------------------------------+-----------------------------+----------------------+
+| LEFT COLUMN: CONVOY STATUS         | CENTER DASHBOARD (TABBED)   | RIGHT COLUMN: NAV & COMMS
+| - Rig Callsign & Status (DOCKED)   | [MAP] [MARKET] [CONTRACTS]  | - Route Planner      |
+| - Hull Integrity Gauge (100%)      | [QUALITIES] [LEADERBOARD]   | - Sector Filter      |
+| - Cargo Capacity (7.0 / 35.0 T)    |                             | - Hop ETA & Distance |
+| - Liquid Credits (2,500 ₵)         |                             | - [DISPATCH CONVOY]  |
+| - Total Net Worth (6,850 ₵)        |                             | -------------------- |
+| - Total Distance Traveled (km)     |                             | [SYSTEM LOG]         |
+| - Active Cargo Manifest            |                             | [GLOBAL FREQUENCY]   |
+|   (Grain, Batteries, Chips, etc.)  |                             | (Live Chat Input)    |
++------------------------------------+-----------------------------+----------------------+
+```
+
+### 1. Terminal Header
+- **RIG Callsign**: Identifies your active hauler vehicle (`Iron Nomad MK-IV`).
+- **Telemetry Clock**: Displays game day and digital time (`DAY X — HH:MM`).
+- **Network Status Badge**: Indicates real-time WebSocket connection status (`NET: LIVE [1X REAL-TIME]`).
+- **Audio Toggle**: Cycles pure Web Audio procedural synthesis between `AUDIO: ON` and `AUDIO: OFF`.
+- **Palette Switcher**: Cycles monochrome CRT phosphor themes:
+  - `PALETTE: CYAN` (Default high-tech cyber-terminal).
+  - `PALETTE: AMBER` (Industrial wasteland orange amber).
+  - `PALETTE: GREEN` (Classic militarized green phosphor).
+- **Reset Profile**: Confirmation-guarded emergency wipe to restart carrier telemetry from baseline.
+
+### 2. Left Column: Convoy & Inventory Telemetry
+- **CONVOY STATUS**: Indicates whether your rig is safely `DOCKED` at a facility or `IN_TRANSIT` on the open highway.
+- **HULL INTEGRITY**: Structural health percentage of your rig. Damage sustained in ambushes or collisions slows movement speed. Reaching 0% triggers emergency distress protocols.
+- **CARGO CAPACITY**: Measured in metric tons (**T**). Shows current load vs maximum chassis rating (default: 35.0 T). Exceeding maximum weight prevents departure.
+- **LIQUID CREDITS (₵)**: Immediate spendable currency used for purchasing goods, accepting collateralized contracts, paying bribes, or repairing your chassis.
+- **TOTAL NET WORTH**: Sum of liquid credits plus current real-time market liquidation value of all cargo units in your hold.
+- **TOTAL DISTANCE TRAVELED**: Cumulative odometer tracking kilometers logged across North America.
+- **CARGO MANIFEST**: Live itemized inventory showing held units, individual unit weights, total weight per line item, and immediate sell buttons when docked.
+
+### 3. Center Dashboard: Tabbed Subsystems
+- **`[GEOGRAPHIC MAP]`**: Interactive 2D tactical projection rendered with D3-geo and TopoJSON. Shows all 200 nodes, sector boundaries, faction ownership, current position, route vectors, and interactive hover HUD inspection.
+- **`[COMMODITY MARKET]`**: Live order board with dynamic buy/sell quotes, price trend indicators (`▲` / `▼`), supply/demand modifiers, and GOAP faction shift rates.
+- **`[HAUL CONTRACTS]`**: Courier mission terminal split into *Available Contracts* (local pickups) and *Active Hauls* (in-progress deliveries with destination trackers, deadlines, and delivery buttons).
+- **`[QUALITIES & FACTIONS]`**: Carrier character profile detailing RPG traits (Street Cred, Tech Literacy, Contraband Mastery, Heat, etc.) and reputation standing across the 5 factions.
+- **`[NET WORTH LEADERBOARD]`**: Live competitive cluster rankings displaying rank podiums (#1 Gold, #2 Silver, #3 Bronze), online/offline status, net worth, deliveries, distance, and career ratings.
+
+### 4. Right Column: Route Navigation & Tactical Communications
+- **SECTOR FILTER**: Limits destination selection to nodes within a specific geopolitical sector or allows continent-wide searches.
+- **DESTINATION SELECTOR**: Dropdown to select any reachable hub on the tactical grid.
+- **ROUTE TELEMETRY**: Displays total hops, total distance ($D_{\text{km}}$), estimated transit duration ($T_{\text{sec}}$), and next waypoint.
+- **AUTO-ADVANCE CHECKBOX**: When enabled, the navigational computer automatically dispatches your rig to the next hop along a multi-stop trajectory upon clearing each waypoint.
+- **COMMUNICATIONS TERMINAL**:
+  - `[SYSTEM LOG]`: Internal rig telemetry feed recording transactions, transit dispatches, arrivals, and storylet outcomes.
+  - `[GLOBAL FREQUENCY]`: Live, multi-user WebSocket chat channel connecting all active haulers on the server cluster.
+
+---
+
+## Game Systems & Mechanics Explained
+
+### Time Dilation & Real-Time Simulation
+- **Persistent Clock Ratio**: $1\text{ Game Day} = 2\text{ Real Hours} = 7,200\text{ Real Seconds}$.
+- **Multiplier**: Locked to $1.0\times$ real-time speed to maintain synchronization across all connected players in the shared persistent economy.
+- **Time Representation**: Formatted as `DAY {D} — {HH}:{MM}` where 1 real second represents 12 simulated seconds.
+
+### Tactical Geography & Movement Physics
+The game map models 200 tactical nodes across North America utilizing D3-geo's Albers USA conic projection (`d3.geoAlbersUsa()`).
+- **Euclidean Distance Formula**:
+  $$\text{distNorm} = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}$$
+  $$D_{\text{km}} = \text{distNorm} \times 35.0$$
+- **Transit Duration Formula**:
+  $$T_{\text{seconds}} = \frac{D_{\text{km}}}{V_{\text{base}} \times \text{SpeedRating}}$$
+  Where $V_{\text{base}} = 1.0\text{ km/sec}$ and `SpeedRating` defaults to $1.0$ (modified by hull damage or rig upgrades).
+- **Multi-Hop Pathfinding**: Built on Breadth-First Search (BFS) / Dijkstra graph traversal in `RouteGraph`, routing convoys safely through interconnected road nodes.
+
+### Dynamic Economy & GOAP Shifts
+Market prices are never static. Every node continuously calculates buy and sell prices based on:
+1. **Base Commodity Value** ($P_{\text{base}}$).
+2. **Local Supply / Demand Index** ($S_{\text{local}}$): Nodes producing a good sell at deep discounts; nodes consuming it pay steep premiums.
+3. **GOAP Faction Modifiers** ($M_{\text{goap}}$): Autonomous AI factions simulate macro-economic initiatives (e.g., wartime fortification, grid collapse, medical epidemics) that shift commodity price multipliers continent-wide every $\sim 0.05$ Game Days (6 minutes).
+4. **Cluster Supply/Demand Ripple**: High-volume purchases and sales by human players shift market balances across the authoritative server.
+
+### Commodities & Cargo Manifest
+| Commodity | Base Price | Unit Weight | Description & Role |
+| :--- | :---: | :---: | :--- |
+| **Synthetic Grain** | 50 ₵ | 0.5 T | Essential foodstuff; low profit margin, high volume, low market volatility. |
+| **Hydro-Batteries** | 120 ₵ | 1.0 T | High-capacity industrial power cells; steady industrial demand. |
+| **Cyberware Optics** | 450 ₵ | 0.2 T | High-value precision cybernetic augments; high profit-to-weight ratio. |
+| **Neural Processing Chips** | 800 ₵ | 0.1 T | Advanced computing substrates; extremely lightweight, premium tech cargo. |
+| **Cryo-Medical Pods** | 1,200 ₵ | 2.5 T | Heavy medical equipment; requires substantial chassis cargo capacity. |
+| **Bio-Toxins [Contraband]** | 2,500 ₵ | 0.8 T | Illicit chemicals. Huge profit margins; triggers security scans and raises **Heat**. |
+
+### RPG Qualities & Faction Standings
+Your carrier profile is shaped by narrative qualities that influence storylet choices, dialogue options, and black market access:
+
+#### Carrier Qualities:
+- **Street Cred**: Underground prestige. Unlocks back-alley brokers and deters raider attacks.
+- **Tech Literacy**: Mastery of electronics. Allows hacking security checkpoints and repairing your rig in the field.
+- **Contraband Mastery**: Smuggling skill. Reduces the chance of security detecting illicit bio-toxins during cargo scans.
+- **Cyberware Level**: Augmentation grade. Grants combat advantages during physical highway ambushes.
+- **Enclave Permits**: Authorized clearance required to dock at elite corporate nodes without paying fines.
+- **Heat**: Law enforcement alert status. Accrues when transporting contraband or violating corporate law. High Heat increases hostile roadblock inspections.
+- **Glitch Rating**: Hardware/neural instability. Accrues when running cracked cyberware or interfacing with anomalies.
+
+#### The 5 Competing Factions:
+- **Aegis Security (`aegis`)**: Corporate security enforcing militarized order along corporate corridors.
+- **Gridlock Syndicate (`gridlock`)**: Lawless road clans and smuggler cartels dominating outer wastelands.
+- **Solaris Clean Energy (`solaris`)**: Megacorp managing geothermal, solar, and hydro-battery power networks.
+- **Rustworks Industrial (`rustworks`)**: Heavy manufacturing collective and scrap processing guilds.
+- **Neuralfront (`neuralfront`)**: Cyber-anarchist hacker underground fighting corporate neural surveillance.
+
+### Narrative Storylet Engine
+Inspired by *Sunless Sea* and *Fallen London*, the game features quality-evaluated narrative encounters:
+- **Trigger Conditions**: Encounters fire during highway transit ($50\%$ route mark) or upon arrival at specific nodes.
+- **Dynamic Skill Checks**: Choices verify whether your carrier possesses requisite qualities (e.g., `Tech Literacy >= 3` or `Street Cred >= 10`).
+- **Branching Outcomes**: Decisions grant rewards (bonus credits, cargo salvage, faction reputation) or inflict penalties (hull damage, cargo loss, increased Heat).
+
+### Courier Contracts & Cargo Loading
+Procedural delivery contracts are generated at every node with specified parameters:
+- **Cargo Reservation**: Accepting a contract reserves the necessary tonnage in your cargo hold.
+- **Collateral & Deadlines**: High-tier contracts require modest collateral deposits and feature strict delivery deadlines measured in game days.
+- **Destination Verification**: When your convoy reaches the target node, the contract interface enables the `[DELIVER]` action, awarding the agreed payout, clearing reserved hold space, and boosting faction standing.
+
+### Net Worth & Career Scoring
+Leaderboard standings are calculated using an authoritative financial formula:
+$$\text{Net Worth} = \text{Liquid Credits} + \sum (\text{Held Quantity}_i \times \text{Current Node Unit Sell Price}_i)$$
+$$\text{Career Score} = \text{Net Worth} + (\text{Completed Contracts} \times 1,500) + \left(\frac{\text{Distance Traveled (km)}}{10}\right)$$
+
+#### Career Rank Titles:
+- `Scrap Runner` (0 – 10,000 pts)
+- `Wasteland Courier` (10,001 – 25,000 pts)
+- `Highway Veteran` (25,001 – 60,000 pts)
+- `Syndicate Contractor` (60,001 – 150,000 pts)
+- `Master Hauler` (150,001 – 350,000 pts)
+- `Continental Kingpin` (350,000+ pts)
+
+---
+
+## Multiplayer & Persistent Backend
+
+*Terminal Haul* operates a persistent client-server architecture powered by WebSockets (`ws://localhost:8080`):
+
+```mermaid
+flowchart TD
+    Client1["Player Client A"] <-->|WebSocket C2S / S2C| Server["Game Server (port 8080)"]
+    Client2["Player Client B"] <-->|WebSocket C2S / S2C| Server
+    Server <-->|Persistence| StateFile["data/server_state.json"]
+```
+
+### Global Frequency Chat
+- Accessible via the `[GLOBAL FREQUENCY]` tab in the lower-right communications log.
+- Supports persistent cluster-wide communication across all connected haulers with timestamps and callsigns.
+- Server maintains the last 100 messages on disk in `data/server_state.json`.
+
+### Live Net Worth Leaderboard
+- Real-time ranking tab on the center dashboard with visual status dots:
+  - 🟢 **Online**: Hauler actively connected to the server cluster.
+  - ⚫ **Offline**: Docked hauler whose profile is preserved in cluster memory.
+- Podium badges (#1 Gold, #2 Silver, #3 Bronze) and personal rank telemetry badge.
+
+### Authoritative Synchronized Economy
+- When players execute large trade volumes, `C2S_TRADE_EVENT` messages transmit adjustments to the central server.
+- The server broadcasts shared price adjustments (`S2C_MARKET_SYNC`) to all connected clients, allowing haulers to influence supply and demand across the entire continent.
+
+---
+
+## Automatic State Persistence
+
+The game uses **zero-touch continuous persistence**:
+- **Automatic Hydration**: On launch or browser refresh, `GameStore` loads state directly from HTML5 `localStorage` (`TERMINAL_HAUL_SAVE`).
+- **Event-Driven Autosave**: State is written immediately whenever you:
+  - Buy or sell commodities.
+  - Accept, load, deliver, or abandon contracts.
+  - Make narrative decisions in storylet modals.
+  - Dispatch, cancel, or complete convoy routes.
+- **Background Interval**: Saves every 10 seconds during transit.
+- **Exit Protection**: A `beforeunload` listener commits state when the browser tab is closed.
+- **Cloud Backup**: Every local save automatically backs up a serialized JSON payload to `data/server_state.json` via the backend server.
+
+---
+
+## Visual & Audio Design
+
+### Procedural Web Audio Synth
+All sound effects are synthesized in real-time via the browser's native Web Audio API (`AudioContext`) with **zero external sound files**:
+- **UI Click**: Dual-frequency square wave transient ($800\text{ Hz} \to 1,200\text{ Hz}$, $35\text{ ms}$).
+- **Trade Ping**: Polyphonic dual-sine harmonic chime ($587\text{ Hz} + 880\text{ Hz}$, exponential decay).
+- **Event Alarm**: Sawtooth minor-third alarm ($330\text{ Hz} \to 440\text{ Hz}$).
+- **Engine Rumble**: Deep procedural brown-noise audio buffer with continuous modulation active during convoy transit.
+
+### Phosphor CRT Shader Aesthetics
+- **Scanlines & CRT Curve**: Authentic CRT raster scanlines overlayed across the viewport.
+- **Monochrome Phosphor Palettes**: High-contrast cyberpunk styling available in Cyan, Amber, and Green.
+- **Tactical Responsive Canvas**: Canvas-rendered 2D continental geography with crisp vector nodes and glowing routes.
+
+---
+
+## Installation & Architecture
+
+### Prerequisites
+- Node.js (v18+ recommended)
+- npm
+
+### Project Structure
+```
+Terminal Haul/
+├── data/
+│   └── server_state.json        # Persistent backend database (chat, trades, leaderboard)
+├── src/
+│   ├── audio/
+│   │   └── soundFX.ts           # Pure Web Audio procedural sound synthesizer
+│   ├── constants/
+│   │   ├── nodes.ts             # 200 tactical nodes with geographic coordinates
+│   │   └── worldData.ts         # Faction data, commodities, and sectors
+│   ├── network/
+│   │   └── multiplayerClient.ts # WebSocket client protocol handler
+│   ├── server/
+│   │   ├── gameServer.ts        # Authoritative WebSocket server (port 8080)
+│   │   ├── storage.ts           # Server JSON persistence engine
+│   │   └── types.ts             # Network packet and protocol contracts
+│   ├── sim/
+│   │   ├── clock.ts             # Simulation clock (1 Game Day = 2 Real Hours)
+│   │   ├── contractEngine.ts    # Procedural courier contract generation & validation
+│   │   ├── economy.ts           # Local supply/demand and pricing formulas
+│   │   ├── goap.ts              # Goal-Oriented Action Planning macro-economy
+│   │   ├── movement.ts          # Convoy transit physics and speed calculations
+│   │   ├── narrativeEngine.ts   # Storylet evaluation and condition checks
+│   │   ├── persistence.ts       # LocalStorage serialization engine
+│   │   └── routeGraph.ts        # Dijkstra / BFS route pathfinding
+│   ├── state/
+│   │   └── gameState.ts         # Central reactive player state store
+│   ├── styles/
+│   │   └── terminal.css         # Retro CRT styling, themes, and responsive layout
+│   ├── types/                   # TypeScript interfaces (nodes, cargo, storylets)
+│   ├── ui/
+│   │   └── mapRenderer.ts       # 2D D3-geo TopoJSON canvas map renderer
+│   └── main.ts                  # Application controller and UI coordinator
+├── tests/                       # Vitest unit and integration test suite
+├── index.html                   # HTML5 terminal UI structure
+├── package.json
+└── tsconfig.json
+```
+
+### Quickstart Commands
+```powershell
+# 1. Install dependencies
 npm.cmd install
 
-# Run unit test suite (42 tests)
+# 2. Run test suite (71 passing tests)
 npm.cmd test
 
-# Build for production
-npm.cmd run build
+# 3. Start authoritative backend server (port 8080)
+npm.cmd run server
 
-# Start local dev server
+# 4. In a separate terminal, launch client development server (port 3000)
 npm.cmd run dev
+
+# 5. Build optimized production client bundle
+npm.cmd run build
 ```
+
+---
+
+## Testing & Verification
+
+The project includes an end-to-end test suite powered by **Vitest** covering all core mathematical, architectural, and gameplay systems:
+- `tests/movement.test.ts`: Transit duration, progress, and speed physics.
+- `tests/clock.test.ts`: Real-time clock dilation and day rollover.
+- `tests/economy.test.ts`: Base pricing, node modifiers, and GOAP price variance.
+- `tests/goap.test.ts`: Autonomous faction goals and world state evolution.
+- `tests/contracts.test.ts`: Contract generation, expiration, cargo reservation, and delivery verification.
+- `tests/storylets.test.ts`: Quality prerequisite evaluation and branching outcomes.
+- `tests/navigation.test.ts`: Graph routing, hop discovery, and node connectivity.
+- `tests/persistence.test.ts`: Save serialization, hydration, and migration compatibility.
+- `tests/trading.test.ts`: Market order processing, credit calculations, and cargo limits.
+- `tests/multiplayer.test.ts`: Authoritative WebSocket server round-trips, chat broadcasting, leaderboard syncing, and shared economy adjustments.
+- `tests/audio.test.ts`: Web Audio procedural synthesizer initialization and muting.
+
+Run all tests anytime with:
+```powershell
+npm.cmd test
+```
+
+---
+
+*Terminal Haul v1.0.0 — Licensed under MIT.*
