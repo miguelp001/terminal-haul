@@ -124,6 +124,11 @@ export type ClientMessage =
   | {
       type: 'C2S_HEARTBEAT';
       playerId: string;
+    }
+  | {
+      type: 'C2S_CALLSIGN_UPDATE';
+      playerId: string;
+      callsign: string;
     };
 
 // Server-to-Client Network Messages

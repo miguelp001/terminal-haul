@@ -36,10 +36,23 @@ export class MultiplayerClient {
 
   private getOrCreatePlayerId(): string {
     const storageKey = 'TERMINAL_HAUL_PLAYER_ID';
-    let id = localStorage.getItem(storageKey);
+    let id: string | null = null;
+    try {
+      if (typeof localStorage !== 'undefined') {
+        id = localStorage.getItem(storageKey);
+      }
+    } catch {
+      // ignore
+    }
     if (!id) {
       id = `hauler_${Math.random().toString(36).substring(2, 9)}_${Date.now().toString(36)}`;
-      localStorage.setItem(storageKey, id);
+      try {
+        if (typeof localStorage !== 'undefined') {
+          localStorage.setItem(storageKey, id);
+        }
+      } catch {
+        // ignore
+      }
     }
     return id;
   }
@@ -48,8 +61,23 @@ export class MultiplayerClient {
     return this.playerId;
   }
 
+  public getCallsign(): string {
+    return this.callsign;
+  }
+
   public setCallsign(callsign: string): void {
     this.callsign = callsign;
+  }
+
+  public updateCallsign(callsign: string): void {
+    const trimmed = callsign.trim().substring(0, 32);
+    if (!trimmed) return;
+    this.callsign = trimmed;
+    this.send({
+      type: 'C2S_CALLSIGN_UPDATE',
+      playerId: this.playerId,
+      callsign: trimmed
+    });
   }
 
   public connect(

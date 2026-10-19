@@ -387,6 +387,38 @@
 
           <!-- Global Chat View -->
           <div id="commsChatContainer" class="comms-view" style="flex: 1; display: none; flex-direction: column; overflow: hidden;">
+            <!-- Transponder Callsign Header Bar -->
+            <div class="chat-callsign-bar" data-augmented-ui="tl-clip br-clip both">
+              <div class="callsign-display-group">
+                <span class="freq-tag"><span class="freq-dot"></span>FREQ 8080</span>
+                <span class="callsign-label">TRANSPONDER:</span>
+                <span id="chatCallsignDisplay" class="chat-callsign-text">Iron Nomad MK-IV</span>
+              </div>
+              <button type="button" id="btnOpenCallsignModal" class="term-btn mini-btn change-callsign-btn" data-augmented-ui="tl-clip br-clip both" title="Change your transponder callsign">
+                CHANGE CALLSIGN
+              </button>
+            </div>
+
+            <!-- Inline Callsign Editor -->
+            <div id="callsignEditContainer" class="chat-callsign-edit-bar" style="display: none;" data-augmented-ui="tl-clip br-clip both">
+              <span class="edit-callsign-prompt">NEW CALLSIGN:</span>
+              <input
+                type="text"
+                id="callsignEditInput"
+                class="callsign-text-input"
+                data-augmented-ui="tl-clip br-clip both"
+                placeholder="CALLSIGN (MAX 28 CHARS)..."
+                maxlength="28"
+                autocomplete="off"
+              />
+              <button type="button" id="btnSaveCallsign" class="term-btn mini-btn save-callsign-btn" data-augmented-ui="tl-clip br-clip both">
+                CONFIRM
+              </button>
+              <button type="button" id="btnCancelCallsign" class="term-btn mini-btn cancel-callsign-btn" data-augmented-ui="tl-clip br-clip both">
+                CANCEL
+              </button>
+            </div>
+
             <div id="chatMessagesList" class="chat-messages-stream">
               <!-- Dynamic chat messages -->
             </div>
@@ -396,7 +428,7 @@
                 id="chatInput"
                 class="chat-text-input"
                 data-augmented-ui="tl-clip br-clip both"
-                placeholder="TRANSMIT ON FREQ 8080..."
+                placeholder="TRANSMIT ON FREQ 8080 (or /callsign <name>)..."
                 maxlength="200"
                 autocomplete="off"
               />

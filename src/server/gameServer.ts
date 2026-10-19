@@ -229,6 +229,23 @@ export class TerminalHaulServer {
         }
         break;
       }
+
+      case 'C2S_CALLSIGN_UPDATE': {
+        const trimmed = (msg.callsign || '').trim().substring(0, 32);
+        if (!trimmed) break;
+        const client = this.activeClients.get(ws);
+        if (client) {
+          client.callsign = trimmed;
+        }
+        if (this.activeConvoys.has(msg.playerId)) {
+          const convoy = this.activeConvoys.get(msg.playerId)!;
+          convoy.callsign = trimmed;
+        }
+        this.persistence.updatePlayerCallsign(msg.playerId, trimmed);
+        this.broadcastPlayersSync();
+        this.broadcastLeaderboardSync();
+        break;
+      }
     }
   }
 

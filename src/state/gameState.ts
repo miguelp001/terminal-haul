@@ -1024,6 +1024,16 @@ export class GameStore {
     }
   }
 
+  public setCallsign(name: string): boolean {
+    const trimmed = name.trim().substring(0, 32);
+    if (!trimmed) return false;
+    this.state.convoy.name = trimmed;
+    this.addLog(`TRANSPONDER: Callsign updated to "${trimmed}".`);
+    this.autoSave();
+    this.notify();
+    return true;
+  }
+
   public saveGame(): boolean {
     const ok = PersistenceManager.saveToLocalStorage(
       this.state,

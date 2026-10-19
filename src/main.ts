@@ -116,6 +116,13 @@ class TerminalApp {
   private chatMessagesList = document.getElementById('chatMessagesList')!;
   private chatForm = document.getElementById('chatForm') as HTMLFormElement;
   private chatInput = document.getElementById('chatInput') as HTMLInputElement;
+  private chatCallsignDisplay = document.getElementById('chatCallsignDisplay') as HTMLElement | null;
+  private btnOpenCallsignModal = document.getElementById('btnOpenCallsignModal') as HTMLButtonElement | null;
+  private callsignEditContainer = document.getElementById('callsignEditContainer') as HTMLElement | null;
+  private callsignEditInput = document.getElementById('callsignEditInput') as HTMLInputElement | null;
+  private btnSaveCallsign = document.getElementById('btnSaveCallsign') as HTMLButtonElement | null;
+  private btnCancelCallsign = document.getElementById('btnCancelCallsign') as HTMLButtonElement | null;
+  private rigName = document.getElementById('rigName') as HTMLElement | null;
   private activeCommsTab: 'logs' | 'chat' = 'logs';
   private unreadChatCount: number = 0;
 
@@ -357,6 +364,31 @@ class TerminalApp {
       e.preventDefault();
       this.handleSendChat();
     });
+
+    // Callsign editing in Global Frequency Chat
+    this.btnOpenCallsignModal?.addEventListener('click', () => {
+      soundFX.playClick();
+      this.showCallsignEditor();
+    });
+
+    this.btnSaveCallsign?.addEventListener('click', () => {
+      this.saveCallsignFromInput();
+    });
+
+    this.btnCancelCallsign?.addEventListener('click', () => {
+      soundFX.playClick();
+      this.hideCallsignEditor();
+    });
+
+    this.callsignEditInput?.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        this.saveCallsignFromInput();
+      } else if (e.key === 'Escape') {
+        e.preventDefault();
+        this.hideCallsignEditor();
+      }
+    });
   }
 
   private initStoryletModalEvents(): void {
@@ -515,6 +547,10 @@ class TerminalApp {
 
     // Connect to server with current player profile telemetry
     const state = gameStore.getState();
+    multiplayerClient.setCallsign(state.convoy.name);
+    if (this.chatCallsignDisplay) {
+      this.chatCallsignDisplay.textContent = state.convoy.name;
+    }
     multiplayerClient.connect(state.currentLocationId, {
       netWorth: gameStore.calculateNetWorth(),
       credits: state.credits,
@@ -629,11 +665,101 @@ class TerminalApp {
     const text = this.chatInput.value.trim();
     if (!text) return;
 
+    // Check for callsign slash commands (/callsign <name>, /nick <name>, /name <name>)
+    if (text.startsWith('/nick ') || text.startsWith('/callsign ') || text.startsWith('/name ')) {
+      const parts = text.split(' ');
+      const newCallsign = parts.slice(1).join(' ').trim();
+      if (newCallsign) {
+        this.changeCallsign(newCallsign);
+        this.chatInput.value = '';
+        return;
+      }
+    }
+
     soundFX.playClick();
     const currentNode = gameStore.getCurrentNode();
     multiplayerClient.sendChatMessage(text, currentNode.name);
     this.chatInput.value = '';
     this.chatInput.focus();
+  }
+
+  private showCallsignEditor(): void {
+    if (!this.callsignEditContainer || !this.callsignEditInput) return;
+    this.callsignEditContainer.style.display = 'flex';
+    this.callsignEditInput.value = gameStore.getState().convoy.name;
+    this.callsignEditInput.focus();
+    this.callsignEditInput.select();
+  }
+
+  private hideCallsignEditor(): void {
+    if (!this.callsignEditContainer) return;
+    this.callsignEditContainer.style.display = 'none';
+    this.chatInput.focus();
+  }
+
+  private saveCallsignFromInput(): void {
+    if (!this.callsignEditInput) return;
+    const newCallsign = this.callsignEditInput.value.trim();
+    if (newCallsign) {
+      this.changeCallsign(newCallsign);
+    }
+    this.hideCallsignEditor();
+  }
+
+  public changeCallsign(rawName: string): boolean {
+    const trimmed = rawName.trim().substring(0, 28);
+    if (!trimmed) return false;
+
+    // 1. Update GameStore state
+    gameStore.setCallsign(trimmed);
+
+    // 2. Update Multiplayer Client
+    multiplayerClient.updateCallsign(trimmed);
+
+    // 3. Update HUD and Chat Displays
+    if (this.rigName) {
+      this.rigName.textContent = trimmed;
+    }
+    if (this.chatCallsignDisplay) {
+      this.chatCallsignDisplay.textContent = trimmed;
+    }
+
+    // 4. Broadcast updated position and leaderboard telemetry
+    const curState = gameStore.getState();
+    multiplayerClient.broadcastPosition(
+      curState.currentLocationId,
+      curState.status === 'IN_TRANSIT' ? 'IN_TRANSIT' : 'DOCKED'
+    );
+    this.broadcastCurrentTelemetry();
+
+    // 5. Sound & Chat notice
+    soundFX.playClick();
+    this.appendChatSystemNotice(`Transponder updated. Callsign registered as "${trimmed}".`);
+
+    // 6. Refresh Leaderboard & Map
+    this.updateMyLeaderboardRankBadge();
+    if (this.activeCenterTab === 'leaderboard') {
+      this.renderLeaderboardView();
+    }
+    this.mapRenderer.updateState(curState);
+
+    return true;
+  }
+
+  public appendChatSystemNotice(text: string): void {
+    const row = document.createElement('div');
+    row.className = 'chat-msg-row system-notice';
+    const date = new Date();
+    const timeStr = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    row.innerHTML = `
+      <div class="chat-msg-meta">
+        <span class="system-notice-badge">[TRANSPONDER // FREQ 8080]</span>
+        <span class="chat-msg-time">${timeStr}</span>
+      </div>
+      <div class="chat-msg-body system-notice-text">${text}</div>
+    `;
+    this.chatMessagesList.appendChild(row);
+    this.scrollChatToBottom();
   }
 
   private appendChatMessage(chat: ChatMessage): void {
@@ -747,6 +873,13 @@ class TerminalApp {
   private renderPlayerHUD(state: typeof gameStore extends { getState(): infer S } ? S : never): void {
     const currentNode = gameStore.getCurrentNode();
     this.currentLocationBadge.textContent = currentNode.name.toUpperCase();
+
+    if (this.rigName) {
+      this.rigName.textContent = state.convoy.name;
+    }
+    if (this.chatCallsignDisplay) {
+      this.chatCallsignDisplay.textContent = state.convoy.name;
+    }
 
     this.convoyStatusBadge.textContent = state.status;
     this.convoyStatusBadge.className =

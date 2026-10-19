@@ -1555,16 +1555,219 @@ button.trade-btn:disabled {
   padding: 8px;
 }
 
-.chat-message {
-  padding: 6px 10px;
-  border-left: 2px solid var(--neon-cyan);
-  background: rgba(0, 240, 255, 0.03);
-  font-size: 0.76rem;
-  line-height: 1.35;
+/* Transponder Callsign Header Bar */
+.chat-callsign-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  background: #08111c;
+  --aug-inlay-all: 1px;
+  --aug-inlay-bg: #08111c;
+  --aug-border-all: 1px;
+  --aug-border-bg: rgba(0, 240, 255, 0.45);
+  --aug-tl: 6px;
+  --aug-br: 6px;
+  padding: 8px 14px;
+  margin-bottom: 8px;
+  flex-shrink: 0;
 }
-.chat-message.chat-self {
+
+.callsign-display-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.freq-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: var(--neon-cyan);
+}
+
+.freq-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--neon-cyan);
+  box-shadow: 0 0 6px var(--neon-cyan);
+  animation: netPulse 2s infinite ease-in-out;
+}
+
+.callsign-label {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+}
+
+.chat-callsign-text {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 1px;
+  text-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
+}
+
+.change-callsign-btn {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 4px 10px;
+  color: var(--neon-cyan);
+  background: rgba(0, 240, 255, 0.08);
+  --aug-border-all: 1px;
+  --aug-border-bg: var(--neon-cyan);
+  --aug-inlay-all: 0px;
+  white-space: nowrap;
+}
+.change-callsign-btn:hover {
+  background: var(--neon-cyan);
+  color: #000;
+  box-shadow: 0 0 10px var(--neon-cyan);
+}
+
+/* Inline Callsign Editor */
+.chat-callsign-edit-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #060e18;
+  --aug-inlay-all: 1px;
+  --aug-inlay-bg: #060e18;
+  --aug-border-all: 1.5px;
+  --aug-border-bg: var(--neon-amber);
+  --aug-tl: 6px;
+  --aug-br: 6px;
+  padding: 8px 12px;
+  margin-bottom: 8px;
+  flex-shrink: 0;
+}
+
+.edit-callsign-prompt {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--neon-amber);
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+.callsign-text-input {
+  flex: 1;
+  background: #03080e;
+  color: #ffffff;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: bold;
+  padding: 6px 10px;
+  border: none;
+  outline: none;
+  --aug-border-all: 1px;
+  --aug-border-bg: var(--neon-amber);
+  --aug-inlay-all: 1px;
+  --aug-inlay-bg: #03080e;
+  --aug-tl: 4px;
+  --aug-br: 4px;
+}
+.callsign-text-input:focus {
+  box-shadow: 0 0 10px rgba(255, 170, 0, 0.4);
+}
+
+.save-callsign-btn {
+  background: var(--neon-green);
+  --aug-inlay-bg: var(--neon-green);
+  --aug-border-bg: var(--neon-green);
+  color: #000;
+  font-weight: 800;
+  padding: 5px 12px;
+}
+.save-callsign-btn:hover {
+  box-shadow: 0 0 12px var(--neon-green);
+}
+
+.cancel-callsign-btn {
+  background: transparent;
+  color: var(--text-muted);
+  --aug-border-bg: #444;
+  padding: 5px 10px;
+}
+.cancel-callsign-btn:hover {
+  background: #222;
+  color: #fff;
+}
+
+/* Chat Message Rows */
+.chat-msg-row {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 7px 12px;
+  border-left: 2px solid var(--neon-cyan);
+  background: rgba(0, 240, 255, 0.035);
+  font-size: 0.8rem;
+  line-height: 1.4;
+  transition: all 0.15s ease;
+}
+
+.chat-msg-row.self {
   border-left-color: var(--neon-green);
-  background: rgba(57, 255, 20, 0.04);
+  background: rgba(57, 255, 20, 0.045);
+}
+
+.chat-msg-row.system-notice {
+  border-left-color: var(--neon-amber);
+  background: rgba(255, 170, 0, 0.06);
+  font-size: 0.76rem;
+}
+
+.system-notice-badge {
+  color: var(--neon-amber);
+  font-weight: bold;
+  letter-spacing: 0.8px;
+}
+
+.system-notice-text {
+  color: #ffffff;
+  font-style: italic;
+}
+
+.chat-msg-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.72rem;
+}
+
+.chat-sender-callsign {
+  font-weight: bold;
+  color: var(--neon-cyan);
+  letter-spacing: 0.8px;
+}
+
+.chat-msg-row.self .chat-sender-callsign {
+  color: var(--neon-green);
+}
+
+.chat-sender-loc {
+  color: var(--text-muted);
+  font-weight: normal;
+  margin-left: 6px;
+  font-size: 0.68rem;
+}
+
+.chat-msg-time {
+  color: var(--text-dim);
+  font-size: 0.68rem;
+}
+
+.chat-msg-body {
+  color: var(--text-primary);
+  word-break: break-word;
 }
 
 .chat-input-bar {

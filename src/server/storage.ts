@@ -162,6 +162,16 @@ export class ServerPersistence {
     this.save();
   }
 
+  public updatePlayerCallsign(playerId: string, callsign: string): void {
+    if (this.data.players && this.data.players[playerId]) {
+      this.data.players[playerId].callsign = callsign;
+    }
+    if (this.data.leaderboard && this.data.leaderboard[playerId]) {
+      this.data.leaderboard[playerId].callsign = callsign;
+    }
+    this.save();
+  }
+
   public setPlayerOnline(playerId: string, isOnline: boolean): void {
     if (this.data.leaderboard && this.data.leaderboard[playerId]) {
       this.data.leaderboard[playerId].isOnline = isOnline;
