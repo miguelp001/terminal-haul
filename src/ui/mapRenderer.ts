@@ -160,22 +160,22 @@ export class MapRenderer {
    * into the offscreen canvas for high-performance 60fps blitting.
    */
   private renderBackgroundToOffscreen(w: number, h: number): void {
-    // 1. Deep Cyber Void
-    this.offscreenCtx.fillStyle = '#020408';
+    // 1. Deep Cyber Void (Ocean / Space)
+    this.offscreenCtx.fillStyle = '#03070f';
     this.offscreenCtx.fillRect(0, 0, w, h);
 
     // 2. Cartographic Latitude/Longitude Graticule
     const graticule = geoGraticule10();
-    this.offscreenCtx.strokeStyle = 'rgba(0, 240, 255, 0.035)';
+    this.offscreenCtx.strokeStyle = 'rgba(0, 240, 255, 0.04)';
     this.offscreenCtx.lineWidth = 1;
     this.offscreenCtx.beginPath();
     this.geoPathGenerator(graticule);
     this.offscreenCtx.stroke();
 
     // 3. North American Continental Landmass
-    this.offscreenCtx.fillStyle = '#060d16';
-    this.offscreenCtx.strokeStyle = 'rgba(0, 240, 255, 0.32)';
-    this.offscreenCtx.lineWidth = 1.2;
+    this.offscreenCtx.fillStyle = '#081422';
+    this.offscreenCtx.strokeStyle = 'rgba(0, 240, 255, 0.45)';
+    this.offscreenCtx.lineWidth = 1.4;
     this.offscreenCtx.beginPath();
     this.geoPathGenerator(this.naCollection as any);
     this.offscreenCtx.fill();
@@ -183,7 +183,7 @@ export class MapRenderer {
 
     // 4. US State Boundaries (from TopoJSON state mesh)
     if ((northAmericaData as any).stateMesh) {
-      this.offscreenCtx.strokeStyle = 'rgba(0, 240, 255, 0.09)';
+      this.offscreenCtx.strokeStyle = 'rgba(0, 240, 255, 0.14)';
       this.offscreenCtx.lineWidth = 0.8;
       this.offscreenCtx.setLineDash([2, 3]);
       this.offscreenCtx.beginPath();
@@ -193,7 +193,7 @@ export class MapRenderer {
     }
 
     // 5. Continental Trade Highway Grid (Corridors connecting real geographic nodes)
-    this.offscreenCtx.strokeStyle = 'rgba(0, 240, 255, 0.08)';
+    this.offscreenCtx.strokeStyle = 'rgba(0, 240, 255, 0.12)';
     this.offscreenCtx.lineWidth = 1;
     for (const edge of this.highwayEdges) {
       const n1 = this.nodes.find((n) => n.id === edge.fromNodeId);
@@ -209,7 +209,7 @@ export class MapRenderer {
     }
 
     // 6. Tactical Telemetry Legend
-    this.offscreenCtx.fillStyle = 'rgba(0, 240, 255, 0.28)';
+    this.offscreenCtx.fillStyle = 'rgba(0, 240, 255, 0.45)';
     this.offscreenCtx.font = '9px monospace';
     this.offscreenCtx.fillText('// NORTH AMERICA THEATER : 2D TACTICAL GRID [WGS84]', 16, 20);
     this.offscreenCtx.fillText('// CORRIDORS: INTERSTATE & TRANS-CONTINENTAL TRADE MATRIX', 16, 32);
@@ -466,25 +466,25 @@ export class MapRenderer {
 
       // Node point
       this.ctx.fillStyle = isCurrent
-        ? '#39ff14'
+        ? '#00ff88'
         : isWaypoint
         ? '#00f0ff'
         : sectorInfo
         ? sectorInfo.color
-        : '#888';
+        : '#38bdf8';
 
       this.ctx.beginPath();
-      const radius = isCurrent ? 4.5 : isHovered ? 5 : isWaypoint ? 3.5 : 2.5;
+      const radius = isCurrent ? 5 : isHovered ? 5.5 : isWaypoint ? 4 : 3;
       this.ctx.arc(pos.x, pos.y, radius, 0, Math.PI * 2);
       this.ctx.fill();
 
       // Node label for current, hovered, selected, or active route endpoints
       if (isCurrent || isHovered || isSelected) {
-        this.ctx.fillStyle = isCurrent ? '#39ff14' : '#00f0ff';
-        this.ctx.font = '10px monospace';
-        this.ctx.shadowColor = 'rgba(0,0,0,0.8)';
-        this.ctx.shadowBlur = 4;
-        this.ctx.fillText(node.name, pos.x + 8, pos.y + 3);
+        this.ctx.fillStyle = isCurrent ? '#00ff88' : '#00f0ff';
+        this.ctx.font = 'bold 11px monospace';
+        this.ctx.shadowColor = 'rgba(0,0,0,0.95)';
+        this.ctx.shadowBlur = 5;
+        this.ctx.fillText(node.name, pos.x + 9, pos.y + 4);
         this.ctx.shadowBlur = 0;
       }
     }

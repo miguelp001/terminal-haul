@@ -1,26 +1,29 @@
+@import "augmented-ui/augmented-ui.min.css";
+
 /* ==========================================================================
    TERMINAL HAUL — CYBERPUNK FREIGHT SIMULATION UI
    Styled with augmented-ui polygonal borders, clips, and CRT phosphor themes
    ========================================================================== */
 
 :root {
-  --bg-color: #03060a;
-  --panel-bg: #070d14;
-  --panel-bg-alt: #0b1522;
-  --header-bg: #060b12;
-  --border-color: #16304a;
+  --bg-color: #03070f;
+  --panel-bg: #070f1a;
+  --panel-bg-alt: #0b1726;
+  --header-bg: #050b14;
+  --border-color: #173859;
   --border-color-glow: rgba(0, 240, 255, 0.45);
 
   --neon-cyan: #00f0ff;
-  --neon-green: #39ff14;
+  --neon-green: #00ff88;
   --neon-amber: #ffaa00;
-  --neon-red: #ff0055;
-  --neon-purple: #bd00ff;
-  --neon-blue: #0077ff;
+  --neon-red: #ff2a6d;
+  --neon-purple: #c742ff;
+  --neon-blue: #0088ff;
 
-  --text-primary: #d6ecf9;
-  --text-muted: #5e84a2;
-  --text-dim: #385166;
+  --text-primary: #f0f6fc;
+  --text-secondary: #c4def3;
+  --text-muted: #8eb4d6;
+  --text-dim: #6085a8;
   --font-mono: 'Consolas', 'Courier New', 'Fira Code', 'JetBrains Mono', monospace;
 
   /* augmented-ui global defaults */
@@ -43,46 +46,48 @@
 }
 
 :root[data-theme="amber"] {
-  --bg-color: #080502;
-  --panel-bg: #120b04;
-  --panel-bg-alt: #1c1207;
-  --header-bg: #0d0803;
-  --border-color: #4a3416;
+  --bg-color: #0a0602;
+  --panel-bg: #140d05;
+  --panel-bg-alt: #1f1408;
+  --header-bg: #0e0903;
+  --border-color: #5c411a;
   --border-color-glow: rgba(255, 170, 0, 0.45);
 
   --neon-cyan: #ffaa00;
-  --neon-green: #ffcc33;
+  --neon-green: #ffd13b;
   --neon-amber: #ff8800;
-  --neon-red: #ff2200;
-  --neon-purple: #ff5500;
-  --neon-blue: #ff9900;
+  --neon-red: #ff3311;
+  --neon-purple: #ff6622;
+  --neon-blue: #ffa622;
 
-  --text-primary: #ffeacc;
-  --text-muted: #997549;
-  --text-dim: #664d2e;
+  --text-primary: #fff2e0;
+  --text-secondary: #ffdeb3;
+  --text-muted: #c29b6e;
+  --text-dim: #8a6c46;
 
   --aug-border-bg: var(--border-color);
   --aug-inlay-bg: var(--panel-bg);
 }
 
 :root[data-theme="green"] {
-  --bg-color: #020904;
-  --panel-bg: #06150a;
-  --panel-bg-alt: #0a2010;
-  --header-bg: #041007;
-  --border-color: #173d20;
-  --border-color-glow: rgba(57, 255, 20, 0.45);
+  --bg-color: #020a04;
+  --panel-bg: #06170b;
+  --panel-bg-alt: #0a2412;
+  --header-bg: #041208;
+  --border-color: #1a4a25;
+  --border-color-glow: rgba(0, 255, 136, 0.45);
 
-  --neon-cyan: #39ff14;
-  --neon-green: #00ff66;
-  --neon-amber: #b8ff33;
-  --neon-red: #ff3344;
-  --neon-purple: #00ffaa;
-  --neon-blue: #22ff88;
+  --neon-cyan: #00ff88;
+  --neon-green: #33ff99;
+  --neon-amber: #c4ff33;
+  --neon-red: #ff3355;
+  --neon-purple: #00ffcc;
+  --neon-blue: #33ffaa;
 
-  --text-primary: #d6ffd2;
-  --text-muted: #508d58;
-  --text-dim: #335c38;
+  --text-primary: #e6ffea;
+  --text-secondary: #c2ffd0;
+  --text-muted: #7ec48c;
+  --text-dim: #4d8f5b;
 
   --aug-border-bg: var(--border-color);
   --aug-inlay-bg: var(--panel-bg);
@@ -107,30 +112,18 @@ html, body {
   height: 100vh;
   width: 100vw;
   font-size: 13px;
-  line-height: 1.4;
+  line-height: 1.45;
   display: flex;
   flex-direction: column;
 }
 
-/* Subtle Cybernetic Grid Pattern */
+/* Crisp Clean Cyber Background (Deep void with subtle cyber grid, no muddy scanlines) */
 body {
+  background-color: var(--bg-color);
   background-image: 
-    radial-gradient(rgba(0, 240, 255, 0.05) 1px, transparent 0),
-    linear-gradient(to bottom, rgba(4, 7, 11, 0.95), rgba(3, 6, 10, 0.98));
-  background-size: 28px 28px, 100% 100%;
-}
-
-/* CRT Scanlines Overlay */
-body::after {
-  content: " ";
-  display: block;
-  position: fixed;
-  top: 0; left: 0; bottom: 0; right: 0;
-  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.22) 50%);
-  background-size: 100% 3px;
-  z-index: 999;
-  pointer-events: none;
-  opacity: 0.38;
+    linear-gradient(rgba(0, 240, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 240, 255, 0.02) 1px, transparent 1px);
+  background-size: 32px 32px;
 }
 
 /* Custom Cyber Scrollbars */
@@ -373,11 +366,11 @@ header.terminal-header {
 
 /* Cyberpunk Button Styling with Augmented-UI */
 button.term-btn {
-  background: #0a1420;
+  background: #081424;
   color: var(--neon-cyan);
   font-family: var(--font-mono);
-  font-size: 0.75rem;
-  padding: 6px 14px;
+  font-size: 0.76rem;
+  padding: 7px 16px;
   cursor: pointer;
   transition: all 0.15s ease;
   text-transform: uppercase;
@@ -388,10 +381,11 @@ button.term-btn {
   gap: 6px;
   position: relative;
   z-index: 1;
+  border: 1px solid var(--border-color);
   --aug-border-all: 1px;
-  --aug-border-bg: var(--neon-cyan);
+  --aug-border-bg: var(--border-color);
   --aug-inlay-all: 1px;
-  --aug-inlay-bg: #0a1420;
+  --aug-inlay-bg: #081424;
   --aug-tl: 6px;
   --aug-br: 6px;
 }
@@ -403,52 +397,56 @@ button.term-btn > * {
 }
 
 button.term-btn:hover:not(:disabled) {
-  --aug-border-bg: #fff;
+  --aug-border-bg: var(--neon-cyan);
   --aug-inlay-bg: var(--neon-cyan);
   background: var(--neon-cyan);
-  color: #000;
+  color: #000000;
   font-weight: bold;
-  box-shadow: 0 0 14px var(--neon-cyan);
+  border-color: var(--neon-cyan);
+  box-shadow: 0 0 16px var(--neon-cyan);
 }
 
 button.term-btn.mini-btn {
-  padding: 2px 7px;
-  font-size: 0.65rem;
+  padding: 3px 8px;
+  font-size: 0.68rem;
   --aug-border-bg: var(--neon-green);
   color: var(--neon-green);
-  background: #06101a;
-  --aug-inlay-bg: #06101a;
+  background: #081710;
+  border-color: var(--neon-green);
+  --aug-inlay-bg: #081710;
 }
 button.term-btn.mini-btn:hover:not(:disabled) {
   background: var(--neon-green);
   --aug-inlay-bg: var(--neon-green);
-  color: #000;
+  color: #000000;
 }
 
 button.term-btn.active {
   background: var(--neon-amber);
   --aug-border-bg: var(--neon-amber);
   --aug-inlay-bg: var(--neon-amber);
-  color: #000;
+  border-color: var(--neon-amber);
+  color: #000000;
   font-weight: bold;
   box-shadow: 0 0 12px var(--neon-amber);
 }
 
 button.term-btn.reset-btn {
-  background: rgba(255, 0, 85, 0.12);
-  --aug-inlay-bg: rgba(255, 0, 85, 0.12);
+  background: rgba(255, 42, 109, 0.12);
+  --aug-inlay-bg: rgba(255, 42, 109, 0.12);
   --aug-border-bg: var(--neon-red);
+  border-color: var(--neon-red);
   color: var(--neon-red);
 }
 button.term-btn.reset-btn:hover:not(:disabled) {
   background: var(--neon-red);
   --aug-inlay-bg: var(--neon-red);
-  color: #fff;
+  color: #ffffff;
   box-shadow: 0 0 14px var(--neon-red);
 }
 
 button.term-btn.menu-btn {
-  padding: 6px 14px;
+  padding: 7px 16px;
   font-weight: bold;
   --aug-tl1: 6px;
   --aug-tl2: 12px;
@@ -456,15 +454,18 @@ button.term-btn.menu-btn {
   --aug-br2: 12px;
   --aug-border-all: 1.5px;
   --aug-border-bg: var(--neon-cyan);
+  border-color: var(--neon-cyan);
 }
 
 button.term-btn:disabled {
-  opacity: 0.4;
+  opacity: 0.35;
   cursor: not-allowed;
   box-shadow: none !important;
-  --aug-inlay-bg: transparent !important;
-  color: var(--text-muted) !important;
-  --aug-border-bg: var(--border-color) !important;
+  --aug-inlay-bg: #060c14 !important;
+  background: #060c14 !important;
+  color: #5c7e9e !important;
+  --aug-border-bg: #1c354e !important;
+  border-color: #1c354e !important;
 }
 
 /* ==========================================================================
@@ -473,15 +474,16 @@ button.term-btn:disabled {
 
 nav.terminal-nav {
   display: flex;
-  background: #050a10;
+  background: #040911;
   padding: 6px 14px 0 14px;
   gap: 6px;
   overflow-x: auto;
   flex-shrink: 0;
+  border-bottom: 2px solid var(--border-color);
   --aug-border-all: 1px;
   --aug-border-bg: var(--border-color);
   --aug-inlay-all: 0px;
-  --aug-inlay-bg: #050a10;
+  --aug-inlay-bg: #040911;
   --aug-tl1: 8px;
   --aug-tl2: 16px;
   --aug-tr1: 8px;
@@ -494,43 +496,49 @@ nav.terminal-nav::-webkit-scrollbar {
 }
 
 button.tab-btn {
-  background: rgba(9, 16, 25, 0.75);
+  background: #07101a;
   color: var(--text-muted);
   font-family: var(--font-mono);
-  font-size: 0.76rem;
+  font-size: 0.78rem;
   letter-spacing: 1px;
-  padding: 8px 16px;
+  padding: 8px 18px;
   cursor: pointer;
   transition: all 0.2s ease;
   white-space: nowrap;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   position: relative;
+  border: 1px solid var(--border-color);
+  border-bottom: none;
   --aug-border-all: 1px;
   --aug-border-bg: var(--border-color);
   --aug-inlay-all: 1px;
-  --aug-inlay-bg: rgba(9, 16, 25, 0.75);
+  --aug-inlay-bg: #07101a;
   --aug-tl1: 6px;
   --aug-tl2: 12px;
   --aug-tr: 6px;
 }
 
 button.tab-btn:hover {
-  color: var(--text-primary);
-  --aug-border-bg: rgba(0, 240, 255, 0.55);
-  --aug-inlay-bg: rgba(0, 240, 255, 0.08);
+  color: #ffffff;
+  background: #0b1a2c;
+  --aug-border-bg: var(--neon-cyan);
+  --aug-inlay-bg: #0b1a2c;
 }
 
 button.tab-btn.active {
-  color: var(--neon-cyan);
+  color: #ffffff;
+  background: #0c2035;
+  border-color: var(--neon-cyan);
+  border-bottom: 2px solid var(--neon-cyan);
   font-weight: bold;
   --aug-border-all: 1.5px;
   --aug-border-bg: var(--neon-cyan);
   --aug-inlay-all: 2px;
-  --aug-inlay-bg: var(--panel-bg);
-  box-shadow: 0 -4px 14px rgba(0, 240, 255, 0.2);
-  text-shadow: 0 0 6px rgba(0, 240, 255, 0.6);
+  --aug-inlay-bg: #0c2035;
+  box-shadow: 0 -4px 16px rgba(0, 240, 255, 0.25);
+  text-shadow: 0 0 8px rgba(0, 240, 255, 0.7);
 }
 
 .chat-unread-dot {
@@ -554,6 +562,7 @@ main.terminal-main {
   padding: 8px;
   min-height: 0;
   position: relative;
+  background: transparent;
 }
 
 .view-panel {
@@ -566,9 +575,10 @@ main.terminal-main {
 }
 
 .panel-header {
-  background: #08111b;
-  padding: 8px 14px;
-  font-size: 0.78rem;
+  background: #081322;
+  padding: 9px 16px;
+  font-size: 0.8rem;
+  font-weight: bold;
   letter-spacing: 1.5px;
   color: var(--neon-cyan);
   border-bottom: 1px solid var(--border-color);
@@ -585,23 +595,24 @@ main.terminal-main {
 }
 
 .header-led {
-  width: 6px;
-  height: 6px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
   background: var(--neon-cyan);
-  box-shadow: 0 0 6px var(--neon-cyan);
+  box-shadow: 0 0 8px var(--neon-cyan);
 }
 
 .header-tech-tag {
-  font-size: 0.65rem;
+  font-size: 0.68rem;
   color: var(--text-dim);
-  letter-spacing: 1px;
+  letter-spacing: 1.2px;
 }
 
 .panel-content {
-  padding: 12px;
+  padding: 14px;
   overflow-y: auto;
   flex: 1;
+  background: var(--panel-bg);
 }
 
 /* ==========================================================================
@@ -795,11 +806,12 @@ canvas#worldMapCanvas {
 /* Docked Navigation Dispatch Console */
 .nav-dispatch-panel {
   width: 330px;
-  background: var(--panel-bg);
+  background: #060e19;
+  border-left: 1px solid var(--border-color);
   --aug-border-all: 1.5px;
   --aug-border-bg: var(--border-color);
   --aug-inlay-all: 2px;
-  --aug-inlay-bg: var(--panel-bg);
+  --aug-inlay-bg: #060e19;
   --aug-tl1: 8px;
   --aug-tl2: 16px;
   --aug-tr: 8px;
@@ -816,73 +828,83 @@ canvas#worldMapCanvas {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  background: #060e19;
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 5px;
 }
 
 .select-wrapper {
+  background: #081322;
+  border: 1px solid var(--border-color);
   --aug-border-all: 1px;
   --aug-border-bg: var(--border-color);
   --aug-inlay-all: 1px;
-  --aug-inlay-bg: #050a10;
+  --aug-inlay-bg: #081322;
   --aug-tl: 5px;
   --aug-br: 5px;
   padding: 1px;
 }
 
 .term-select {
-  background: transparent;
+  background: #081322;
   color: var(--text-primary);
   border: none;
   font-family: var(--font-mono);
-  font-size: 0.78rem;
-  padding: 6px 8px;
+  font-size: 0.8rem;
+  padding: 8px 10px;
   outline: none;
   width: 100%;
+  cursor: pointer;
 }
 .term-select:focus {
   color: var(--neon-cyan);
 }
+.term-select option {
+  background-color: #081322;
+  color: #f0f6fc;
+  padding: 8px 10px;
+}
 
 .node-detail-card {
-  background: rgba(0, 240, 255, 0.03);
+  background: #081324;
+  border: 1px solid var(--border-color);
   --aug-border-all: 1px;
   --aug-border-bg: var(--border-color);
   --aug-inlay-all: 1px;
-  --aug-inlay-bg: rgba(0, 240, 255, 0.03);
+  --aug-inlay-bg: #081324;
   --aug-tl: 6px;
   --aug-tr1: 6px;
   --aug-tr2: 12px;
   --aug-br: 6px;
   --aug-bl1: 6px;
   --aug-bl2: 12px;
-  padding: 10px 12px;
-  font-size: 0.75rem;
+  padding: 12px 14px;
+  font-size: 0.78rem;
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 5px;
   position: relative;
 }
 
 .card-crosshair {
   position: absolute;
-  top: 5px;
-  right: 5px;
-  width: 8px;
-  height: 8px;
-  border-top: 1px solid var(--neon-cyan);
-  border-right: 1px solid var(--neon-cyan);
+  top: 6px;
+  right: 6px;
+  width: 9px;
+  height: 9px;
+  border-top: 1.5px solid var(--neon-cyan);
+  border-right: 1.5px solid var(--neon-cyan);
 }
 
 .target-title {
   color: var(--neon-cyan);
   font-weight: bold;
-  font-size: 0.88rem;
-  letter-spacing: 0.5px;
+  font-size: 0.92rem;
+  letter-spacing: 0.8px;
 }
 
 .target-row {
@@ -890,21 +912,21 @@ canvas#worldMapCanvas {
 }
 
 .target-hops {
-  color: var(--neon-cyan);
+  color: var(--neon-green);
   font-weight: bold;
-  margin-top: 3px;
+  margin-top: 4px;
 }
 
 .target-waypoints {
-  color: #8faec8;
-  font-size: 0.7rem;
-  max-height: 48px;
+  color: var(--text-secondary);
+  font-size: 0.72rem;
+  max-height: 52px;
   overflow-y: auto;
-  line-height: 1.25;
+  line-height: 1.35;
 }
 
 .target-eta {
-  color: var(--neon-green);
+  color: var(--neon-cyan);
   font-weight: bold;
 }
 
@@ -1009,6 +1031,8 @@ canvas#worldMapCanvas {
   width: 100%;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  background: #060e19;
+  border: 1px solid var(--border-color);
   --aug-border-all: 1px;
   --aug-border-bg: var(--border-color);
   --aug-tl: 4px;
@@ -1019,31 +1043,39 @@ table.market-table,
 table.leaderboard-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   text-align: left;
 }
 
 table.market-table th,
 table.leaderboard-table th {
-  background: #060c13;
-  color: var(--text-muted);
-  padding: 9px 12px;
+  background: #091729;
+  color: #a4c8e8;
+  padding: 10px 14px;
   border-bottom: 2px solid var(--border-color);
-  letter-spacing: 1px;
-  font-weight: normal;
+  letter-spacing: 1.2px;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.72rem;
   white-space: nowrap;
 }
 
 table.market-table td,
 table.leaderboard-table td {
-  padding: 9px 12px;
-  border-bottom: 1px solid rgba(22, 48, 74, 0.5);
+  padding: 10px 14px;
+  border-bottom: 1px solid rgba(23, 56, 89, 0.4);
   white-space: nowrap;
+  color: var(--text-primary);
+}
+
+table.market-table tbody tr:nth-child(even),
+table.leaderboard-table tbody tr:nth-child(even) {
+  background: rgba(7, 16, 28, 0.55);
 }
 
 table.market-table tr:hover,
 table.leaderboard-table tr:hover {
-  background: rgba(0, 240, 255, 0.05);
+  background: rgba(0, 240, 255, 0.08);
 }
 
 .contraband-badge {
@@ -2077,7 +2109,7 @@ button.trade-btn:disabled {
 }
 
 .help-desc {
-  color: #bbb;
+  color: var(--text-secondary);
 }
 
 .menu-modal-footer {
@@ -2088,14 +2120,15 @@ button.trade-btn:disabled {
 }
 
 .dismiss-menu-btn {
-  background: rgba(0, 240, 255, 0.12);
+  background: rgba(0, 240, 255, 0.15);
   --aug-inlay-all: 1px;
-  --aug-inlay-bg: rgba(0, 240, 255, 0.12);
+  --aug-inlay-bg: rgba(0, 240, 255, 0.15);
   padding: 11px 26px;
   font-size: 0.88rem;
   font-weight: 700;
   letter-spacing: 1.5px;
   color: var(--neon-cyan);
+  border: 1.5px solid var(--neon-cyan);
   text-shadow: 0 0 8px var(--neon-cyan);
   --aug-tl1: 6px;
   --aug-tl2: 12px;
@@ -2126,7 +2159,7 @@ button.trade-btn:disabled {
 .storylet-modal-backdrop {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(1, 3, 5, 0.9);
+  background: rgba(2, 6, 12, 0.92);
   backdrop-filter: blur(10px);
   z-index: 2000;
   display: flex;
@@ -2136,11 +2169,12 @@ button.trade-btn:disabled {
 }
 
 .storylet-card {
-  background: #070d16;
+  background: #07101c;
+  border: 2px solid var(--neon-cyan);
   --aug-border-all: 2px;
   --aug-border-bg: var(--neon-cyan);
   --aug-inlay-all: 2px;
-  --aug-inlay-bg: #070d16;
+  --aug-inlay-bg: #07101c;
   --aug-tl1: 10px;
   --aug-tl2: 20px;
   --aug-tr1: 10px;
@@ -2175,20 +2209,22 @@ button.trade-btn:disabled {
 }
 
 .storylet-body {
-  font-size: 0.84rem;
-  color: var(--text-primary);
-  line-height: 1.6;
-  background: rgba(0, 240, 255, 0.025);
-  border-left: 2px solid var(--neon-cyan);
-  padding: 12px 16px;
+  font-size: 0.88rem;
+  color: #f0f6fc;
+  line-height: 1.65;
+  background: #091524;
+  border: 1px solid var(--border-color);
+  border-left: 3px solid var(--neon-cyan);
+  padding: 14px 18px;
 }
 
 .storylet-roll-banner {
-  background: #04080e;
+  background: #081322;
+  border: 1px solid var(--neon-amber);
   --aug-border-all: 1.5px;
   --aug-border-bg: var(--neon-amber);
   --aug-inlay-all: 1px;
-  --aug-inlay-bg: #04080e;
+  --aug-inlay-bg: #081322;
   --aug-tl: 6px;
   --aug-tr: 6px;
   --aug-br: 6px;
@@ -2231,7 +2267,7 @@ button.trade-btn:disabled {
   align-self: flex-start;
 }
 .storylet-roll-badge.strong {
-  background: rgba(57, 255, 20, 0.2);
+  background: rgba(0, 255, 136, 0.2);
   border: 1px solid var(--neon-green);
   color: var(--neon-green);
 }
@@ -2241,7 +2277,7 @@ button.trade-btn:disabled {
   color: var(--neon-amber);
 }
 .storylet-roll-badge.miss {
-  background: rgba(255, 0, 85, 0.2);
+  background: rgba(255, 42, 109, 0.2);
   border: 1px solid var(--neon-red);
   color: var(--neon-red);
 }
@@ -2255,10 +2291,11 @@ button.trade-btn:disabled {
 
 .storylet-option-btn {
   background: #0d1b2a;
+  border: 1.5px solid var(--border-color);
   --aug-inlay-all: 1px;
   --aug-inlay-bg: #0d1b2a;
   --aug-border-all: 1.5px;
-  --aug-border-bg: rgba(0, 240, 255, 0.6);
+  --aug-border-bg: var(--border-color);
   --aug-tl: 6px;
   --aug-br: 6px;
   color: #ffffff;
@@ -2301,9 +2338,10 @@ button.trade-btn:disabled {
 }
 
 .storylet-option-btn:hover:not(:disabled) {
-  background: rgba(0, 240, 255, 0.2);
-  --aug-inlay-bg: rgba(0, 240, 255, 0.2);
+  background: #0c2138;
+  --aug-inlay-bg: #0c2138;
   --aug-border-bg: var(--neon-cyan);
+  border-color: var(--neon-cyan);
   box-shadow: 0 0 22px rgba(0, 240, 255, 0.4);
 }
 
