@@ -110,12 +110,12 @@ jobs:
           sudo apt-get update -qq && sudo apt-get install -y -qq lftp
           echo "Syncing production bundle to DreamHost via SFTP..."
           lftp <<EOF
-            set cmd:fail-exit yes
             set sftp:auto-confirm yes
             set net:timeout 30
             set net:max-retries 3
             open -u "${CLEAN_USER},${SSHPASS}" "sftp://${CLEAN_HOST}"
-            cd "${RESOLVED_TARGET}"
+            cd "${RESOLVED_TARGET}" || cd "haul.aredpanic.com"
+            set cmd:fail-exit yes
             mirror --reverse --delete --verbose ./dist .
             bye
           EOF
