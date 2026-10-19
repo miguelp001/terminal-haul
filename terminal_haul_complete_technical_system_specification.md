@@ -290,6 +290,100 @@ flowchart TD
   - *Transhuman Synergy Path:* `Iron Nomad - Living Chitin Chassis` (+40 max hull, +20% speed rating, +1 GRIT, +1 CYBER).
   - *Sovereign Auction Path:* `Iron Nomad - Sterile Bastion` (+25 max hull, +15% speed rating, +5 cargo capacity, +1 COOL, +1 EDGE).
 
+
+### 4.9 Ten Complex Branching Sagas (15 Storylets Each & Permanent Rig Upgrades)
+
+To expand continental narrative breadth to over 280 hand-crafted storylets, ten distinct 15-storylet sagas—comprising **150 additional rich storylets**—are integrated into `STORYLET_POOL`. Each saga features sequential progression (Stages 1 through 15), Powered by the Apocalypse $2\text{d}6$ dice mechanics with core stat and quality bonuses, a major three-way branch at Stage 10 (`Chosen Path: 1, 2, or 3`), path-specific climaxes (Stage 14), and dramatic finales (Stage 15) awarding **permanent rig upgrades** (`StoryletReward.rig`) and core stat boosts.
+
+```mermaid
+flowchart TD
+    S1["Stage 1: Inciting Hook<br/>(Prerequisite Evaluation)"] --> S2to9["Stages 2–9: Escalation & Trials<br/>(Stats: GRIT, EDGE, CYBER, COOL)"]
+    S2to9 --> S10["Stage 10: The Major Crossroads<br/>(Branch into Path 1, 2, or 3)"]
+    S10 --> S11to13["Stages 11–13: Divergent Operations<br/>(Path-Specific Quality Tracking)"]
+    S11to13 --> S14["Stage 14: Path Climax<br/>(High-Stakes Faction Confrontation)"]
+    S14 --> S15["Stage 15: Grand Finale<br/>(Permanent Rig Upgrade + Core Stat Boost)"]
+```
+
+#### 1. The Sub-Zero Siren (15 Storylets)
+* **Theme:** Cryo-smuggling, acoustic tracking, and arctic convoy survival.
+* **Stage Tracking & Qualities:** `Siren Stage` (0–14, completing at 94+), `Siren Trust`, `Siren Chosen Path` (1: Free Acoustic Rebel, 2: Solaris Cryo-Grid, 3: Underworld Smuggler).
+* **Permanent Rig Rewards:**
+  - *Path 1 (Acoustic Echo Chassis):* `Iron Nomad - Siren Echo` (+15% speed rating, +10 max hull, +1 COOL).
+  - *Path 2 (Cryo-Insulated Armor):* `Iron Nomad - Glacial Fortress` (+25 max hull, +5 cargo capacity, +1 COOL, +1 GRIT).
+  - *Path 3 (Silent Runner Baffles):* `Iron Nomad - Phantom Whisper` (+20% speed rating, +1 COOL, +1 EDGE).
+
+#### 2. The Railgun of the Red Ridge (15 Storylets)
+* **Theme:** Military prototype weapon recovery, red rock canyon ambushes, and siege logistics.
+* **Stage Tracking & Qualities:** `Railgun Stage` (0–14), `Railgun Calibrated`, `Railgun Chosen Path` (1: Free Ridge Bastion, 2: Aegis Defense Grid, 3: Warlord Heavy Arsenal).
+* **Permanent Rig Rewards:**
+  - *Path 1 (Overcharged Accelerator):* `Iron Nomad - Red Ridge Rail` (+10% speed rating, +20 max hull, +1 EDGE).
+  - *Path 2 (Aegis Hardpoint Mount):* `Iron Nomad - Ridge Vanguard` (+30 max hull, +1 EDGE, +1 CYBER).
+  - *Path 3 (Warlord Siege Chassis):* `Iron Nomad - Thunder Ram` (+35 max hull, +5 cargo capacity, +1 EDGE, +1 GRIT).
+
+#### 3. The Ghost Highway of '76 (15 Storylets)
+* **Theme:** Phantom asphalt, tachyon anomalies, electromagnetic mirages, and lost convoys.
+* **Stage Tracking & Qualities:** `Ghostway Stage` (0–14), `Tachyon Resonance`, `Ghostway Chosen Path` (1: Phase Anchor Traveler, 2: Neural Archive Courier, 3: Void Nomad).
+* **Permanent Rig Rewards:**
+  - *Path 1 (Phase-Shift Engine):* `Iron Nomad - Chrono Shift` (+25% speed rating, +1 CYBER).
+  - *Path 2 (Tachyon Sensor Array):* `Iron Nomad - Temporal Eye` (+15% speed rating, +15 max hull, +1 CYBER, +1 COOL).
+  - *Path 3 (Spectral Hull Plating):* `Iron Nomad - Void Walker` (+20% speed rating, +20 max hull, +1 CYBER, +1 EDGE).
+
+#### 4. The Black Sun Reactor (15 Storylets)
+* **Theme:** Deep geothermal magma tubes, illicit reactor cores, and radiation containment.
+* **Stage Tracking & Qualities:** `Black Sun Stage` (0–14), `Reactor Shielding`, `Black Sun Chosen Path` (1: Magma Commune Grid, 2: Corporate Core Syndicate, 3: Meltdown Supercharger).
+* **Permanent Rig Rewards:**
+  - *Path 1 (Geothermal Heat Exchanger):* `Iron Nomad - Sun Fire` (+20 max hull, +5 cargo capacity, +1 GRIT).
+  - *Path 2 (Heavy Lead Core Housing):* `Iron Nomad - Lead Bastion` (+35 max hull, +1 GRIT, +1 COOL).
+  - *Path 3 (Volatile Core Supercharger):* `Iron Nomad - Supercritical` (+22% speed rating, +15 max hull, +1 GRIT, +1 EDGE).
+
+#### 5. The Oracle of the Ash Dunes (15 Storylets)
+* **Theme:** Rogue precognitive neural mesh, nomadic dune seers, and sandstorms.
+* **Stage Tracking & Qualities:** `Oracle Stage` (0–14), `Oracle Insight`, `Oracle Chosen Path` (1: Dune Seer Communion, 2: Neural Net Archivist, 3: Ashline Marauder).
+* **Permanent Rig Rewards:**
+  - *Path 1 (Prescient Gyro-Stabilizer):* `Iron Nomad - Ash Prophet` (+18% speed rating, +12 max hull, +1 COOL).
+  - *Path 2 (Quantum Predictive Matrix):* `Iron Nomad - Dune Oracle` (+15% speed rating, +10 max hull, +1 COOL, +1 CYBER).
+  - *Path 3 (Sandstorm Brawler Frame):* `Iron Nomad - Dune Stalker` (+25 max hull, +6 cargo capacity, +1 COOL, +1 GRIT).
+
+#### 6. The Iron Leviathan's Graveyard (15 Storylets)
+* **Theme:** Industrial mega-crawler salvage, toxic mud bogs, and pirate scavengers.
+* **Stage Tracking & Qualities:** `Leviathan Stage` (0–14), `Salvage Purity`, `Leviathan Chosen Path` (1: Free Scavenger Collective, 2: Heavy Foundry Reclamation, 3: Titan Armor Plating).
+* **Permanent Rig Rewards:**
+  - *Path 1 (Reinforced Titan Axles):* `Iron Nomad - Iron Behemoth` (+30 max hull, +8 cargo capacity, +1 GRIT).
+  - *Path 2 (Industrial Crane Mount):* `Iron Nomad - Scrap Titan` (+20 max hull, +10 cargo capacity, +1 GRIT, +1 COOL).
+  - *Path 3 (Heavy Dredge Hull):* `Iron Nomad - Leviathan Shell` (+45 max hull, +1 GRIT, +1 EDGE).
+
+#### 7. The Syndicate Kingpin’s Debt (15 Storylets)
+* **Theme:** High-stakes extortion, undercover sting, cartel enforcers, and blackmail datadisks.
+* **Stage Tracking & Qualities:** `Kingpin Stage` (0–14), `Syndicate Mark`, `Kingpin Chosen Path` (1: Syndicate Underboss, 2: Federal Whistleblower, 3: Sovereign Free-Agent).
+* **Permanent Rig Rewards:**
+  - *Path 1 (Smuggler's Hydraulic False Floor):* `Iron Nomad - Shadow King` (+15% speed rating, +6 cargo capacity, +1 COOL).
+  - *Path 2 (Encrypted Comms Suite):* `Iron Nomad - Informant Runner` (+20% speed rating, +15 max hull, +1 COOL, +1 CYBER).
+  - *Path 3 (Unmarked Armored Outlaw):* `Iron Nomad - Ghost Outlaw` (+15% speed rating, +25 max hull, +1 COOL, +1 EDGE).
+
+#### 8. The Neuro-Plague Protocol (15 Storylets)
+* **Theme:** Cybernetic pathogen, biocontainment quarantine, and black clinic heists.
+* **Stage Tracking & Qualities:** `Neuroplague Stage` (0–14), `Pathogen Purity`, `Neuroplague Chosen Path` (1: Open-Source Antidote Mesh, 2: Corporate Vaccine Monopoly, 3: Immune Symbiont).
+* **Permanent Rig Rewards:**
+  - *Path 1 (Sterile Biosphere Seal):* `Iron Nomad - Panacea Carrier` (+20 max hull, +15% speed rating, +1 CYBER).
+  - *Path 2 (Military Quarantine Hull):* `Iron Nomad - Aegis Bio-Shield` (+30 max hull, +1 CYBER, +1 COOL).
+  - *Path 3 (Self-Repairing Nanite Core):* `Iron Nomad - Living Node` (+25 max hull, +18% speed rating, +1 CYBER, +1 GRIT).
+
+#### 9. The Last Grain of Eden (15 Storylets)
+* **Theme:** Pre-collapse non-mutated seed vault, agrarian enclaves, and corporate biocides.
+* **Stage Tracking & Qualities:** `Eden Stage` (0–14), `Seed Integrity`, `Eden Chosen Path` (1: Wasteland Agrarian Sanctuary, 2: Corporate Hydro-Harvest, 3: Nomad Granary Fleet).
+* **Permanent Rig Rewards:**
+  - *Path 1 (Climate-Controlled Hydro-Hold):* `Iron Nomad - Harvest Herald` (+12 cargo capacity, +10 max hull, +1 GRIT).
+  - *Path 2 (Reinforced Grain Vault):* `Iron Nomad - Terra Titan` (+25 max hull, +8 cargo capacity, +1 GRIT, +1 COOL).
+  - *Path 3 (Expedition Overland Struts):* `Iron Nomad - Nomad Seed` (+15% speed rating, +6 cargo capacity, +1 GRIT, +1 EDGE).
+
+#### 10. The Sovereign Skyway (15 Storylets)
+* **Theme:** Decommissioned sub-orbital launch catapult, anti-grav turbine salvage, and high-altitude highway ramps.
+* **Stage Tracking & Qualities:** `Skyway Stage` (0–14), `Skyway Trust`, `Skyway Chosen Path` (1: Free Sky Courier, 2: Orbital Station Feeder, 3: Heavy Sky-Corsair).
+* **Permanent Rig Rewards:**
+  - *Path 1 (Repulsor Ground-Effect Skids):* `Iron Nomad - Sky Runner` (+30% speed rating, +1 EDGE).
+  - *Path 2 (Orbital Courier Thruster):* `Iron Nomad - High Strato` (+22% speed rating, +15 max hull, +1 EDGE, +1 CYBER).
+  - *Path 3 (Armored Sky-Corsair Frame):* `Iron Nomad - Sky Corsair` (+18% speed rating, +25 max hull, +1 EDGE, +1 COOL).
+
 ---
 
 ## 5. GOAP AI Economy & Synchronized Market
@@ -458,6 +552,7 @@ The system is validated through an extensive automated test suite run via **Vite
 | **Cryo Corp Extraction** | `tests/cryoQuest.test.ts` | 10-storylet non-repeatable chain, Dr. Vance branching. |
 | **Lovers Across the Ashline** | `tests/loversQuest.test.ts` | 20-storylet non-repeatable saga, 3 divergent endings. |
 | **Five Epic 20-Card Sagas** | `tests/newSagas.test.ts` | 100 storylets, reachability, branching paths, permanent rig upgrades. |
+| **Ten 15-Card Epic Sagas** | `tests/tenNewSagas.test.ts` | 150 storylets across 10 sagas, reachability, alternative path climaxes, permanent rig and stat upgrades. |
 | **Convoy Maintenance** | `tests/convoyMaintenance.test.ts` | Hull attenuation, speed scaling, repair costs, Enclave Permits. |
 | **Graph Navigation** | `tests/navigation.test.ts` | Adjacency topology, shortest-hop BFS, auto-advance. |
 | **State Persistence** | `tests/persistence.test.ts` | Serialization, hydration, schema migration. |

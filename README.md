@@ -275,6 +275,50 @@ In addition to base encounters and earlier chains, the wasteland features **five
      - **Transhuman Synergy Path:** `Iron Nomad - Living Chitin Chassis` (+40 Max Hull, +20% Speed, +1 GRIT, +1 CYBER).
      - **Sovereign Syndicate Path:** `Iron Nomad - Sterile Bastion` (+25 Max Hull, +15% Speed, +5 T Cargo, +1 COOL, +1 EDGE).
 
+#### Ten 15-Storylet Branching Sagas (150 Additional Storylets)
+
+To bring the wasteland storylet pool to over **280 hand-crafted encounters**, ten additional 15-stage narrative sagas have been deployed across the continental grid. Each saga draws heavily on core stats (`grit`, `edge`, `cyber`, `cool`), qualities, and inventory, branching into three divergent paths at Stage 10, leading to path-specific Stage 14 climaxes and Stage 15 grand finales granting permanent rig upgrades and stat boosts:
+
+1. ❄️ **The Sub-Zero Siren (15 Storylets)**
+   - *Theme:* Arctic cryo-smuggling, acoustic sonar tracking, and glacial blizzards.
+   - *Permanent Rig Upgrades:* `Iron Nomad - Siren Echo` (+15% speed, +10 hull, +1 COOL), `Iron Nomad - Glacial Fortress` (+25 hull, +5 cargo, +1 COOL, +1 GRIT), or `Iron Nomad - Phantom Whisper` (+20% speed, +1 COOL, +1 EDGE).
+
+2. 💥 **The Railgun of the Red Ridge (15 Storylets)**
+   - *Theme:* Military prototype magnetic accelerator, red rock canyon ambushes, and siege warfare.
+   - *Permanent Rig Upgrades:* `Iron Nomad - Red Ridge Rail` (+10% speed, +20 hull, +1 EDGE), `Iron Nomad - Ridge Vanguard` (+30 hull, +1 EDGE, +1 CYBER), or `Iron Nomad - Thunder Ram` (+35 hull, +5 cargo, +1 EDGE, +1 GRIT).
+
+3. ⏳ **The Ghost Highway of '76 (15 Storylets)**
+   - *Theme:* Phantom asphalt, temporal tachyon anomalies, electromagnetic mirages, and lost convoys.
+   - *Permanent Rig Upgrades:* `Iron Nomad - Chrono Shift` (+25% speed, +1 CYBER), `Iron Nomad - Temporal Eye` (+15% speed, +15 hull, +1 CYBER, +1 COOL), or `Iron Nomad - Void Walker` (+20% speed, +20 hull, +1 CYBER, +1 EDGE).
+
+4. 🌋 **The Black Sun Reactor (15 Storylets)**
+   - *Theme:* Deep geothermal magma tubes, illicit reactor cores, and radiation containment shields.
+   - *Permanent Rig Upgrades:* `Iron Nomad - Sun Fire` (+20 hull, +5 cargo, +1 GRIT), `Iron Nomad - Lead Bastion` (+35 hull, +1 GRIT, +1 COOL), or `Iron Nomad - Supercritical` (+22% speed, +15 hull, +1 GRIT, +1 EDGE).
+
+5. 🔮 **The Oracle of the Ash Dunes (15 Storylets)**
+   - *Theme:* Rogue precognitive neural mesh, nomadic dune seers, and violent ash duststorms.
+   - *Permanent Rig Upgrades:* `Iron Nomad - Ash Prophet` (+18% speed, +12 hull, +1 COOL), `Iron Nomad - Dune Oracle` (+15% speed, +10 hull, +1 COOL, +1 CYBER), or `Iron Nomad - Dune Stalker` (+25 hull, +6 cargo, +1 COOL, +1 GRIT).
+
+6. ⚓ **The Iron Leviathan's Graveyard (15 Storylets)**
+   - *Theme:* Pre-war industrial crawler salvage, toxic mud bogs, and pirate scavengers.
+   - *Permanent Rig Upgrades:* `Iron Nomad - Iron Behemoth` (+30 hull, +8 cargo, +1 GRIT), `Iron Nomad - Scrap Titan` (+20 hull, +10 cargo, +1 GRIT, +1 COOL), or `Iron Nomad - Leviathan Shell` (+45 hull, +1 GRIT, +1 EDGE).
+
+7. 💰 **The Syndicate Kingpin’s Debt (15 Storylets)**
+   - *Theme:* Undercover corporate sting operations, extortion syndicates, and blackmail ledgers.
+   - *Permanent Rig Upgrades:* `Iron Nomad - Shadow King` (+15% speed, +6 cargo, +1 COOL), `Iron Nomad - Informant Runner` (+20% speed, +15 hull, +1 COOL, +1 CYBER), or `Iron Nomad - Ghost Outlaw` (+15% speed, +25 hull, +1 COOL, +1 EDGE).
+
+8. ☣️ **The Neuro-Plague Protocol (15 Storylets)**
+   - *Theme:* Synthetic neural pathogens, black market clinic lockdowns, and bioweapon cordons.
+   - *Permanent Rig Upgrades:* `Iron Nomad - Panacea Carrier` (+20 hull, +15% speed, +1 CYBER), `Iron Nomad - Aegis Bio-Shield` (+30 hull, +1 CYBER, +1 COOL), or `Iron Nomad - Living Node` (+25 hull, +18% speed, +1 CYBER, +1 GRIT).
+
+9. 🌱 **The Last Grain of Eden (15 Storylets)**
+   - *Theme:* Non-mutated pre-war seed vault, agricultural sanctuaries, and corporate biocides.
+   - *Permanent Rig Upgrades:* `Iron Nomad - Harvest Herald` (+12 cargo, +10 hull, +1 GRIT), `Iron Nomad - Terra Titan` (+25 hull, +8 cargo, +1 GRIT, +1 COOL), or `Iron Nomad - Nomad Seed` (+15% speed, +6 cargo, +1 GRIT, +1 EDGE).
+
+10. 🛰️ **The Sovereign Skyway (15 Storylets)**
+    - *Theme:* Decommissioned sub-orbital launch catapult, anti-grav turbine salvage, and high-altitude highway ramps.
+    - *Permanent Rig Upgrades:* `Iron Nomad - Sky Runner` (+30% speed, +1 EDGE), `Iron Nomad - High Strato` (+22% speed, +15 hull, +1 EDGE, +1 CYBER), or `Iron Nomad - Sky Corsair` (+18% speed, +25 hull, +1 EDGE, +1 COOL).
+
 ### Courier Contracts & Cargo Loading
 Procedural delivery contracts are generated at every node with specified parameters:
 - **Cargo Reservation**: Accepting a contract reserves the necessary tonnage in your cargo hold.
@@ -406,7 +450,7 @@ Terminal Haul/
 # 1. Install dependencies
 npm.cmd install
 
-# 2. Run test suite (71 passing tests)
+# 2. Run test suite (123 passing tests across 19 suites)
 npm.cmd test
 
 # 3. Start authoritative backend server (port 8080)
@@ -433,8 +477,13 @@ The project includes an end-to-end test suite powered by **Vitest** covering all
 - `tests/navigation.test.ts`: Graph routing, hop discovery, and node connectivity.
 - `tests/persistence.test.ts`: Save serialization, hydration, and migration compatibility.
 - `tests/trading.test.ts`: Market order processing, credit calculations, and cargo limits.
+- `tests/cryoQuest.test.ts`: 10-storylet non-repeatable chain for Dr. Elena Vance extraction.
+- `tests/loversQuest.test.ts`: 20-storylet non-repeatable lovers saga across the ashline.
+- `tests/newSagas.test.ts`: Five epic 20-stage sagas with permanent rig upgrades.
+- `tests/tenNewSagas.test.ts`: Ten complex 15-stage sagas with PbtA mechanics and permanent rig/stat rewards.
 - `tests/multiplayer.test.ts`: Authoritative WebSocket server round-trips, chat broadcasting, leaderboard syncing, and shared economy adjustments.
 - `tests/audio.test.ts`: Web Audio procedural synthesizer initialization and muting.
+- `tests/convoyMaintenance.test.ts`: Convoy hull attenuation, speed penalties, and repair costs.
 
 Run all tests anytime with:
 ```powershell

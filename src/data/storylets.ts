@@ -6,6 +6,16 @@ import { COLOSSUS_QUEST_STORYLETS } from './colossusQuestStorylets';
 import { SMUGGLER_QUEST_STORYLETS } from './smugglerQuestStorylets';
 import { ICARUS_QUEST_STORYLETS } from './icarusQuestStorylets';
 import { PLAGUE_QUEST_STORYLETS } from './plagueQuestStorylets';
+import { SIREN_QUEST_STORYLETS } from './sirenQuestStorylets';
+import { RAILGUN_QUEST_STORYLETS } from './railgunQuestStorylets';
+import { GHOSTWAY_QUEST_STORYLETS } from './ghostwayQuestStorylets';
+import { BLACKSUN_QUEST_STORYLETS } from './blacksunQuestStorylets';
+import { ORACLE_QUEST_STORYLETS } from './oracleQuestStorylets';
+import { LEVIATHAN_QUEST_STORYLETS } from './leviathanQuestStorylets';
+import { KINGPIN_QUEST_STORYLETS } from './kingpinQuestStorylets';
+import { NEUROPLAGUE_QUEST_STORYLETS } from './neuroplagueQuestStorylets';
+import { EDEN_QUEST_STORYLETS } from './edenQuestStorylets';
+import { SKYWAY_QUEST_STORYLETS } from './skywayQuestStorylets';
 
 export const BASE_STORYLET_POOL: Storylet[] = [
   {
@@ -724,6 +734,16 @@ export const STORYLET_POOL: Storylet[] = [
   ...COLOSSUS_QUEST_STORYLETS,
   ...SMUGGLER_QUEST_STORYLETS,
   ...ICARUS_QUEST_STORYLETS,
-  ...PLAGUE_QUEST_STORYLETS
+  ...PLAGUE_QUEST_STORYLETS,
+  ...SIREN_QUEST_STORYLETS,
+  ...RAILGUN_QUEST_STORYLETS,
+  ...GHOSTWAY_QUEST_STORYLETS,
+  ...BLACKSUN_QUEST_STORYLETS,
+  ...ORACLE_QUEST_STORYLETS,
+  ...LEVIATHAN_QUEST_STORYLETS,
+  ...KINGPIN_QUEST_STORYLETS,
+  ...NEUROPLAGUE_QUEST_STORYLETS,
+  ...EDEN_QUEST_STORYLETS,
+  ...SKYWAY_QUEST_STORYLETS
 ];
 
