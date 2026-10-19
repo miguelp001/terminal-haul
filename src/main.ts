@@ -34,6 +34,10 @@ class TerminalApp {
   private creditsValue = document.getElementById('creditsValue')!;
   private netWorthValue = document.getElementById('netWorthValue')!;
   private totalDistValue = document.getElementById('totalDistValue')!;
+  private miniStatGrit = document.getElementById('miniStatGrit');
+  private miniStatEdge = document.getElementById('miniStatEdge');
+  private miniStatCyber = document.getElementById('miniStatCyber');
+  private miniStatCool = document.getElementById('miniStatCool');
   private cargoManifestList = document.getElementById('cargoManifestList')!;
 
   // Center Column Tabs & Containers
@@ -55,6 +59,7 @@ class TerminalApp {
 
   private marketTableBody = document.getElementById('marketTableBody')!;
   private marketIntelText = document.getElementById('marketIntelText')!;
+  private statsGrid = document.getElementById('statsGrid');
   private qualitiesGrid = document.getElementById('qualitiesGrid')!;
   private factionsList = document.getElementById('factionsList')!;
 
@@ -110,6 +115,11 @@ class TerminalApp {
   private storyletTitle = document.getElementById('storyletTitle')!;
   private storyletText = document.getElementById('storyletText')!;
   private storyletOutcome = document.getElementById('storyletOutcome')!;
+  private storyletRollBanner = document.getElementById('storyletRollBanner');
+  private storyletRollDice = document.getElementById('storyletRollDice');
+  private storyletRollModifier = document.getElementById('storyletRollModifier');
+  private storyletRollTotal = document.getElementById('storyletRollTotal');
+  private storyletRollBadge = document.getElementById('storyletRollBadge');
   private storyletOutcomeText = document.getElementById('storyletOutcomeText')!;
   private storyletOutcomeChanges = document.getElementById('storyletOutcomeChanges')!;
   private storyletOptionsList = document.getElementById('storyletOptionsList')!;
@@ -718,6 +728,13 @@ class TerminalApp {
     this.netWorthValue.textContent = `${gameStore.calculateNetWorth().toLocaleString()} ₵`;
     this.totalDistValue.textContent = `${state.totalDistanceTraveled.toLocaleString()} km`;
 
+    if (state.stats) {
+      if (this.miniStatGrit) this.miniStatGrit.textContent = `${state.stats.grit >= 0 ? '+' : ''}${state.stats.grit}`;
+      if (this.miniStatEdge) this.miniStatEdge.textContent = `${state.stats.edge >= 0 ? '+' : ''}${state.stats.edge}`;
+      if (this.miniStatCyber) this.miniStatCyber.textContent = `${state.stats.cyber >= 0 ? '+' : ''}${state.stats.cyber}`;
+      if (this.miniStatCool) this.miniStatCool.textContent = `${state.stats.cool >= 0 ? '+' : ''}${state.stats.cool}`;
+    }
+
     if (state.activeRoute && state.status === 'DOCKED') {
       const nextLegIndex = state.activeRoute.currentLegIndex;
       const nextNode = gameStore.getNode(state.activeRoute.routeNodeIds[nextLegIndex]);
@@ -1057,6 +1074,46 @@ class TerminalApp {
   private renderQualitiesView(): void {
     const state = gameStore.getState();
 
+    // 1. Render Core Stats (PbtA)
+    const statDefs = [
+      { key: 'grit', name: 'GRIT', desc: 'Chassis strength, rig durability, brute kinetic force, withstanding damage.' },
+      { key: 'edge', name: 'EDGE', desc: 'Reflexes, evasive maneuvers, highway speed, dodging ambushes and hazards.' },
+      { key: 'cyber', name: 'CYBER', desc: 'Interface mastery, scanner telemetry spoofing, hacking, rig electronics.' },
+      { key: 'cool', name: 'COOL', desc: 'Street presence, haggling, intimidation, underworld diplomacy, deception.' }
+    ] as const;
+
+    if (this.statsGrid && state.stats) {
+      this.statsGrid.innerHTML = '';
+      for (const def of statDefs) {
+        const val = state.stats[def.key] ?? 0;
+        const card = document.createElement('div');
+        card.className = 'stat-card';
+
+        const header = document.createElement('div');
+        header.className = 'stat-card-header';
+
+        const name = document.createElement('span');
+        name.className = 'stat-card-name';
+        name.textContent = def.name;
+
+        const valEl = document.createElement('span');
+        valEl.className = 'stat-card-val';
+        valEl.textContent = `${val >= 0 ? '+' : ''}${val}`;
+
+        header.appendChild(name);
+        header.appendChild(valEl);
+
+        const desc = document.createElement('div');
+        desc.className = 'stat-card-desc';
+        desc.textContent = def.desc;
+
+        card.appendChild(header);
+        card.appendChild(desc);
+        this.statsGrid.appendChild(card);
+      }
+    }
+
+    // 2. Render Pilot Qualities
     this.qualitiesGrid.innerHTML = '';
     for (const [qName, val] of Object.entries(state.qualities)) {
       const card = document.createElement('div');
@@ -1155,7 +1212,29 @@ class TerminalApp {
       btn.className = 'storylet-option-btn';
 
       const labelSpan = document.createElement('span');
-      labelSpan.textContent = option.label;
+      labelSpan.style.display = 'flex';
+      labelSpan.style.alignItems = 'center';
+      labelSpan.style.flexWrap = 'wrap';
+      labelSpan.style.gap = '6px';
+
+      if (option.statRoll) {
+        const rollBadge = document.createElement('span');
+        rollBadge.className = 'stat-roll-badge';
+        const statName = option.statRoll.toUpperCase();
+        let bonusText = '';
+        if (option.qualityBonusKey && state.qualities) {
+          const qVal = state.qualities[option.qualityBonusKey] ?? 0;
+          if (qVal >= (option.qualityBonusThreshold ?? 3)) {
+            bonusText = ` +1 ${option.qualityBonusKey.toUpperCase()}`;
+          }
+        }
+        rollBadge.textContent = `[ROLL +${statName}${bonusText}]`;
+        labelSpan.appendChild(rollBadge);
+      }
+
+      const textSpan = document.createElement('span');
+      textSpan.textContent = option.label;
+      labelSpan.appendChild(textSpan);
 
       const reqCheck = narrativeEngine.checkRequirement(option.reqs, state, currentNode);
 
@@ -1189,7 +1268,31 @@ class TerminalApp {
     this.storyletFooter.style.display = 'block';
     this.storyletModal.style.display = 'flex';
 
-    this.storyletOutcomeText.textContent = result.option?.effectText || 'Outcome applied.';
+    if (result.rollResult && this.storyletRollBanner) {
+      this.storyletRollBanner.style.display = 'flex';
+      const rr = result.rollResult;
+      if (this.storyletRollDice) {
+        this.storyletRollDice.textContent = `🎲 2d6 [ ${rr.dice[0]} + ${rr.dice[1]} = ${rr.diceTotal} ]`;
+      }
+      if (this.storyletRollModifier) {
+        const statName = rr.statKey ? rr.statKey.toUpperCase() : 'STAT';
+        const statMod = `${rr.statValue >= 0 ? '+' : ''}${rr.statValue} ${statName}`;
+        const qualMod = rr.qualityBonusKey && rr.qualityBonus > 0 ? ` +${rr.qualityBonus} ${rr.qualityBonusKey.toUpperCase()}` : '';
+        this.storyletRollModifier.textContent = `${statMod}${qualMod}`;
+      }
+      if (this.storyletRollTotal) {
+        this.storyletRollTotal.textContent = `= ${rr.total}`;
+      }
+      if (this.storyletRollBadge) {
+        this.storyletRollBadge.textContent = rr.outcomeLabel;
+        const badgeClass = rr.outcome === 'STRONG_HIT' ? 'strong' : rr.outcome === 'WEAK_HIT' ? 'weak' : 'miss';
+        this.storyletRollBadge.className = `storylet-roll-badge ${badgeClass}`;
+      }
+    } else if (this.storyletRollBanner) {
+      this.storyletRollBanner.style.display = 'none';
+    }
+
+    this.storyletOutcomeText.textContent = result.effectText || result.option?.effectText || 'Outcome applied.';
     if (result.changes && result.changes.length > 0) {
       const itemsHtml = result.changes
         .map((c) => {

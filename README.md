@@ -158,6 +158,35 @@ Your carrier profile is shaped by narrative qualities that influence storylet ch
 - **Heat**: Law enforcement alert status. Accrues when transporting contraband or violating corporate law. High Heat increases hostile roadblock inspections.
 - **Glitch Rating**: Hardware/neural instability. Accrues when running cracked cyberware or interfacing with anomalies.
 
+### RPG Core Stats, Qualities & PbtA Dice Rolling
+
+Pilots operate with four core operational stats alongside evolving carrier qualities and Powered by the Apocalypse (PbtA) 2d6 action rolls:
+
+#### The 4 Core Stats:
+- **GRIT** ($-1$ to $+3$): Chassis strength, hydraulic force, kinetic endurance, withstanding structural damage and high-g impacts.
+- **EDGE** ($-1$ to $+3$): Reflexes, evasive maneuvers, highway reaction speed, dodging raider ambushes and navigating storms.
+- **CYBER** ($-1$ to $+3$): Rig neural interface, electronic counter-measures, scanner spoofing, hacking, and AI collective interaction.
+- **COOL** ($-1$ to $+3$): Composure, nerve, underworld negotiation, intimidation, and road diplomacy.
+
+#### Carrier Qualities:
+- `Street Cred` ($0 - 100$): Underworld reputation; grants broker access and confers $+1$ roll bonus on COOL/GRIT moves.
+- `Tech Literacy` ($0 - 10$): Electronics mastery; enables scanner spoofing and confers $+1$ roll bonus on CYBER moves.
+- `Contraband Mastery` ($0 - 10$): Smuggling expertise; shields illicit bio-toxins from corporate detection.
+- `Cyberware Level` ($0 - 10$): Augmentation tier; unlocks neural maneuvers and confers $+1$ roll bonus on EDGE moves.
+- `Enclave Permits` ($0 - 5$): Corporate clearance passes; allows express checkpoint passage and exempts docking inspection fees.
+- `Heat` ($0 - 100$): Law enforcement alert status; accrues from illegal contraband runs; triggers checkpoint crackdowns.
+- `Glitch Rating` ($0 - 100$): Neural corruption from experimental AI routines; causes HUD visual glitches and system feedback.
+
+#### Powered by the Apocalypse (PbtA) 2d6 Resolution:
+When resolving narrative encounters, options with action moves test your Core Stats and Qualities using a $2\text{d}6$ roll:
+$$\text{Roll Total} = \text{Die}_1 (1-6) + \text{Die}_2 (1-6) + \text{CoreStat} + \text{QualityBonus}$$
+
+- **Strong Hit ($10+$)**: Full success! Intent is achieved cleanly with premium rewards, positive quality increases, and zero negative fallout.
+- **Weak Hit ($7 - 9$)**: Mixed success! You achieve your goal, but at a cost, complication, or trade-off (e.g. minor hull damage, credit fines, or increased Heat).
+- **Miss ($6-$)**: Hard move / Complication! The encounter turns dangerous (hull damage, lost cargo, high Heat spike), but awards fail-forward narrative qualities (e.g., $+1$ Street Cred or $+1$ Tech Literacy from surviving the trial).
+
+All rolls display an animated, color-coded dice breakdown in the narrative modal.
+
 #### The 5 Competing Factions:
 - **Aegis Security (`aegis`)**: Corporate security enforcing militarized order along corporate corridors.
 - **Gridlock Syndicate (`gridlock`)**: Lawless road clans and smuggler cartels dominating outer wastelands.

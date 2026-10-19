@@ -77,6 +77,15 @@ export interface PlayerQualities {
   [key: string]: number;
 }
 
+export type CoreStatKey = 'grit' | 'edge' | 'cyber' | 'cool';
+
+export interface CoreStats {
+  grit: number;   // Chassis endurance, brute force, rig toughness (-1 to +3)
+  edge: number;   // Reflexes, evasive maneuvers, highway speed, dodging (-1 to +3)
+  cyber: number;  // Interface, scanner telemetry, hacking, electronic ops (-1 to +3)
+  cool: number;   // Composure, intimidation, street parley, deception (-1 to +3)
+}
+
 export interface ConvoyRig {
   name: string;
   hullIntegrity: number; // 0 - 100
@@ -120,6 +129,7 @@ export interface PlayerState {
   credits: number;
   cargo: Record<CommodityId, number>;
   qualities: PlayerQualities;
+  stats: CoreStats;
   factions: Record<FactionId, number>; // -100 to 100
   currentLocationId: string;
   convoy: ConvoyRig;

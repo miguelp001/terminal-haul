@@ -1,10 +1,11 @@
-import { PlayerState, CommodityId, FactionId, PlayerQualities, ConvoyRig, ActiveRoute } from '../types';
+import { PlayerState, CommodityId, FactionId, PlayerQualities, ConvoyRig, ActiveRoute, CoreStats } from '../types';
 import { CourierContract } from '../types/contracts';
 
 export interface SavedGamePayload {
   credits: number;
   cargo: Record<CommodityId, number>;
   qualities: PlayerQualities;
+  stats?: CoreStats;
   factions: Record<FactionId, number>;
   currentLocation: string;
   gameDays: number;
@@ -34,6 +35,7 @@ export class PersistenceManager {
       credits: state.credits,
       cargo: { ...state.cargo },
       qualities: { ...state.qualities },
+      stats: state.stats ? { ...state.stats } : { grit: 1, edge: 1, cyber: 0, cool: 1 },
       factions: { ...state.factions },
       currentLocation: state.currentLocationId,
       gameDays: Math.round(gameDays * 1000) / 1000,

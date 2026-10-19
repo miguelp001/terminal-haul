@@ -76,6 +76,15 @@
         </div>
 
         <div class="stat-divider"></div>
+        <div style="font-size: 0.68rem; color: var(--text-muted); letter-spacing: 1px; margin-bottom: 6px;">CORE STATS (PBTA 2D6)</div>
+        <div class="mini-stats-grid" id="miniStatsGrid">
+          <div class="mini-stat-badge"><span class="stat-tag">GRIT</span> <span id="miniStatGrit" class="stat-val">+1</span></div>
+          <div class="mini-stat-badge"><span class="stat-tag">EDGE</span> <span id="miniStatEdge" class="stat-val">+1</span></div>
+          <div class="mini-stat-badge"><span class="stat-tag">CYBER</span> <span id="miniStatCyber" class="stat-val">+0</span></div>
+          <div class="mini-stat-badge"><span class="stat-tag">COOL</span> <span id="miniStatCool" class="stat-val">+1</span></div>
+        </div>
+
+        <div class="stat-divider"></div>
         <div class="panel-header" style="margin: -10px -10px 10px -10px; background: transparent; border-bottom: 1px dashed var(--border-color);">
           <span>CARGO MANIFEST</span>
         </div>
@@ -92,7 +101,7 @@
           <button id="tabMap" class="tab-btn active">TACTICAL GRID</button>
           <button id="tabMarket" class="tab-btn">COMMODITY EXCHANGE</button>
           <button id="tabContracts" class="tab-btn">CONTRACTS</button>
-          <button id="tabQualities" class="tab-btn">PILOT & FACTIONS</button>
+          <button id="tabQualities" class="tab-btn">STATS & QUALITIES</button>
           <button id="tabLeaderboard" class="tab-btn">NET WORTH LEADERBOARD</button>
         </div>
         <span id="currentLocationBadge" class="status-value">NEO-SYRACUSE</span>
@@ -177,9 +186,16 @@
         </div>
       </div>
 
-      <!-- Pilot Qualities & Faction Matrix View -->
+      <!-- Pilot Stats, Qualities & Faction Matrix View -->
       <div id="qualitiesViewContainer" class="qualities-container" style="display: none;">
         <div class="panel-header" style="background: transparent; border-bottom: 1px dashed var(--border-color); padding: 0 0 6px 0;">
+          <span>CORE PILOT STATS // POWERED BY THE APOCALYPSE [2D6 + STAT]</span>
+        </div>
+        <div id="statsGrid" class="stats-grid">
+          <!-- Dynamic Core Stats (Grit, Edge, Cyber, Cool) -->
+        </div>
+
+        <div class="panel-header" style="background: transparent; border-bottom: 1px dashed var(--border-color); padding: 12px 0 6px 0; margin-top: 6px;">
           <span>PILOT QUALITIES & SYSTEM INTEGRITY</span>
         </div>
         <div id="qualitiesGrid" class="qualities-grid">
@@ -323,6 +339,14 @@
       <p id="storyletText" class="storylet-body">Prose description...</p>
 
       <div id="storyletOutcome" class="storylet-outcome" style="display: none;">
+        <div id="storyletRollBanner" class="storylet-roll-banner" style="display: none;">
+          <div class="roll-banner-top">
+            <span id="storyletRollDice" class="roll-dice-text">🎲 2d6 [ 4 + 5 ]</span>
+            <span id="storyletRollModifier" class="roll-mod-text">+1 EDGE</span>
+            <span id="storyletRollTotal" class="roll-total-text">= 10</span>
+          </div>
+          <div id="storyletRollBadge" class="storylet-roll-badge">STRONG HIT (10+)</div>
+        </div>
         <div id="storyletOutcomeText" style="margin-bottom: 6px;">Outcome text</div>
         <div id="storyletOutcomeChanges" style="color: var(--neon-cyan); font-size: 0.75rem;">Consequences</div>
       </div>

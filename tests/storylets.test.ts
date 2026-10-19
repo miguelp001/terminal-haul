@@ -142,4 +142,79 @@ describe('Quality-Driven Narrative Engine (Storylets)', () => {
     // Cyberware = 1.0T * 2 = 2.0T; Batteries = 2.0T * 1 = 2.0T. Total +4.0T.
     expect(nextState.convoy.currentCargoWeight).toBeCloseTo(initialWeight + 4.0, 1);
   });
+
+  it('resolves PbtA Strong Hit (10+) with quality rewards on storylet options', () => {
+    const store = new GameStore();
+    const storylet = store.getNarrativeEngine().getEligibleStorylets(store.getState(), store.getCurrentNode(), 'ANY')
+      .find((s) => s.id === 'story_border_patrol');
+    expect(storylet).toBeDefined();
+
+    // @ts-expect-error set activeStorylet
+    store.state.activeStorylet = storylet;
+
+    // opt_hack_scan rolls CYBER (default 0) + qualityBonus (Tech Literacy 2 >= 2 -> +1)
+    // dice override [5, 4] = 9 + 0 + 1 = 10 -> STRONG_HIT
+    const result = store.selectStoryletOption('opt_hack_scan', [5, 4]);
+    expect(result.success).toBe(true);
+    expect(result.rollResult).toBeDefined();
+    expect(result.rollResult?.outcome).toBe('STRONG_HIT');
+    expect(result.effectText).toContain('STRONG HIT');
+    expect(result.changes).toContain('Tech Literacy: +2 (Now 4)');
+    expect(result.changes).toContain('Street Cred: +3 (Now 8)');
+  });
+
+  it('resolves PbtA Weak Hit (7-9) with cost/complication', () => {
+    const store = new GameStore();
+    const storylet = store.getNarrativeEngine().getEligibleStorylets(store.getState(), store.getCurrentNode(), 'ANY')
+      .find((s) => s.id === 'story_border_patrol');
+    expect(storylet).toBeDefined();
+
+    // @ts-expect-error set activeStorylet
+    store.state.activeStorylet = storylet;
+
+    // opt_hack_scan: dice [3, 4] = 7 + 0 + 1 = 8 -> WEAK_HIT
+    const result = store.selectStoryletOption('opt_hack_scan', [3, 4]);
+    expect(result.success).toBe(true);
+    expect(result.rollResult?.outcome).toBe('WEAK_HIT');
+    expect(result.effectText).toContain('WEAK HIT');
+    expect(result.changes).toContain('Heat: +6 (Now 6)');
+  });
+
+  it('resolves PbtA Miss (6-) with hull damage and fail-forward qualities', () => {
+    const store = new GameStore();
+    const storylet = store.getNarrativeEngine().getEligibleStorylets(store.getState(), store.getCurrentNode(), 'ANY')
+      .find((s) => s.id === 'story_border_patrol');
+    expect(storylet).toBeDefined();
+
+    // @ts-expect-error set activeStorylet
+    store.state.activeStorylet = storylet;
+
+    // opt_hack_scan: dice [2, 1] = 3 + 0 + 1 = 4 -> MISS
+    const result = store.selectStoryletOption('opt_hack_scan', [2, 1]);
+    expect(result.success).toBe(true);
+    expect(result.rollResult?.outcome).toBe('MISS');
+    expect(result.effectText).toContain('MISS');
+    expect(result.changes).toContain('Rig Hull: -10%');
+    expect(result.changes).toContain('Heat: +15 (Now 15)');
+  });
+
+  it('evaluates core stats requirements and tracks 4 core stats', () => {
+    const store = new GameStore();
+    const stats = store.getStats();
+    expect(stats.grit).toBe(1);
+    expect(stats.edge).toBe(1);
+    expect(stats.cyber).toBe(0);
+    expect(stats.cool).toBe(1);
+
+    store.modifyStat('grit', 1);
+    expect(store.getStats().grit).toBe(2);
+
+    const check = store.getNarrativeEngine().checkRequirement(
+      { stats: { grit: 2, cyber: 1 } },
+      store.getState(),
+      store.getCurrentNode()
+    );
+    expect(check.meets).toBe(false);
+    expect(check.missing).toContain('CYBER >= 1 (Current: 0)');
+  });
 });

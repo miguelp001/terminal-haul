@@ -1,7 +1,8 @@
-import { PlayerState, WorldNode, CommodityId, FactionId } from '../types';
-import type { Storylet, StoryletRequirement, StoryletReward, StoryletTriggerType } from '../types/storylet';
+import { PlayerState, WorldNode, CommodityId, FactionId, CoreStatKey } from '../types';
+import type { Storylet, StoryletRequirement, StoryletReward, StoryletTriggerType, StoryletOption, PbtABranchOutcome } from '../types/storylet';
 import { STORYLET_POOL } from '../data/storylets';
 import { COMMODITIES } from '../constants/worldData';
+import { resolvePbtA, computeQualityRollBonus, PbtARollResult } from './pbta';
 
 export class NarrativeEngine {
   private storylets: Storylet[];
@@ -38,6 +39,16 @@ export class NarrativeEngine {
         const currentVal = state.qualities[qName] ?? 0;
         if (currentVal > maxVal) {
           missing.push(`${qName} <= ${maxVal} (Current: ${currentVal})`);
+        }
+      }
+    }
+
+    // 2b. Core Stats Check
+    if (req.stats && state.stats) {
+      for (const [sKey, minVal] of Object.entries(req.stats) as [CoreStatKey, number][]) {
+        const currentVal = state.stats[sKey] ?? 0;
+        if (currentVal < minVal) {
+          missing.push(`${sKey.toUpperCase()} >= ${minVal} (Current: ${currentVal})`);
         }
       }
     }
@@ -185,6 +196,68 @@ export class NarrativeEngine {
       changes.push(`Rig Hull: ${rewards.hullIntegrity > 0 ? '+' : ''}${rewards.hullIntegrity}%`);
     }
 
+    // 6. Core Stats
+    if (rewards.stats && state.stats) {
+      for (const [sKey, delta] of Object.entries(rewards.stats) as [CoreStatKey, number][]) {
+        const cur = state.stats[sKey] ?? 0;
+        const next = Math.max(-2, Math.min(4, cur + delta));
+        state.stats[sKey] = next;
+        changes.push(`${sKey.toUpperCase()}: ${delta > 0 ? '+' : ''}${delta} (Now ${next >= 0 ? '+' : ''}${next})`);
+      }
+    }
+
     return changes;
+  }
+
+  /**
+   * Evaluates a storylet option choice using PbtA mechanics if statRoll is specified.
+   */
+  public resolveStoryletOption(
+    option: StoryletOption,
+    state: PlayerState,
+    diceOverride?: [number, number]
+  ): {
+    rollResult?: PbtARollResult;
+    effectText: string;
+    rewards: StoryletReward;
+  } {
+    if (option.statRoll) {
+      const statVal = state.stats ? (state.stats[option.statRoll] ?? 0) : 0;
+      const qualityBonus = computeQualityRollBonus(
+        state.qualities,
+        option.qualityBonusKey,
+        option.qualityBonusThreshold ?? 3
+      );
+      const rollResult = resolvePbtA(
+        statVal,
+        qualityBonus,
+        diceOverride,
+        option.statRoll,
+        option.qualityBonusKey
+      );
+
+      let branchOutcome: PbtABranchOutcome | undefined;
+      if (rollResult.outcome === 'STRONG_HIT') {
+        branchOutcome = option.strongHit;
+      } else if (rollResult.outcome === 'WEAK_HIT') {
+        branchOutcome = option.weakHit;
+      } else {
+        branchOutcome = option.miss;
+      }
+
+      const effectText = branchOutcome?.effectText || option.effectText;
+      const rewards = branchOutcome?.rewards || option.rewards;
+
+      return {
+        rollResult,
+        effectText,
+        rewards
+      };
+    }
+
+    return {
+      effectText: option.effectText,
+      rewards: option.rewards
+    };
   }
 }

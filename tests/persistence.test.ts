@@ -46,4 +46,22 @@ describe('Data Storage & Persistence (Section 7 Schema)', () => {
     const parsed = JSON.parse(jsonStr);
     expect(parsed.credits).toBe(2500);
   });
+
+  it('persists and restores core stats (grit, edge, cyber, cool)', () => {
+    const store = new GameStore();
+    store.modifyStat('cyber', 2);
+    store.modifyStat('grit', 1);
+
+    const payload = PersistenceManager.serializeGameState(store.getState(), 2.0);
+    expect(payload.stats).toBeDefined();
+    expect(payload.stats?.cyber).toBe(2);
+    expect(payload.stats?.grit).toBe(2);
+
+    const newStore = new GameStore();
+    expect(newStore.getStats().cyber).toBe(0);
+    // @ts-expect-error test payload restoration
+    newStore.applySavedPayload(payload);
+    expect(newStore.getStats().cyber).toBe(2);
+    expect(newStore.getStats().grit).toBe(2);
+  });
 });

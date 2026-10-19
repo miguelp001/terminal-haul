@@ -1,5 +1,6 @@
-import { PlayerState, WorldNode, CommodityId } from '../types';
+import { PlayerState, WorldNode, CommodityId, CoreStatKey, CoreStats } from '../types';
 import type { StoryletOption } from '../types/storylet';
+import type { PbtARollResult } from '../sim/pbta';
 import { WORLD_NODES } from '../constants/nodes';
 import { COMMODITIES } from '../constants/worldData';
 import { SimulationClock } from '../sim/clock';
@@ -65,6 +66,12 @@ export class GameStore {
         'Enclave Permits': 0,
         'Heat': 0,
         'Glitch Rating': 0
+      },
+      stats: {
+        grit: 1,
+        edge: 1,
+        cyber: 0,
+        cool: 1
       },
       factions: {
         aegis: 10,
@@ -470,13 +477,18 @@ export class GameStore {
   }
 
   /**
-   * Selects and resolves an option for the active storylet.
+   * Selects and resolves an option for the active storylet, executing PbtA roll if statRoll is present.
    */
-  public selectStoryletOption(optionId: string): {
+  public selectStoryletOption(
+    optionId: string,
+    diceOverride?: [number, number]
+  ): {
     success: boolean;
     option?: StoryletOption;
     changes?: string[];
     message?: string;
+    rollResult?: PbtARollResult;
+    effectText?: string;
   } {
     const storylet = this.state.activeStorylet;
     if (!storylet) {
@@ -501,15 +513,25 @@ export class GameStore {
       };
     }
 
+    // Resolve move via NarrativeEngine (applies PbtA if statRoll is present)
+    const resolution = this.narrativeEngine.resolveStoryletOption(
+      option,
+      this.state,
+      diceOverride
+    );
+
     // Apply rewards
     const changes = this.narrativeEngine.applyOptionRewards(
-      option.rewards,
+      resolution.rewards,
       this.state,
       () => this.recalculateCargoWeight()
     );
 
     this.addLog(`NARRATIVE [${storylet.title}]: ${option.label}`);
-    this.addLog(`OUTCOME: ${option.effectText}`);
+    if (resolution.rollResult) {
+      this.addLog(`PbtA ROLL: ${resolution.rollResult.breakdownText}`);
+    }
+    this.addLog(`OUTCOME: ${resolution.effectText}`);
     if (changes.length > 0) {
       this.addLog(`CONSEQUENCES: ${changes.join(' | ')}`);
     }
@@ -523,7 +545,9 @@ export class GameStore {
     return {
       success: true,
       option,
-      changes
+      changes,
+      rollResult: resolution.rollResult,
+      effectText: resolution.effectText
     };
   }
 
@@ -1037,6 +1061,12 @@ export class GameStore {
         'Heat': 0,
         'Glitch Rating': 0
       },
+      stats: {
+        grit: 1,
+        edge: 1,
+        cyber: 0,
+        cool: 1
+      },
       factions: { aegis: 10, gridlock: -5, solaris: 20, rustworks: 15, neuralfront: 0 },
       currentLocationId: initialLocation.id,
       convoy: {
@@ -1058,6 +1088,19 @@ export class GameStore {
       activeContracts: []
     };
     this.recalculateCargoWeight();
+    this.notify();
+  }
+
+  public getStats(): CoreStats {
+    return { ...this.state.stats };
+  }
+
+  public modifyStat(key: CoreStatKey, delta: number): void {
+    const cur = this.state.stats[key] ?? 0;
+    const next = Math.max(-2, Math.min(4, cur + delta));
+    this.state.stats[key] = next;
+    this.addLog(`STAT ADJUSTMENT: ${key.toUpperCase()} set to ${next >= 0 ? '+' : ''}${next}.`);
+    this.autoSave();
     this.notify();
   }
 
@@ -1086,6 +1129,7 @@ export class GameStore {
     this.state.credits = payload.credits;
     this.state.cargo = { ...payload.cargo };
     this.state.qualities = { ...payload.qualities };
+    this.state.stats = payload.stats ? { ...payload.stats } : { grit: 1, edge: 1, cyber: 0, cool: 1 };
     this.state.factions = { ...payload.factions };
     this.state.currentLocationId = payload.currentLocation;
     this.state.totalDistanceTraveled = payload.totalDistanceTraveled || 0;

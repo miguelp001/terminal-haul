@@ -81,36 +81,68 @@ Routing across the 200 nodes is calculated using the `RouteGraph` engine:
 
 ---
 
-## 4. Quality-Driven Narrative Engine (Storylets)
+## 4. Four Core Stats & Quality-Driven Narrative Engine (Storylets & PbtA)
 
 ### 4.1 Narrative Engine Architecture
-Inspired by *Sunless Sea* and *Fallen London*, the game executes quality-driven narrative encounters (storylets). Storylets are evaluated by `NarrativeEngine` during transit or upon docking.
+Inspired by *Sunless Sea*, *Fallen London*, and Powered by the Apocalypse (PbtA) tabletop RPG systems, the game combines four fundamental pilot stats, narrative qualities, and 2d6 action rolls into a reactive encounter system. Storylets are evaluated by `NarrativeEngine` during transit ($50\%$ progress check) or upon docking.
 
-### 4.2 Carrier Qualities Specification
-Player progress and operational risks are measured through numerical qualities:
+### 4.2 Four Core Stats (PbtA)
+Pilots possess four core operational stats rated from $-1$ to $+3$ (clamped between $-2$ and $+4$ through career advancement):
+
+| Core Stat | Focus Area & Mechanical Role | PbtA Action Move Examples |
+| :--- | :--- | :--- |
+| **GRIT** | Chassis resilience, hydraulic force, physical toughness, absorbing damage. | Smashing roadblocks, anchoring in sandstorms, heavy salvage winching, enduring neural seizures. |
+| **EDGE** | Reaction speed, evasive driving, high-speed maneuvers, hazard avoidance. | Outrunning raiders, dodging sandstorm squalls, high-speed weaving, neural reflex driving. |
+| **CYBER** | Rig interface, electronic counter-measures, scanner spoofing, hacking, AI mesh. | Overriding checkpoint radar, decrypting freight manifests, compiling optic drivers, EMP bursts. |
+| **COOL** | Composure, nerve, underworld negotiation, intimidation, deception. | Fast-talking enclave enforcers, negotiating contraband hauls, parleying with desert nomad clans. |
+
+### 4.3 Carrier Qualities Specification
+Player progress and operational risks are measured through numerical qualities that act as narrative flags, access requirements, and roll modifiers:
 
 | Quality Key | Type | Range | Description & Mechanical Impact |
 | :--- | :---: | :---: | :--- |
-| `Street Cred` | Numeric | $0 - 100$ | Underworld reputation; grants access to illegal brokers and lowers ambush rates. |
-| `Tech Literacy` | Numeric | $0 - 10$ | Electronics mastery; enables terminal hacking, field repairs, and drone countermeasures. |
-| `Contraband Mastery` | Numeric | $0 - 10$ | Smuggling expertise; shields illegal bio-toxins from corporate cargo scanners. |
-| `Cyberware Level` | Numeric | $0 - 10$ | Augmentation tier; unlocks physical combat and neural dialogue checks. |
-| `Enclave Permits` | Numeric | $0 - 5$ | Corporate clearance passes; prevents fines when docking at high-security nodes. |
+| `Street Cred` | Numeric | $0 - 100$ | Underworld reputation; grants access to illegal brokers and confers $+1$ roll bonus on COOL/GRIT moves. |
+| `Tech Literacy` | Numeric | $0 - 10$ | Electronics mastery; enables terminal hacking and confers $+1$ roll bonus on CYBER moves. |
+| `Contraband Mastery` | Numeric | $0 - 10$ | Smuggling expertise; shields contraband and confers $+1$ roll bonus on illicit negotiations. |
+| `Cyberware Level` | Numeric | $0 - 10$ | Augmentation tier; unlocks enhanced moves and confers $+1$ roll bonus on EDGE moves. |
+| `Enclave Permits` | Numeric | $0 - 5$ | Corporate clearance passes; allows express checkpoint passage and prevents docking fines. |
 | `Heat` | Hazard | $0 - 100$ | Law enforcement alert status; accrues when dealing contraband; triggers roadblock raids. |
 | `Glitch Rating` | Hazard | $0 - 100$ | Neural corruption; accrues from experimental tech; triggers sensory hallucinations. |
 
-### 4.3 Storylet Evaluation & Schema
+### 4.4 Powered by the Apocalypse (PbtA) Resolution
+When a storylet option requires an action roll (`statRoll`), resolution follows the PbtA 2d6 probability curve:
+
+$$\text{Roll Total} = \text{Die}_1 (1-6) + \text{Die}_2 (1-6) + \text{CoreStat} + \text{QualityBonus}$$
+
+* **Strong Hit ($10+$):** Full success. Intent is cleanly achieved with peak rewards, positive quality increases, and zero negative fallout.
+* **Weak Hit ($7 - 9$):** Mixed success. Intent is achieved, but at a cost, complication, or compromise (e.g. minor hull damage, resource expenditure, or $+Heat$).
+* **Miss ($6-$):** Hard move / Complication. The situation spirals out of control with severe consequences (rig hull damage, loss of credits/cargo, or high $+Heat$), but awards fail-forward narrative qualities (e.g., $+1$ Street Cred or $+1$ Tech Literacy from surviving the ordeal).
+
+### 4.5 Storylet Schema
 ```typescript
 export interface StoryletRequirement {
-  [qualityKey: string]: number; // Minimum value required
+  qualities?: Record<string, number>;
+  maxQualities?: Record<string, number>;
+  stats?: Partial<Record<CoreStatKey, number>>;
+  credits?: number;
+  cargo?: Partial<Record<CommodityId, number>>;
+  factionRep?: Partial<Record<FactionId, number>>;
+  sector?: SectorId;
+  locationId?: string;
 }
 
-export interface StoryletRewards {
-  credits?: number;
+export interface StoryletReward {
   qualities?: Record<string, number>;
-  rep?: Record<FactionId, number>;
-  cargo?: Record<CommodityId, number>; // Directly awarded to cargo hold
-  hull?: number;                      // Hull integrity delta
+  stats?: Partial<Record<CoreStatKey, number>>;
+  credits?: number;
+  cargo?: Partial<Record<CommodityId, number>>;
+  rep?: Partial<Record<FactionId, number>>;
+  hullIntegrity?: number;
+}
+
+export interface PbtABranchOutcome {
+  effectText: string;
+  rewards: StoryletReward;
 }
 
 export interface StoryletOption {
@@ -118,20 +150,17 @@ export interface StoryletOption {
   label: string;
   reqs?: StoryletRequirement;
   effectText: string;
-  rewards: StoryletRewards;
-}
-
-export interface Storylet {
-  id: string;
-  title: string;
-  triggerLocation: string | 'Transit' | 'Any';
-  reqs: StoryletRequirement;
-  text: string;
-  options: StoryletOption[];
+  rewards: StoryletReward;
+  statRoll?: CoreStatKey;
+  qualityBonusKey?: string;
+  qualityBonusThreshold?: number;
+  strongHit?: PbtABranchOutcome; // 10+
+  weakHit?: PbtABranchOutcome;   // 7-9
+  miss?: PbtABranchOutcome;      // 6-
 }
 ```
 
-* **Transit Encounters:** Triggered automatically at $50\%$ transit progress between nodes if eligible storylets match the player's active qualities and location.
+* **Transit Encounters:** Triggered automatically at $50\%$ transit progress between nodes if eligible storylets match the player's active qualities, core stats, and location.
 * **Direct Cargo Salvage:** Options rewarding `rewards.cargo` automatically verify chassis capacity and add the commodities into the player's hold.
 
 ---
