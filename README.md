@@ -56,58 +56,53 @@ flowchart LR
 
 ## Interface Anatomy & Panel Breakdown
 
-The terminal layout uses a high-density, three-column CRT monitor interface:
+The terminal layout features a high-density, cyberpunk **Augmented-UI** interface engineered for maximum clarity, ergonomic efficiency, and seamless mobile responsiveness:
 
 ```
 +-----------------------------------------------------------------------------------------+
-| [TERMINAL HAUL] RIG: Iron Nomad MK-IV | DAY 1 - 14:20 | NET: LIVE | AUDIO: ON | PALETTE |
-+------------------------------------+-----------------------------+----------------------+
-| LEFT COLUMN: CONVOY STATUS         | CENTER DASHBOARD (TABBED)   | RIGHT COLUMN: NAV & COMMS
-| - Rig Callsign & Status (DOCKED)   | [MAP] [MARKET] [CONTRACTS]  | - Route Planner      |
-| - Hull Integrity Gauge (100%)      | [QUALITIES] [LEADERBOARD]   | - Sector Filter      |
-| - Cargo Capacity (7.0 / 35.0 T)    |                             | - Hop ETA & Distance |
-| - Liquid Credits (2,500 ₵)         |                             | - [DISPATCH CONVOY]  |
-| - Total Net Worth (6,850 ₵)        |                             | -------------------- |
-| - Total Distance Traveled (km)     |                             | [SYSTEM LOG]         |
-| - Active Cargo Manifest            |                             | [GLOBAL FREQUENCY]   |
-|   (Grain, Batteries, Chips, etc.)  |                             | (Live Chat Input)    |
-+------------------------------------+-----------------------------+----------------------+
+| [TERMINAL HAUL] RIG: Iron Nomad MK-IV | HULL: 100% | 2,500 ₵ | DAY 1 - 00:00 | [⚙ MENU] |
++-----------------------------------------------------------------------------------------+
+| [🗺️ TACTICAL MAP] [📈 MARKET] [📜 CONTRACTS] [🚚 RIG & PILOT] [📡 COMMS] [🏆 LEADERBOARD]  |
++-----------------------------------------------------------------------------------------+
+| ACTIVE WORKSPACE VIEW:                                                                  |
+| - TACTICAL MAP: 2D WGS84 geographic projection + Docked / Collapsible Route Dispatch   |
+| - COMMODITY EXCHANGE: Real-time GOAP order book with responsive price indicators       |
+| - COURIER CONTRACTS: Career prestige progression & enclave cargo consignments           |
+| - RIG & PILOT: Convoy telemetry, chassis repair, cargo hold, PbtA core stats & factions|
+| - COMMS & LOGS: System event telemetry & live multiplayer Global Frequency chat        |
+| - LEADERBOARD: Cluster net worth standings and presence tracking                        |
++-----------------------------------------------------------------------------------------+
 ```
 
-### 1. Terminal Header
-- **RIG Callsign**: Identifies your active hauler vehicle (`Iron Nomad MK-IV`).
-- **Telemetry Clock**: Displays game day and digital time (`DAY X — HH:MM`).
-- **Network Status Badge**: Indicates real-time WebSocket connection status (`NET: LIVE [1X REAL-TIME]`).
-- **Audio Toggle**: Cycles pure Web Audio procedural synthesis between `AUDIO: ON` and `AUDIO: OFF`.
-- **Palette Switcher**: Cycles monochrome CRT phosphor themes:
-  - `PALETTE: CYAN` (Default high-tech cyber-terminal).
-  - `PALETTE: AMBER` (Industrial wasteland orange amber).
-  - `PALETTE: GREEN` (Classic militarized green phosphor).
-- **Reset Profile**: Confirmation-guarded emergency wipe to restart carrier telemetry from baseline.
+### 1. Persistent Header & Telemetry HUD
+Vital hauler metrics are continuously displayed across all screens in an Augmented-UI polygonal status strip:
+- **RIG & Location**: Callsign (`Iron Nomad MK-IV`), status indicator (`DOCKED` / `IN_TRANSIT`), and current dock facility (`NEO-SYRACUSE`).
+- **Hull Integrity**: Health bar, percentage, and one-click `[REPAIR]` button when docked.
+- **Cargo Load**: Visual capacity gauge and metric tonnage (`7.0 / 35.0 T`).
+- **Financial Readout**: Liquid Credits (`2,500 ₵`) and total Net Worth (`3,250 ₵`).
+- **Telemetry Clock**: Game Day and persistent real-time simulation clock (`DAY X — HH:MM`).
+- **System Menu Button `[⚙ SYSTEM]`**: Opens the centralized configuration drawer.
 
-### 2. Left Column: Convoy & Inventory Telemetry
-- **CONVOY STATUS**: Indicates whether your rig is safely `DOCKED` at a facility or `IN_TRANSIT` on the open highway.
-- **HULL INTEGRITY**: Structural health percentage of your rig. Damage sustained in ambushes or collisions slows movement speed. Reaching 0% triggers emergency distress protocols.
-- **CARGO CAPACITY**: Measured in metric tons (**T**). Shows current load vs maximum chassis rating (default: 35.0 T). Exceeding maximum weight prevents departure.
-- **LIQUID CREDITS (₵)**: Immediate spendable currency used for purchasing goods, accepting collateralized contracts, paying bribes, or repairing your chassis.
-- **TOTAL NET WORTH**: Sum of liquid credits plus current real-time market liquidation value of all cargo units in your hold.
-- **TOTAL DISTANCE TRAVELED**: Cumulative odometer tracking kilometers logged across North America.
-- **CARGO MANIFEST**: Live itemized inventory showing held units, individual unit weights, total weight per line item, and immediate sell buttons when docked.
+### 2. Centralized System Menu (`#systemMenuModal`)
+Infrequently needed controls are moved out of the workspace into a clean Augmented-UI modal:
+- **Audio Synthesis**: Toggle browser Web Audio sound effects (`AUDIO: ON / OFF`).
+- **CRT Phosphor Palette**: Cycle monochrome color themes (`CYAN` / `AMBER` / `GREEN`).
+- **Network Telemetry**: Real-time WebSocket connection state and server address.
+- **Profile Re-initialization**: Confirmation-guarded emergency wipe to restart carrier telemetry.
+- **Operations Manual**: Quick-reference key bindings, mechanics tips, and PbtA roll rules.
 
-### 3. Center Dashboard: Tabbed Subsystems
-- **`[GEOGRAPHIC MAP]`**: Interactive 2D tactical projection rendered with D3-geo and TopoJSON. Shows all 200 nodes, sector boundaries, faction ownership, current position, route vectors, and interactive hover HUD inspection.
-- **`[COMMODITY MARKET]`**: Live order board with dynamic buy/sell quotes, price trend indicators (`▲` / `▼`), supply/demand modifiers, and GOAP faction shift rates.
-- **`[HAUL CONTRACTS]`**: Courier mission terminal split into *Available Contracts* (local pickups) and *Active Hauls* (in-progress deliveries with destination trackers, deadlines, and delivery buttons).
-- **`[QUALITIES & FACTIONS]`**: Carrier character profile detailing RPG traits (Street Cred, Tech Literacy, Contraband Mastery, Heat, etc.) and reputation standing across the 5 factions.
-- **`[NET WORTH LEADERBOARD]`**: Live competitive cluster rankings displaying rank podiums (#1 Gold, #2 Silver, #3 Bronze), online/offline status, net worth, deliveries, distance, and career ratings.
+### 3. Primary Workspace Tabs
+- **`[🗺️ TACTICAL MAP]`**: Interactive 2D planar projection rendered with D3-geo and TopoJSON, supporting both mouse click and mobile touch gestures with hit detection. Features a docked Route Dispatch console on desktop and a slide-up drawer on mobile.
+- **`[📈 COMMODITY EXCHANGE]`**: Live dynamic order book featuring GOAP faction multipliers, price trend indicators (`▲` / `▼`), inventory counts, and instant Buy/Sell buttons with horizontal scroll.
+- **`[📜 CONTRACTS]`**: Career rank prestige tracker, active cargo deliveries with deadlines, and enclave dispatch jobs.
+- **`[🚚 RIG & PILOT]`**: Comprehensive carrier profile including chassis maintenance, cargo hold manifest, PbtA 2d6 core stats (`GRIT`, `EDGE`, `CYBER`, `COOL`), narrative qualities, and 5-faction diplomatic standing.
+- **`[📡 COMMS & LOGS]`**: Split between the internal system event telemetry stream and live real-time multiplayer Global Frequency chat (complete with an unread badge counter).
+- **`[🏆 LEADERBOARD]`**: Cluster rankings sorted by total Net Worth, featuring deliveries, distance, and prestige titles.
 
-### 4. Right Column: Route Navigation & Tactical Communications
-- **SECTOR FILTER**: Limits destination selection to nodes within a specific geopolitical sector or allows continent-wide searches.
-- **DESTINATION SELECTOR**: Dropdown to select any reachable hub on the tactical grid.
-- **ROUTE TELEMETRY**: Displays total hops, total distance ($D_{\text{km}}$), estimated transit duration ($T_{\text{sec}}$), and next waypoint.
-- **AUTO-ADVANCE CHECKBOX**: When enabled, the navigational computer automatically dispatches your rig to the next hop along a multi-stop trajectory upon clearing each waypoint.
-- **COMMUNICATIONS TERMINAL**:
-  - `[SYSTEM LOG]`: Internal rig telemetry feed recording transactions, transit dispatches, arrivals, and storylet outcomes.
+### 4. Mobile & Touchscreen Architecture
+- **Responsive Viewport**: Fluid mobile layout with thumb-friendly touch targets ($\ge 44\text{px}$).
+- **Touch-Enabled Map**: Native `touchstart` and `touchmove` listeners with a $25\text{px}$ touch hit radius.
+- **Collapsible Route Dispatch Drawer**: Slides up smoothly over the map on small screens ($<640\text{px}$) to preserve full-screen map inspection while keeping dispatch controls accessible.
   - `[GLOBAL FREQUENCY]`: Live, multi-user WebSocket chat channel connecting all active haulers on the server cluster.
 
 ---

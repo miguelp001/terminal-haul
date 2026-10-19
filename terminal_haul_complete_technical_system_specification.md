@@ -526,12 +526,25 @@ Zero external MP3/WAV audio assets are required. All sound effects are generated
 * **Event Alert:** Sawtooth wave minor-third alarm ($330\text{ Hz} \to 440\text{ Hz}$, $250\text{ ms}$).
 * **Travel Engine Rumble:** Continuous procedural brownian noise buffer passed through a modulated low-pass biquad filter ($60\text{ Hz} - 120\text{ Hz}$), active exclusively during highway transit.
 
-### 9.2 CRT Display Pipeline
-* **Phosphor Color Palettes:**
-  - **Cyan Theme** (Default): High-contrast cyberpunk palette (`--neon-cyan: #00e5ff`, `--neon-amber: #ffb300`, `--neon-green: #00e676`).
-  - **Amber Theme**: Industrial orange monochrome (`--neon-amber: #ff9100`).
-  - **Green Theme**: Classic militarized phosphor (`--neon-green: #39ff14`).
-* **Visual Effects:** Dynamic CSS scanline overlay, text glow filters, and chromatic aberration styling on header badges and warning indicators.
+### 9.2 Augmented-UI Cyberpunk Design & Responsive Mobile Architecture
+* **Augmented-UI Polygonal Integration (`augmented-ui@2.0.0`):**
+  - All primary panels, header bars, modals, cards, tab controls, and buttons utilize `data-augmented-ui` mixins with cut chamfers (`tl-clip`, `tr-clip`, `br-clip`, `bl-clip`, `both`, `border`).
+  - Dynamic theme-aware CSS custom properties (`--aug-border-bg: var(--border-color)`, `--aug-inlay-bg: var(--panel-bg)`) automatically shift colors when cycling CRT palettes (Cyan, Amber, Green).
+* **Focused Tabbed Layout & Clutter Elimination:**
+  - Infrequently adjusted systems (Audio FX toggle, Palette selector, Network connection diagnostics, Profile reset) are organized cleanly inside a dedicated **System Configuration Menu** modal (`#systemMenuModal`).
+  - Primary hauler workflow is divided into six high-readability views:
+    1. `TACTICAL MAP`: 2D geographic projection with touch-enabled node selection and docked/collapsible Route Dispatch console.
+    2. `COMMODITY EXCHANGE`: Dynamic order book with GOAP faction intelligence and responsive horizontal scrolling.
+    3. `CONTRACTS`: Active courier consignments, available enclave jobs, and career prestige progression.
+    4. `RIG & PILOT`: Convoy maintenance, hull repair, cargo hold manifest, PbtA 2d6 core stats, qualities, and faction standings.
+    5. `COMMS & LOGS`: Dedicated system event stream and live multiplayer global frequency chat with unread indicator dot.
+    6. `LEADERBOARD`: Real-time Net Worth hauler registry.
+* **Mobile-First & Touchscreen Optimization:**
+  - Viewport-fit meta configuration with ergonomic touch targets ($\ge 44\text{px}$).
+  - `MapRenderer` touch listeners (`touchstart`, `touchmove`, `touchend`) with an expanded $25\text{px}$ touch radius for smooth finger-driven node selection on mobile.
+  - Collapsible Route Dispatch drawer (`#navDispatchPanel`) with slide-up trigger (`#btnToggleNavDrawer`) on mobile screens ($<640\text{px}$).
+  - Responsive tab bar with thumb-accessible icons and active text indicators.
+
 
 ---
 

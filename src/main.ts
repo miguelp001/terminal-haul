@@ -1,3 +1,4 @@
+import 'augmented-ui/augmented-ui.min.css';
 import './styles/terminal.css';
 import { gameStore } from './state/gameState';
 import { MapRenderer } from './ui/mapRenderer';
@@ -12,7 +13,7 @@ import type { ChatMessage, LeaderboardEntry } from './server/types';
 class TerminalApp {
   private mapRenderer!: MapRenderer;
   private selectedDestinationNode: WorldNode | null = null;
-  private activeCenterTab: 'map' | 'market' | 'contracts' | 'qualities' | 'leaderboard' = 'map';
+  private activeCenterTab: 'map' | 'market' | 'contracts' | 'qualities' | 'leaderboard' | 'comms' = 'map';
   private currentTheme: 'cyan' | 'amber' | 'green' = 'cyan';
   private prevConvoyStatus: string = 'DOCKED';
 
@@ -23,6 +24,9 @@ class TerminalApp {
   private btnAudioToggle = document.getElementById('btnAudioToggle') as HTMLButtonElement;
   private btnThemeToggle = document.getElementById('btnThemeToggle') as HTMLButtonElement;
   private btnResetGame = document.getElementById('btnResetGame') as HTMLButtonElement;
+  private btnSystemMenu = document.getElementById('btnSystemMenu') as HTMLButtonElement | null;
+  private systemMenuModal = document.getElementById('systemMenuModal') as HTMLElement | null;
+  private btnDismissSystemMenu = document.getElementById('btnDismissSystemMenu') as HTMLButtonElement | null;
 
   // Left Column Telemetry
   private convoyStatusBadge = document.getElementById('convoyStatusBadge')!;
@@ -40,18 +44,23 @@ class TerminalApp {
   private miniStatCool = document.getElementById('miniStatCool');
   private cargoManifestList = document.getElementById('cargoManifestList')!;
 
-  // Center Column Tabs & Containers
+  // Tabs & Containers
   private tabMap = document.getElementById('tabMap') as HTMLButtonElement;
   private tabMarket = document.getElementById('tabMarket') as HTMLButtonElement;
   private tabContracts = document.getElementById('tabContracts') as HTMLButtonElement;
   private tabQualities = document.getElementById('tabQualities') as HTMLButtonElement;
   private tabLeaderboard = document.getElementById('tabLeaderboard') as HTMLButtonElement;
+  private tabComms = document.getElementById('tabComms') as HTMLButtonElement | null;
+  private chatTabUnreadDot = document.getElementById('chatTabUnreadDot') as HTMLElement | null;
 
   private mapViewContainer = document.getElementById('mapViewContainer')!;
   private marketViewContainer = document.getElementById('marketViewContainer')!;
   private contractsViewContainer = document.getElementById('contractsViewContainer')!;
   private qualitiesViewContainer = document.getElementById('qualitiesViewContainer')!;
   private leaderboardViewContainer = document.getElementById('leaderboardViewContainer')!;
+  private commsViewContainer = document.getElementById('commsViewContainer') as HTMLElement | null;
+  private btnToggleNavDrawer = document.getElementById('btnToggleNavDrawer') as HTMLButtonElement | null;
+  private navDispatchPanel = document.getElementById('navDispatchPanel') as HTMLElement | null;
 
   private leaderboardTableBody = document.getElementById('leaderboardTableBody')!;
   private playerLeaderboardRankBadge = document.getElementById('playerLeaderboardRankBadge')!;
@@ -162,7 +171,7 @@ class TerminalApp {
   }
 
   private initTabs(): void {
-    const setTab = (tab: 'map' | 'market' | 'contracts' | 'qualities' | 'leaderboard') => {
+    const setTab = (tab: 'map' | 'market' | 'contracts' | 'qualities' | 'leaderboard' | 'comms') => {
       soundFX.playClick();
       this.activeCenterTab = tab;
       this.tabMap.classList.toggle('active', tab === 'map');
@@ -170,12 +179,21 @@ class TerminalApp {
       this.tabContracts.classList.toggle('active', tab === 'contracts');
       this.tabQualities.classList.toggle('active', tab === 'qualities');
       this.tabLeaderboard.classList.toggle('active', tab === 'leaderboard');
+      if (this.tabComms) this.tabComms.classList.toggle('active', tab === 'comms');
 
       this.mapViewContainer.style.display = tab === 'map' ? 'flex' : 'none';
       this.marketViewContainer.style.display = tab === 'market' ? 'flex' : 'none';
       this.contractsViewContainer.style.display = tab === 'contracts' ? 'flex' : 'none';
       this.qualitiesViewContainer.style.display = tab === 'qualities' ? 'flex' : 'none';
       this.leaderboardViewContainer.style.display = tab === 'leaderboard' ? 'flex' : 'none';
+      if (this.commsViewContainer) this.commsViewContainer.style.display = tab === 'comms' ? 'flex' : 'none';
+
+      if (tab === 'comms') {
+        if (this.chatTabUnreadDot) this.chatTabUnreadDot.style.display = 'none';
+        if (this.activeCommsTab === 'chat') {
+          this.scrollChatToBottom();
+        }
+      }
 
       if (tab === 'market') this.renderMarketTable();
       if (tab === 'contracts') this.renderContractsView();
@@ -188,6 +206,7 @@ class TerminalApp {
     this.tabContracts.addEventListener('click', () => setTab('contracts'));
     this.tabQualities.addEventListener('click', () => setTab('qualities'));
     this.tabLeaderboard.addEventListener('click', () => setTab('leaderboard'));
+    if (this.tabComms) this.tabComms.addEventListener('click', () => setTab('comms'));
   }
 
   private initControls(): void {
@@ -244,6 +263,37 @@ class TerminalApp {
         gameStore.resetGame();
       }
     });
+
+    if (this.btnSystemMenu && this.systemMenuModal) {
+      this.btnSystemMenu.addEventListener('click', () => {
+        soundFX.playClick();
+        this.systemMenuModal!.style.display = 'flex';
+      });
+    }
+
+    if (this.btnDismissSystemMenu && this.systemMenuModal) {
+      this.btnDismissSystemMenu.addEventListener('click', () => {
+        soundFX.playClick();
+        this.systemMenuModal!.style.display = 'none';
+      });
+    }
+
+    if (this.systemMenuModal) {
+      this.systemMenuModal.addEventListener('click', (e) => {
+        if (e.target === this.systemMenuModal) {
+          this.systemMenuModal!.style.display = 'none';
+        }
+      });
+    }
+
+    if (this.btnToggleNavDrawer && this.navDispatchPanel) {
+      this.btnToggleNavDrawer.addEventListener('click', () => {
+        soundFX.playClick();
+        this.navDispatchPanel!.classList.toggle('drawer-open');
+        const isOpen = this.navDispatchPanel!.classList.contains('drawer-open');
+        this.btnToggleNavDrawer!.textContent = isOpen ? '▼ HIDE DISPATCH' : '▲ ROUTE DISPATCH';
+      });
+    }
 
     this.sectorFilterSelect.addEventListener('change', () => {
       soundFX.playClick();
@@ -444,10 +494,11 @@ class TerminalApp {
     // Real-time Global Chat Listener
     multiplayerClient.onChatMessage((chat) => {
       this.appendChatMessage(chat);
-      if (this.activeCommsTab !== 'chat') {
+      if (this.activeCenterTab !== 'comms' || this.activeCommsTab !== 'chat') {
         if (chat.playerId !== multiplayerClient.getPlayerId()) {
           this.unreadChatCount++;
           this.chatUnreadDot.style.display = 'inline-block';
+          if (this.chatTabUnreadDot) this.chatTabUnreadDot.style.display = 'inline-block';
           soundFX.playEvent();
         }
       }

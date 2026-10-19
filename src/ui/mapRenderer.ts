@@ -76,6 +76,12 @@ export class MapRenderer {
       this.hoveredNode = null;
     });
 
+    this.canvas.addEventListener('touchstart', (e) => this.handleTouch(e), { passive: true });
+    this.canvas.addEventListener('touchmove', (e) => this.handleTouch(e), { passive: true });
+    this.canvas.addEventListener('touchend', () => {
+      this.handleClick();
+    });
+
     this.startRenderLoop();
   }
 
@@ -221,6 +227,31 @@ export class MapRenderer {
       const pos = this.screenCoords(node);
       const dx = pos.x - mouseX;
       const dy = pos.y - mouseY;
+      const distSq = dx * dx + dy * dy;
+
+      if (distSq < minDistanceSq) {
+        minDistanceSq = distSq;
+        closest = node;
+      }
+    }
+
+    this.hoveredNode = closest;
+  }
+
+  private handleTouch(e: TouchEvent): void {
+    if (!e.touches || e.touches.length === 0) return;
+    const touch = e.touches[0];
+    const rect = this.canvas.getBoundingClientRect();
+    const touchX = touch.clientX - rect.left;
+    const touchY = touch.clientY - rect.top;
+
+    let closest: WorldNode | null = null;
+    let minDistanceSq = 625; // 25px hit detection radius for touch screens
+
+    for (const node of this.nodes) {
+      const pos = this.screenCoords(node);
+      const dx = pos.x - touchX;
+      const dy = pos.y - touchY;
       const distSq = dx * dx + dy * dy;
 
       if (distSq < minDistanceSq) {
