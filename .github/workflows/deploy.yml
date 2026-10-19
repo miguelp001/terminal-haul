@@ -87,30 +87,18 @@ jobs:
           echo "RESOLVED_TARGET=$DEST" >> $GITHUB_ENV
           echo "Deploying dist/ -> $CLEAN_USER@$CLEAN_HOST:$DEST"
 
-      - name: 🔑 Configure SSH Key (Key Auth)
-        if: env.HAS_KEY == 'true'
-        uses: webfactory/ssh-agent@v0.9.0
-        with:
-          ssh-private-key: ${{ secrets.DREAMHOST_SSH_KEY }}
-
-      - name: 🚀 Deploy dist/ to DreamHost via Rsync (SSH Key)
-        if: env.HAS_KEY == 'true'
-        id: rsync_deploy
-        continue-on-error: true
-        run: |
-          echo "Attempting deployment via SSH key & rsync..."
-          rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no -o ConnectTimeout=10" ./dist/ "${CLEAN_USER}@${CLEAN_HOST}:${RESOLVED_TARGET}"
-          echo "DEPLOYED=true" >> $GITHUB_ENV
-
-      - name: 🚀 Deploy dist/ to DreamHost via SFTP (Password Fallback)
-        if: env.DEPLOYED != 'true' && env.HAS_PASSWORD == 'true'
+      - name: 🚀 Deploy dist/ to DreamHost via SFTP (Password Auth)
+        if: env.HAS_PASSWORD == 'true'
         env:
           SSHPASS: ${{ secrets.DREAMHOST_PASSWORD }}
         run: |
           sudo apt-get update -qq && sudo apt-get install -y -qq lftp
           echo "Syncing production bundle to DreamHost via SFTP..."
+          unset SSH_AUTH_SOCK
+          unset SSH_AGENT_PID
           lftp <<EOF
             set sftp:auto-confirm yes
+            set sftp:connect-program "ssh -a -x -o StrictHostKeyChecking=no -o PubkeyAuthentication=no"
             set net:timeout 30
             set net:max-retries 3
             open -u "${CLEAN_USER},${SSHPASS}" "sftp://${CLEAN_HOST}"
@@ -119,6 +107,19 @@ jobs:
             mirror --reverse --delete --verbose ./dist .
             bye
           EOF
+          echo "DEPLOYED=true" >> $GITHUB_ENV
+
+      - name: 🔑 Configure SSH Key (Key Auth)
+        if: env.DEPLOYED != 'true' && env.HAS_KEY == 'true'
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.DREAMHOST_SSH_KEY }}
+
+      - name: 🚀 Deploy dist/ to DreamHost via Rsync (SSH Key)
+        if: env.DEPLOYED != 'true' && env.HAS_KEY == 'true'
+        run: |
+          echo "Attempting deployment via SSH key & rsync..."
+          rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no -o ConnectTimeout=10" ./dist/ "${CLEAN_USER}@${CLEAN_HOST}:${RESOLVED_TARGET}"
           echo "DEPLOYED=true" >> $GITHUB_ENV
 
       - name: 🛑 Verify Deployment Succeeded
