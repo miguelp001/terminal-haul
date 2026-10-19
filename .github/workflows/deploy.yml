@@ -44,14 +44,22 @@ jobs:
           USER: ${{ secrets.DREAMHOST_USER }}
           TARGET: ${{ secrets.DREAMHOST_TARGET }}
         run: |
-          if [ -z "$HOST" ]; then
+          # Strip potential BOM (\xef\xbb\xbf), carriage returns, and leading/trailing whitespace
+          CLEAN_HOST=$(printf '%s' "$HOST" | sed 's/^\xef\xbb\xbf//; s/^[[:space:]]*//; s/[[:space:]]*$//')
+          CLEAN_USER=$(printf '%s' "$USER" | sed 's/^\xef\xbb\xbf//; s/^[[:space:]]*//; s/[[:space:]]*$//')
+          CLEAN_TARGET=$(printf '%s' "$TARGET" | sed 's/^\xef\xbb\xbf//; s/^[[:space:]]*//; s/[[:space:]]*$//')
+
+          if [ -z "$CLEAN_HOST" ]; then
             echo "::error::Secret DREAMHOST_HOST is not set."
             exit 1
           fi
-          if [ -z "$USER" ]; then
+          if [ -z "$CLEAN_USER" ]; then
             echo "::error::Secret DREAMHOST_USER is not set."
             exit 1
           fi
+
+          echo "CLEAN_HOST=$CLEAN_HOST" >> $GITHUB_ENV
+          echo "CLEAN_USER=$CLEAN_USER" >> $GITHUB_ENV
 
           if [ -n "$PASSWORD" ]; then
             echo "HAS_PASSWORD=true" >> $GITHUB_ENV
@@ -70,14 +78,14 @@ jobs:
             exit 1
           fi
 
-          DEST="$TARGET"
+          DEST="$CLEAN_TARGET"
           if [ -z "$DEST" ]; then
-            DEST="/home/$USER/$HOST/"
+            DEST="/home/$CLEAN_USER/$CLEAN_HOST/"
           fi
           # Ensure trailing slash
           [[ "$DEST" != */ ]] && DEST="${DEST}/"
           echo "RESOLVED_TARGET=$DEST" >> $GITHUB_ENV
-          echo "Deploying dist/ -> $USER@$HOST:$DEST"
+          echo "Deploying dist/ -> $CLEAN_USER@$CLEAN_HOST:$DEST"
 
       - name: 🚀 Rsync dist/ to DreamHost (Password Auth)
         if: env.HAS_PASSWORD == 'true'
@@ -86,7 +94,7 @@ jobs:
         run: |
           sudo apt-get update -qq && sudo apt-get install -y -qq sshpass
           echo "Syncing production bundle to DreamHost..."
-          sshpass -e rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no" ./dist/ ${{ secrets.DREAMHOST_USER }}@${{ secrets.DREAMHOST_HOST }}:${{ env.RESOLVED_TARGET }}
+          sshpass -e rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no" ./dist/ "${CLEAN_USER}@${CLEAN_HOST}:${RESOLVED_TARGET}"
 
       - name: 🔑 Configure SSH Key (Key Auth)
         if: env.HAS_PASSWORD != 'true' && env.HAS_KEY == 'true'
@@ -97,8 +105,8 @@ jobs:
       - name: 🚀 Rsync dist/ to DreamHost (Key Auth)
         if: env.HAS_PASSWORD != 'true' && env.HAS_KEY == 'true'
         run: |
-          rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no" ./dist/ ${{ secrets.DREAMHOST_USER }}@${{ secrets.DREAMHOST_HOST }}:${{ env.RESOLVED_TARGET }}
+          rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no" ./dist/ "${CLEAN_USER}@${CLEAN_HOST}:${RESOLVED_TARGET}"
 
       - name: 🎉 Deployment Summary
         run: |
-          echo "Terminal Haul client successfully synced to ${{ secrets.DREAMHOST_HOST }}!"
+          echo "Terminal Haul client successfully synced to ${CLEAN_HOST}!"
