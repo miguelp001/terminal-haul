@@ -184,7 +184,7 @@ class TerminalApp {
   }
 
   private positionMapTooltip(nodeX: number, nodeY: number): void {
-    this.mapHoverHud.style.display = 'block';
+    this.mapHoverHud.style.display = 'flex';
 
     const container = this.mapHoverHud.parentElement;
     const viewportWidth = container?.clientWidth || window.innerWidth;

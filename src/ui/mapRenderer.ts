@@ -243,7 +243,7 @@ export class MapRenderer {
     const mouseY = e.clientY - rect.top;
 
     let closest: WorldNode | null = null;
-    let minDistanceSq = 169; // 13px hit detection radius
+    let minDistanceSq = 256; // 16px hit detection radius
     let closestPos: { x: number; y: number } | null = null;
 
     for (const node of this.nodes) {
