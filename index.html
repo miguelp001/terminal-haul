@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TERMINAL HAUL — Cybernetic Convoy Simulation</title>
+  <link rel="stylesheet" href="/src/styles/terminal.css" />
+</head>
+<body>
+  <!-- Header -->
+  <header class="terminal-header">
+    <div class="logo-group">
+      <h1>TERMINAL HAUL</h1>
+      <span class="sub">// CYBERNETIC CONVOY & TRADE SIMULATION [2099]</span>
+    </div>
+
+    <div class="clock-telemetry">
+      <div id="timeDisplay" class="time-display">DAY 1 — 00:00</div>
+      <div class="clock-controls">
+        <div id="networkStatusBadge" class="network-badge online">
+          <span class="net-dot"></span>
+          <span id="netStatusText">NET: LIVE [1X REAL-TIME]</span>
+        </div>
+        <button id="btnAudioToggle" class="term-btn active">AUDIO: ON</button>
+        <button id="btnThemeToggle" class="term-btn">PALETTE: CYAN</button>
+        <button id="btnSaveGame" class="term-btn" style="border-color: var(--neon-green); color: var(--neon-green);">SAVE</button>
+        <button id="btnLoadGame" class="term-btn">LOAD</button>
+        <button id="btnResetGame" class="term-btn" style="border-color: var(--neon-red); color: var(--neon-red);">RESET</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Terminal Layout -->
+  <main class="terminal-layout">
+    <!-- Left Column: Convoy & Inventory -->
+    <section class="term-panel">
+      <div class="panel-header">
+        <span>CONVOY STATUS</span>
+        <span id="convoyStatusBadge" class="status-value accent">DOCKED</span>
+      </div>
+      <div class="panel-content">
+        <div class="status-row">
+          <span class="status-label">RIG CALLSIGN</span>
+          <span id="rigName" class="status-value">Iron Nomad MK-IV</span>
+        </div>
+        <div class="status-row">
+          <span class="status-label">HULL INTEGRITY</span>
+          <span id="hullValue" class="status-value">100%</span>
+        </div>
+        <div class="progress-bar-container">
+          <div id="hullBar" class="progress-bar-fill" style="width: 100%;"></div>
+        </div>
+
+        <div class="status-row">
+          <span class="status-label">CARGO CAPACITY</span>
+          <span id="cargoWeightValue" class="status-value">7.0 / 35.0 T</span>
+        </div>
+        <div class="progress-bar-container">
+          <div id="cargoBar" class="progress-bar-fill" style="width: 20%;"></div>
+        </div>
+
+        <div class="stat-divider"></div>
+
+        <div class="status-row">
+          <span class="status-label">LIQUID CREDITS</span>
+          <span id="creditsValue" class="status-value accent">2,500 ₵</span>
+        </div>
+        <div class="status-row">
+          <span class="status-label">NET WORTH</span>
+          <span id="netWorthValue" class="status-value accent" style="color: var(--neon-cyan);">3,250 ₵</span>
+        </div>
+        <div class="status-row">
+          <span class="status-label">TOTAL DISTANCE</span>
+          <span id="totalDistValue" class="status-value">0 km</span>
+        </div>
+
+        <div class="stat-divider"></div>
+        <div class="panel-header" style="margin: -10px -10px 10px -10px; background: transparent; border-bottom: 1px dashed var(--border-color);">
+          <span>CARGO MANIFEST</span>
+        </div>
+        <div id="cargoManifestList">
+          <!-- Dynamic Cargo Manifest -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Center Column: Map & Local Commodity Exchange -->
+    <section class="term-panel">
+      <div class="panel-header">
+        <div class="center-tabs">
+          <button id="tabMap" class="tab-btn active">TACTICAL GRID</button>
+          <button id="tabMarket" class="tab-btn">COMMODITY EXCHANGE</button>
+          <button id="tabContracts" class="tab-btn">CONTRACTS</button>
+          <button id="tabQualities" class="tab-btn">PILOT & FACTIONS</button>
+        </div>
+        <span id="currentLocationBadge" class="status-value">NEO-SYRACUSE</span>
+      </div>
+
+      <!-- Tactical Map View -->
+      <div id="mapViewContainer" class="map-container">
+        <canvas id="worldMapCanvas"></canvas>
+
+        <div id="mapHoverHud" class="map-hud-overlay" style="display: none;">
+          <div id="hoverTitle" style="color: var(--neon-cyan); font-weight: bold; margin-bottom: 4px;">Node</div>
+          <div id="hoverSector" style="color: var(--text-muted);">Sector</div>
+          <div id="hoverFaction" style="color: var(--neon-amber);">Faction</div>
+          <div id="hoverDesc" style="color: #bbb; margin-top: 4px; font-size: 0.7rem;">Description</div>
+        </div>
+
+        <div id="transitBanner" class="transit-banner" style="display: none;">
+          <div id="transitTargetText" style="color: var(--neon-amber); font-weight: bold; margin-bottom: 4px;">
+            TRANSIT IN PROGRESS: NEO-SYRACUSE &rarr; CHIBA-ON-HUDSON
+          </div>
+          <div class="progress-bar-container" style="margin-bottom: 4px;">
+            <div id="transitProgressBar" class="progress-bar-fill" style="width: 0%;"></div>
+          </div>
+          <div id="transitTelemetry" style="font-size: 0.75rem; color: var(--neon-cyan);">
+            PROGRESS: 0% | REMAINING: 0s
+          </div>
+        </div>
+      </div>
+
+      <!-- Commodity Market View -->
+      <div id="marketViewContainer" class="market-container" style="display: none;">
+        <div id="marketIntelBanner" class="market-intel-banner">
+          <span style="font-weight: bold;">[GOAP INTEL]</span>
+          <span id="marketIntelText">Market pricing synchronized with autonomous faction movements.</span>
+        </div>
+
+        <table class="market-table">
+          <thead>
+            <tr>
+              <th>COMMODITY</th>
+              <th>WEIGHT</th>
+              <th>BASE</th>
+              <th>GOAP</th>
+              <th>BIAS</th>
+              <th>BUY</th>
+              <th>SELL</th>
+              <th>IN HOLD</th>
+              <th>ACTIONS</th>
+            </tr>
+          </thead>
+          <tbody id="marketTableBody">
+            <!-- Dynamic Market Rows -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Courier Contracts & Career View -->
+      <div id="contractsViewContainer" class="contracts-container" style="display: none;">
+        <div class="career-banner">
+          <div>
+            <div style="font-size: 0.7rem; color: var(--text-muted); letter-spacing: 1px;">CAREER PRESTIGE RANK</div>
+            <div id="careerRankTitle" class="career-rank-title">ROOKIE HAULER</div>
+          </div>
+          <div>
+            <div style="font-size: 0.7rem; color: var(--text-muted); letter-spacing: 1px;">TOTAL CAREER SCORE</div>
+            <div id="careerScoreVal" class="career-score-val">3,250 PTS</div>
+          </div>
+        </div>
+
+        <div class="panel-header" style="background: transparent; border-bottom: 1px dashed var(--border-color); padding: 0 0 6px 0;">
+          <span>ACTIVE COURIER CONSIGNMENTS</span>
+        </div>
+        <div id="activeContractsList" class="contracts-grid">
+          <!-- Dynamic Active Contracts -->
+        </div>
+
+        <div class="panel-header" style="background: transparent; border-bottom: 1px dashed var(--border-color); padding: 12px 0 6px 0; margin-top: 6px;">
+          <span>AVAILABLE ENCLAVE CONTRACTS [DOCK BOARD]</span>
+        </div>
+        <div id="availableContractsList" class="contracts-grid">
+          <!-- Dynamic Available Contracts -->
+        </div>
+      </div>
+
+      <!-- Pilot Qualities & Faction Matrix View -->
+      <div id="qualitiesViewContainer" class="qualities-container" style="display: none;">
+        <div class="panel-header" style="background: transparent; border-bottom: 1px dashed var(--border-color); padding: 0 0 6px 0;">
+          <span>PILOT QUALITIES & SYSTEM INTEGRITY</span>
+        </div>
+        <div id="qualitiesGrid" class="qualities-grid">
+          <!-- Dynamic Qualities Cards -->
+        </div>
+
+        <div class="panel-header" style="background: transparent; border-bottom: 1px dashed var(--border-color); padding: 12px 0 6px 0; margin-top: 10px;">
+          <span>REGIONAL FACTION STANDINGS [-100 TO +100]</span>
+        </div>
+        <div id="factionsList">
+          <!-- Dynamic Factions Reputations -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Right Column: Navigation Dispatch & Event Log -->
+    <section class="term-panel">
+      <div class="panel-header">
+        <span>NAVIGATION DISPATCH</span>
+      </div>
+      <div class="panel-content" style="display: flex; flex-direction: column;">
+        <div class="nav-controls">
+          <label class="status-label" style="display: block; margin-bottom: 4px;">SECTOR FILTER</label>
+          <select id="sectorFilterSelect" class="term-select">
+            <option value="ALL">ALL SECTORS (200)</option>
+            <option value="northeast">NORTHEAST</option>
+            <option value="midwest">MIDWEST</option>
+            <option value="pacific_northwest">PACIFIC NORTHWEST</option>
+            <option value="southwest_wasteland">SOUTHWEST & WASTELAND</option>
+            <option value="southern">SOUTHERN PETRO-GULF</option>
+            <option value="east_coast">EAST COAST</option>
+            <option value="north">NORTHERN LAURENTIAN</option>
+          </select>
+
+          <label class="status-label" style="display: block; margin-bottom: 4px;">TARGET DESTINATION</label>
+          <select id="destinationSelect" class="term-select">
+            <!-- Dynamic Node Options -->
+          </select>
+
+          <div id="targetCard" class="node-detail-card">
+            <div id="targetName" style="color: var(--neon-cyan); font-weight: bold;">SELECT DESTINATION</div>
+            <div id="targetSector" style="color: var(--text-muted); margin-top: 2px;">Sector: —</div>
+            <div id="targetFaction" style="color: var(--neon-amber); margin-top: 2px;">Faction: —</div>
+            <div id="targetRouteHops" style="color: var(--neon-cyan); margin-top: 4px; font-weight: bold;">Route: —</div>
+            <div id="targetWaypoints" style="color: #aaa; font-size: 0.7rem; margin-top: 2px; max-height: 48px; overflow-y: auto; line-height: 1.2;">Waypoints: —</div>
+            <div id="targetDistance" style="color: #fff; margin-top: 4px;">Total Route: — km</div>
+            <div id="targetDuration" style="color: var(--neon-green); margin-top: 2px;">Est. Transit: — s</div>
+          </div>
+
+          <div style="display: flex; align-items: center; justify-content: space-between; margin: 8px 0;">
+            <label style="font-size: 0.75rem; color: var(--text-muted); display: flex; align-items: center; gap: 6px; cursor: pointer;">
+              <input type="checkbox" id="chkAutoAdvance" checked style="cursor: pointer;" />
+              Auto-advance waypoints
+            </label>
+            <button id="btnCancelRoute" class="term-btn" style="padding: 2px 6px; font-size: 0.7rem; display: none;">ABORT ROUTE</button>
+          </div>
+
+          <button id="btnDispatch" class="term-btn" style="width: 100%; padding: 8px; font-weight: bold;">
+            ENGAGE ENGINES [DISPATCH]
+          </button>
+        </div>
+
+        <div class="comms-tabs-header">
+          <button id="btnTabLogs" class="comms-tab-btn active">SYSTEM LOG</button>
+          <button id="btnTabChat" class="comms-tab-btn">
+            GLOBAL FREQUENCY
+            <span id="chatUnreadDot" class="chat-unread-dot" style="display: none;"></span>
+          </button>
+        </div>
+
+        <!-- System Logs View -->
+        <div id="commsLogContainer" class="comms-view" style="flex: 1; overflow-y: auto; display: flex; flex-direction: column;">
+          <ul id="eventLogList" class="log-list" style="flex: 1;">
+            <!-- Dynamic logs -->
+          </ul>
+        </div>
+
+        <!-- Global Chat View -->
+        <div id="commsChatContainer" class="comms-view" style="flex: 1; display: none; flex-direction: column; overflow: hidden;">
+          <div id="chatMessagesList" class="chat-messages-stream">
+            <!-- Dynamic chat messages -->
+          </div>
+          <form id="chatForm" class="chat-input-bar">
+            <input
+              type="text"
+              id="chatInput"
+              class="chat-text-input"
+              placeholder="TRANSMIT ON FREQ 8080..."
+              maxlength="200"
+              autocomplete="off"
+            />
+            <button type="submit" id="btnSendChat" class="chat-send-btn">
+              SEND
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Interactive Storylet Narrative Modal -->
+  <div id="storyletModal" class="storylet-modal-backdrop" style="display: none;">
+    <div class="storylet-card">
+      <div>
+        <div id="storyletBadge" class="storylet-badge">// PRIORITY NARRATIVE ENCOUNTER</div>
+        <h2 id="storyletTitle" class="storylet-title">Incident Title</h2>
+      </div>
+      <p id="storyletText" class="storylet-body">Prose description...</p>
+
+      <div id="storyletOutcome" class="storylet-outcome" style="display: none;">
+        <div id="storyletOutcomeText" style="margin-bottom: 6px;">Outcome text</div>
+        <div id="storyletOutcomeChanges" style="color: var(--neon-cyan); font-size: 0.75rem;">Consequences</div>
+      </div>
+
+      <div id="storyletOptionsList" class="storylet-options">
+        <!-- Dynamic Options Buttons -->
+      </div>
+
+      <div id="storyletFooter" style="display: none; text-align: right; margin-top: 8px;">
+        <button id="btnDismissStorylet" class="term-btn" style="padding: 8px 16px; font-weight: bold;">
+          CONTINUE MISSION [DISMISS]
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>

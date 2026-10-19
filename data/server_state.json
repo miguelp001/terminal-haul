@@ -1,0 +1,44 @@
+{
+  "epochStartRealTime": 1792386366436,
+  "serverGameDays": 1,
+  "players": {},
+  "marketAdjustments": {
+    "grain": {
+      "commodityId": "grain",
+      "globalDemandMultiplier": 1,
+      "totalVolumeTraded": 0,
+      "lastTradePrice": 40
+    },
+    "batteries": {
+      "commodityId": "batteries",
+      "globalDemandMultiplier": 1,
+      "totalVolumeTraded": 0,
+      "lastTradePrice": 120
+    },
+    "cyberware": {
+      "commodityId": "cyberware",
+      "globalDemandMultiplier": 1,
+      "totalVolumeTraded": 0,
+      "lastTradePrice": 350
+    },
+    "chips": {
+      "commodityId": "chips",
+      "globalDemandMultiplier": 1,
+      "totalVolumeTraded": 0,
+      "lastTradePrice": 800
+    },
+    "cryo": {
+      "commodityId": "cryo",
+      "globalDemandMultiplier": 1,
+      "totalVolumeTraded": 0,
+      "lastTradePrice": 1500
+    },
+    "toxins": {
+      "commodityId": "toxins",
+      "globalDemandMultiplier": 1,
+      "totalVolumeTraded": 0,
+      "lastTradePrice": 2200
+    }
+  },
+  "recentTrades": []
+}

@@ -1,0 +1,19 @@
+﻿# Dependencies
+node_modules/
+.pnpm-store/
+
+# Production Builds
+dist/
+build/
+
+# Environment & Local Secrets
+.env
+.env.local
+*.local
+
+# Logs & System Cache
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store
+Thumbs.db
