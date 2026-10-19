@@ -6,6 +6,7 @@ import northAmericaData from '../assets/geo/northAmerica.json';
 import { RemotePlayerConvoy } from '../server/types';
 
 export type NodeSelectCallback = (node: WorldNode) => void;
+export type NodeHoverCallback = (node: WorldNode | null, coords: { x: number; y: number } | null) => void;
 
 export class MapRenderer {
   private canvas: HTMLCanvasElement;
@@ -27,10 +28,11 @@ export class MapRenderer {
   private selectedNode: WorldNode | null = null;
   private currentState: PlayerState | null = null;
   private onNodeSelect: NodeSelectCallback | null = null;
+  private onNodeHover: NodeHoverCallback | null = null;
   private pulsePhase: number = 0;
   private animationFrameId: number | null = null;
 
-  constructor(canvas: HTMLCanvasElement, nodes: WorldNode[], onSelect?: NodeSelectCallback) {
+  constructor(canvas: HTMLCanvasElement, nodes: WorldNode[], onSelect?: NodeSelectCallback, onHover?: NodeHoverCallback) {
     this.canvas = canvas;
     const ctx = canvas.getContext('2d');
     if (!ctx) throw new Error('Could not get 2D context from canvas');
@@ -48,6 +50,7 @@ export class MapRenderer {
     }
     this.highwayEdges = RouteGraph.getInstance(nodes).getAllEdges();
     this.onNodeSelect = onSelect || null;
+    this.onNodeHover = onHover || null;
 
     // Initialize 2D planar projection
     this.projection = geoMercator();
@@ -74,6 +77,9 @@ export class MapRenderer {
     this.canvas.addEventListener('click', () => this.handleClick());
     this.canvas.addEventListener('mouseleave', () => {
       this.hoveredNode = null;
+      if (this.onNodeHover) {
+        this.onNodeHover(null, null);
+      }
     });
 
     this.canvas.addEventListener('touchstart', (e) => this.handleTouch(e), { passive: true });
@@ -83,6 +89,18 @@ export class MapRenderer {
     });
 
     this.startRenderLoop();
+  }
+
+  public setOnNodeHover(cb: NodeHoverCallback | null): void {
+    this.onNodeHover = cb;
+  }
+
+  public getNodeScreenCoords(node: WorldNode): { x: number; y: number } {
+    return this.screenCoords(node);
+  }
+
+  public getCanvas(): HTMLCanvasElement {
+    return this.canvas;
   }
 
   public updateState(state: PlayerState): void {
@@ -133,6 +151,10 @@ export class MapRenderer {
 
     // Re-render static vector map to offscreen cache
     this.renderBackgroundToOffscreen(w, h);
+
+    if (this.hoveredNode && this.onNodeHover) {
+      this.onNodeHover(this.hoveredNode, this.screenCoords(this.hoveredNode));
+    }
   }
 
   /**
@@ -222,6 +244,7 @@ export class MapRenderer {
 
     let closest: WorldNode | null = null;
     let minDistanceSq = 169; // 13px hit detection radius
+    let closestPos: { x: number; y: number } | null = null;
 
     for (const node of this.nodes) {
       const pos = this.screenCoords(node);
@@ -232,10 +255,16 @@ export class MapRenderer {
       if (distSq < minDistanceSq) {
         minDistanceSq = distSq;
         closest = node;
+        closestPos = pos;
       }
     }
 
-    this.hoveredNode = closest;
+    if (this.hoveredNode !== closest) {
+      this.hoveredNode = closest;
+      if (this.onNodeHover) {
+        this.onNodeHover(closest, closestPos);
+      }
+    }
   }
 
   private handleTouch(e: TouchEvent): void {
@@ -247,6 +276,7 @@ export class MapRenderer {
 
     let closest: WorldNode | null = null;
     let minDistanceSq = 625; // 25px hit detection radius for touch screens
+    let closestPos: { x: number; y: number } | null = null;
 
     for (const node of this.nodes) {
       const pos = this.screenCoords(node);
@@ -257,10 +287,16 @@ export class MapRenderer {
       if (distSq < minDistanceSq) {
         minDistanceSq = distSq;
         closest = node;
+        closestPos = pos;
       }
     }
 
-    this.hoveredNode = closest;
+    if (this.hoveredNode !== closest) {
+      this.hoveredNode = closest;
+      if (this.onNodeHover) {
+        this.onNodeHover(closest, closestPos);
+      }
+    }
   }
 
   private handleClick(): void {

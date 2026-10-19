@@ -156,31 +156,77 @@ class TerminalApp {
 
   private initMap(): void {
     const canvas = document.getElementById('worldMapCanvas') as HTMLCanvasElement;
-    this.mapRenderer = new MapRenderer(canvas, gameStore.getAllNodes(), (selectedNode) => {
-      soundFX.playClick();
-      this.handleMapNodeClick(selectedNode);
-    });
-
-    setInterval(() => {
-      const hovered = this.mapRenderer.getHoveredNode();
-      if (hovered && this.activeCenterTab === 'map') {
-        const sector = SECTORS[hovered.sector];
-        const faction = FACTIONS[hovered.dominantFaction];
-        this.hoverTitle.textContent = hovered.name.toUpperCase();
-        this.hoverSector.textContent = `SECTOR: ${sector ? sector.name : hovered.sector}`;
-        this.hoverFaction.textContent = `FACTION: ${faction ? faction.name : hovered.dominantFaction} (SEC ${hovered.securityLevel})`;
-        this.hoverDesc.textContent = hovered.description;
-        this.mapHoverHud.style.display = 'block';
-      } else {
-        this.mapHoverHud.style.display = 'none';
+    this.mapRenderer = new MapRenderer(
+      canvas,
+      gameStore.getAllNodes(),
+      (selectedNode) => {
+        soundFX.playClick();
+        this.handleMapNodeClick(selectedNode);
+      },
+      (hoveredNode, coords) => {
+        this.handleMapNodeHover(hoveredNode, coords);
       }
-    }, 100);
+    );
+  }
+
+  private handleMapNodeHover(hovered: WorldNode | null, coords: { x: number; y: number } | null): void {
+    if (hovered && coords && this.activeCenterTab === 'map') {
+      const sector = SECTORS[hovered.sector];
+      const faction = FACTIONS[hovered.dominantFaction];
+      this.hoverTitle.textContent = hovered.name.toUpperCase();
+      this.hoverSector.textContent = `SECTOR: ${sector ? sector.name : hovered.sector}`;
+      this.hoverFaction.textContent = `FACTION: ${faction ? faction.name : hovered.dominantFaction} (SEC ${hovered.securityLevel})`;
+      this.hoverDesc.textContent = hovered.description;
+      this.positionMapTooltip(coords.x, coords.y);
+    } else {
+      this.mapHoverHud.style.display = 'none';
+    }
+  }
+
+  private positionMapTooltip(nodeX: number, nodeY: number): void {
+    this.mapHoverHud.style.display = 'block';
+
+    const container = this.mapHoverHud.parentElement;
+    const viewportWidth = container?.clientWidth || window.innerWidth;
+    const viewportHeight = container?.clientHeight || window.innerHeight;
+
+    const tooltipWidth = this.mapHoverHud.offsetWidth || 260;
+    const tooltipHeight = this.mapHoverHud.offsetHeight || 90;
+
+    // Center tooltip horizontally above the node
+    let left = nodeX - tooltipWidth / 2;
+
+    // Position above the node with a 12px margin
+    let top = nodeY - tooltipHeight - 12;
+
+    // If overflowing top edge of viewport, flip below the node with a 16px margin
+    if (top < 10) {
+      top = nodeY + 16;
+    }
+
+    // Keep within horizontal boundaries with a 10px margin
+    if (left < 10) {
+      left = 10;
+    } else if (left + tooltipWidth > viewportWidth - 10) {
+      left = Math.max(10, viewportWidth - tooltipWidth - 10);
+    }
+
+    // Keep within bottom boundary with a 10px margin
+    if (top + tooltipHeight > viewportHeight - 10) {
+      top = Math.max(10, viewportHeight - tooltipHeight - 10);
+    }
+
+    this.mapHoverHud.style.left = `${Math.round(left)}px`;
+    this.mapHoverHud.style.top = `${Math.round(top)}px`;
   }
 
   private initTabs(): void {
     const setTab = (tab: 'map' | 'market' | 'contracts' | 'qualities' | 'leaderboard' | 'comms') => {
       soundFX.playClick();
       this.activeCenterTab = tab;
+      if (tab !== 'map') {
+        this.mapHoverHud.style.display = 'none';
+      }
       this.tabMap.classList.toggle('active', tab === 'map');
       this.tabMarket.classList.toggle('active', tab === 'market');
       this.tabContracts.classList.toggle('active', tab === 'contracts');

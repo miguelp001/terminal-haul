@@ -659,53 +659,77 @@ canvas#worldMapCanvas {
 
 .map-hud-overlay {
   position: absolute;
-  top: 24px;
-  left: 12px;
-  background: rgba(4, 9, 15, 0.94);
+  top: 0;
+  left: 0;
+  background: rgba(4, 10, 18, 0.96);
+  backdrop-filter: blur(8px);
   --aug-border-all: 1.5px;
   --aug-border-bg: var(--neon-cyan);
-  --aug-inlay-all: 2px;
-  --aug-inlay-bg: rgba(4, 9, 15, 0.94);
-  --aug-tl: 8px;
-  --aug-tr: 8px;
-  --aug-br: 8px;
-  --aug-bl: 8px;
-  padding: 10px 14px;
-  font-size: 0.75rem;
+  --aug-inlay-all: 1.5px;
+  --aug-inlay-bg: rgba(4, 10, 18, 0.96);
+  --aug-tl: 5px;
+  --aug-tr: 5px;
+  --aug-br: 5px;
+  --aug-bl: 5px;
+  padding: 8px 12px;
+  font-size: 0.74rem;
   pointer-events: none;
-  max-width: 320px;
-  z-index: 10;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.85);
+  width: max-content;
+  max-width: 280px;
+  z-index: 35;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.9), 0 0 12px rgba(0, 240, 255, 0.35);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  animation: tooltipFadeIn 0.12s ease-out;
+}
+
+@keyframes tooltipFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .hud-target-reticle {
   position: absolute;
   top: 4px;
   right: 4px;
-  width: 10px;
-  height: 10px;
-  border-top: 1px solid var(--neon-cyan);
-  border-right: 1px solid var(--neon-cyan);
+  width: 8px;
+  height: 8px;
+  border-top: 1.5px solid var(--neon-cyan);
+  border-right: 1.5px solid var(--neon-cyan);
 }
 
 .hud-node-title {
   color: var(--neon-cyan);
-  font-weight: bold;
+  font-weight: 800;
   font-size: 0.88rem;
-  letter-spacing: 1px;
-  margin-bottom: 2px;
+  letter-spacing: 0.8px;
+  text-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .hud-node-sub {
   color: var(--neon-amber);
-  font-size: 0.72rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
 }
 
 .hud-node-desc {
-  color: #bbb;
-  margin-top: 5px;
-  font-size: 0.7rem;
-  line-height: 1.3;
+  color: #c4def3;
+  margin-top: 3px;
+  font-size: 0.68rem;
+  line-height: 1.35;
+  border-top: 1px dashed rgba(0, 240, 255, 0.25);
+  padding-top: 4px;
 }
 
 .transit-banner {
