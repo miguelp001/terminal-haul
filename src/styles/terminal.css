@@ -2434,6 +2434,37 @@ button.trade-btn:disabled {
     font-size: 12px;
   }
 
+  /* ==========================================================================
+     DISABLE AUGMENTED-UI ON MOBILE
+     Suppresses complex polygon clipping, corner cutouts, and pseudo-elements
+     to deliver crisp borders, 0 layout clipping, and blazing touch performance.
+     ========================================================================== */
+  [data-augmented-ui] {
+    --aug-border-all: 0px !important;
+    --aug-inlay-all: 0px !important;
+    --aug-tl: 0px !important;
+    --aug-tr: 0px !important;
+    --aug-br: 0px !important;
+    --aug-bl: 0px !important;
+    --aug-tl1: 0px !important;
+    --aug-tl2: 0px !important;
+    --aug-tr1: 0px !important;
+    --aug-tr2: 0px !important;
+    --aug-br1: 0px !important;
+    --aug-br2: 0px !important;
+    --aug-bl1: 0px !important;
+    --aug-bl2: 0px !important;
+    clip-path: none !important;
+    -webkit-clip-path: none !important;
+    border-radius: 4px;
+  }
+
+  [data-augmented-ui]::before,
+  [data-augmented-ui]::after {
+    display: none !important;
+    content: none !important;
+  }
+
   /* Sleek, Compact Mobile Header */
   header.terminal-header {
     padding: 6px 8px 4px 8px;
@@ -2442,8 +2473,9 @@ button.trade-btn:disabled {
     padding-right: max(8px, env(safe-area-inset-right));
     flex-wrap: wrap;
     gap: 4px;
-    --aug-br: 4px;
-    --aug-bl: 4px;
+    background: var(--header-bg) !important;
+    border-bottom: 1.5px solid var(--neon-cyan) !important;
+    border-radius: 0 !important;
   }
 
   .header-brand {
@@ -2495,15 +2527,33 @@ button.trade-btn:disabled {
     padding: 2px 7px;
     font-size: 0.68rem;
     flex-shrink: 0;
+    background: rgba(7, 13, 20, 0.95) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 3px !important;
   }
 
   .hud-label {
     font-size: 0.6rem;
   }
 
+  .status-badge.status-docked {
+    background: rgba(57, 255, 20, 0.15) !important;
+    border: 1px solid var(--neon-green) !important;
+    border-radius: 2px !important;
+  }
+
+  .status-badge.status-loc {
+    background: rgba(0, 240, 255, 0.15) !important;
+    border: 1px solid var(--neon-cyan) !important;
+    border-radius: 2px !important;
+  }
+
   .progress-bar-container.mini-bar {
     width: 36px;
     height: 5px;
+    background: #060c13 !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 2px !important;
   }
 
   /* Clean, Fixed-Tab Mobile Navigation */
@@ -2515,6 +2565,8 @@ button.trade-btn:disabled {
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     flex-shrink: 0;
+    border-bottom: 1.5px solid var(--border-color) !important;
+    background: #040911 !important;
   }
   nav.terminal-nav::-webkit-scrollbar {
     display: none;
@@ -2530,7 +2582,18 @@ button.trade-btn:disabled {
     justify-content: center;
     gap: 2px;
     font-size: 0.64rem;
+    background: #07101a !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 4px 4px 0 0 !important;
   }
+
+  button.tab-btn.active {
+    background: #0c2035 !important;
+    border-color: var(--neon-cyan) !important;
+    border-bottom: 2px solid var(--neon-cyan) !important;
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.25);
+  }
+
   button.tab-btn .tab-icon {
     font-size: 1.05rem;
     line-height: 1;
@@ -2540,6 +2603,18 @@ button.trade-btn:disabled {
     font-size: 0.6rem;
     letter-spacing: 0.4px;
     white-space: nowrap;
+  }
+
+  button.term-btn {
+    background: #081424 !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 4px !important;
+  }
+
+  button.term-btn:active {
+    background: var(--neon-cyan) !important;
+    color: #000000 !important;
+    border-color: var(--neon-cyan) !important;
   }
 
   /* Main Container */
@@ -2796,6 +2871,11 @@ button.trade-btn:disabled {
   }
 
   /* Commodity Exchange */
+  .market-panel {
+    background: var(--panel-bg) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 4px !important;
+  }
   .market-panel .panel-content {
     padding: 8px;
   }
@@ -2806,6 +2886,15 @@ button.trade-btn:disabled {
     flex-direction: column;
     align-items: flex-start;
     gap: 3px;
+    background: rgba(0, 240, 255, 0.06) !important;
+    border: 1px solid rgba(0, 240, 255, 0.4) !important;
+    border-radius: 4px !important;
+  }
+
+  .table-responsive {
+    background: #060e19 !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 4px !important;
   }
 
   table.market-table th,
@@ -2827,7 +2916,24 @@ button.trade-btn:disabled {
     font-size: 0.7rem;
   }
 
+  button.trade-btn.buy {
+    background: rgba(57, 255, 20, 0.12) !important;
+    border: 1px solid var(--neon-green) !important;
+    border-radius: 3px !important;
+  }
+
+  button.trade-btn.sell {
+    background: rgba(255, 170, 0, 0.12) !important;
+    border: 1px solid var(--neon-amber) !important;
+    border-radius: 3px !important;
+  }
+
   /* Contracts & Career */
+  .contracts-panel {
+    background: var(--panel-bg) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 4px !important;
+  }
   .contracts-panel .panel-content {
     padding: 8px;
   }
@@ -2835,6 +2941,9 @@ button.trade-btn:disabled {
   .career-banner {
     padding: 8px 12px;
     gap: 6px;
+    background: rgba(0, 240, 255, 0.05) !important;
+    border: 1px solid var(--neon-cyan) !important;
+    border-radius: 4px !important;
   }
 
   .career-rank-title,
@@ -2849,6 +2958,9 @@ button.trade-btn:disabled {
 
   .contract-card {
     padding: 10px 12px;
+    background: #060b12 !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 4px !important;
   }
 
   /* Rig & Pilot Telemetry */
@@ -2860,14 +2972,31 @@ button.trade-btn:disabled {
     -webkit-overflow-scrolling: touch;
   }
 
+  .rig-card,
+  .pilot-card {
+    background: var(--panel-bg) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 4px !important;
+  }
+
   .rig-card .panel-content,
   .pilot-card .panel-content {
     padding: 10px;
   }
 
+  .telemetry-block {
+    border: 1px solid var(--border-color) !important;
+    border-radius: 4px !important;
+  }
+
   .mini-stats-grid {
     grid-template-columns: repeat(4, 1fr);
     gap: 4px;
+  }
+
+  .mini-stat-badge {
+    border: 1px solid var(--border-color) !important;
+    border-radius: 4px !important;
   }
 
   .stats-grid {
@@ -2877,6 +3006,8 @@ button.trade-btn:disabled {
 
   .stat-card {
     padding: 8px;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 4px !important;
   }
 
   .qualities-grid {
@@ -2884,7 +3015,17 @@ button.trade-btn:disabled {
     gap: 6px;
   }
 
+  .quality-card {
+    border: 1px solid var(--border-color) !important;
+    border-radius: 4px !important;
+  }
+
   /* Comms & Chat */
+  .comms-panel {
+    background: var(--panel-bg) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 4px !important;
+  }
   .comms-content {
     padding: 6px;
   }
@@ -2893,10 +3034,14 @@ button.trade-btn:disabled {
     padding: 6px 10px;
     flex-wrap: wrap;
     gap: 6px;
+    border: 1px solid rgba(0, 240, 255, 0.45) !important;
+    border-radius: 4px !important;
   }
 
   .change-callsign-btn {
     padding: 4px 8px;
+    border: 1px solid var(--neon-cyan) !important;
+    border-radius: 3px !important;
   }
 
   .chat-messages-stream {
@@ -2913,9 +3058,30 @@ button.trade-btn:disabled {
     padding: 6px 0;
   }
 
+  .chat-text-input,
+  .callsign-text-input {
+    background: #03080e !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 4px !important;
+  }
+
   .chat-send-btn {
     padding: 8px 14px;
     min-height: 38px;
+    border-radius: 4px !important;
+  }
+
+  /* Leaderboard */
+  .leaderboard-panel {
+    background: var(--panel-bg) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 4px !important;
+  }
+
+  .leaderboard-header-banner {
+    background: rgba(0, 240, 255, 0.05) !important;
+    border: 1px solid var(--neon-cyan) !important;
+    border-radius: 4px !important;
   }
 
   /* Modals */
@@ -2931,6 +3097,10 @@ button.trade-btn:disabled {
     max-height: 90dvh;
     padding: 14px;
     gap: 10px;
+    background: #07101c !important;
+    border: 2px solid var(--neon-cyan) !important;
+    border-radius: 8px !important;
+    box-shadow: 0 0 30px rgba(0, 240, 255, 0.3) !important;
   }
 
   .storylet-title {
@@ -2951,6 +3121,22 @@ button.trade-btn:disabled {
     padding: 10px 12px;
     font-size: 0.85rem;
     min-height: 44px;
+    background: #0d1b2a !important;
+    border: 1.5px solid var(--border-color) !important;
+    border-radius: 5px !important;
+  }
+
+  .storylet-roll-banner {
+    background: #081322 !important;
+    border: 1px solid var(--neon-amber) !important;
+    border-radius: 4px !important;
+  }
+
+  .dismiss-storylet-btn,
+  #btnDismissStorylet {
+    background: rgba(57, 255, 20, 0.2) !important;
+    border: 2px solid var(--neon-green) !important;
+    border-radius: 4px !important;
   }
 
   .menu-btn-grid {

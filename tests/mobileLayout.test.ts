@@ -65,4 +65,14 @@ describe('Mobile Responsiveness & Usability Verification', () => {
   it('verifies touch-action on map canvas for smooth touch interaction', () => {
     expect(css).toMatch(/canvas#worldMapCanvas\s*\{[^}]*touch-action:\s*none/);
   });
+
+  it('verifies augmented-ui is completely suppressed on mobile screens in favor of native styling', () => {
+    // augmented-ui pseudo-elements and clip paths must be disabled on mobile
+    expect(css).toMatch(/@media\s*\(max-width:\s*768px\)[\s\S]*?\[data-augmented-ui\]::before,\s*\[data-augmented-ui\]::after\s*\{[^}]*display:\s*none\s*!important/);
+    expect(css).toMatch(/@media\s*\(max-width:\s*768px\)[\s\S]*?\[data-augmented-ui\]\s*\{[^}]*clip-path:\s*none\s*!important/);
+
+    // Native borders, backgrounds, and touch targets applied
+    expect(css).toMatch(/@media\s*\(max-width:\s*768px\)[\s\S]*?button\.term-btn\s*\{[^}]*border:\s*1px\s*solid/);
+    expect(css).toMatch(/@media\s*\(max-width:\s*768px\)[\s\S]*?(\.system-menu-card,\s*\.storylet-card|\.storylet-card,\s*\.system-menu-card)\s*\{[^}]*border:\s*2px\s*solid\s*var\(--neon-cyan\)/);
+  });
 });
