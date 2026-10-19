@@ -18,6 +18,12 @@ export interface StoryletReward {
   cargo?: Partial<Record<CommodityId, number>>; // Delta (+ or -)
   rep?: Partial<Record<FactionId, number>>; // Delta (+ or -)
   hullIntegrity?: number; // Delta (+ or -)
+  rig?: {
+    speedRating?: number; // Delta (+ or -)
+    maxHull?: number; // Delta (+ or -)
+    maxCargoWeight?: number; // Delta (+ or -)
+    name?: string;
+  };
 }
 
 export interface PbtABranchOutcome {

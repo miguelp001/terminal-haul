@@ -231,6 +231,50 @@ An expansive, non-repeatable 20-storylet branching saga following two star-cross
   - ⚔️ **Ending 3: The Iron Requiem [TRAGIC LAST STAND]**: Cut off on the center span of an irradiated suspension bridge, Jax and Valerie stand back-to-back holding off army squads, detonating the bridge charges hand-in-hand so your rig can break through the other side.
     - *Rewards:* 6,000 ₵, salvaged titanium rings, 2x Cyberware, 2x Batteries, permanent **$+1$ GRIT**, $+25$ Street Cred, $-40$ Heat, and an enduring wasteland legend.
 
+#### Five Epic 20-Storylet Sagas with Permanent Rig Upgrades
+
+In addition to base encounters and earlier chains, the wasteland features **five epic, non-repeatable branching sagas (100 total new storylets)**. Each saga contains 20 sequential stages, minimum 3 options per stage, full PbtA 2d6 action rolls with stat/quality bonuses, multiple branching paths, and rewards players with **permanent rig upgrades** that modify speed, maximum hull, cargo tonnage, or custom chassis names:
+
+1. ⚡ **The Ghost in the Differential (20 Storylets)**
+   - *Theme:* Quantum AI Symbiosis & Transmission Ghost.
+   - *Core Conflict:* An autonomous combat intelligence named "Aura" awakens inside your hauler's differential. Navigate military purge-hunts, quantum cryo-coolant heists, and determine if Aura becomes an integrated co-pilot or autonomous sovereign entity.
+   - *Permanent Rig Modifiers:*
+     - **Symbiosis Path:** `Iron Nomad - Ghost Symbiont` (+20% permanent transit speed, +15 Max Hull, +1 CYBER).
+     - **Cyber-Weapon Path:** `Iron Nomad - Quantum Disruptor` (+10% speed, +15 Max Hull, +1 CYBER, +1 EDGE).
+     - **Sanctuary Path:** `Iron Nomad - Free Signal` (+15% speed, +10 Max Hull, +1 CYBER, +1 COOL).
+
+2. 🏔️ **The Iron Colossus of the Salt Flats (20 Storylets)**
+   - *Theme:* Super-Crawler Dreadnought Salvage & Lithium Basin War.
+   - *Core Conflict:* In the blinding salt flats, an ancient amphibious crawler titan ("The Behemoth") is discovered. Blast mountain passes, haul high-density mining machinery, repulse corporate gunboats, and decide who controls continental battery deposits.
+   - *Permanent Rig Modifiers:*
+     - **Commune Path:** `Iron Nomad - Colossus Chassis` (+35 Max Hull, +5 T Cargo Capacity, +1 GRIT).
+     - **Corporate Lease Path:** `Iron Nomad - Lithium Hauler` (+25 Max Hull, +8 T Cargo Capacity, +1 GRIT, +1 COOL).
+     - **Mobile Fortress Path:** `Iron Nomad - Salt Dreadnought` (+45 Max Hull, +1 GRIT).
+
+3. 🕶️ **The Smuggler King’s Phantom Cargo (20 Storylets)**
+   - *Theme:* Underworld Secret Ledgers & Scanner Blindspots.
+   - *Core Conflict:* The dying legend "Whispering" Jack Malory leaves you his biometric black-book of continental smuggling arteries and sensor-null dead zones. Outmaneuver syndicate cartels, customs trap sweeps, and syndicate assassins.
+   - *Permanent Rig Modifiers:*
+     - **Smuggler King Path:** `Iron Nomad - Phantom Monarch` (+Baryon Shielded False Bulkhead: +6 T Cargo, +15% Speed, +1 COOL).
+     - **People's Courier Path:** `Iron Nomad - Ghost Runner` (+20% Speed, +4 T Cargo, +1 COOL).
+     - **Black Ops Insider Path:** `Iron Nomad - Sovereign Shadow` (+20 Max Hull, +5 T Cargo, +1 COOL, +1 EDGE).
+
+4. 🚀 **Project Icarus: The Orbital Tether Heist (20 Storylets)**
+   - *Theme:* Fallen Space Elevator Antimatter Cores & Hypersonic Runs.
+   - *Core Conflict:* The diamond-carbon tether of the Olympus Space Elevator snaps, raining three super-pure antimatter power capsules across the desert. Race private military contractors to recover the energy cores and mount high-output hyper-flux engines.
+   - *Permanent Rig Modifiers:*
+     - **Hyper-Flux Turbine Path:** `Iron Nomad - Hyperflux Turbine` (+25% permanent transit speed, +1 EDGE).
+     - **Solaris Arcology Path:** `Iron Nomad - Solar Helios` (+20% speed, +5 T Cargo, +1 EDGE, +1 COOL).
+     - **Void Syndicate Path:** `Iron Nomad - Void Star` (+22% speed, +20 Max Hull, +1 EDGE, +1 CYBER).
+
+5. 🧬 **The Biomechanical Plague: Courier of the Cure (20 Storylets)**
+   - *Theme:* The "Silicon Rot" Nanite Plague & Dr. Thorne's Lazarus Matrix.
+   - *Core Conflict:* A mutagenic synthetic plague is eating cybernetics and hauler frames across border sectors. Escort Dr. Aris Thorne and a living nanite cure through quarantine flame cordons, infected behemoth encounters, and rust cult blockades.
+   - *Permanent Rig Modifiers:*
+     - **Humanitarian Path:** `Iron Nomad - Aegis Bio-Weave` (+30 Max Hull, +15% Speed, +1 GRIT, +1 COOL).
+     - **Transhuman Synergy Path:** `Iron Nomad - Living Chitin Chassis` (+40 Max Hull, +20% Speed, +1 GRIT, +1 CYBER).
+     - **Sovereign Syndicate Path:** `Iron Nomad - Sterile Bastion` (+25 Max Hull, +15% Speed, +5 T Cargo, +1 COOL, +1 EDGE).
+
 ### Courier Contracts & Cargo Loading
 Procedural delivery contracts are generated at every node with specified parameters:
 - **Cargo Reservation**: Accepting a contract reserves the necessary tonnage in your cargo hold.

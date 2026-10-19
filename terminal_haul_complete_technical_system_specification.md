@@ -231,6 +231,65 @@ flowchart TD
   - **Ending 3: The Iron Requiem (Tragic Last Stand):** Cut off on the bridge, the lovers detonate the charges together, sacrificing their lives so the player can break through.
     - *Rewards:* 6,000 ₵, salvage 2x Cyberware, 2x Batteries, permanent **$+1$ GRIT**, $+25$ Street Cred, $-40$ Heat, and eternal wasteland reverence.
 
+### 4.8 Five Epic Branching Sagas (20 Storylets Each & Permanent Rig Upgrades)
+
+To deliver vast narrative depth and tangible vehicle progression, five epic non-repeatable quest sagas—comprising **100 total hand-crafted storylets**—are woven into the continental storylet pool. Each saga features 20 sequential stages, minimum 3 options per stage, full Powered by the Apocalypse 2d6 action rolls with stat and quality bonuses, multiple branching paths, and **permanent rig chassis/engine upgrades** (`StoryletReward.rig`) alongside core stat boosts.
+
+```mermaid
+flowchart TD
+    GHOST["1. The Ghost in the Differential<br/>(AI Symbiosis & Quantum Coolant)<br/>Reward: +1 CYBER & Speed/Wear Mod"]
+    COLOSSUS["2. The Iron Colossus of Salt Flats<br/>(Amphibious Super-Crawler & Lithium Basin)<br/>Reward: +1 GRIT & +MaxHull/+Cargo Mod"]
+    SMUGGLER["3. The Smuggler King's Phantom Cargo<br/>(Black Ledgers & Shadow Pipeline)<br/>Reward: +1 COOL & Shielded Bulkhead Mod"]
+    ICARUS["4. Project Icarus: Orbital Tether Heist<br/>(Antimatter Cores & Space Elevator Fall)<br/>Reward: +1 EDGE & Hyper-Flux Turbine Mod"]
+    PLAGUE["5. Biomechanical Plague: Courier of the Cure<br/>(Silicon Rot & Dr. Thorne's Lazarus Matrix)<br/>Reward: +1 GRIT/COOL & Self-Healing Chassis Mod"]
+
+    GHOST --> POOL["Authoritative Narrative Pool<br/>(STORYLET_POOL: 130+ Storylets)"]
+    COLOSSUS --> POOL
+    SMUGGLER --> POOL
+    ICARUS --> POOL
+    PLAGUE --> POOL
+```
+
+#### 1. The Ghost in the Differential (20 Storylets)
+* **Narrative Arc:** A derelict military convoy diagnostic scan awakens an autonomous quantum intelligence named "Aura" embedded within the Iron Nomad's transmission differential. The player investigates military black-ops projects, purges corporate hunter-viruses, and decides Aura's ultimate evolution.
+* **Stage Tracking & Qualities:** `Ghost Stage` (0 to 19, ending at 99), `Ghost Bond`, `Ghost Chosen Path` (1: Full Symbiosis, 2: Cyber-Weapon, 3: Autonomous Sanctuary).
+* **Permanent Rig Rewards:**
+  - *Symbiosis Path:* `Iron Nomad - Ghost Symbiont` (+20% speed rating, +15 max hull, +1 CYBER).
+  - *Weapon Path:* `Iron Nomad - Quantum Disruptor` (+10% speed rating, +15 max hull, +1 CYBER, +1 EDGE).
+  - *Sanctuary Path:* `Iron Nomad - Free Signal` (+15% speed rating, +10 max hull, +1 CYBER, +1 COOL).
+
+#### 2. The Iron Colossus of the Salt Flats (20 Storylets)
+* **Narrative Arc:** In the blinding white lithium salt flats of the Southwest Wasteland, reclaimer crews discover an abandoned pre-war super-crawler dreadnought ("The Behemoth"). The player leads heavy transport operations, mountain blasting, fuel convoy runs, and corporate skirmishes to claim the mineral wealth.
+* **Stage Tracking & Qualities:** `Colossus Stage` (0 to 19, ending at 99), `Colossus Trust`, `Colossus Chosen Path` (1: Sovereign Salt Commune, 2: Corporate Lease, 3: Armored Mobile Fortress).
+* **Permanent Rig Rewards:**
+  - *Commune Path:* `Iron Nomad - Colossus Chassis` (+35 max hull, +5 cargo capacity, +1 GRIT).
+  - *Corporate Path:* `Iron Nomad - Lithium Hauler` (+25 max hull, +8 cargo capacity, +1 GRIT, +1 COOL).
+  - *War-Rig Path:* `Iron Nomad - Salt Dreadnought` (+45 max hull, +1 GRIT).
+
+#### 3. The Smuggler King’s Phantom Cargo (20 Storylets)
+* **Narrative Arc:** The dying underworld legend "Whispering" Jack Malory bequeaths an encrypted biometric ledger detailing every hidden smuggling artery, bribery code, and scanner blindspot across North America. The player navigates treacherous cartel cartels, customs sting operations, and syndicate backstabbing.
+* **Stage Tracking & Qualities:** `Smuggler Stage` (0 to 19, ending at 99), `Contraband Mastery`, `Smuggler Chosen Path` (1: Undisputed Smuggler King, 2: People's Courier, 3: Black Ops Corporate Insider).
+* **Permanent Rig Rewards:**
+  - *Smuggler King Path:* `Iron Nomad - Phantom Monarch` (+Baryon Shielded False Bulkhead: +6 cargo capacity, +15% speed rating, +1 COOL).
+  - *Liberator Path:* `Iron Nomad - Ghost Runner` (+20% speed rating, +4 cargo capacity, +1 COOL).
+  - *Insider Path:* `Iron Nomad - Sovereign Shadow` (+20 max hull, +5 cargo capacity, +1 COOL, +1 EDGE).
+
+#### 4. Project Icarus: The Orbital Tether Heist (20 Storylets)
+* **Narrative Arc:** The diamond-carbon tether of the Olympus Orbital Space Elevator snaps, sending three high-purity antimatter power cores tumbling into atmospheric reentry across the desert corridor. The player races corporate strike teams and orbital recovery mercenaries to salvage the exotic energy source.
+* **Stage Tracking & Qualities:** `Icarus Stage` (0 to 19, ending at 99), `Tech Literacy`, `Icarus Chosen Path` (1: Hyper-Flux Core Integration, 2: Solaris Arcology Delivery, 3: Void Syndicate Cartel).
+* **Permanent Rig Rewards:**
+  - *Hyperflux Engine Path:* `Iron Nomad - Hyperflux Turbine` (+25% permanent transit speed, +1 EDGE).
+  - *Solaris Delivery Path:* `Iron Nomad - Solar Helios` (+20% transit speed, +5 cargo capacity, +1 EDGE, +1 COOL).
+  - *Cartel Syndicate Path:* `Iron Nomad - Void Star` (+22% transit speed, +20 max hull, +1 EDGE, +1 CYBER).
+
+#### 5. The Biomechanical Plague: Courier of the Cure (20 Storylets)
+* **Narrative Arc:** A mutagenic nanite pathogen called the "Silicon Rot" breaks out across industrial border towns, rapidly disintegrating synthetic cyberware and vehicle chassis frames. The player hauls Dr. Aris Thorne and the cryogenic prototype "Lazarus Matrix" across quarantine barriers, burning incinerator zones, and fanatic rust cults.
+* **Stage Tracking & Qualities:** `Plague Stage` (0 to 19, ending at 99), `Plague Chosen Path` (1: Humanitarian Cordon, 2: Transhuman Bio-Mechanical Synergy, 3: Sovereign Syndicate Auction).
+* **Permanent Rig Rewards:**
+  - *Humanitarian Path:* `Iron Nomad - Aegis Bio-Weave` (+30 max hull, +15% speed rating, +1 GRIT, +1 COOL).
+  - *Transhuman Synergy Path:* `Iron Nomad - Living Chitin Chassis` (+40 max hull, +20% speed rating, +1 GRIT, +1 CYBER).
+  - *Sovereign Auction Path:* `Iron Nomad - Sterile Bastion` (+25 max hull, +15% speed rating, +5 cargo capacity, +1 COOL, +1 EDGE).
+
 ---
 
 ## 5. GOAP AI Economy & Synchronized Market
@@ -394,7 +453,12 @@ The system is validated through an extensive automated test suite run via **Vite
 | **Market Pricing** | `tests/economy.test.ts` | Base prices, local multipliers, reputation discounts. |
 | **Commodity Trading** | `tests/trading.test.ts` | Hold limits, credit validation, buy/sell executions. |
 | **Courier Contracts** | `tests/contracts.test.ts` | Generation, expiration, cargo reservation, delivery turn-in. |
-| **Narrative Storylets** | `tests/storylets.test.ts` | Quality prerequisite checks, choice resolution, cargo rewards. |
+| **PbtA Action Rolls** | `tests/pbta.test.ts` | 2d6 probability curve, stat bonuses, quality thresholds. |
+| **Base Narrative Storylets** | `tests/storylets.test.ts` | Quality prerequisite checks, choice resolution, cargo rewards. |
+| **Cryo Corp Extraction** | `tests/cryoQuest.test.ts` | 10-storylet non-repeatable chain, Dr. Vance branching. |
+| **Lovers Across the Ashline** | `tests/loversQuest.test.ts` | 20-storylet non-repeatable saga, 3 divergent endings. |
+| **Five Epic 20-Card Sagas** | `tests/newSagas.test.ts` | 100 storylets, reachability, branching paths, permanent rig upgrades. |
+| **Convoy Maintenance** | `tests/convoyMaintenance.test.ts` | Hull attenuation, speed scaling, repair costs, Enclave Permits. |
 | **Graph Navigation** | `tests/navigation.test.ts` | Adjacency topology, shortest-hop BFS, auto-advance. |
 | **State Persistence** | `tests/persistence.test.ts` | Serialization, hydration, schema migration. |
 | **Authoritative Multiplayer** | `tests/multiplayer.test.ts` | WebSocket server end-to-end, presence, chat, leaderboard. |

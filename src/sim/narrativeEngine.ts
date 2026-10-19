@@ -211,6 +211,27 @@ export class NarrativeEngine {
       }
     }
 
+    // 7. Rig Modifications
+    if (rewards.rig && state.convoy) {
+      if (rewards.rig.speedRating) {
+        state.convoy.speedRating = Math.round((state.convoy.speedRating + rewards.rig.speedRating) * 100) / 100;
+        changes.push(`Rig Speed: ${rewards.rig.speedRating > 0 ? '+' : ''}${Math.round(rewards.rig.speedRating * 100)}% (Now ${state.convoy.speedRating.toFixed(2)}x)`);
+      }
+      if (rewards.rig.maxHull) {
+        state.convoy.maxHull += rewards.rig.maxHull;
+        state.convoy.hullIntegrity = Math.min(state.convoy.maxHull, state.convoy.hullIntegrity + rewards.rig.maxHull);
+        changes.push(`Max Hull: +${rewards.rig.maxHull}% (Now ${state.convoy.maxHull}%)`);
+      }
+      if (rewards.rig.maxCargoWeight) {
+        state.convoy.maxCargoWeight += rewards.rig.maxCargoWeight;
+        changes.push(`Cargo Capacity: +${rewards.rig.maxCargoWeight}T (Now ${state.convoy.maxCargoWeight}T)`);
+      }
+      if (rewards.rig.name) {
+        state.convoy.name = rewards.rig.name;
+        changes.push(`Rig Designation: "${rewards.rig.name}"`);
+      }
+    }
+
     return changes;
   }
 

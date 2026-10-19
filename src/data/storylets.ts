@@ -1,6 +1,11 @@
 import { Storylet } from '../types/storylet';
 import { CRYO_QUEST_STORYLETS } from './cryoQuestStorylets';
 import { LOVERS_QUEST_STORYLETS } from './loversQuestStorylets';
+import { GHOST_QUEST_STORYLETS } from './ghostQuestStorylets';
+import { COLOSSUS_QUEST_STORYLETS } from './colossusQuestStorylets';
+import { SMUGGLER_QUEST_STORYLETS } from './smugglerQuestStorylets';
+import { ICARUS_QUEST_STORYLETS } from './icarusQuestStorylets';
+import { PLAGUE_QUEST_STORYLETS } from './plagueQuestStorylets';
 
 export const BASE_STORYLET_POOL: Storylet[] = [
   {
@@ -714,6 +719,11 @@ export const BASE_STORYLET_POOL: Storylet[] = [
 export const STORYLET_POOL: Storylet[] = [
   ...BASE_STORYLET_POOL,
   ...CRYO_QUEST_STORYLETS,
-  ...LOVERS_QUEST_STORYLETS
+  ...LOVERS_QUEST_STORYLETS,
+  ...GHOST_QUEST_STORYLETS,
+  ...COLOSSUS_QUEST_STORYLETS,
+  ...SMUGGLER_QUEST_STORYLETS,
+  ...ICARUS_QUEST_STORYLETS,
+  ...PLAGUE_QUEST_STORYLETS
 ];
 
