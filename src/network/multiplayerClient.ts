@@ -28,8 +28,11 @@ export class MultiplayerClient {
   private chatListeners: Set<ChatListener> = new Set();
   private leaderboardListeners: Set<LeaderboardListener> = new Set();
 
-  constructor(serverUrl: string = 'ws://localhost:8080') {
-    this.serverUrl = serverUrl;
+  constructor(serverUrl?: string) {
+    const defaultEnvUrl = (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_WS_SERVER_URL)
+      ? import.meta.env.VITE_WS_SERVER_URL
+      : 'ws://localhost:8080';
+    this.serverUrl = serverUrl ?? defaultEnvUrl;
     this.playerId = this.getOrCreatePlayerId();
     this.callsign = 'Iron Nomad MK-IV';
   }
