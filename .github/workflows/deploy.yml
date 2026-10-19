@@ -92,17 +92,24 @@ jobs:
         env:
           SSHPASS: ${{ secrets.DREAMHOST_PASSWORD }}
         run: |
-          sudo apt-get update -qq && sudo apt-get install -y -qq lftp
-          echo "Syncing production bundle to DreamHost via SFTP..."
-          unset SSH_AUTH_SOCK
-          unset SSH_AGENT_PID
-          lftp <<EOF
+          sudo apt-get update -qq && sudo apt-get install -y -qq sshpass lftp
+          echo "Testing native SSH / SFTP authentication..."
+          
+          # Test OpenSSH SFTP with password
+          sshpass -p "$SSHPASS" sftp -v -o StrictHostKeyChecking=no -o PubkeyAuthentication=no "${CLEAN_USER}@${CLEAN_HOST}" <<EOF
+            pwd
+            ls
+            bye
+          EOF || true
+
+          echo "Attempting LFTP upload with explicit credentials..."
+          lftp -d <<EOF
             set sftp:auto-confirm yes
             set sftp:connect-program "ssh -a -x -o StrictHostKeyChecking=no -o PubkeyAuthentication=no"
             set net:timeout 30
-            set net:max-retries 3
-            open -u "${CLEAN_USER},${SSHPASS}" "sftp://${CLEAN_HOST}"
-            cd "${RESOLVED_TARGET}" || cd "haul.aredpanic.com"
+            set net:max-retries 1
+            open "sftp://${CLEAN_USER}:${SSHPASS}@${CLEAN_HOST}"
+            cd "${RESOLVED_TARGET}" || cd "haul.aredpanic.com" || cd "."
             set cmd:fail-exit yes
             mirror --reverse --delete --verbose ./dist .
             bye
