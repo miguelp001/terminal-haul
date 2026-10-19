@@ -339,12 +339,28 @@ class TerminalApp {
       });
     }
 
+    const toggleNavDrawer = () => {
+      soundFX.playClick();
+      this.navDispatchPanel!.classList.toggle('drawer-open');
+      const isOpen = this.navDispatchPanel!.classList.contains('drawer-open');
+      if (this.btnToggleNavDrawer) {
+        this.btnToggleNavDrawer.textContent = isOpen ? '▼ HIDE DISPATCH' : '▲ ROUTE DISPATCH';
+      }
+    };
+
     if (this.btnToggleNavDrawer && this.navDispatchPanel) {
-      this.btnToggleNavDrawer.addEventListener('click', () => {
-        soundFX.playClick();
-        this.navDispatchPanel!.classList.toggle('drawer-open');
-        const isOpen = this.navDispatchPanel!.classList.contains('drawer-open');
-        this.btnToggleNavDrawer!.textContent = isOpen ? '▼ HIDE DISPATCH' : '▲ ROUTE DISPATCH';
+      this.btnToggleNavDrawer.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleNavDrawer();
+      });
+    }
+
+    const navDispatchHeader = document.getElementById('navDispatchHeader');
+    if (navDispatchHeader && this.navDispatchPanel) {
+      navDispatchHeader.addEventListener('click', () => {
+        if (window.innerWidth <= 768) {
+          toggleNavDrawer();
+        }
       });
     }
 
@@ -371,6 +387,13 @@ class TerminalApp {
         soundFX.playClick();
         const autoAdvance = this.chkAutoAdvance.checked;
         gameStore.departTo(this.selectedDestinationNode.id, autoAdvance);
+      }
+
+      if (window.innerWidth <= 768 && this.navDispatchPanel) {
+        this.navDispatchPanel.classList.remove('drawer-open');
+        if (this.btnToggleNavDrawer) {
+          this.btnToggleNavDrawer.textContent = '▲ ROUTE DISPATCH';
+        }
       }
     });
 
@@ -451,6 +474,12 @@ class TerminalApp {
   private handleMapNodeClick(node: WorldNode): void {
     this.selectDestination(node);
     this.destinationSelect.value = node.id;
+    if (window.innerWidth <= 768 && this.navDispatchPanel) {
+      this.navDispatchPanel.classList.add('drawer-open');
+      if (this.btnToggleNavDrawer) {
+        this.btnToggleNavDrawer.textContent = '▼ HIDE DISPATCH';
+      }
+    }
   }
 
   private selectDestination(node: WorldNode): void {

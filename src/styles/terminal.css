@@ -110,6 +110,9 @@ html, body {
   font-family: var(--font-mono);
   overflow: hidden;
   height: 100vh;
+  min-height: 100dvh;
+  height: 100dvh;
+  max-height: 100dvh;
   width: 100vw;
   font-size: 13px;
   line-height: 1.45;
@@ -656,6 +659,7 @@ canvas#worldMapCanvas {
   background: #020407;
   cursor: crosshair;
   display: block;
+  touch-action: none;
 }
 
 .map-hud-overlay {
@@ -2389,10 +2393,10 @@ button.trade-btn:disabled {
 }
 
 /* ==========================================================================
-   Responsive & Mobile Design (< 960px & < 640px)
+   Responsive & Mobile Design (< 1024px & < 768px)
    ========================================================================== */
 
-@media (max-width: 960px) {
+@media (max-width: 1024px) {
   .header-hud {
     gap: 6px;
   }
@@ -2401,40 +2405,72 @@ button.trade-btn:disabled {
     font-size: 0.7rem;
   }
   .map-view-panel {
-    flex-direction: column;
+    gap: 6px;
   }
   .nav-dispatch-panel {
-    width: 100%;
-    max-height: 270px;
+    width: 290px;
   }
   .rig-pilot-layout {
     grid-template-columns: 1fr;
+    overflow-y: auto;
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   html, body {
     font-size: 12px;
   }
 
+  /* Sleek, Compact Mobile Header */
   header.terminal-header {
-    padding: 6px 10px;
+    padding: 6px 8px 4px 8px;
+    padding-top: max(6px, env(safe-area-inset-top));
+    padding-left: max(8px, env(safe-area-inset-left));
+    padding-right: max(8px, env(safe-area-inset-right));
     flex-wrap: wrap;
-    --aug-br: 5px;
-    --aug-bl: 5px;
+    gap: 4px;
+    --aug-br: 4px;
+    --aug-bl: 4px;
+  }
+
+  .header-brand {
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+    flex: 1;
   }
 
   .logo-title {
-    font-size: 1rem;
+    font-size: 0.95rem;
     letter-spacing: 1.5px;
   }
 
+  .logo-sub,
+  .brand-badge {
+    display: none !important;
+  }
+
+  .header-actions {
+    margin-left: auto;
+  }
+
+  button.term-btn.menu-btn {
+    padding: 4px 10px;
+    font-size: 0.72rem;
+  }
+
+  /* Single-Row Horizontal Scrolling HUD */
   .header-hud {
     order: 3;
     width: 100%;
-    margin-top: 4px;
+    margin-top: 2px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
     justify-content: flex-start;
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: 5px;
     padding-bottom: 2px;
     scrollbar-width: none;
   }
@@ -2442,32 +2478,84 @@ button.trade-btn:disabled {
     display: none;
   }
 
+  .hud-item {
+    padding: 2px 7px;
+    font-size: 0.68rem;
+    flex-shrink: 0;
+  }
+
+  .hud-label {
+    font-size: 0.6rem;
+  }
+
+  .progress-bar-container.mini-bar {
+    width: 36px;
+    height: 5px;
+  }
+
+  /* Clean, Fixed-Tab Mobile Navigation */
   nav.terminal-nav {
-    order: 2;
-    padding: 4px 6px 0 6px;
+    display: flex;
+    padding: 2px 4px 0 4px;
     gap: 3px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    flex-shrink: 0;
+  }
+  nav.terminal-nav::-webkit-scrollbar {
+    display: none;
   }
 
   button.tab-btn {
-    padding: 8px 10px;
-    font-size: 0.72rem;
-  }
-  button.tab-btn .tab-label {
-    display: none;
+    flex: 1 0 auto;
+    min-width: 52px;
+    padding: 6px 6px 5px 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    font-size: 0.64rem;
   }
   button.tab-btn .tab-icon {
-    font-size: 1.15rem;
+    font-size: 1.05rem;
+    line-height: 1;
   }
-  button.tab-btn.active .tab-label {
-    display: inline;
+  button.tab-btn .tab-label {
+    display: block !important;
+    font-size: 0.6rem;
+    letter-spacing: 0.4px;
+    white-space: nowrap;
+  }
+
+  /* Main Container */
+  main.terminal-main {
+    padding: 4px;
+    padding-bottom: max(4px, env(safe-area-inset-bottom));
+    padding-left: max(4px, env(safe-area-inset-left));
+    padding-right: max(4px, env(safe-area-inset-right));
+    flex: 1;
+    min-height: 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Tactical Map & Sliding Dispatch Console */
+  .map-view-panel {
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
   }
 
   .map-viewport {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
     height: 100%;
-  }
-
-  .nav-drawer-toggle {
-    display: block;
   }
 
   .nav-dispatch-panel {
@@ -2476,32 +2564,249 @@ button.trade-btn:disabled {
     left: 0;
     right: 0;
     width: 100%;
-    max-height: 80%;
+    max-height: 76%;
     z-index: 50;
-    transform: translateY(calc(100% - 36px));
-    transition: transform 0.3s cubic-bezier(0.1, 0.9, 0.2, 1);
+    transform: translateY(calc(100% - 44px));
+    transition: transform 0.28s cubic-bezier(0.1, 0.9, 0.2, 1);
     box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.95);
+    border-top: 1.5px solid var(--neon-cyan);
+    background: #060e19;
+    display: flex;
+    flex-direction: column;
   }
 
   .nav-dispatch-panel.drawer-open {
     transform: translateY(0);
   }
 
-  .system-menu-card,
-  .storylet-card {
-    padding: 16px;
-    max-height: 94vh;
+  .nav-dispatch-panel .panel-header {
+    cursor: pointer;
+    min-height: 44px;
+    padding: 6px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #081627;
+    user-select: none;
+    -webkit-user-select: none;
   }
 
-  .menu-btn-grid {
-    grid-template-columns: 1fr;
+  .nav-drawer-toggle {
+    display: inline-flex !important;
+    position: static;
+    transform: none;
+    padding: 4px 12px;
+    font-size: 0.72rem;
+    background: rgba(0, 240, 255, 0.15);
+    border: 1px solid var(--neon-cyan);
+    color: var(--neon-cyan);
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .header-tech-tag {
+    display: none !important;
+  }
+
+  .dispatch-body {
+    padding: 10px 12px;
+    gap: 8px;
+    overflow-y: auto;
+    max-height: calc(76vh - 44px);
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .node-detail-card {
+    padding: 8px 10px;
+    font-size: 0.74rem;
+  }
+
+  .dispatch-action-btn {
+    padding: 12px;
+    font-size: 0.86rem;
+    min-height: 44px;
+  }
+
+  .transit-banner {
+    bottom: 52px;
+    min-width: 0;
+    width: calc(100% - 24px);
+    max-width: 380px;
+    padding: 8px 12px;
+    font-size: 0.72rem;
+  }
+
+  /* Form Inputs (Disable iOS Safari 16px auto-zoom) */
+  select.term-select,
+  input.chat-text-input,
+  input.callsign-text-input {
+    font-size: 16px !important;
+  }
+
+  /* Commodity Exchange */
+  .market-panel .panel-content {
+    padding: 8px;
+  }
+
+  .market-intel-banner {
+    padding: 6px 10px;
+    font-size: 0.7rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3px;
   }
 
   table.market-table th,
   table.market-table td,
   table.leaderboard-table th,
   table.leaderboard-table td {
-    padding: 6px 6px;
+    padding: 7px 8px;
     font-size: 0.72rem;
+  }
+
+  .trade-btn-group {
+    display: flex;
+    gap: 3px;
+  }
+
+  button.trade-btn {
+    padding: 4px 7px;
+    min-height: 28px;
+    font-size: 0.7rem;
+  }
+
+  /* Contracts & Career */
+  .contracts-panel .panel-content {
+    padding: 8px;
+  }
+
+  .career-banner {
+    padding: 8px 12px;
+    gap: 6px;
+  }
+
+  .career-rank-title,
+  .career-score-val {
+    font-size: 0.95rem;
+  }
+
+  .contracts-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .contract-card {
+    padding: 10px 12px;
+  }
+
+  /* Rig & Pilot Telemetry */
+  .rig-pilot-layout {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    height: 100%;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .rig-card .panel-content,
+  .pilot-card .panel-content {
+    padding: 10px;
+  }
+
+  .mini-stats-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4px;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+
+  .stat-card {
+    padding: 8px;
+  }
+
+  .qualities-grid {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  /* Comms & Chat */
+  .comms-content {
+    padding: 6px;
+  }
+
+  .chat-callsign-bar {
+    padding: 6px 10px;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .change-callsign-btn {
+    padding: 4px 8px;
+  }
+
+  .chat-messages-stream {
+    padding: 6px;
+    gap: 5px;
+  }
+
+  .chat-msg-row {
+    padding: 6px 10px;
+    font-size: 0.76rem;
+  }
+
+  .chat-input-bar {
+    padding: 6px 0;
+  }
+
+  .chat-send-btn {
+    padding: 8px 14px;
+    min-height: 38px;
+  }
+
+  /* Modals */
+  .system-menu-backdrop,
+  .storylet-modal-backdrop {
+    padding: 8px;
+  }
+
+  .system-menu-card,
+  .storylet-card {
+    max-width: 100%;
+    width: 100%;
+    max-height: 90dvh;
+    padding: 14px;
+    gap: 10px;
+  }
+
+  .storylet-title {
+    font-size: 1.15rem;
+  }
+
+  .storylet-body {
+    font-size: 0.82rem;
+    padding: 10px 12px;
+    line-height: 1.5;
+  }
+
+  .storylet-options {
+    gap: 8px;
+  }
+
+  .storylet-option-btn {
+    padding: 10px 12px;
+    font-size: 0.85rem;
+    min-height: 44px;
+  }
+
+  .menu-btn-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .menu-btn-grid button.term-btn {
+    min-height: 42px;
   }
 }
