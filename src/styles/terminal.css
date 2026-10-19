@@ -31,18 +31,18 @@
   --aug-border-bg: var(--border-color);
   --aug-inlay-all: 2px;
   --aug-inlay-bg: var(--panel-bg);
-  --aug-tl: 8px;
-  --aug-tr: 8px;
-  --aug-br: 8px;
-  --aug-bl: 8px;
-  --aug-tl1: 8px;
-  --aug-tl2: 14px;
-  --aug-tr1: 8px;
-  --aug-tr2: 14px;
-  --aug-br1: 8px;
-  --aug-br2: 14px;
-  --aug-bl1: 8px;
-  --aug-bl2: 14px;
+  --aug-tl: 5px;
+  --aug-tr: 5px;
+  --aug-br: 5px;
+  --aug-bl: 5px;
+  --aug-tl1: 4px;
+  --aug-tl2: 8px;
+  --aug-tr1: 4px;
+  --aug-tr2: 8px;
+  --aug-br1: 4px;
+  --aug-br2: 8px;
+  --aug-bl1: 4px;
+  --aug-bl2: 8px;
 }
 
 :root[data-theme="amber"] {
@@ -189,13 +189,8 @@ header.terminal-header {
   --aug-border-bg: var(--neon-cyan);
   --aug-inlay-all: 2px;
   --aug-inlay-bg: var(--header-bg);
-  --aug-br: 16px;
-  --aug-bl: 16px;
-  --aug-br1: 10px;
-  --aug-br2: 18px;
-  --aug-bl1: 10px;
-  --aug-bl2: 18px;
-  --aug-b: 14px;
+  --aug-br: 6px;
+  --aug-bl: 6px;
   z-index: 100;
   gap: 12px;
   flex-shrink: 0;
@@ -233,15 +228,15 @@ header.terminal-header {
   font-size: 0.6rem;
   font-weight: bold;
   letter-spacing: 1px;
-  padding: 1px 6px;
+  padding: 2px 8px;
   color: #000;
   background: var(--neon-cyan);
   --aug-border-all: 1px;
   --aug-border-bg: var(--neon-cyan);
   --aug-inlay-all: 0px;
   --aug-inlay-bg: var(--neon-cyan);
-  --aug-tr: 5px;
-  --aug-bl: 5px;
+  --aug-tr: 3px;
+  --aug-bl: 3px;
   box-shadow: 0 0 8px rgba(0, 240, 255, 0.5);
 }
 
@@ -448,10 +443,8 @@ button.term-btn.reset-btn:hover:not(:disabled) {
 button.term-btn.menu-btn {
   padding: 7px 16px;
   font-weight: bold;
-  --aug-tl1: 6px;
-  --aug-tl2: 12px;
-  --aug-br1: 6px;
-  --aug-br2: 12px;
+  --aug-tl: 5px;
+  --aug-br: 5px;
   --aug-border-all: 1.5px;
   --aug-border-bg: var(--neon-cyan);
   border-color: var(--neon-cyan);
@@ -484,11 +477,8 @@ nav.terminal-nav {
   --aug-border-bg: var(--border-color);
   --aug-inlay-all: 0px;
   --aug-inlay-bg: #040911;
-  --aug-tl1: 8px;
-  --aug-tl2: 16px;
-  --aug-tr1: 8px;
-  --aug-tr2: 16px;
-  --aug-b: 10px;
+  --aug-tl: 6px;
+  --aug-tr: 6px;
   scrollbar-width: none;
 }
 nav.terminal-nav::-webkit-scrollbar {
@@ -501,7 +491,7 @@ button.tab-btn {
   font-family: var(--font-mono);
   font-size: 0.78rem;
   letter-spacing: 1px;
-  padding: 8px 18px;
+  padding: 9px 18px;
   cursor: pointer;
   transition: all 0.2s ease;
   white-space: nowrap;
@@ -515,9 +505,8 @@ button.tab-btn {
   --aug-border-bg: var(--border-color);
   --aug-inlay-all: 1px;
   --aug-inlay-bg: #07101a;
-  --aug-tl1: 6px;
-  --aug-tl2: 12px;
-  --aug-tr: 6px;
+  --aug-tl: 5px;
+  --aug-tr: 5px;
 }
 
 button.tab-btn:hover {
@@ -636,12 +625,10 @@ main.terminal-main {
   --aug-border-bg: var(--border-color);
   --aug-inlay-all: 2px;
   --aug-inlay-bg: #020407;
-  --aug-tl1: 8px;
-  --aug-tl2: 16px;
-  --aug-tr: 8px;
-  --aug-br: 8px;
-  --aug-bl1: 8px;
-  --aug-bl2: 16px;
+  --aug-tl: 6px;
+  --aug-tr: 6px;
+  --aug-br: 6px;
+  --aug-bl: 6px;
   overflow: hidden;
 }
 
@@ -731,14 +718,10 @@ canvas#worldMapCanvas {
   --aug-border-bg: var(--neon-amber);
   --aug-inlay-all: 2px;
   --aug-inlay-bg: rgba(6, 12, 19, 0.96);
-  --aug-tl1: 8px;
-  --aug-tl2: 16px;
-  --aug-tr1: 8px;
-  --aug-tr2: 16px;
-  --aug-br1: 8px;
-  --aug-br2: 16px;
-  --aug-bl1: 8px;
-  --aug-bl2: 16px;
+  --aug-tl: 6px;
+  --aug-tr: 6px;
+  --aug-br: 6px;
+  --aug-bl: 6px;
   padding: 10px 22px;
   text-align: center;
   min-width: 380px;
@@ -791,10 +774,8 @@ canvas#worldMapCanvas {
   --aug-border-bg: var(--neon-cyan);
   --aug-inlay-all: 1px;
   --aug-inlay-bg: #08111b;
-  --aug-tl1: 8px;
-  --aug-tl2: 16px;
-  --aug-tr1: 8px;
-  --aug-tr2: 16px;
+  --aug-tl: 5px;
+  --aug-tr: 5px;
   padding: 6px 18px;
   font-family: var(--font-mono);
   font-size: 0.75rem;
@@ -812,12 +793,10 @@ canvas#worldMapCanvas {
   --aug-border-bg: var(--border-color);
   --aug-inlay-all: 2px;
   --aug-inlay-bg: #060e19;
-  --aug-tl1: 8px;
-  --aug-tl2: 16px;
-  --aug-tr: 8px;
-  --aug-br1: 8px;
-  --aug-br2: 16px;
-  --aug-bl: 8px;
+  --aug-tl: 6px;
+  --aug-tr: 6px;
+  --aug-br: 6px;
+  --aug-bl: 6px;
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
@@ -876,12 +855,8 @@ canvas#worldMapCanvas {
   --aug-border-bg: var(--border-color);
   --aug-inlay-all: 1px;
   --aug-inlay-bg: #081324;
-  --aug-tl: 6px;
-  --aug-tr1: 6px;
-  --aug-tr2: 12px;
-  --aug-br: 6px;
-  --aug-bl1: 6px;
-  --aug-bl2: 12px;
+  --aug-tl: 5px;
+  --aug-br: 5px;
   padding: 12px 14px;
   font-size: 0.78rem;
   display: flex;
@@ -962,10 +937,8 @@ canvas#worldMapCanvas {
   --aug-border-bg: var(--neon-cyan);
   --aug-inlay-all: 1px;
   --aug-inlay-bg: rgba(0, 240, 255, 0.1);
-  --aug-tl1: 8px;
-  --aug-tl2: 16px;
-  --aug-br1: 8px;
-  --aug-br2: 16px;
+  --aug-tl: 5px;
+  --aug-br: 5px;
   margin-top: 4px;
 }
 .dispatch-action-btn:hover {
@@ -992,12 +965,10 @@ canvas#worldMapCanvas {
   --aug-border-bg: var(--border-color);
   --aug-inlay-all: 2px;
   --aug-inlay-bg: var(--panel-bg);
-  --aug-tl1: 8px;
-  --aug-tl2: 16px;
-  --aug-tr: 8px;
-  --aug-br1: 8px;
-  --aug-br2: 16px;
-  --aug-bl: 8px;
+  --aug-tl: 6px;
+  --aug-tr: 6px;
+  --aug-br: 6px;
+  --aug-bl: 6px;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -1009,10 +980,8 @@ canvas#worldMapCanvas {
   --aug-border-bg: rgba(0, 240, 255, 0.4);
   --aug-inlay-all: 1px;
   --aug-inlay-bg: rgba(0, 240, 255, 0.05);
-  --aug-tr1: 8px;
-  --aug-tr2: 16px;
-  --aug-bl1: 8px;
-  --aug-bl2: 16px;
+  --aug-tr: 5px;
+  --aug-bl: 5px;
   padding: 8px 14px;
   font-size: 0.76rem;
   margin-bottom: 12px;
@@ -1150,12 +1119,10 @@ button.trade-btn:disabled {
   --aug-border-bg: var(--border-color);
   --aug-inlay-all: 2px;
   --aug-inlay-bg: var(--panel-bg);
-  --aug-tl1: 8px;
-  --aug-tl2: 16px;
-  --aug-tr: 8px;
-  --aug-br1: 8px;
-  --aug-br2: 16px;
-  --aug-bl: 8px;
+  --aug-tl: 6px;
+  --aug-tr: 6px;
+  --aug-br: 6px;
+  --aug-bl: 6px;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -1167,14 +1134,10 @@ button.trade-btn:disabled {
   --aug-border-bg: rgba(0, 240, 255, 0.4);
   --aug-inlay-all: 1px;
   --aug-inlay-bg: rgba(0, 240, 255, 0.05);
-  --aug-tl1: 8px;
-  --aug-tl2: 16px;
-  --aug-tr1: 8px;
-  --aug-tr2: 16px;
-  --aug-br1: 8px;
-  --aug-br2: 16px;
-  --aug-bl1: 8px;
-  --aug-bl2: 16px;
+  --aug-tl: 6px;
+  --aug-tr: 6px;
+  --aug-br: 6px;
+  --aug-bl: 6px;
   padding: 12px 18px;
   display: flex;
   justify-content: space-between;
@@ -1287,12 +1250,10 @@ button.trade-btn:disabled {
   --aug-border-bg: var(--border-color);
   --aug-inlay-all: 2px;
   --aug-inlay-bg: var(--panel-bg);
-  --aug-tl1: 8px;
-  --aug-tl2: 16px;
-  --aug-tr: 8px;
-  --aug-br1: 8px;
-  --aug-br2: 16px;
-  --aug-bl: 8px;
+  --aug-tl: 6px;
+  --aug-tr: 6px;
+  --aug-br: 6px;
+  --aug-bl: 6px;
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -1347,11 +1308,11 @@ button.trade-btn:disabled {
   --aug-border-bg: var(--border-color);
   --aug-inlay-all: 1px;
   --aug-inlay-bg: #050a10;
-  --aug-tl: 5px;
-  --aug-tr: 5px;
-  --aug-br: 5px;
-  --aug-bl: 5px;
-  padding: 6px;
+  --aug-tl: 3px;
+  --aug-tr: 3px;
+  --aug-br: 3px;
+  --aug-bl: 3px;
+  padding: 6px 8px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -1509,12 +1470,10 @@ button.trade-btn:disabled {
   --aug-border-bg: var(--border-color);
   --aug-inlay-all: 2px;
   --aug-inlay-bg: var(--panel-bg);
-  --aug-tl1: 8px;
-  --aug-tl2: 16px;
-  --aug-tr: 8px;
-  --aug-br1: 8px;
-  --aug-br2: 16px;
-  --aug-bl: 8px;
+  --aug-tl: 6px;
+  --aug-tr: 6px;
+  --aug-br: 6px;
+  --aug-bl: 6px;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -1834,10 +1793,8 @@ button.trade-btn:disabled {
 .chat-send-btn {
   padding: 8px 18px;
   font-weight: bold;
-  --aug-tl1: 6px;
-  --aug-tl2: 12px;
-  --aug-br1: 6px;
-  --aug-br2: 12px;
+  --aug-tl: 5px;
+  --aug-br: 5px;
   --aug-border-all: 1.5px;
   --aug-border-bg: var(--neon-cyan);
 }
@@ -1852,12 +1809,10 @@ button.trade-btn:disabled {
   --aug-border-bg: var(--border-color);
   --aug-inlay-all: 2px;
   --aug-inlay-bg: var(--panel-bg);
-  --aug-tl1: 8px;
-  --aug-tl2: 16px;
-  --aug-tr: 8px;
-  --aug-br1: 8px;
-  --aug-br2: 16px;
-  --aug-bl: 8px;
+  --aug-tl: 6px;
+  --aug-tr: 6px;
+  --aug-br: 6px;
+  --aug-bl: 6px;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -1869,10 +1824,8 @@ button.trade-btn:disabled {
   --aug-border-bg: rgba(0, 240, 255, 0.4);
   --aug-inlay-all: 1px;
   --aug-inlay-bg: rgba(0, 240, 255, 0.05);
-  --aug-tr1: 8px;
-  --aug-tr2: 16px;
-  --aug-bl1: 8px;
-  --aug-bl2: 16px;
+  --aug-tr: 5px;
+  --aug-bl: 5px;
   padding: 12px 18px;
   display: flex;
   justify-content: space-between;
@@ -1930,14 +1883,10 @@ button.trade-btn:disabled {
   --aug-border-bg: var(--neon-cyan);
   --aug-inlay-all: 2px;
   --aug-inlay-bg: #070d15;
-  --aug-tl1: 10px;
-  --aug-tl2: 20px;
-  --aug-tr1: 10px;
-  --aug-tr2: 20px;
-  --aug-br1: 10px;
-  --aug-br2: 20px;
-  --aug-bl1: 10px;
-  --aug-bl2: 20px;
+  --aug-tl: 8px;
+  --aug-tr: 8px;
+  --aug-br: 8px;
+  --aug-bl: 8px;
   max-width: 560px;
   width: 100%;
   max-height: 90vh;
@@ -2130,10 +2079,8 @@ button.trade-btn:disabled {
   color: var(--neon-cyan);
   border: 1.5px solid var(--neon-cyan);
   text-shadow: 0 0 8px var(--neon-cyan);
-  --aug-tl1: 6px;
-  --aug-tl2: 12px;
-  --aug-br1: 6px;
-  --aug-br2: 12px;
+  --aug-tl: 5px;
+  --aug-br: 5px;
   --aug-border-all: 1.5px;
   --aug-border-bg: var(--neon-cyan);
   cursor: pointer;
@@ -2175,14 +2122,10 @@ button.trade-btn:disabled {
   --aug-border-bg: var(--neon-cyan);
   --aug-inlay-all: 2px;
   --aug-inlay-bg: #07101c;
-  --aug-tl1: 10px;
-  --aug-tl2: 20px;
-  --aug-tr1: 10px;
-  --aug-tr2: 20px;
-  --aug-br1: 10px;
-  --aug-br2: 20px;
-  --aug-bl1: 10px;
-  --aug-bl2: 20px;
+  --aug-tl: 8px;
+  --aug-tr: 8px;
+  --aug-br: 8px;
+  --aug-bl: 8px;
   max-width: 660px;
   width: 100%;
   max-height: 90vh;
@@ -2393,6 +2336,8 @@ button.trade-btn:disabled {
   --aug-inlay-bg: rgba(57, 255, 20, 0.16);
   --aug-border-all: 2px;
   --aug-border-bg: var(--neon-green);
+  --aug-tl: 5px;
+  --aug-br: 5px;
   color: var(--neon-green);
   font-size: 0.88rem;
   font-weight: 700;
@@ -2448,8 +2393,8 @@ button.trade-btn:disabled {
   header.terminal-header {
     padding: 6px 10px;
     flex-wrap: wrap;
-    --aug-br: 10px;
-    --aug-bl: 10px;
+    --aug-br: 5px;
+    --aug-bl: 5px;
   }
 
   .logo-title {

@@ -8,7 +8,7 @@
 </head>
 <body>
   <!-- Header Bar with Cyberpunk Augmented HUD -->
-  <header class="terminal-header" data-augmented-ui="br-2-clip-x bl-2-clip-x b-clip-x both">
+  <header class="terminal-header" data-augmented-ui="br-clip bl-clip both">
     <div class="header-brand">
       <div class="logo-group">
         <span class="logo-prefix">▲</span>
@@ -65,7 +65,7 @@
 
     <!-- Header Actions -->
     <div class="header-actions">
-      <button id="btnSystemMenu" class="term-btn menu-btn" data-augmented-ui="tl-2-clip-x br-2-clip-x both" title="Open System Telemetry & Configuration">
+      <button id="btnSystemMenu" class="term-btn menu-btn" data-augmented-ui="tl-clip br-clip both" title="Open System Telemetry & Configuration">
         <span class="menu-icon">⚙</span>
         <span class="menu-label">SYSTEM</span>
       </button>
@@ -73,29 +73,29 @@
   </header>
 
   <!-- Navigation Tab Bar -->
-  <nav class="terminal-nav" data-augmented-ui="tl-2-clip-x tr-2-clip-x b-clip-x both">
-    <button id="tabMap" class="tab-btn active" data-augmented-ui="tl-2-clip-x tr-clip both">
+  <nav class="terminal-nav" data-augmented-ui="tl-clip tr-clip both">
+    <button id="tabMap" class="tab-btn active" data-augmented-ui="tl-clip tr-clip both">
       <span class="tab-icon">🗺</span>
       <span class="tab-label">TACTICAL MAP</span>
     </button>
-    <button id="tabMarket" class="tab-btn" data-augmented-ui="tl-2-clip-x tr-clip both">
+    <button id="tabMarket" class="tab-btn" data-augmented-ui="tl-clip tr-clip both">
       <span class="tab-icon">📈</span>
       <span class="tab-label">COMMODITY EXCHANGE</span>
     </button>
-    <button id="tabContracts" class="tab-btn" data-augmented-ui="tl-2-clip-x tr-clip both">
+    <button id="tabContracts" class="tab-btn" data-augmented-ui="tl-clip tr-clip both">
       <span class="tab-icon">📜</span>
       <span class="tab-label">CONTRACTS</span>
     </button>
-    <button id="tabQualities" class="tab-btn" data-augmented-ui="tl-2-clip-x tr-clip both">
+    <button id="tabQualities" class="tab-btn" data-augmented-ui="tl-clip tr-clip both">
       <span class="tab-icon">🚚</span>
       <span class="tab-label">RIG & PILOT</span>
     </button>
-    <button id="tabComms" class="tab-btn" data-augmented-ui="tl-2-clip-x tr-clip both">
+    <button id="tabComms" class="tab-btn" data-augmented-ui="tl-clip tr-clip both">
       <span class="tab-icon">📡</span>
       <span class="tab-label">COMMS & LOGS</span>
       <span id="chatTabUnreadDot" class="chat-unread-dot" style="display: none;"></span>
     </button>
-    <button id="tabLeaderboard" class="tab-btn" data-augmented-ui="tl-2-clip-x tr-clip both">
+    <button id="tabLeaderboard" class="tab-btn" data-augmented-ui="tl-clip tr-clip both">
       <span class="tab-icon">🏆</span>
       <span class="tab-label">LEADERBOARD</span>
     </button>
@@ -106,7 +106,7 @@
     <!-- View 1: Tactical Grid & Map with Integrated Route Dispatch Console -->
     <section id="mapViewContainer" class="view-panel map-view-panel">
       <!-- Tactical Map Viewport -->
-      <div class="map-viewport" data-augmented-ui="tl-2-clip-x tr-clip br-clip bl-2-clip-x both">
+      <div class="map-viewport" data-augmented-ui="tl-clip tr-clip br-clip bl-clip both">
         <div class="viewport-corner-tag top-left">// WGS84 SAT-LINK ACTIVE</div>
         <div class="viewport-corner-tag top-right">SECTOR: CONTINENTAL GRID</div>
 
@@ -122,7 +122,7 @@
         </div>
 
         <!-- In-Transit Telemetry Banner -->
-        <div id="transitBanner" class="transit-banner" data-augmented-ui="tl-2-clip-x tr-2-clip-x br-2-clip-x bl-2-clip-x both" style="display: none;">
+        <div id="transitBanner" class="transit-banner" data-augmented-ui="tl-clip tr-clip br-clip bl-clip both" style="display: none;">
           <div class="banner-pulse-beacon"></div>
           <div id="transitTargetText" class="transit-target-text">
             TRANSIT IN PROGRESS: NEO-SYRACUSE &rarr; CHIBA-ON-HUDSON
@@ -136,13 +136,13 @@
         </div>
 
         <!-- Mobile Drawer Toggle Button -->
-        <button id="btnToggleNavDrawer" class="nav-drawer-toggle" data-augmented-ui="tl-2-clip-x tr-2-clip-x both">
+        <button id="btnToggleNavDrawer" class="nav-drawer-toggle" data-augmented-ui="tl-clip tr-clip both">
           ▲ ROUTE DISPATCH
         </button>
       </div>
 
       <!-- Docked Navigation Dispatch Console -->
-      <aside id="navDispatchPanel" class="nav-dispatch-panel" data-augmented-ui="tl-2-clip-x tr-clip br-2-clip-x bl-clip both">
+      <aside id="navDispatchPanel" class="nav-dispatch-panel" data-augmented-ui="tl-clip tr-clip br-clip bl-clip both">
         <div class="panel-header">
           <div class="header-left">
             <span class="header-led"></span>
@@ -177,7 +177,7 @@
           </div>
 
           <!-- Destination Target Inspection Card -->
-          <div id="targetCard" class="node-detail-card" data-augmented-ui="tl-clip tr-2-clip-y br-clip bl-2-clip-y both">
+          <div id="targetCard" class="node-detail-card" data-augmented-ui="tl-clip br-clip both">
             <div class="card-crosshair"></div>
             <div id="targetName" class="target-title">SELECT DESTINATION</div>
             <div id="targetSector" class="target-row">Sector: —</div>
@@ -196,7 +196,7 @@
             <button id="btnCancelRoute" class="term-btn abort-btn" data-augmented-ui="tl-clip br-clip both" style="display: none;">ABORT ROUTE</button>
           </div>
 
-          <button id="btnDispatch" class="term-btn dispatch-action-btn" data-augmented-ui="tl-2-clip-x br-2-clip-x both">
+          <button id="btnDispatch" class="term-btn dispatch-action-btn" data-augmented-ui="tl-clip br-clip both">
             <span class="dispatch-icon">⚡</span>
             <span>ENGAGE ENGINES [DISPATCH]</span>
           </button>
@@ -206,7 +206,7 @@
 
     <!-- View 2: Commodity Market View -->
     <section id="marketViewContainer" class="view-panel" style="display: none;">
-      <div class="market-panel" data-augmented-ui="tl-2-clip-x tr-clip br-2-clip-x bl-clip both">
+      <div class="market-panel" data-augmented-ui="tl-clip tr-clip br-clip bl-clip both">
         <div class="panel-header">
           <div class="header-left">
             <span class="header-led"></span>
@@ -215,7 +215,7 @@
           <span class="header-tech-tag">GOAP.SYNC // REALTIME</span>
         </div>
         <div class="panel-content">
-          <div id="marketIntelBanner" class="market-intel-banner" data-augmented-ui="tr-2-clip-x bl-2-clip-x both">
+          <div id="marketIntelBanner" class="market-intel-banner" data-augmented-ui="tr-clip bl-clip both">
             <span class="intel-tag">[GOAP INTEL]</span>
             <span id="marketIntelText">Market pricing synchronized with autonomous faction movements.</span>
           </div>
@@ -246,7 +246,7 @@
 
     <!-- View 3: Courier Contracts & Career View -->
     <section id="contractsViewContainer" class="view-panel" style="display: none;">
-      <div class="contracts-panel" data-augmented-ui="tl-2-clip-x tr-clip br-2-clip-x bl-clip both">
+      <div class="contracts-panel" data-augmented-ui="tl-clip tr-clip br-clip bl-clip both">
         <div class="panel-header">
           <div class="header-left">
             <span class="header-led"></span>
@@ -255,7 +255,7 @@
           <span class="header-tech-tag">CAREER.SCORE // LIVE</span>
         </div>
         <div class="panel-content">
-          <div class="career-banner" data-augmented-ui="tl-2-clip-x tr-2-clip-x br-2-clip-x bl-2-clip-x both">
+          <div class="career-banner" data-augmented-ui="tl-clip tr-clip br-clip bl-clip both">
             <div>
               <div class="career-label">CAREER PRESTIGE RANK</div>
               <div id="careerRankTitle" class="career-rank-title">ROOKIE HAULER</div>
@@ -288,7 +288,7 @@
       <div class="rig-pilot-layout">
         <!-- Rig Telemetry & Cargo Manifest -->
         <div class="rig-column">
-          <div class="rig-card" data-augmented-ui="tl-2-clip-x tr-clip br-2-clip-x bl-clip both">
+          <div class="rig-card" data-augmented-ui="tl-clip tr-clip br-clip bl-clip both">
             <div class="panel-header">
               <div class="header-left">
                 <span class="header-led"></span>
@@ -330,7 +330,7 @@
 
         <!-- Pilot Stats, Qualities & Factions -->
         <div class="pilot-column">
-          <div class="pilot-card" data-augmented-ui="tl-clip tr-2-clip-x br-clip bl-2-clip-x both">
+          <div class="pilot-card" data-augmented-ui="tl-clip tr-clip br-clip bl-clip both">
             <div class="panel-header">
               <div class="header-left">
                 <span class="header-led"></span>
@@ -365,7 +365,7 @@
 
     <!-- View 5: Communications, Event Logs & Global Frequency Chat -->
     <section id="commsViewContainer" class="view-panel" style="display: none;">
-      <div class="comms-panel" data-augmented-ui="tl-2-clip-x tr-clip br-2-clip-x bl-clip both">
+      <div class="comms-panel" data-augmented-ui="tl-clip tr-clip br-clip bl-clip both">
         <div class="panel-header comms-panel-header">
           <div class="comms-tabs-header">
             <button id="btnTabLogs" class="comms-tab-btn active" data-augmented-ui="tl-clip tr-clip both">SYSTEM LOG</button>
@@ -432,7 +432,7 @@
                 maxlength="200"
                 autocomplete="off"
               />
-              <button type="submit" id="btnSendChat" class="chat-send-btn" data-augmented-ui="tl-2-clip-x br-2-clip-x both">
+              <button type="submit" id="btnSendChat" class="chat-send-btn" data-augmented-ui="tl-clip br-clip both">
                 SEND
               </button>
             </form>
@@ -443,8 +443,8 @@
 
     <!-- View 6: Net Worth Leaderboard View -->
     <section id="leaderboardViewContainer" class="view-panel" style="display: none;">
-      <div class="leaderboard-panel" data-augmented-ui="tl-2-clip-x tr-clip br-2-clip-x bl-clip both">
-        <div class="leaderboard-header-banner" data-augmented-ui="tr-2-clip-x bl-2-clip-x both">
+      <div class="leaderboard-panel" data-augmented-ui="tl-clip tr-clip br-clip bl-clip both">
+        <div class="leaderboard-header-banner" data-augmented-ui="tr-clip bl-clip both">
           <div>
             <div class="leaderboard-sub">GLOBAL HAULER REGISTRY // 1X REAL-TIME PERSISTENT FEED</div>
             <div class="leaderboard-title">NET WORTH & ASSET LEADERBOARD</div>
@@ -479,7 +479,7 @@
 
   <!-- System Menu & Telemetry Modal -->
   <div id="systemMenuModal" class="system-menu-backdrop" style="display: none;">
-    <div class="system-menu-card" data-augmented-ui="tl-2-clip-xy tr-2-clip-xy br-2-clip-xy bl-2-clip-xy both">
+    <div class="system-menu-card" data-augmented-ui="tl-clip tr-clip br-clip bl-clip both">
       <div class="menu-modal-header">
         <div class="menu-badge">// SYSTEM CONTROL & TELEMETRY</div>
         <h2 class="menu-title">TERMINAL CONFIGURATION</h2>
@@ -529,7 +529,7 @@
       </div>
 
       <div class="menu-modal-footer">
-        <button id="btnDismissSystemMenu" class="term-btn dismiss-menu-btn" data-augmented-ui="tl-2-clip-x br-2-clip-x both">
+        <button id="btnDismissSystemMenu" class="term-btn dismiss-menu-btn" data-augmented-ui="tl-clip br-clip both">
           RETURN TO RIG [CLOSE]
         </button>
       </div>
@@ -538,7 +538,7 @@
 
   <!-- Interactive Storylet Narrative Modal -->
   <div id="storyletModal" class="storylet-modal-backdrop" style="display: none;">
-    <div class="storylet-card" data-augmented-ui="tl-2-clip-xy tr-2-clip-xy br-2-clip-xy bl-2-clip-xy both">
+    <div class="storylet-card" data-augmented-ui="tl-clip tr-clip br-clip bl-clip both">
       <div class="storylet-header">
         <div id="storyletBadge" class="storylet-badge">// PRIORITY NARRATIVE ENCOUNTER</div>
         <h2 id="storyletTitle" class="storylet-title">Incident Title</h2>
@@ -563,7 +563,7 @@
       </div>
 
       <div id="storyletFooter" style="display: none; text-align: right; margin-top: 8px;">
-        <button id="btnDismissStorylet" class="term-btn dismiss-storylet-btn" data-augmented-ui="tl-2-clip-x br-2-clip-x both">
+        <button id="btnDismissStorylet" class="term-btn dismiss-storylet-btn" data-augmented-ui="tl-clip br-clip both">
           CONTINUE MISSION [DISMISS]
         </button>
       </div>
