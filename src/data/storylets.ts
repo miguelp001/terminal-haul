@@ -1,5 +1,6 @@
 import { Storylet } from '../types/storylet';
 import { CRYO_QUEST_STORYLETS } from './cryoQuestStorylets';
+import { LOVERS_QUEST_STORYLETS } from './loversQuestStorylets';
 
 export const BASE_STORYLET_POOL: Storylet[] = [
   {
@@ -712,6 +713,7 @@ export const BASE_STORYLET_POOL: Storylet[] = [
 
 export const STORYLET_POOL: Storylet[] = [
   ...BASE_STORYLET_POOL,
-  ...CRYO_QUEST_STORYLETS
+  ...CRYO_QUEST_STORYLETS,
+  ...LOVERS_QUEST_STORYLETS
 ];
 

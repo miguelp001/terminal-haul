@@ -190,6 +190,47 @@ flowchart TD
      - **Solaris Clean Energy:** Executive pardon, 10,000 ₵ bounty, $+35$ Solaris rep, permanent Enclave Permits.
      - **Neuralfront Collective:** Open-source AI mesh, $+40$ Neuralfront rep, military cyberware, 6,000 ₵.
 
+### 4.7 Non-Repeatable Narrative Saga: "A Vow Across the Ashline" (20-Storylet Chain)
+An epic, 20-storylet branching saga following two forbidden lovers from warring factions—Valerie Chen (Aegis tactical lieutenant) and Jax "Spark" Morales (Gridlock demolitionist)—smuggled aboard the player's hauler rig across continental checkpoints and wasteland killzones.
+
+```mermaid
+flowchart TD
+    S1["1. Ashline Rendezvous<br/>(Smuggle Lovers Aboard Rig)"] --> S2["2. Scramble at the Gate<br/>(Bio-Resonance Checkpoint)"]
+    S2 --> S3["3. First Safehouse<br/>(Toll Barricade & Cabin Shelter)"]
+    S3 --> S4["4. Errand: Clinic Medicine<br/>(Immunosuppressant Heist)"]
+    S4 --> S5["5. The Intercepted Bounty<br/>(BRANCH 1: Comms Purge vs Counter-Trace vs Decoy)"]
+    S5 --> S6["6. Errand: Rustworks Foundry<br/>(BRANCH 2: Wedding Rings vs Detonator Ciphers vs Armor)"]
+    S6 --> S7["7. Jackal Ambush<br/>(Highway Ambush Defense)"]
+    S7 --> S8["8. Errand: Passports<br/>(Underworld Registry Forgery)"]
+    S8 --> S9["9. The Cabin Confession<br/>(BRANCH 3: Romance vs Ambition vs Fatalism)"]
+    S9 --> S10["10. Aegis Interception<br/>(Gunship Dogfight & EMP Burst)"]
+    S10 --> S11["11. Errand: Mesh Ghost<br/>(Quantum DNA Registry Scrub)"]
+    S11 --> S12["12. Syndicate Blackmail<br/>(BRANCH 4: Frame Warlord vs Firefight vs Bribe)"]
+    S12 --> S13["13. Neural Rejection Crisis<br/>(Mountain Hairpin Surgery)"]
+    S13 --> S14["14. Errand: Maglev Depot<br/>(Freight Train Salvage Heist)"]
+    S14 --> S15["15. Crossroads Council<br/>(BRANCH 5: Lock In Path: Elopement, Coup, or Tragedy)"]
+    S15 --> S16["16. The Redline Run<br/>(Hunted Interstate Gauntlet)"]
+    S16 --> S17["17. The Final Cache<br/>(Border Pre-Strike Staging)"]
+    S17 --> S18["18. Sovereign Gate Lockdown<br/>(Blast-Door Assault / Bypass)"]
+    S18 --> S19["19. Battle of the Divide<br/>(Path-Specific Climax Gauntlet)"]
+    S19 --> S20["20. Dawn at Terminal's End<br/>(Grand Finale: 3 Distinct Destinies)"]
+```
+
+* **Non-Repeatability & State Tracking:** Every card has `repeatable: false`, logged in `PlayerState.completedStorylets` with sequential stages (`Lovers Stage: 1` through `19`, concluding at `99`).
+* **5 Critical Branch Points:**
+  1. *Storylet 5 (The Intercepted Bounty):* Stealth comms blackout (+COOL) vs Informant offensive fry (+CYBER) vs Transponder decoy echo (+EDGE).
+  2. *Storylet 6 (Rustworks Foundry):* Forging Titanium Neural Wedding Rings (Romance path) vs Demolition Detonator Ciphers (Coup path) vs Heavy Rig Plating (Survival path).
+  3. *Storylet 9 (Cabin Confession):* Counsel Valerie to live for love (+COOL) vs Fight for supreme faction dominance (+COOL) vs Acknowledge grim fatalism (+GRIT).
+  4. *Storylet 12 (Syndicate Blackmail):* Frame the extortion warlord using forged cyber logs (+CYBER) vs Coordinated cabin ambush (+GRIT) vs Extortion payoff (+COOL).
+  5. *Storylet 15 (Crossroads Council - Point of No Return):* The defining crossroads locking the narrative trajectory (`Lovers Chosen Path: 1, 2, or 3`).
+* **Three Divergent Grand Finale Endings:**
+  - **Ending 1: Sunset Wedding at the Pacific Sanctuary (Elopement):** The lovers escape across the continental frontier and wed under the redwoods.
+    - *Rewards:* 8,500 ₵, full hull restore (100%), 3x Batteries, 2x Cryo, permanent **$+1$ COOL**, $+40$ Rustworks rep, $+3$ Enclave Permits, $-50$ Heat.
+  - **Ending 2: The Dual Crowns (Faction Coup):** Valerie and Jax storm the command bunker, execute the warlords, and take joint command of Aegis and Gridlock.
+    - *Rewards:* 15,000 ₵ treasury bounty, 3x Cyberware, 3x Neural Chips, permanent **$+1$ CYBER**, $+35$ Aegis rep, $+35$ Gridlock rep, $+4$ Enclave Permits, $+25$ Heat.
+  - **Ending 3: The Iron Requiem (Tragic Last Stand):** Cut off on the bridge, the lovers detonate the charges together, sacrificing their lives so the player can break through.
+    - *Rewards:* 6,000 ₵, salvage 2x Cyberware, 2x Batteries, permanent **$+1$ GRIT**, $+25$ Street Cred, $-40$ Heat, and eternal wasteland reverence.
+
 ---
 
 ## 5. GOAP AI Economy & Synchronized Market

@@ -214,6 +214,23 @@ An epic non-repeatable multi-stage narrative adventure revolving around an unreg
      - **Neuralfront Collective:** Open-source AI mesh, $+40$ Neuralfront rep, military cyberware, 6,000 ₵.
 - **Grand Finale Rewards:** Successful completion awards up to 10,000 Credits, permanent Core Stat bumps (`+1 CYBER`, `+1 EDGE`, or `+1 COOL`), rare prototype commodities (Cyberware, Neural Chips, Cryo Pods), and universal diplomatic immunity.
 
+#### Featured Quest Saga: "A Vow Across the Ashline" (20-Storylet Epic Arc)
+An expansive, non-repeatable 20-storylet branching saga following two star-crossed lovers from warring factions—Valerie Chen (Aegis tactical lieutenant) and Jax "Spark" Morales (Gridlock demolitionist):
+- **Premise & The Covenant:** Haunted by a brutal war between corporate security and outlaw syndicates, Valerie and Jax pay you to smuggle them aboard your rig across the ashen divide. As continental hunter squadrons, electronic surveillance webs, and syndicate hitmen close in, you run errands, acquire forged papers, and forge their destiny.
+- **5 Critical Branch Points:**
+  1. *Comms Blackout vs Offensive Counter-Strike:* Purge transmitters to vanish into the static (+COOL), counter-fry the informant's relay dish (+CYBER), or emit a transponder decoy echo (+EDGE).
+  2. *The Foundry at Rustworks:* Forge Titanium Neural Wedding Rings for their elopement, Demolition Detonator Ciphers for a tactical coup, or heavy rig armor plating for maximum survivability.
+  3. *The Midnight Cabin Confession:* Counsel Valerie on whether living for love is the highest defiance, whether peace requires taking their oppressors' crowns, or whether to face grim fatalism side-by-side.
+  4. *Syndicate Blackmail:* Frame the extortionist boss with forged cyber logs (+CYBER), coordinate an armored cabin ambush (+GRIT), or pay the extortion bribe.
+  5. *Crossroads Council (Point of No Return):* The defining ideological crossroad where the player locks the trajectory: Elopement, Faction Coup, or Tragic Reckoning.
+- **Three Divergent Grand Finale Endings:**
+  - 🕊️ **Ending 1: The Sunset Wedding at the Pacific Sanctuary [ELOPEMENT]**: Escape beyond the continental frontier where Valerie and Jax exchange neural rings in a sunlit redwood greenhouse.
+    - *Rewards:* 8,500 ₵, full 100% hull restore, 3x Batteries, 2x Cryo Pods, permanent **$+1$ COOL**, $+40$ Rustworks rep, $+3$ Enclave Permits, $-50$ Heat.
+  - 👑 **Ending 2: The Dual Crowns [FACTION COUP]**: Valerie and Jax lead a lightning strike on the joint command bunker, toppling the old generals and seizing supreme command of both Aegis Security and the Gridlock Syndicate.
+    - *Rewards:* 15,000 ₵ treasury bounty, 3x Cyberware, 3x Neural Chips, permanent **$+1$ CYBER**, $+35$ Aegis rep, $+35$ Gridlock rep, $+4$ Enclave Permits, $+25$ Heat.
+  - ⚔️ **Ending 3: The Iron Requiem [TRAGIC LAST STAND]**: Cut off on the center span of an irradiated suspension bridge, Jax and Valerie stand back-to-back holding off army squads, detonating the bridge charges hand-in-hand so your rig can break through the other side.
+    - *Rewards:* 6,000 ₵, salvaged titanium rings, 2x Cyberware, 2x Batteries, permanent **$+1$ GRIT**, $+25$ Street Cred, $-40$ Heat, and an enduring wasteland legend.
+
 ### Courier Contracts & Cargo Loading
 Procedural delivery contracts are generated at every node with specified parameters:
 - **Cargo Reservation**: Accepting a contract reserves the necessary tonnage in your cargo hold.
