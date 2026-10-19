@@ -53,44 +53,60 @@ jobs:
             exit 1
           fi
 
-          if [ -n "$SSH_KEY" ]; then
-            echo "AUTH_MODE=key" >> $GITHUB_ENV
-            echo "Authenticating via SSH deploy key."
-          elif [ -n "$PASSWORD" ]; then
-            echo "AUTH_MODE=password" >> $GITHUB_ENV
-            echo "Authenticating via SSH/SFTP password."
+          if [ -n "$PASSWORD" ]; then
+            echo "HAS_PASSWORD=true" >> $GITHUB_ENV
           else
+            echo "HAS_PASSWORD=false" >> $GITHUB_ENV
+          fi
+
+          if [ -n "$SSH_KEY" ]; then
+            echo "HAS_KEY=true" >> $GITHUB_ENV
+          else
+            echo "HAS_KEY=false" >> $GITHUB_ENV
+          fi
+
+          if [ -z "$PASSWORD" ] && [ -z "$SSH_KEY" ]; then
             echo "::error::Neither DREAMHOST_SSH_KEY nor DREAMHOST_PASSWORD secret is configured. Please add one of them to GitHub Secrets."
             exit 1
           fi
 
           DEST="$TARGET"
           if [ -z "$DEST" ]; then
-            DEST="/home/$USER/haul.dreamhost.com/"
+            DEST="/home/$USER/$HOST/"
           fi
           # Ensure trailing slash
           [[ "$DEST" != */ ]] && DEST="${DEST}/"
           echo "RESOLVED_TARGET=$DEST" >> $GITHUB_ENV
           echo "Deploying dist/ -> $USER@$HOST:$DEST"
 
-      - name: 🔑 Configure SSH Key
-        if: env.AUTH_MODE == 'key'
+      - name: 🚀 Install SSH Key & Deploy via Rsync (Password Auth)
+        if: env.HAS_PASSWORD == 'true'
+        env:
+          SSHPASS: ${{ secrets.DREAMHOST_PASSWORD }}
+          SSH_KEY: ${{ secrets.DREAMHOST_SSH_KEY }}
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq sshpass
+          if [ -n "$SSH_KEY" ]; then
+            echo "$SSH_KEY" > /tmp/deploy_key
+            chmod 600 /tmp/deploy_key
+            PUB_KEY=$(ssh-keygen -y -f /tmp/deploy_key)
+            rm -f /tmp/deploy_key
+            echo "Registering deploy key in DreamHost ~/.ssh/authorized_keys..."
+            sshpass -e ssh -o StrictHostKeyChecking=no ${{ secrets.DREAMHOST_USER }}@${{ secrets.DREAMHOST_HOST }} "mkdir -p ~/.ssh && chmod 700 ~/.ssh && touch ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys && (grep -qF \"$PUB_KEY\" ~/.ssh/authorized_keys || echo \"$PUB_KEY\" >> ~/.ssh/authorized_keys)" || echo "SSH key registration notice (proceeding with password deploy)"
+          fi
+          echo "Syncing production files..."
+          sshpass -e rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no" ./dist/ ${{ secrets.DREAMHOST_USER }}@${{ secrets.DREAMHOST_HOST }}:${{ env.RESOLVED_TARGET }}
+
+      - name: 🔑 Configure SSH Key (Key Auth)
+        if: env.HAS_PASSWORD != 'true' && env.HAS_KEY == 'true'
         uses: webfactory/ssh-agent@v0.9.0
         with:
           ssh-private-key: ${{ secrets.DREAMHOST_SSH_KEY }}
 
-      - name: 🚀 Rsync dist/ to DreamHost (SSH Key)
-        if: env.AUTH_MODE == 'key'
+      - name: 🚀 Rsync dist/ to DreamHost (Key Auth)
+        if: env.HAS_PASSWORD != 'true' && env.HAS_KEY == 'true'
         run: |
           rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no" ./dist/ ${{ secrets.DREAMHOST_USER }}@${{ secrets.DREAMHOST_HOST }}:${{ env.RESOLVED_TARGET }}
-
-      - name: 🚀 Rsync dist/ to DreamHost (Password)
-        if: env.AUTH_MODE == 'password'
-        env:
-          SSHPASS: ${{ secrets.DREAMHOST_PASSWORD }}
-        run: |
-          sudo apt-get update -qq && sudo apt-get install -y -qq sshpass
-          sshpass -e rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no" ./dist/ ${{ secrets.DREAMHOST_USER }}@${{ secrets.DREAMHOST_HOST }}:${{ env.RESOLVED_TARGET }}
 
       - name: 🎉 Deployment Summary
         run: |
