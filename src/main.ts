@@ -815,13 +815,13 @@ class TerminalApp {
       if (!def) continue;
 
       const row = document.createElement('div');
-      row.className = 'status-row';
+      row.className = 'status-row cargo-row';
       row.style.fontSize = '0.74rem';
-      row.style.padding = '2px 4px';
-      row.style.borderRadius = '2px';
+      row.style.padding = '4px 8px';
+      row.style.margin = '3px 0';
       if (qty > 0) {
+        row.setAttribute('data-augmented-ui', 'tl-clip br-clip both');
         row.style.background = 'rgba(0, 240, 255, 0.06)';
-        row.style.borderLeft = '2px solid var(--neon-cyan)';
       }
 
       const label = document.createElement('span');
@@ -873,6 +873,7 @@ class TerminalApp {
 
         const card = document.createElement('div');
         card.className = 'contract-card';
+        card.setAttribute('data-augmented-ui', 'tl-clip tr-rect br-clip bl-rect both');
         card.style.borderColor = isExpired
           ? 'var(--neon-red)'
           : isAtDestination && hasEnough
@@ -974,6 +975,7 @@ class TerminalApp {
 
         const card = document.createElement('div');
         card.className = 'contract-card';
+        card.setAttribute('data-augmented-ui', 'tl-clip tr-rect br-clip bl-rect both');
 
         card.innerHTML = `
           <div class="contract-faction">${contract.issuingFaction.toUpperCase()} // AVAILABLE</div>
@@ -1068,6 +1070,7 @@ class TerminalApp {
 
       const btnBuy1 = document.createElement('button');
       btnBuy1.className = 'trade-btn buy';
+      btnBuy1.setAttribute('data-augmented-ui', 'tl-clip br-clip both');
       btnBuy1.textContent = '+1';
       btnBuy1.title = `Buy 1 unit for ${quote.buyPrice} ₵`;
       const canBuy1 = isDocked && state.credits >= quote.buyPrice && (state.convoy.currentCargoWeight + def.weightTonnes <= state.convoy.maxCargoWeight);
@@ -1080,6 +1083,7 @@ class TerminalApp {
 
       const btnBuyMax = document.createElement('button');
       btnBuyMax.className = 'trade-btn buy';
+      btnBuyMax.setAttribute('data-augmented-ui', 'tl-clip br-clip both');
       btnBuyMax.textContent = '+MAX';
       const maxAffordable = Math.floor(state.credits / quote.buyPrice);
       const remainingWeight = Math.max(0, state.convoy.maxCargoWeight - state.convoy.currentCargoWeight);
@@ -1095,6 +1099,7 @@ class TerminalApp {
 
       const btnSell1 = document.createElement('button');
       btnSell1.className = 'trade-btn sell';
+      btnSell1.setAttribute('data-augmented-ui', 'tr-clip bl-clip both');
       btnSell1.textContent = '-1';
       btnSell1.title = `Sell 1 unit for +${quote.sellPrice} ₵`;
       btnSell1.disabled = !isDocked || owned <= 0;
@@ -1106,6 +1111,7 @@ class TerminalApp {
 
       const btnSellAll = document.createElement('button');
       btnSellAll.className = 'trade-btn sell';
+      btnSellAll.setAttribute('data-augmented-ui', 'tr-clip bl-clip both');
       btnSellAll.textContent = '-ALL';
       btnSellAll.title = `Sell all ${owned} units for +${owned * quote.sellPrice} ₵`;
       btnSellAll.disabled = !isDocked || owned <= 0;
@@ -1139,6 +1145,7 @@ class TerminalApp {
         const val = state.stats[def.key] ?? 0;
         const card = document.createElement('div');
         card.className = 'stat-card';
+        card.setAttribute('data-augmented-ui', 'tl-clip tr-clip br-clip bl-clip both');
 
         const header = document.createElement('div');
         header.className = 'stat-card-header';
@@ -1169,6 +1176,7 @@ class TerminalApp {
     for (const [qName, val] of Object.entries(state.qualities)) {
       const card = document.createElement('div');
       card.className = 'quality-card';
+      card.setAttribute('data-augmented-ui', 'tl-clip br-clip both');
 
       const label = document.createElement('div');
       label.className = 'quality-name';
@@ -1195,6 +1203,7 @@ class TerminalApp {
       const faction = FACTIONS[fid];
       const card = document.createElement('div');
       card.className = 'faction-card';
+      card.setAttribute('data-augmented-ui', 'tr-clip bl-clip both');
 
       const top = document.createElement('div');
       top.style.display = 'flex';
@@ -1261,6 +1270,7 @@ class TerminalApp {
     for (const option of storylet.options) {
       const btn = document.createElement('button');
       btn.className = 'storylet-option-btn';
+      btn.setAttribute('data-augmented-ui', 'tl-clip br-clip both');
 
       const labelSpan = document.createElement('span');
       labelSpan.style.display = 'flex';
@@ -1271,6 +1281,7 @@ class TerminalApp {
       if (option.statRoll) {
         const rollBadge = document.createElement('span');
         rollBadge.className = 'stat-roll-badge';
+        rollBadge.setAttribute('data-augmented-ui', 'tr-clip bl-clip both');
         const statName = option.statRoll.toUpperCase();
         let bonusText = '';
         if (option.qualityBonusKey && state.qualities) {

@@ -7,61 +7,65 @@
   <link rel="stylesheet" href="/src/styles/terminal.css" />
 </head>
 <body>
-  <!-- Header Bar with Integrated Telemetry HUD -->
-  <header class="terminal-header" data-augmented-ui="br-clip bl-clip border">
+  <!-- Header Bar with Cyberpunk Augmented HUD -->
+  <header class="terminal-header" data-augmented-ui="br-2-clip-x bl-2-clip-x b-clip-x both">
     <div class="header-brand">
-      <div class="logo-title">TERMINAL HAUL</div>
-      <div class="logo-sub">// 2099 TACTICAL FREIGHT</div>
+      <div class="logo-group">
+        <span class="logo-prefix">▲</span>
+        <h1 class="logo-title">TERMINAL HAUL</h1>
+        <div class="brand-badge" data-augmented-ui="tr-clip bl-clip both">OS.2099 // TACTICAL</div>
+      </div>
+      <div class="logo-sub">// AUTONOMOUS CONVOY & CLUSTER FREIGHT MATRIX</div>
     </div>
 
     <!-- Live Convoy Telemetry HUD -->
     <div class="header-hud">
-      <div class="hud-item hud-convoy">
+      <div class="hud-item hud-convoy" data-augmented-ui="tl-clip br-clip both" title="Active Convoy Identification">
         <span class="hud-label">RIG</span>
         <span id="rigName" class="hud-val">Iron Nomad MK-IV</span>
-        <span id="convoyStatusBadge" class="status-badge status-docked">DOCKED</span>
-        <span id="currentLocationBadge" class="status-badge status-loc">NEO-SYRACUSE</span>
+        <span id="convoyStatusBadge" class="status-badge status-docked" data-augmented-ui="tl-clip br-clip both">DOCKED</span>
+        <span id="currentLocationBadge" class="status-badge status-loc" data-augmented-ui="tr-clip bl-clip both">NEO-SYRACUSE</span>
       </div>
 
-      <div class="hud-item hud-hull" id="hudHullItem">
+      <div class="hud-item hud-hull" id="hudHullItem" data-augmented-ui="tr-clip bl-clip both" title="Chassis Hull Structural Integrity">
         <div class="hud-meta">
           <span class="hud-label">HULL</span>
           <span id="hullValue" class="hud-val">100%</span>
         </div>
-        <div class="progress-bar-container mini-bar">
+        <div class="progress-bar-container mini-bar" data-augmented-ui="tl-clip br-clip border">
           <div id="hullBar" class="progress-bar-fill" style="width: 100%;"></div>
         </div>
-        <button id="btnRepairHull" class="term-btn mini-btn" title="Repair chassis at dock facility (10 ₵ / 1%)">REPAIR</button>
+        <button id="btnRepairHull" class="term-btn mini-btn repair-hud-btn" data-augmented-ui="tl-clip br-clip both" title="Repair chassis at dock facility (10 ₵ / 1%)">REPAIR</button>
       </div>
 
-      <div class="hud-item hud-cargo">
+      <div class="hud-item hud-cargo" data-augmented-ui="tl-clip br-clip both" title="Cargo Hold Weight Capacity">
         <div class="hud-meta">
           <span class="hud-label">CARGO</span>
           <span id="cargoWeightValue" class="hud-val">7.0 / 35.0 T</span>
         </div>
-        <div class="progress-bar-container mini-bar">
+        <div class="progress-bar-container mini-bar" data-augmented-ui="tr-clip bl-clip border">
           <div id="cargoBar" class="progress-bar-fill" style="width: 20%;"></div>
         </div>
       </div>
 
-      <div class="hud-item hud-credits">
+      <div class="hud-item hud-credits" data-augmented-ui="tr-clip bl-clip both" title="Liquid Credit Balance">
         <span class="hud-label">CREDITS</span>
         <span id="creditsValue" class="hud-val accent">2,500 ₵</span>
       </div>
 
-      <div class="hud-item hud-networth">
+      <div class="hud-item hud-networth" data-augmented-ui="tl-clip br-clip both" title="Liquid Assets + Cargo Inventory Value">
         <span class="hud-label">NET WORTH</span>
         <span id="netWorthValue" class="hud-val highlight">3,250 ₵</span>
       </div>
 
-      <div class="hud-item hud-clock">
+      <div class="hud-item hud-clock" data-augmented-ui="tl-clip tr-clip br-clip bl-clip both" title="Cluster Simulation Chronometer">
         <div id="timeDisplay" class="time-display">DAY 1 — 00:00</div>
       </div>
     </div>
 
     <!-- Header Actions -->
     <div class="header-actions">
-      <button id="btnSystemMenu" class="term-btn menu-btn" data-augmented-ui="tl-clip br-clip border" title="Open System Telemetry & Settings">
+      <button id="btnSystemMenu" class="term-btn menu-btn" data-augmented-ui="tl-2-clip-x br-2-clip-x both" title="Open System Telemetry & Configuration">
         <span class="menu-icon">⚙</span>
         <span class="menu-label">SYSTEM</span>
       </button>
@@ -69,29 +73,29 @@
   </header>
 
   <!-- Navigation Tab Bar -->
-  <nav class="terminal-nav" data-augmented-ui="tl-clip tr-clip border">
-    <button id="tabMap" class="tab-btn active" data-augmented-ui="tl-clip tr-clip border">
+  <nav class="terminal-nav" data-augmented-ui="tl-2-clip-x tr-2-clip-x b-clip-x both">
+    <button id="tabMap" class="tab-btn active" data-augmented-ui="tl-2-clip-x tr-clip both">
       <span class="tab-icon">🗺</span>
       <span class="tab-label">TACTICAL MAP</span>
     </button>
-    <button id="tabMarket" class="tab-btn" data-augmented-ui="tl-clip tr-clip border">
+    <button id="tabMarket" class="tab-btn" data-augmented-ui="tl-2-clip-x tr-clip both">
       <span class="tab-icon">📈</span>
       <span class="tab-label">COMMODITY EXCHANGE</span>
     </button>
-    <button id="tabContracts" class="tab-btn" data-augmented-ui="tl-clip tr-clip border">
+    <button id="tabContracts" class="tab-btn" data-augmented-ui="tl-2-clip-x tr-clip both">
       <span class="tab-icon">📜</span>
       <span class="tab-label">CONTRACTS</span>
     </button>
-    <button id="tabQualities" class="tab-btn" data-augmented-ui="tl-clip tr-clip border">
+    <button id="tabQualities" class="tab-btn" data-augmented-ui="tl-2-clip-x tr-clip both">
       <span class="tab-icon">🚚</span>
       <span class="tab-label">RIG & PILOT</span>
     </button>
-    <button id="tabComms" class="tab-btn" data-augmented-ui="tl-clip tr-clip border">
+    <button id="tabComms" class="tab-btn" data-augmented-ui="tl-2-clip-x tr-clip both">
       <span class="tab-icon">📡</span>
       <span class="tab-label">COMMS & LOGS</span>
       <span id="chatTabUnreadDot" class="chat-unread-dot" style="display: none;"></span>
     </button>
-    <button id="tabLeaderboard" class="tab-btn" data-augmented-ui="tl-clip tr-clip border">
+    <button id="tabLeaderboard" class="tab-btn" data-augmented-ui="tl-2-clip-x tr-clip both">
       <span class="tab-icon">🏆</span>
       <span class="tab-label">LEADERBOARD</span>
     </button>
@@ -102,11 +106,15 @@
     <!-- View 1: Tactical Grid & Map with Integrated Route Dispatch Console -->
     <section id="mapViewContainer" class="view-panel map-view-panel">
       <!-- Tactical Map Viewport -->
-      <div class="map-viewport">
+      <div class="map-viewport" data-augmented-ui="tl-2-clip-x tr-clip br-clip bl-2-clip-x both">
+        <div class="viewport-corner-tag top-left">// WGS84 SAT-LINK ACTIVE</div>
+        <div class="viewport-corner-tag top-right">SECTOR: CONTINENTAL GRID</div>
+
         <canvas id="worldMapCanvas"></canvas>
 
         <!-- Hover Node HUD Overlay -->
-        <div id="mapHoverHud" class="map-hud-overlay" data-augmented-ui="tl-clip br-clip border" style="display: none;">
+        <div id="mapHoverHud" class="map-hud-overlay" data-augmented-ui="tl-clip tr-rect br-clip bl-rect both" style="display: none;">
+          <div class="hud-target-reticle"></div>
           <div id="hoverTitle" class="hud-node-title">Node</div>
           <div id="hoverSector" class="hud-node-sub">Sector</div>
           <div id="hoverFaction" class="hud-node-sub">Faction</div>
@@ -114,11 +122,12 @@
         </div>
 
         <!-- In-Transit Telemetry Banner -->
-        <div id="transitBanner" class="transit-banner" data-augmented-ui="tl-clip br-clip border" style="display: none;">
+        <div id="transitBanner" class="transit-banner" data-augmented-ui="tl-2-clip-x tr-2-clip-x br-2-clip-x bl-2-clip-x both" style="display: none;">
+          <div class="banner-pulse-beacon"></div>
           <div id="transitTargetText" class="transit-target-text">
             TRANSIT IN PROGRESS: NEO-SYRACUSE &rarr; CHIBA-ON-HUDSON
           </div>
-          <div class="progress-bar-container" style="margin-bottom: 4px;">
+          <div class="progress-bar-container transit-bar-wrap" data-augmented-ui="tl-clip br-clip border">
             <div id="transitProgressBar" class="progress-bar-fill" style="width: 0%;"></div>
           </div>
           <div id="transitTelemetry" class="transit-telemetry-text">
@@ -127,40 +136,49 @@
         </div>
 
         <!-- Mobile Drawer Toggle Button -->
-        <button id="btnToggleNavDrawer" class="nav-drawer-toggle" data-augmented-ui="tl-clip tr-clip border">
+        <button id="btnToggleNavDrawer" class="nav-drawer-toggle" data-augmented-ui="tl-2-clip-x tr-2-clip-x both">
           ▲ ROUTE DISPATCH
         </button>
       </div>
 
       <!-- Docked Navigation Dispatch Console -->
-      <aside id="navDispatchPanel" class="nav-dispatch-panel" data-augmented-ui="tl-clip br-clip border">
+      <aside id="navDispatchPanel" class="nav-dispatch-panel" data-augmented-ui="tl-2-clip-x tr-clip br-2-clip-x bl-clip both">
         <div class="panel-header">
-          <span>NAVIGATION DISPATCH</span>
+          <div class="header-left">
+            <span class="header-led"></span>
+            <span>NAVIGATION DISPATCH</span>
+          </div>
+          <span class="header-tech-tag">NAV.v4</span>
         </div>
         <div class="panel-content dispatch-body">
           <div class="form-group">
             <label class="status-label">SECTOR FILTER</label>
-            <select id="sectorFilterSelect" class="term-select">
-              <option value="ALL">ALL SECTORS (200)</option>
-              <option value="northeast">NORTHEAST</option>
-              <option value="midwest">MIDWEST</option>
-              <option value="pacific_northwest">PACIFIC NORTHWEST</option>
-              <option value="southwest_wasteland">SOUTHWEST & WASTELAND</option>
-              <option value="southern">SOUTHERN PETRO-GULF</option>
-              <option value="east_coast">EAST COAST</option>
-              <option value="north">NORTHERN LAURENTIAN</option>
-            </select>
+            <div class="select-wrapper" data-augmented-ui="tl-clip br-clip both">
+              <select id="sectorFilterSelect" class="term-select">
+                <option value="ALL">ALL SECTORS (200)</option>
+                <option value="northeast">NORTHEAST</option>
+                <option value="midwest">MIDWEST</option>
+                <option value="pacific_northwest">PACIFIC NORTHWEST</option>
+                <option value="southwest_wasteland">SOUTHWEST & WASTELAND</option>
+                <option value="southern">SOUTHERN PETRO-GULF</option>
+                <option value="east_coast">EAST COAST</option>
+                <option value="north">NORTHERN LAURENTIAN</option>
+              </select>
+            </div>
           </div>
 
           <div class="form-group">
             <label class="status-label">TARGET DESTINATION</label>
-            <select id="destinationSelect" class="term-select">
-              <!-- Dynamic Node Options -->
-            </select>
+            <div class="select-wrapper" data-augmented-ui="tl-clip br-clip both">
+              <select id="destinationSelect" class="term-select">
+                <!-- Dynamic Node Options -->
+              </select>
+            </div>
           </div>
 
           <!-- Destination Target Inspection Card -->
-          <div id="targetCard" class="node-detail-card" data-augmented-ui="tr-clip bl-clip border">
+          <div id="targetCard" class="node-detail-card" data-augmented-ui="tl-clip tr-2-clip-y br-clip bl-2-clip-y both">
+            <div class="card-crosshair"></div>
             <div id="targetName" class="target-title">SELECT DESTINATION</div>
             <div id="targetSector" class="target-row">Sector: —</div>
             <div id="targetFaction" class="target-row">Faction: —</div>
@@ -175,11 +193,12 @@
               <input type="checkbox" id="chkAutoAdvance" checked />
               <span>Auto-advance waypoints</span>
             </label>
-            <button id="btnCancelRoute" class="term-btn abort-btn" style="display: none;">ABORT ROUTE</button>
+            <button id="btnCancelRoute" class="term-btn abort-btn" data-augmented-ui="tl-clip br-clip both" style="display: none;">ABORT ROUTE</button>
           </div>
 
-          <button id="btnDispatch" class="term-btn dispatch-action-btn" data-augmented-ui="tl-clip br-clip border">
-            ENGAGE ENGINES [DISPATCH]
+          <button id="btnDispatch" class="term-btn dispatch-action-btn" data-augmented-ui="tl-2-clip-x br-2-clip-x both">
+            <span class="dispatch-icon">⚡</span>
+            <span>ENGAGE ENGINES [DISPATCH]</span>
           </button>
         </div>
       </aside>
@@ -187,17 +206,21 @@
 
     <!-- View 2: Commodity Market View -->
     <section id="marketViewContainer" class="view-panel" style="display: none;">
-      <div class="market-panel" data-augmented-ui="tl-clip br-clip border">
+      <div class="market-panel" data-augmented-ui="tl-2-clip-x tr-clip br-2-clip-x bl-clip both">
         <div class="panel-header">
-          <span>COMMODITY EXCHANGE // LOCAL DOCK ORDER BOOK</span>
+          <div class="header-left">
+            <span class="header-led"></span>
+            <span>COMMODITY EXCHANGE // LOCAL DOCK ORDER BOOK</span>
+          </div>
+          <span class="header-tech-tag">GOAP.SYNC // REALTIME</span>
         </div>
         <div class="panel-content">
-          <div id="marketIntelBanner" class="market-intel-banner" data-augmented-ui="tr-clip bl-clip border">
+          <div id="marketIntelBanner" class="market-intel-banner" data-augmented-ui="tr-2-clip-x bl-2-clip-x both">
             <span class="intel-tag">[GOAP INTEL]</span>
             <span id="marketIntelText">Market pricing synchronized with autonomous faction movements.</span>
           </div>
 
-          <div class="table-responsive">
+          <div class="table-responsive" data-augmented-ui="tl-clip br-clip border">
             <table class="market-table">
               <thead>
                 <tr>
@@ -223,12 +246,16 @@
 
     <!-- View 3: Courier Contracts & Career View -->
     <section id="contractsViewContainer" class="view-panel" style="display: none;">
-      <div class="contracts-panel" data-augmented-ui="tl-clip br-clip border">
+      <div class="contracts-panel" data-augmented-ui="tl-2-clip-x tr-clip br-2-clip-x bl-clip both">
         <div class="panel-header">
-          <span>COURIER CONTRACTS // ENCLAVE FREIGHT BOARD</span>
+          <div class="header-left">
+            <span class="header-led"></span>
+            <span>COURIER CONTRACTS // ENCLAVE FREIGHT BOARD</span>
+          </div>
+          <span class="header-tech-tag">CAREER.SCORE // LIVE</span>
         </div>
         <div class="panel-content">
-          <div class="career-banner" data-augmented-ui="tr-clip bl-clip border">
+          <div class="career-banner" data-augmented-ui="tl-2-clip-x tr-2-clip-x br-2-clip-x bl-2-clip-x both">
             <div>
               <div class="career-label">CAREER PRESTIGE RANK</div>
               <div id="careerRankTitle" class="career-rank-title">ROOKIE HAULER</div>
@@ -261,17 +288,21 @@
       <div class="rig-pilot-layout">
         <!-- Rig Telemetry & Cargo Manifest -->
         <div class="rig-column">
-          <div class="rig-card" data-augmented-ui="tl-clip br-clip border">
+          <div class="rig-card" data-augmented-ui="tl-2-clip-x tr-clip br-2-clip-x bl-clip both">
             <div class="panel-header">
-              <span>RIG TELEMETRY & MAINTENANCE</span>
+              <div class="header-left">
+                <span class="header-led"></span>
+                <span>RIG TELEMETRY & MAINTENANCE</span>
+              </div>
+              <span class="header-tech-tag">CHASSIS.MK4</span>
             </div>
             <div class="panel-content">
               <div class="status-grid-two">
-                <div class="telemetry-block">
+                <div class="telemetry-block" data-augmented-ui="tl-clip br-clip both">
                   <span class="status-label">LIFETIME ODOMETER</span>
                   <span id="totalDistValue" class="telemetry-value">0 km</span>
                 </div>
-                <div class="telemetry-block">
+                <div class="telemetry-block" data-augmented-ui="tr-clip bl-clip both">
                   <span class="status-label">ENCLAVE CLEARANCE</span>
                   <span class="telemetry-value accent">AUTHORIZED</span>
                 </div>
@@ -280,10 +311,10 @@
               <div class="stat-divider"></div>
               <div class="sub-label">CORE PILOT STATS (PBTA 2D6)</div>
               <div class="mini-stats-grid" id="miniStatsGrid">
-                <div class="mini-stat-badge" data-augmented-ui="tl-clip br-clip border"><span class="stat-tag">GRIT</span> <span id="miniStatGrit" class="stat-val">+1</span></div>
-                <div class="mini-stat-badge" data-augmented-ui="tl-clip br-clip border"><span class="stat-tag">EDGE</span> <span id="miniStatEdge" class="stat-val">+1</span></div>
-                <div class="mini-stat-badge" data-augmented-ui="tl-clip br-clip border"><span class="stat-tag">CYBER</span> <span id="miniStatCyber" class="stat-val">+0</span></div>
-                <div class="mini-stat-badge" data-augmented-ui="tl-clip br-clip border"><span class="stat-tag">COOL</span> <span id="miniStatCool" class="stat-val">+1</span></div>
+                <div class="mini-stat-badge" data-augmented-ui="tl-clip tr-clip br-clip bl-clip both"><span class="stat-tag">GRIT</span> <span id="miniStatGrit" class="stat-val">+1</span></div>
+                <div class="mini-stat-badge" data-augmented-ui="tl-clip tr-clip br-clip bl-clip both"><span class="stat-tag">EDGE</span> <span id="miniStatEdge" class="stat-val">+1</span></div>
+                <div class="mini-stat-badge" data-augmented-ui="tl-clip tr-clip br-clip bl-clip both"><span class="stat-tag">CYBER</span> <span id="miniStatCyber" class="stat-val">+0</span></div>
+                <div class="mini-stat-badge" data-augmented-ui="tl-clip tr-clip br-clip bl-clip both"><span class="stat-tag">COOL</span> <span id="miniStatCool" class="stat-val">+1</span></div>
               </div>
 
               <div class="stat-divider"></div>
@@ -299,9 +330,13 @@
 
         <!-- Pilot Stats, Qualities & Factions -->
         <div class="pilot-column">
-          <div class="pilot-card" data-augmented-ui="tl-clip br-clip border">
+          <div class="pilot-card" data-augmented-ui="tl-clip tr-2-clip-x br-clip bl-2-clip-x both">
             <div class="panel-header">
-              <span>PILOT QUALITIES & APOCALYPSE ENGINE</span>
+              <div class="header-left">
+                <span class="header-led"></span>
+                <span>PILOT QUALITIES & APOCALYPSE ENGINE</span>
+              </div>
+              <span class="header-tech-tag">PbtA.2D6</span>
             </div>
             <div class="panel-content">
               <div class="sub-label">CORE STAT DETAILS & ACTION MODIFIERS</div>
@@ -330,11 +365,11 @@
 
     <!-- View 5: Communications, Event Logs & Global Frequency Chat -->
     <section id="commsViewContainer" class="view-panel" style="display: none;">
-      <div class="comms-panel" data-augmented-ui="tl-clip br-clip border">
+      <div class="comms-panel" data-augmented-ui="tl-2-clip-x tr-clip br-2-clip-x bl-clip both">
         <div class="panel-header comms-panel-header">
           <div class="comms-tabs-header">
-            <button id="btnTabLogs" class="comms-tab-btn active" data-augmented-ui="tl-clip tr-clip border">SYSTEM LOG</button>
-            <button id="btnTabChat" class="comms-tab-btn" data-augmented-ui="tl-clip tr-clip border">
+            <button id="btnTabLogs" class="comms-tab-btn active" data-augmented-ui="tl-clip tr-clip both">SYSTEM LOG</button>
+            <button id="btnTabChat" class="comms-tab-btn" data-augmented-ui="tl-clip tr-clip both">
               GLOBAL FREQUENCY
               <span id="chatUnreadDot" class="chat-unread-dot" style="display: none;"></span>
             </button>
@@ -360,11 +395,12 @@
                 type="text"
                 id="chatInput"
                 class="chat-text-input"
+                data-augmented-ui="tl-clip br-clip both"
                 placeholder="TRANSMIT ON FREQ 8080..."
                 maxlength="200"
                 autocomplete="off"
               />
-              <button type="submit" id="btnSendChat" class="chat-send-btn" data-augmented-ui="tl-clip br-clip border">
+              <button type="submit" id="btnSendChat" class="chat-send-btn" data-augmented-ui="tl-2-clip-x br-2-clip-x both">
                 SEND
               </button>
             </form>
@@ -375,18 +411,18 @@
 
     <!-- View 6: Net Worth Leaderboard View -->
     <section id="leaderboardViewContainer" class="view-panel" style="display: none;">
-      <div class="leaderboard-panel" data-augmented-ui="tl-clip br-clip border">
-        <div class="leaderboard-header-banner" data-augmented-ui="tr-clip bl-clip border">
+      <div class="leaderboard-panel" data-augmented-ui="tl-2-clip-x tr-clip br-2-clip-x bl-clip both">
+        <div class="leaderboard-header-banner" data-augmented-ui="tr-2-clip-x bl-2-clip-x both">
           <div>
             <div class="leaderboard-sub">GLOBAL HAULER REGISTRY // 1X REAL-TIME PERSISTENT FEED</div>
             <div class="leaderboard-title">NET WORTH & ASSET LEADERBOARD</div>
           </div>
           <div class="leaderboard-stats-right">
-            <span id="playerLeaderboardRankBadge" class="my-rank-badge" data-augmented-ui="tl-clip br-clip border">YOUR RANK: #1</span>
+            <span id="playerLeaderboardRankBadge" class="my-rank-badge" data-augmented-ui="tl-clip br-clip both">YOUR RANK: #1</span>
           </div>
         </div>
 
-        <div class="table-responsive">
+        <div class="table-responsive" data-augmented-ui="tl-clip br-clip border">
           <table class="leaderboard-table">
             <thead>
               <tr>
@@ -411,7 +447,7 @@
 
   <!-- System Menu & Telemetry Modal -->
   <div id="systemMenuModal" class="system-menu-backdrop" style="display: none;">
-    <div class="system-menu-card" data-augmented-ui="tl-clip tr-clip br-clip bl-clip both">
+    <div class="system-menu-card" data-augmented-ui="tl-2-clip-xy tr-2-clip-xy br-2-clip-xy bl-2-clip-xy both">
       <div class="menu-modal-header">
         <div class="menu-badge">// SYSTEM CONTROL & TELEMETRY</div>
         <h2 class="menu-title">TERMINAL CONFIGURATION</h2>
@@ -422,7 +458,7 @@
         <div class="menu-section">
           <div class="menu-section-label">CLUSTER NETWORK PRESENCE</div>
           <div class="menu-row">
-            <div id="networkStatusBadge" class="network-badge online">
+            <div id="networkStatusBadge" class="network-badge online" data-augmented-ui="tl-clip br-clip both">
               <span class="net-dot"></span>
               <span id="netStatusText">NET: LIVE [1X REAL-TIME]</span>
             </div>
@@ -434,15 +470,15 @@
         <div class="menu-section">
           <div class="menu-section-label">HARDWARE PERIPHERALS & DISPLAY</div>
           <div class="menu-btn-grid">
-            <button id="btnAudioToggle" class="term-btn active" data-augmented-ui="tl-clip br-clip border">AUDIO: ON</button>
-            <button id="btnThemeToggle" class="term-btn" data-augmented-ui="tl-clip br-clip border">PALETTE: CYAN</button>
+            <button id="btnAudioToggle" class="term-btn active" data-augmented-ui="tl-clip br-clip both">AUDIO: ON</button>
+            <button id="btnThemeToggle" class="term-btn" data-augmented-ui="tl-clip br-clip both">PALETTE: CYAN</button>
           </div>
         </div>
 
         <!-- Career Emergency Reset -->
         <div class="menu-section">
           <div class="menu-section-label">PROFILE RE-INITIALIZATION</div>
-          <button id="btnResetGame" class="term-btn reset-btn" data-augmented-ui="tl-clip br-clip border">
+          <button id="btnResetGame" class="term-btn reset-btn" data-augmented-ui="tl-clip br-clip both">
             RESET PROFILE & CONVOY
           </button>
           <div class="sub-text" style="margin-top: 4px;">Clears all local career telemetry, saves, and qualities.</div>
@@ -451,7 +487,7 @@
         <!-- Quick Help & Shortcuts -->
         <div class="menu-section">
           <div class="menu-section-label">OPERATIONS MANUAL</div>
-          <div class="help-box">
+          <div class="help-box" data-augmented-ui="tl-clip br-clip border">
             <div class="help-row"><span class="help-key">MAP CLICK</span> <span class="help-desc">Select target node for route planning</span></div>
             <div class="help-row"><span class="help-key">MARKET</span> <span class="help-desc">Exploit dynamic GOAP faction price differences</span></div>
             <div class="help-row"><span class="help-key">CONTRACTS</span> <span class="help-desc">Reserve hold space and deliver before deadlines</span></div>
@@ -461,7 +497,7 @@
       </div>
 
       <div class="menu-modal-footer">
-        <button id="btnDismissSystemMenu" class="term-btn dismiss-menu-btn" data-augmented-ui="tl-clip br-clip border">
+        <button id="btnDismissSystemMenu" class="term-btn dismiss-menu-btn" data-augmented-ui="tl-2-clip-x br-2-clip-x both">
           RETURN TO RIG [CLOSE]
         </button>
       </div>
@@ -470,15 +506,15 @@
 
   <!-- Interactive Storylet Narrative Modal -->
   <div id="storyletModal" class="storylet-modal-backdrop" style="display: none;">
-    <div class="storylet-card" data-augmented-ui="tl-clip tr-clip br-clip bl-clip both">
-      <div>
+    <div class="storylet-card" data-augmented-ui="tl-2-clip-xy tr-2-clip-xy br-2-clip-xy bl-2-clip-xy both">
+      <div class="storylet-header">
         <div id="storyletBadge" class="storylet-badge">// PRIORITY NARRATIVE ENCOUNTER</div>
         <h2 id="storyletTitle" class="storylet-title">Incident Title</h2>
       </div>
       <p id="storyletText" class="storylet-body">Prose description...</p>
 
       <div id="storyletOutcome" class="storylet-outcome" style="display: none;">
-        <div id="storyletRollBanner" class="storylet-roll-banner" style="display: none;">
+        <div id="storyletRollBanner" class="storylet-roll-banner" data-augmented-ui="tl-clip tr-clip br-clip bl-clip both" style="display: none;">
           <div class="roll-banner-top">
             <span id="storyletRollDice" class="roll-dice-text">🎲 2d6 [ 4 + 5 ]</span>
             <span id="storyletRollModifier" class="roll-mod-text">+1 EDGE</span>
@@ -495,7 +531,7 @@
       </div>
 
       <div id="storyletFooter" style="display: none; text-align: right; margin-top: 8px;">
-        <button id="btnDismissStorylet" class="term-btn" data-augmented-ui="tl-clip br-clip border" style="padding: 8px 16px; font-weight: bold;">
+        <button id="btnDismissStorylet" class="term-btn" data-augmented-ui="tl-2-clip-x br-2-clip-x both" style="padding: 8px 16px; font-weight: bold;">
           CONTINUE MISSION [DISMISS]
         </button>
       </div>
