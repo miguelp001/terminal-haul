@@ -197,12 +197,12 @@ export class GameStore {
 
   /**
    * Calculates career leaderboard score:
-   * Score = Net Worth + (Contracts * 500) + round(Distance * 0.2) + sum(max(0, Rep * 10))
+   * Score = Net Worth + (Contracts * 1500) + round(Distance / 10) + sum(max(0, Rep * 10))
    */
   public calculateCareerScore(): number {
     const netWorth = this.calculateNetWorth();
-    const contractsScore = this.state.completedContractsCount * 500;
-    const distanceScore = Math.round(this.state.totalDistanceTraveled * 0.2);
+    const contractsScore = this.state.completedContractsCount * 1500;
+    const distanceScore = Math.round(this.state.totalDistanceTraveled / 10);
 
     let factionScore = 0;
     for (const rep of Object.values(this.state.factions)) {
@@ -215,15 +215,77 @@ export class GameStore {
   }
 
   /**
-   * Returns career prestige rank based on total score.
+   * Returns career prestige rank based on total score adhering to spec.
    */
   public getCareerRankTitle(): string {
     const score = this.calculateCareerScore();
-    if (score < 4000) return 'Rookie Hauler';
-    if (score < 8000) return 'Wasteland Runner';
-    if (score < 16000) return 'Syndicate Contractor';
-    if (score < 30000) return 'Continental Transporter';
-    return 'Grid Overlord';
+    if (score <= 10000) return 'Scrap Runner';
+    if (score <= 25000) return 'Wasteland Courier';
+    if (score <= 60000) return 'Highway Veteran';
+    if (score <= 150000) return 'Syndicate Contractor';
+    if (score <= 350000) return 'Master Hauler';
+    return 'Continental Kingpin';
+  }
+
+  /**
+   * Repairs convoy hull at docked facilities.
+   * Rate: 10 Credits per 1% hull integrity.
+   */
+  public repairHull(): { success: boolean; message: string; repairedAmount: number; cost: number } {
+    if (this.state.status === 'IN_TRANSIT') {
+      return { success: false, message: 'Cannot execute chassis repairs while in transit.', repairedAmount: 0, cost: 0 };
+    }
+    const missing = this.state.convoy.maxHull - this.state.convoy.hullIntegrity;
+    if (missing <= 0) {
+      return { success: false, message: 'Chassis already at 100% structural integrity.', repairedAmount: 0, cost: 0 };
+    }
+    const costPerPercent = 10;
+    const totalCost = missing * costPerPercent;
+    if (this.state.credits < totalCost) {
+      const affordablePercent = Math.floor(this.state.credits / costPerPercent);
+      if (affordablePercent <= 0) {
+        return { success: false, message: `Insufficient credits for hull repair (${costPerPercent} ₵ per 1% hull).`, repairedAmount: 0, cost: 0 };
+      }
+      const partialCost = affordablePercent * costPerPercent;
+      this.state.credits -= partialCost;
+      this.state.convoy.hullIntegrity += affordablePercent;
+      this.addLog(`CHASSIS REPAIR: Partial repairs completed (+${affordablePercent}% hull for ${partialCost} ₵).`);
+      this.autoSave();
+      this.notify();
+      return { success: true, message: `Repaired +${affordablePercent}% hull for ${partialCost} ₵.`, repairedAmount: affordablePercent, cost: partialCost };
+    }
+
+    this.state.credits -= totalCost;
+    this.state.convoy.hullIntegrity = this.state.convoy.maxHull;
+    this.addLog(`CHASSIS REPAIR: Rig restored to 100% structural integrity (-${totalCost} ₵).`);
+    this.autoSave();
+    this.notify();
+    return { success: true, message: `Fully restored hull to 100% for ${totalCost} ₵.`, repairedAmount: missing, cost: totalCost };
+  }
+
+  /**
+   * Checks if hull is critically compromised and dispatches emergency roadside stabilization.
+   */
+  public checkEmergencyHullSOS(): void {
+    if (this.state.convoy.hullIntegrity <= 0) {
+      this.state.convoy.hullIntegrity = 25; // Emergency field weld
+      const fine = Math.min(this.state.credits, 200);
+      this.state.credits -= fine;
+      this.state.qualities.Heat = Math.min(100, (this.state.qualities.Heat || 0) + 5);
+      const loc = this.getCurrentNode().name;
+      this.addLog(
+        `EMERGENCY SOS: Chassis breach detected! Emergency recovery tug stabilized hull at 25% near ${loc} (-${fine} ₵, +5 Heat).`
+      );
+      if (this.state.status === 'IN_TRANSIT') {
+        this.state.status = 'DOCKED';
+        this.state.transit = null;
+        if (this.state.activeRoute) {
+          this.state.activeRoute = null;
+        }
+      }
+      this.autoSave();
+      this.notify();
+    }
   }
 
   public subscribe(listener: StateListener): () => void {
@@ -454,6 +516,7 @@ export class GameStore {
 
     // Storylet resolved
     this.state.activeStorylet = null;
+    this.checkEmergencyHullSOS();
     this.autoSave();
     this.notify();
 
@@ -600,7 +663,9 @@ export class GameStore {
     const transit = MovementEngine.initiateTransit(
       current,
       firstWaypoint,
-      this.clock.getGameDays()
+      this.clock.getGameDays(),
+      this.state.convoy.speedRating,
+      this.state.convoy.hullIntegrity
     );
     transit.legIndex = 1;
     transit.totalLegs = route.length - 1;
@@ -759,7 +824,24 @@ export class GameStore {
       this.addLog(`EXPEDITION PAUSED: Consignment delivered at ${nodeName}. Review contracts and dispatch when ready.`);
     }
 
-    // 2. Generate 3 fresh contracts for newly arrived location
+    // 2. High-security Enclave Permit verification (Security Level 4+)
+    if (arrivedNode && arrivedNode.securityLevel >= 4) {
+      const permits = this.state.qualities['Enclave Permits'] || 0;
+      if (permits > 0) {
+        this.addLog(`ENCLAVE CLEARANCE: Corporate Enclave Permit verified. Security checkpoint fee waived at ${nodeName}.`);
+      } else {
+        const entryToll = 75;
+        if (this.state.credits >= entryToll) {
+          this.state.credits -= entryToll;
+          this.addLog(`SECURITY CHECKPOINT: Paid ${entryToll} ₵ corporate entry toll at ${nodeName} (No Enclave Permit on file).`);
+        } else {
+          this.state.qualities.Heat = Math.min(100, (this.state.qualities.Heat || 0) + 2);
+          this.addLog(`SECURITY CITATION: Unable to pay corporate entry toll at ${nodeName}. Security citation issued (+2 Heat).`);
+        }
+      }
+    }
+
+    // 3. Generate 3 fresh contracts for newly arrived location
     if (arrivedNode) {
       this.state.availableContracts = ContractEngine.generateContractsForNode(
         arrivedNode,
@@ -768,7 +850,7 @@ export class GameStore {
       );
     }
 
-    // 3. Roll docking storylet check
+    // 4. Roll docking storylet check
     const hasContraband = (this.state.cargo.toxins || 0) > 0;
     const highHeat = (this.state.qualities.Heat || 0) >= 10;
     const shouldRollEvent = hasContraband || highHeat || Math.random() < 0.40;
@@ -785,7 +867,7 @@ export class GameStore {
       }
     }
 
-    // 4. Handle Route Continuation
+    // 5. Handle Route Continuation
     if (activeRoute && !isFinalLeg) {
       activeRoute.currentLegIndex++;
       const nextNodeId = activeRoute.routeNodeIds[activeRoute.currentLegIndex];
@@ -796,7 +878,9 @@ export class GameStore {
         const nextTransit = MovementEngine.initiateTransit(
           arrivedNode,
           nextNode,
-          this.clock.getGameDays()
+          this.clock.getGameDays(),
+          this.state.convoy.speedRating,
+          this.state.convoy.hullIntegrity
         );
         nextTransit.legIndex = activeRoute.currentLegIndex;
         nextTransit.totalLegs = activeRoute.routeNodeIds.length - 1;
@@ -840,7 +924,9 @@ export class GameStore {
     const transit = MovementEngine.initiateTransit(
       current,
       nextNode,
-      this.clock.getGameDays()
+      this.clock.getGameDays(),
+      this.state.convoy.speedRating,
+      this.state.convoy.hullIntegrity
     );
     transit.legIndex = currentLegIndex;
     transit.totalLegs = routeNodeIds.length - 1;

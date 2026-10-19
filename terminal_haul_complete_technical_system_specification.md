@@ -60,14 +60,18 @@ To ensure strict multi-client synchronization across the persistent multiplayer 
 * **Format:** `DAY {D} — {HH}:{MM}` (1 real second advances 12 simulated seconds).
 
 ### 3.2 Geographic Projection & Movement Physics
-The game visualizes real-world North American geography using D3-geo's Albers USA projection (`d3.geoAlbersUsa()`):
-* **Projected Coordinate Range:** Projected into an internal coordinate space and scaled dynamically to match the viewport canvas.
-* **Euclidean Distance Formula:**
-  $$\text{distNorm} = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}$$
-  $$D_{\text{km}} = \text{Math.round}(\text{distNorm} \times 35.0)$$
-* **Transit Duration Formula:**
-  $$T_{\text{sec}} = \max\left(10, \, \text{Math.round}\left(\frac{D_{\text{km}}}{V_{\text{base}} \times \text{SpeedRating}}\right)\right)$$
-  Where $V_{\text{base}} = 1.0\text{ km/sec}$ and `SpeedRating` defaults to $1.0$ (attenuated by hull damage or rig upgrades).
+The game visualizes real-world North American geography using D3-geo's planar projection on an HTML5 canvas:
+* **Haversine Distance Formula (Real Geographic Coordinates):**
+  $$a = \sin^2\left(\frac{\Delta\text{lat}}{2}\right) + \cos(\text{lat}_1)\cos(\text{lat}_2)\sin^2\left(\frac{\Delta\text{lng}}{2}\right)$$
+  $$c = 2\text{ atan2}(\sqrt{a}, \sqrt{1-a})$$
+  $$D_{\text{km}} = \max(15, \, \text{Math.round}(6371 \times c))$$
+  *(Falls back to Euclidean grid math $\max(15, \, \text{round}(\text{dist} \times 45))$ when coordinates are mock/legacy).*
+* **Transit Duration Formula with Hull & Speed Attenuation:**
+  $$\text{HullFactor} = \max\left(0.40, \, \min\left(1.0, \, \frac{\text{HullIntegrity}}{100}\right)\right)$$
+  $$\text{EffectiveSpeed} = \max\left(0.20, \, \text{SpeedRating} \times \text{HullFactor}\right)$$
+  $$T_{\text{sec}} = \max\left(10, \, \text{Math.round}\left(\frac{D_{\text{km}}}{15 \times \text{EffectiveSpeed}}\right)\right)$$
+* **Convoy Maintenance & Dockside Repairs:**
+  Chassis hull can be repaired at any docked facility via the UI `[REPAIR CHASSIS]` button at a fixed rate of $10\text{ ₵}$ per $1\%$ hull integrity. If hull integrity reaches $0\%$, an automated **Emergency SOS** protocol stabilizes the convoy at $25\%$ integrity and assesses an emergency towing fine and Heat penalty.
 
 ### 3.3 Multi-Hop Graph Navigation & Auto-Advance
 Routing across the 200 nodes is calculated using the `RouteGraph` engine:
@@ -144,12 +148,12 @@ The continental economy trades in six primary commodities:
 
 | Commodity ID | Name | Base Price | Unit Weight | Status | Market Characteristics |
 | :--- | :--- | :---: | :---: | :---: | :--- |
-| `grain` | **Synthetic Grain** | 50 ₵ | 0.5 T | Legal | Food staple; low volatility, high bulk volume. |
-| `batteries` | **Hydro-Batteries** | 120 ₵ | 1.0 T | Legal | Industrial energy cells; moderate demand in manufacturing hubs. |
-| `cyberware` | **Cyberware Optics** | 450 ₵ | 0.2 T | Legal | High-tech implants; high margin-to-weight ratio. |
-| `chips` | **Neural Processing Chips**| 800 ₵ | 0.1 T | Legal | Core compute hardware; premium value, extremely compact. |
-| `cryo` | **Cryo-Medical Pods** | 1,200 ₵ | 2.5 T | Legal | Heavy life-support equipment; requires substantial cargo capacity. |
-| `toxins` | **Bio-Toxins** | 2,500 ₵ | 0.8 T | **Contraband** | Illicit chemical compound; enormous profit margins, raises Heat. |
+| `grain` | **Synthetic Grain** | 40 ₵ | 1.0 T | Legal | Food staple; low volatility, high bulk volume. |
+| `batteries` | **Hydro-Batteries** | 120 ₵ | 2.0 T | Legal | Industrial energy cells; moderate demand in manufacturing hubs. |
+| `cyberware` | **Cyberware Optics** | 350 ₵ | 1.0 T | Legal | High-tech implants; high margin-to-weight ratio. |
+| `chips` | **Neural Processing Chips**| 800 ₵ | 0.5 T | Legal | Core compute hardware; premium value, compact. |
+| `cryo` | **Cryo-Medical Pods** | 1,500 ₵ | 4.0 T | Legal | Heavy life-support equipment; requires substantial cargo capacity. |
+| `toxins` | **Bio-Toxins** | 2,200 ₵ | 1.5 T | **Contraband** | Illicit chemical compound; enormous profit margins, raises Heat. |
 
 ### 5.3 Authoritative Pricing Formulation
 The final price of commodity $i$ at location $L$ is computed as:

@@ -74,4 +74,13 @@ describe('Movement & Convoy Transit Math', () => {
     expect(transit.elapsedSeconds).toBe(30);
     expect(transit.progressPercent).toBe(100);
   });
+
+  it('slows travel duration when hull integrity is degraded', () => {
+    // 450 km at 100% hull = 30s
+    // At 50% hull, effectiveSpeed = 0.5, duration = 450 / (15 * 0.5) = 60s
+    const normalDuration = calculateTravelDurationSeconds(450, 1.0, 100);
+    const damagedDuration = calculateTravelDurationSeconds(450, 1.0, 50);
+    expect(normalDuration).toBe(30);
+    expect(damagedDuration).toBe(60);
+  });
 });

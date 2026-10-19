@@ -31,11 +31,17 @@ export function calculateDistanceKm(nodeA: WorldNode, nodeB: WorldNode): number 
 }
 
 /**
- * Calculates base travel duration in seconds.
- * Formula: Math.max(10, Math.round(distanceKm / 15))
+ * Calculates base travel duration in seconds with speed rating and hull integrity attenuation.
+ * Clamps duration to a minimum of 10 seconds.
  */
-export function calculateTravelDurationSeconds(distanceKm: number): number {
-  return Math.max(10, Math.round(distanceKm / 15));
+export function calculateTravelDurationSeconds(
+  distanceKm: number,
+  speedRating: number = 1.0,
+  hullIntegrity: number = 100
+): number {
+  const hullFactor = Math.max(0.4, Math.min(1.0, hullIntegrity / 100));
+  const effectiveSpeed = Math.max(0.2, (speedRating || 1.0) * hullFactor);
+  return Math.max(10, Math.round(distanceKm / (15 * effectiveSpeed)));
 }
 
 /**
@@ -48,10 +54,12 @@ export class MovementEngine {
   public static initiateTransit(
     origin: WorldNode,
     destination: WorldNode,
-    currentGameDay: number
+    currentGameDay: number,
+    speedRating: number = 1.0,
+    hullIntegrity: number = 100
   ): ActiveTransit {
     const distanceKm = calculateDistanceKm(origin, destination);
-    const totalDurationSeconds = calculateTravelDurationSeconds(distanceKm);
+    const totalDurationSeconds = calculateTravelDurationSeconds(distanceKm, speedRating, hullIntegrity);
 
     return {
       originId: origin.id,

@@ -28,6 +28,7 @@ class TerminalApp {
   private convoyStatusBadge = document.getElementById('convoyStatusBadge')!;
   private hullValue = document.getElementById('hullValue')!;
   private hullBar = document.getElementById('hullBar')!;
+  private btnRepairHull = document.getElementById('btnRepairHull') as HTMLButtonElement;
   private cargoWeightValue = document.getElementById('cargoWeightValue')!;
   private cargoBar = document.getElementById('cargoBar')!;
   private creditsValue = document.getElementById('creditsValue')!;
@@ -218,6 +219,14 @@ class TerminalApp {
     setInterval(() => {
       gameStore.autoSave();
     }, 10000);
+
+    this.btnRepairHull.addEventListener('click', () => {
+      soundFX.playClick();
+      const res = gameStore.repairHull();
+      if (res.success) {
+        soundFX.playTrade();
+      }
+    });
 
     this.btnResetGame.addEventListener('click', () => {
       soundFX.playClick();
@@ -684,6 +693,21 @@ class TerminalApp {
 
     this.hullValue.textContent = `${state.convoy.hullIntegrity}%`;
     this.hullBar.style.width = `${state.convoy.hullIntegrity}%`;
+
+    const missingHull = state.convoy.maxHull - state.convoy.hullIntegrity;
+    if (this.btnRepairHull) {
+      if (state.status === 'IN_TRANSIT') {
+        this.btnRepairHull.disabled = true;
+        this.btnRepairHull.textContent = 'REPAIR: DOCKED ONLY';
+      } else if (missingHull <= 0) {
+        this.btnRepairHull.disabled = true;
+        this.btnRepairHull.textContent = 'HULL 100% [OPTIMAL]';
+      } else {
+        const cost = missingHull * 10;
+        this.btnRepairHull.disabled = state.credits < 10;
+        this.btnRepairHull.textContent = `REPAIR CHASSIS (-${cost.toLocaleString()} ₵)`;
+      }
+    }
 
     const maxCargo = state.convoy.maxCargoWeight;
     const curCargo = state.convoy.currentCargoWeight;
