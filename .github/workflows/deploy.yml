@@ -87,14 +87,20 @@ jobs:
           echo "RESOLVED_TARGET=$DEST" >> $GITHUB_ENV
           echo "Deploying dist/ -> $CLEAN_USER@$CLEAN_HOST:$DEST"
 
-      - name: 🚀 Rsync dist/ to DreamHost (Password Auth)
+      - name: 🚀 Deploy dist/ to DreamHost (Password Auth via SFTP)
         if: env.HAS_PASSWORD == 'true'
         env:
           SSHPASS: ${{ secrets.DREAMHOST_PASSWORD }}
         run: |
-          sudo apt-get update -qq && sudo apt-get install -y -qq sshpass
-          echo "Syncing production bundle to DreamHost..."
-          sshpass -e rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no" ./dist/ "${CLEAN_USER}@${CLEAN_HOST}:${RESOLVED_TARGET}"
+          sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+          echo "Syncing production bundle to DreamHost via SFTP..."
+          lftp -e "
+            set sftp:auto-confirm yes;
+            set net:timeout 30;
+            set net:max-retries 3;
+            mirror -R --delete --verbose ./dist/ \"${RESOLVED_TARGET}\";
+            quit;
+          " -u "${CLEAN_USER},${SSHPASS}" "sftp://${CLEAN_HOST}"
 
       - name: 🔑 Configure SSH Key (Key Auth)
         if: env.HAS_PASSWORD != 'true' && env.HAS_KEY == 'true'
