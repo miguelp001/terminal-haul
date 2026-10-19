@@ -1,240 +1,309 @@
 # TERMINAL HAUL — Complete Technical & System Specification
 
-**Version:** 1.0.0
+**Version:** 2.0.0  
+**Status:** Authoritative / Implemented  
+**Classification:** Open Architecture Technical Specification  
+**Architecture:** Real-Time Client-Server, WebSockets, D3-Geo Vector Engine, Pure Web Audio API  
 
-**Author / Lead Architect:** AI Systems Lead
+---
 
-**Classification:** Open Architecture Technical Specification
+## 1. Executive Summary & Architectural Vision
 
-## 1. Executive Summary & Vision
+**TERMINAL HAUL** is an open-architecture, real-time Cyberpunk Trade and Convoy Simulation set across the fractured geopolitical expanse of 2099 North America. Players assume command of the **Iron Nomad MK-IV**, an armored continental transport rig, traversing an authoritative network of 200 real-world based metropolitan enclaves, corporate arcologies, and wasteland trade hubs.
 
-**TERMINAL HAUL** is a web-based, real-time Cyberpunk Trade and Convoy Simulation set across a fragmented 2099 North American continent. Players manage an armored cargo rig navigating an interconnected grid of 200 real-world based metropolitan enclaves, wasteland trade hubs, and corporate arcologies.
+The system integrates seven foundational architectural subsystems:
+1. **D3-Geo Tactical Continental Projection:** Real-world continental geography rendered via D3-geo and TopoJSON utilizing an Albers USA conic projection on an HTML5 canvas.
+2. **Quality-Driven Narrative Engine:** A stateful storylet system inspired by *Sunless Sea* and *Fallen London*, evaluating player qualities, inventory, faction standings, and heat levels to generate branching highway encounters.
+3. **Goal-Oriented Action Planning (GOAP) AI Economy:** Autonomous faction AI simulating strategic macro-economic campaigns that shift continental commodity multipliers in real time.
+4. **Authoritative Real-Time WebSocket Server:** A persistent Node.js/TypeScript WebSocket cluster managing cross-player convoy presence, real-time global frequency communications, shared economic market impact, and cluster-wide net worth leaderboards.
+5. **Continuous Zero-Touch Persistence:** Seamless dual-layer persistence featuring instant local hydration from `localStorage` and continuous cloud state backups to `data/server_state.json`.
+6. **Pure Web Audio Procedural Synthesis:** Zero-asset procedural audio generation synthesizing UI transients, harmonic transaction chimes, alarm sirens, and modulated highway engine rumble directly via the native browser `AudioContext`.
+7. **Retro-Futuristic CRT Terminal UI:** A three-column tactical cockpit interface supporting multiple monochrome phosphor themes (Cyan, Amber, Green), raster scanlines, chromatic aberration, and tabbed dashboards.
 
-The game combines three core loops:
-
-1. **Dynamic Quality-Driven Narrative Engine:** Inspired by *Sunless Sea* and *Fallen London*, player actions and choices modify qualities (stats, reputations, flags) which unlock branch-based storylet events.
-
-2. **GOAP (Goal-Oriented Action Planning) AI Market Dynamics:** Autonomous AI factions pursue strategic goals across North America, driving supply and demand shifts and altering commodity pricing dynamically.
-
-3. **Real-Time World & Convoy Logistics:** A real-time tick clock simulation where 1 Game Day corresponds to 2 Real-World Hours, incorporating distance calculation, cargo management, and faction reputation mechanics.
+---
 
 ## 2. Core World Architecture & Factions
 
-### 2.1 The World Grid
+### 2.1 The 200-Node Continental Grid
+The game world models 200 nodes positioned with geographic longitude and latitude across North America, classified into seven geopolitical sectors:
 
-The game map models 200 distinct nodes across North America, categorized into seven geographic sectors:
+| Sector ID | Sector Name | Representative Hubs | Dominant Economic Focus |
+| :--- | :--- | :--- | :--- |
+| `northeast` | **Northeast Megalopolis** | Chiba-on-Hudson, Neo-Syracuse, Boston Citadel | High-tech cyberware, optics, corporate banking |
+| `midwest` | **Midwest Industrial Rust** | Detroit Arcology, Chicago Citadel, Omaha Silo-1 | Synthetic grain, heavy manufacturing, hydro-batteries |
+| `pnw` | **Pacific Northwest Sprawl** | Cascadia Megalopolis, Seattle Arcology, Portland Redoubt | Clean tech, neural hardware, environmental bio-domes |
+| `southwest` | **Southwest Wasteland** | Mojave Sprawl, Baja Sub-City, Phoenix Redoubt | Solar energy, illegal bio-toxins, salvage operations |
+| `southern` | **Southern Freehold** | Texas Freehold, Gulf Atoll Enclave, Austin Data-Sprawl | Petrochemical relics, logistics corridors, arms trading |
+| `eastcoast` | **East Coast Corridors** | Atlanta Cyber-Sprawl, Appalachian Fortress | Mining, militarized corporate security outposts |
+| `north` | **Northern Boreal Shield** | Quebec Bio-Dome, Laurentian Citadel | Rare minerals, cryogenic reserves, deep compute vaults |
 
-* **Northeast Sector** (e.g., *Chiba-on-Hudson*, *Neo-Syracuse*, *Toronto Metro-Sphere*)
+### 2.2 Faction Matrix & Ideology
+Five competing factions drive continental politics, security operations, and the autonomous GOAP economy:
 
-* **Midwest Sector** (e.g., *Detroit Arcology*, *Chicago Citadel*)
+| Faction ID | Faction Name | Ideology & Operations | Demanded Commodities | Produced Commodities |
+| :--- | :--- | :--- | :--- | :--- |
+| `aegis` | **Aegis Security Corp** | Authoritarian corporate PMC; maintains militarized highway checkpoints. | Hydro-Batteries, Neural Chips | Weapons, Legal Permits |
+| `gridlock` | **Gridlock Syndicate** | Underworld cartel; controls wasteland black markets and smuggling veins. | Bio-Toxins, Cyberware Optics | Contraband, Scramblers |
+| `solaris` | **Solaris Clean Energy** | Megacorp controlling geothermal, solar, and industrial power infrastructure. | Synthetic Grain, Hydro-Batteries | Energy Cells, Solar Tech |
+| `rustworks` | **Rustworks Industrial** | Heavy manufacturing union and reclaimer collective. | Cryo-Medical Pods, Raw Metals | Structural Parts, Chassis Armor |
+| `neuralfront` | **Neural Front** | Transhumanist cyber-insurgents fighting corporate neural tracking. | Neural Chips, Cyberware Optics | Cracked Code, Decryption Keys |
 
-* **Pacific Northwest** (e.g., *Cascadia Megalopolis*)
-
-* **Southwest & Wasteland** (e.g., *Mojave Sprawl*, *Baja Sub-City*)
-
-* **Southern Sector** (e.g., *Texas Freehold*, *Gulf Atoll Enclave*)
-
-* **East Coast Sector** (e.g., *Appalachian Fortress*, *Atlanta Cyber-Sprawl*)
-
-* **North Sector** (e.g., *Quebec Bio-Dome*, *Laurentian Citadel*)
-
-### 2.2 Faction Matrix
-
-Five core factions compete for control of North America's remaining resources and data infrastructure:
-
-| Faction ID | Faction Name | Focus & Ideology | Primary Goods Demanded | 
-| ----- | ----- | ----- | ----- | 
-| `aegis` | **Aegis Security Corp** | Military-industrial bloc, corporate enforcers | Hydro-Batteries, Neural Chips | 
-| `gridlock` | **Gridlock Syndicate** | Black-market trade cartel, illegal contraband brokers | Bio-Toxins, Cyberware Optics | 
-| `solaris` | **Solaris Nomad Clans** | Highway scavengers, wasteland convoy operators | Synthetic Grain, Hydro-Batteries | 
-| `rustworks` | **Rustworks Collective** | Reclaimer engineer unions, heavy industrial salvagers | Cryo-Medical Pods, Raw Metals | 
-| `neuralfront` | **Neural Front** | Transhumanist hackers, digital insurgents | Neural Chips, Cyberware Optics | 
+---
 
 ## 3. Time, Space & Movement Systems
 
-### 3.1 Time Dilation Scale
+### 3.1 Real-Time Simulation Clock
+To ensure strict multi-client synchronization across the persistent multiplayer server, the simulation clock is locked to standard real-time execution:
+* **Time Scale Ratio:** $1 \text{ Game Day} = 2 \text{ Real-World Hours} = 7,200 \text{ Real Seconds}$.
+* **Multiplier:** Locked at $1.0\times$ (warp and pause disabled to maintain authoritative shared reality).
+* **Tick Rate:** 1 second interval ($1 \text{ tick} \approx 0.0001388 \text{ Game Days}$).
+* **Format:** `DAY {D} — {HH}:{MM}` (1 real second advances 12 simulated seconds).
 
-* **Standard Ratio:** $1 \text{ Game Day} = 2 \text{ Real-World Hours} = 7,200 \text{ Real Seconds}$.
+### 3.2 Geographic Projection & Movement Physics
+The game visualizes real-world North American geography using D3-geo's Albers USA projection (`d3.geoAlbersUsa()`):
+* **Projected Coordinate Range:** Projected into an internal coordinate space and scaled dynamically to match the viewport canvas.
+* **Euclidean Distance Formula:**
+  $$\text{distNorm} = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}$$
+  $$D_{\text{km}} = \text{Math.round}(\text{distNorm} \times 35.0)$$
+* **Transit Duration Formula:**
+  $$T_{\text{sec}} = \max\left(10, \, \text{Math.round}\left(\frac{D_{\text{km}}}{V_{\text{base}} \times \text{SpeedRating}}\right)\right)$$
+  Where $V_{\text{base}} = 1.0\text{ km/sec}$ and `SpeedRating` defaults to $1.0$ (attenuated by hull damage or rig upgrades).
 
-* **Simulation Tick Rate:** 1 second interval.
+### 3.3 Multi-Hop Graph Navigation & Auto-Advance
+Routing across the 200 nodes is calculated using the `RouteGraph` engine:
+* **Topology:** Nodes are connected via bidirectional adjacency links based on proximity ($\le 12.0$ coordinate units).
+* **Pathfinding:** Breadth-First Search (BFS) / Dijkstra computes shortest-hop routes between arbitrary origin and destination nodes.
+* **Auto-Advance Protocol:** When `chkAutoAdvance` is enabled, reaching a waypoint automatically dispatches the convoy toward the next hop along the precomputed trajectory until the terminal destination is reached.
 
-* **Time Delta Calculation:**
-  
-
-  $$
-  \Delta \text{Day} = \frac{1}{7200} \times \text{SpeedMultiplier}
-  $$
-
-* **Time Speed Multipliers:**
-
-  * $1\times$: Standard Real-Time mode ($1 \text{ tick} \approx 0.0001388 \text{ Game Days}$)
-
-  * $60\times$: Accelerated Testing mode ($1 \text{ real second} = 1 \text{ Game Minute}$)
-
-### 3.2 Convoy Movement Math
-
-Distance between Location $A(x_1, y_1)$ and Location $B(x_2, y_2)$ on the 100x100 grid canvas:
-
-$$
-D_{\text{km}} = \text{Math.round}\left(\sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2} \times 45\right)
-$$
-
-Travel duration in real seconds ($T_{\text{sec}}$):
-
-$$
-T_{\text{sec}} = \max\left(10, \, \text{Math.round}\left(\frac{D_{\text{km}}}{15}\right)\right)
-$$
+---
 
 ## 4. Quality-Driven Narrative Engine (Storylets)
 
-### 4.1 Concept
+### 4.1 Narrative Engine Architecture
+Inspired by *Sunless Sea* and *Fallen London*, the game executes quality-driven narrative encounters (storylets). Storylets are evaluated by `NarrativeEngine` during transit or upon docking.
 
-Storylets are modular narrative events triggered based on world state and player **Qualities**. A Quality represents any numeric trait, key flag, item count, or skill level associated with the player.
+### 4.2 Carrier Qualities Specification
+Player progress and operational risks are measured through numerical qualities:
 
-### 4.2 Standard Qualities Schema
+| Quality Key | Type | Range | Description & Mechanical Impact |
+| :--- | :---: | :---: | :--- |
+| `Street Cred` | Numeric | $0 - 100$ | Underworld reputation; grants access to illegal brokers and lowers ambush rates. |
+| `Tech Literacy` | Numeric | $0 - 10$ | Electronics mastery; enables terminal hacking, field repairs, and drone countermeasures. |
+| `Contraband Mastery` | Numeric | $0 - 10$ | Smuggling expertise; shields illegal bio-toxins from corporate cargo scanners. |
+| `Cyberware Level` | Numeric | $0 - 10$ | Augmentation tier; unlocks physical combat and neural dialogue checks. |
+| `Enclave Permits` | Numeric | $0 - 5$ | Corporate clearance passes; prevents fines when docking at high-security nodes. |
+| `Heat` | Hazard | $0 - 100$ | Law enforcement alert status; accrues when dealing contraband; triggers roadblock raids. |
+| `Glitch Rating` | Hazard | $0 - 100$ | Neural corruption; accrues from experimental tech; triggers sensory hallucinations. |
 
-* `Cyberware Level`: Physical augmentations and combat rating.
+### 4.3 Storylet Evaluation & Schema
+```typescript
+export interface StoryletRequirement {
+  [qualityKey: string]: number; // Minimum value required
+}
 
-* `Street Cred`: Reputation among underworld fixers.
+export interface StoryletRewards {
+  credits?: number;
+  qualities?: Record<string, number>;
+  rep?: Record<FactionId, number>;
+  cargo?: Record<CommodityId, number>; // Directly awarded to cargo hold
+  hull?: number;                      // Hull integrity delta
+}
 
-* `Tech Literacy`: Hacking and data manipulation capability.
+export interface StoryletOption {
+  id: string;
+  label: string;
+  reqs?: StoryletRequirement;
+  effectText: string;
+  rewards: StoryletRewards;
+}
 
-* `Contraband Mastery`: Expertise in dealing illegal goods without detection.
-
-* `Enclave Permits`: Legal passkeys for high-security corporate zones.
-
-* `Heat`: Law enforcement / Aegis alert status (0–100).
-
-* `Glitch Rating`: System instability level due to experimental tech.
-
-### 4.3 Storylet Data Structure
-
-```json
-{
-  "id": "story_border_patrol",
-  "title": "Aegis Enclave Checkpoint 09",
-  "triggerLocation": "Any",
-  "reqs": { "Street Cred": 0 },
-  "text": "Heavy autonomous drones hover overhead as Aegis enforcers aim laser sight targeters at your convoy rig.",
-  "options": [
-    {
-      "label": "Show Aegis Clearance Permit",
-      "reqs": { "Enclave Permits": 2 },
-      "effectText": "The enforcers disarm and open the express lane.",
-      "rewards": { 
-        "qualities": { "Street Cred": 2, "Heat": -5 }, 
-        "rep": { "aegis": 10 } 
-      }
-    },
-    {
-      "label": "Bribe enforcers with tech gear [150 Credits]",
-      "reqs": { "credits": 150 },
-      "effectText": "The squad leader pockets the chip and nods you through.",
-      "rewards": { 
-        "credits": -150, 
-        "qualities": { "Heat": -2 }, 
-        "rep": { "aegis": 2 } 
-      }
-    }
-  ]
+export interface Storylet {
+  id: string;
+  title: string;
+  triggerLocation: string | 'Transit' | 'Any';
+  reqs: StoryletRequirement;
+  text: string;
+  options: StoryletOption[];
 }
 ```
 
-## 5. GOAP AI Economy & Dynamic Pricing
+* **Transit Encounters:** Triggered automatically at $50\%$ transit progress between nodes if eligible storylets match the player's active qualities and location.
+* **Direct Cargo Salvage:** Options rewarding `rewards.cargo` automatically verify chassis capacity and add the commodities into the player's hold.
 
-### 5.1 Faction Action Planning
+---
 
-Every interval (statistically $\sim 0.05$ Game Days), a GOAP AI step executes. A randomly selected faction evaluates its strategic goal and executes an action that impacts global market commodity price multipliers.
+## 5. GOAP AI Economy & Synchronized Market
 
-### 5.2 Dynamic Commodity Price Formula
+### 5.1 Autonomous Faction Goal Planning
+Every $\sim 0.05$ Game Days (6 minutes real-time), the `GoapEconomySimulation` evaluates strategic goals across all five factions:
+1. Each faction evaluates its current stockpiles and regional objectives (e.g., *Defend Highway Corridor*, *Expand Black Market Pipeline*, *Construct Hydro-Array*).
+2. The selected plan triggers macro-actions that update the global commodity multiplier $M_{\text{goap}}(i)$ for each commodity $i \in [0.65, 1.45]$.
 
-Base Price $P_{\text{base}}$ for commodity $i$ modified by GOAP multiplier $M_{\text{goap}}$, regional bias $R$, and player faction reputation $Rep$:
+### 5.2 Dynamic Commodity Catalog
+The continental economy trades in six primary commodities:
 
-$$
-P_{\text{adjusted}} = P_{\text{base}} \times M_{\text{goap}}(i) \times R_{\text{region}}(i)
-$$
+| Commodity ID | Name | Base Price | Unit Weight | Status | Market Characteristics |
+| :--- | :--- | :---: | :---: | :---: | :--- |
+| `grain` | **Synthetic Grain** | 50 ₵ | 0.5 T | Legal | Food staple; low volatility, high bulk volume. |
+| `batteries` | **Hydro-Batteries** | 120 ₵ | 1.0 T | Legal | Industrial energy cells; moderate demand in manufacturing hubs. |
+| `cyberware` | **Cyberware Optics** | 450 ₵ | 0.2 T | Legal | High-tech implants; high margin-to-weight ratio. |
+| `chips` | **Neural Processing Chips**| 800 ₵ | 0.1 T | Legal | Core compute hardware; premium value, extremely compact. |
+| `cryo` | **Cryo-Medical Pods** | 1,200 ₵ | 2.5 T | Legal | Heavy life-support equipment; requires substantial cargo capacity. |
+| `toxins` | **Bio-Toxins** | 2,500 ₵ | 0.8 T | **Contraband** | Illicit chemical compound; enormous profit margins, raises Heat. |
 
-Reputation Discount Factor $D_{\text{rep}}$ (where $Rep \in [-100, 100]$):
+### 5.3 Authoritative Pricing Formulation
+The final price of commodity $i$ at location $L$ is computed as:
+$$P_{\text{base\_adj}} = P_{\text{base}}(i) \times M_{\text{goap}}(i) \times S_{\text{node}}(L, i) \times \left(1 + A_{\text{cluster}}(i)\right)$$
 
-$$
-D_{\text{rep}} = \frac{Rep_{\text{local}}}{100} \times 0.25
-$$
+Where:
+* $S_{\text{node}}(L, i)$: Local supply/demand multiplier (0.80 for producers, 1.25 for consumers).
+* $A_{\text{cluster}}(i)$: Shared market adjustment delta received from the authoritative server based on global player trade volume.
+* $D_{\text{rep}}$: Reputation discount/bonus:
+  $$D_{\text{rep}} = \left(\frac{\text{Rep}_{\text{faction}}}{100}\right) \times 0.20$$
+* **Final Buy Quote:**
+  $$P_{\text{buy}} = \max\left(5, \, \text{Math.round}\left(P_{\text{base\_adj}} \times (1 - D_{\text{rep}})\right)\right)$$
+* **Final Sell Quote:**
+  $$P_{\text{sell}} = \max\left(2, \, \text{Math.round}\left(P_{\text{base\_adj}} \times 0.85 \times (1 + D_{\text{rep}})\right)\right)$$
 
-Final Transaction Prices:
+---
 
-$$
-P_{\text{buy}} = \max\left(10, \, \text{Math.round}\left(P_{\text{adjusted}} \times (1 - D_{\text{rep}})\right)\right)
-$$
+## 6. Procedural Courier Contracts & Leaderboards
 
-$$
-P_{\text{sell}} = \max\left(5, \, \text{Math.round}\left(P_{\text{adjusted}} \times 0.85 \times (1 + D_{\text{rep}})\right)\right)
-$$
+### 6.1 Procedural Contract Mechanics
+Upon docking at any node, `ContractEngine` generates local delivery missions:
+* **Cargo Reservation:** Accepting a contract reserves the required commodity units and tonnage in the player's hold.
+* **Deadlines:** Expiration timers ($2 - 6\text{ Game Days}$) monitored against the simulation clock.
+* **Delivery Validation:** Upon docking at the target node, the contract status transitions to `DELIVERABLE`, allowing turn-in to receive credits, reclaim hold capacity, and boost faction reputation.
 
-### 5.3 Commodities Catalog
+### 6.2 Net Worth & Career Scoring
+Player performance is quantified through standardized financial and operational metrics:
+* **Net Worth Formula:**
+  $$\text{Net Worth} = \text{Liquid Credits} + \sum_{k \in \text{Cargo}} \left( \text{Held Quantity}(k) \times P_{\text{sell\_local}}(k) \right)$$
+* **Career Score Formula:**
+  $$\text{Career Score} = \text{Net Worth} + (\text{Completed Contracts} \times 1,500) + \left(\frac{\text{Distance Traveled (km)}}{10}\right)$$
 
-1. **Synthetic Grain:** Base: 40 ₵ | Weight: 1.0 T | Legal
+### 6.3 Career Rank Hierarchy
+| Career Score | Rank Title | Privileges & Standing |
+| :--- | :--- | :--- |
+| $0 - 10,000$ | **Scrap Runner** | Rookie hauler; standard terminal access. |
+| $10,001 - 25,000$ | **Wasteland Courier** | Access to mid-tier courier hauls. |
+| $25,001 - 60,000$ | **Highway Veteran** | Lower roadside shakedown fees. |
+| $60,001 - 150,000$ | **Syndicate Contractor** | Unlocks high-collateral corporate contracts. |
+| $150,001 - 350,000$ | **Master Hauler** | Priority corporate enclave docking clearance. |
+| $350,001+$ | **Continental Kingpin** | Elite standing across all trade networks. |
 
-2. **Hydro-Batteries:** Base: 120 ₵ | Weight: 2.0 T | Legal
+---
 
-3. **Cyberware Optics:** Base: 350 ₵ | Weight: 1.0 T | Legal
+## 7. Authoritative Client-Server Network Architecture
 
-4. **Neural Processing Chips:** Base: 800 ₵ | Weight: 0.5 T | Legal
+### 7.1 WebSocket Architecture
+The multiplayer backend operates an authoritative WebSocket server (`src/server/gameServer.ts`) on port `8080`:
 
-5. **Cryo-Medical Pods:** Base: 1500 ₵ | Weight: 4.0 T | Legal
+```mermaid
+sequenceDiagram
+    participant Client as Terminal Client
+    participant Server as Game Server (port 8080)
+    participant Storage as data/server_state.json
 
-6. **Bio-Toxins:** Base: 2200 ₵ | Weight: 1.5 T | **Illegal Contraband**
+    Client->>Server: C2S_JOIN { playerId, callsign, locationId, telemetry }
+    Server->>Storage: Update Presence & Load State
+    Server-->>Client: S2C_INIT { initialConvoys, chatHistory, leaderboard, adjustments }
+    
+    loop Real-Time Telemetry & Chat
+        Client->>Server: C2S_POSITION_UPDATE / C2S_CHAT / C2S_LEADERBOARD_UPDATE
+        Server->>Storage: Persist State
+        Server-->>Client: S2C_CONVOY_SYNC / S2C_CHAT / S2C_LEADERBOARD_SYNC
+    end
 
-## 6. Courier Quest System & Leaderboards
-
-### 6.1 Procedural Courier Contracts
-
-When docking at any location $L_{\text{current}}$, the market board generates three procedural contracts to random target locations $L_{\text{target}}$:
-
-* **Reward:** $400 - 1200 \text{ Credits}$
-
-* **Deadline:** $2 - 6 \text{ Game Days}$
-
-* **Completion Check:** Validated automatically upon arrival at $L_{\text{target}}$.
-
-### 6.2 Net Worth & Score Calculation
-
-$$
-\text{Net Worth} = \text{Credits} + \sum_{k \in \text{Cargo}} \left( \text{Quantity}(k) \times P_{\text{base}}(k) \right)
-$$
-
-Leaderboard ranking is derived from Net Worth, completed contracts, total travel distance, and average faction reputation.
-
-## 7. Data Storage & Persistence
-
-* **Storage Mechanism:** HTML5 `localStorage`
-
-* **Key:** `TERMINAL_HAUL_SAVE`
-
-* **Serialized Payload Schema:**
-
-```json
-{
-  "credits": 2500,
-  "cargo": { "grain": 4, "batteries": 2, "cyberware": 1, "chips": 0, "cryo": 0, "toxins": 0 },
-  "qualities": { "Cyberware Level": 1, "Street Cred": 5, "Tech Literacy": 2, "Heat": 0 },
-  "factions": { "aegis": 10, "gridlock": -5, "solaris": 20, "rustworks": 15, "neuralfront": 0 },
-  "currentLocation": "Neo-Syracuse",
-  "gameDays": 1.0,
-  "totalDistanceTraveled": 0,
-  "eventLogs": []
-}
+    Client->>Server: C2S_TRADE_EVENT { commodityId, quantity, tradeType }
+    Server->>Server: Compute Economic Ripple
+    Server-->>Client: S2C_MARKET_SYNC { sharedAdjustments }
 ```
 
-## 8. User Interface & Audio Synthesis
+### 7.2 Network Packet Protocols (`src/server/types.ts`)
 
-1. **CRT Visual Filter:** Toggleable CSS scanline layout and subtle color-shifting chromatic aberration.
+#### Client-to-Server (C2S):
+* `C2S_JOIN`: Registers player callsign, initial location, and financial telemetry.
+* `C2S_POSITION_UPDATE`: Transmits status (`DOCKED` vs `IN_TRANSIT`), waypoint origin, destination, and transit progress percentage.
+* `C2S_TRADE_EVENT`: Broadcasts commodity buy/sell volumes to shift cluster market pricing.
+* `C2S_CHAT`: Transmits a text message to the global frequency channel.
+* `C2S_LEADERBOARD_UPDATE`: Streams current net worth, credits, contracts, distance, and career score.
+* `C2S_BACKUP_STATE`: Serializes the entire local client game state JSON for persistent cloud storage.
 
-2. **Web Audio Synthesizer:** Pure JS AudioContext sound effects generator (no external audio assets required):
+#### Server-to-Client (S2C):
+* `S2C_INIT`: Transmits initial cluster state, chat history, active convoys, and market adjustments.
+* `S2C_CONVOY_SYNC`: Broadcasts positions and movements of all active haulers on the tactical map.
+* `S2C_MARKET_SYNC`: Broadcasts global commodity supply/demand adjustments.
+* `S2C_CHAT`: Relays incoming global frequency messages with timestamps and callsigns.
+* `S2C_LEADERBOARD_SYNC`: Distributes sorted cluster-wide hauler rankings and presence statuses.
+* `S2C_BACKUP_ACK`: Confirms server-side backup serialization.
 
-   * `click`: Sine wave frequency sweep ($800\text{Hz} \to 400\text{Hz}$).
+### 7.3 Persistent Storage Engine (`src/server/storage.ts`)
+Server state is committed atomically to `data/server_state.json`, including:
+* Rolling 100-message chat history.
+* Registered hauler leaderboard entries with online/offline indicators.
+* Shared commodity supply/demand adjustments.
+* Complete player state backup archives.
 
-   * `trade`: Triangle wave upward sweep ($300\text{Hz} \to 900\text{Hz}$).
+---
 
-   * `event`: Sawtooth event alarm frequency ramp.
+## 8. Continuous Zero-Touch State Persistence
 
-   * `travel`: Sub-bass engine rumble curve.
+### 8.1 Automated Persistence Lifecycle
+All manual `SAVE` and `LOAD` controls have been replaced by a completely automated, zero-touch persistence system:
+1. **Instant Hydration:** On initialization, `GameStore` interrogates `localStorage.getItem('TERMINAL_HAUL_SAVE')`. If a save payload exists, state is hydrated instantly before DOM render.
+2. **Event-Driven Autosave:** Invoked synchronously on every state mutation:
+   - Commodity purchases and sales.
+   - Contract acceptance, loading, delivery, and abandonment.
+   - Narrative storylet option selections.
+   - Route dispatch, stopover arrivals, and cancellations.
+3. **Periodic Background Autosave:** An interval routine executes `gameStore.autoSave()` every 10 seconds during transit.
+4. **Window Exit Autosave:** A `beforeunload` listener commits and broadcasts state when closing or refreshing the browser tab.
+5. **Dual-Layer Synchronization:** Every local save automatically dispatches an encrypted backup packet to the server via `multiplayerClient.backupStateToServer()`.
+
+---
+
+## 9. Audio Synthesis & CRT Visual Filter
+
+### 9.1 Procedural Web Audio Engine (`src/audio/soundFX.ts`)
+Zero external MP3/WAV audio assets are required. All sound effects are generated algorithmically using the browser's native `AudioContext`:
+* **UI Click:** Square wave transient sweeping from $800\text{ Hz}$ to $1,200\text{ Hz}$ over $35\text{ ms}$.
+* **Trade Ping:** Polyphonic dual-sine chime ($587.33\text{ Hz} \text{ [D5]} + 880.00\text{ Hz} \text{ [A5]}$) with exponential decay ($400\text{ ms}$).
+* **Event Alert:** Sawtooth wave minor-third alarm ($330\text{ Hz} \to 440\text{ Hz}$, $250\text{ ms}$).
+* **Travel Engine Rumble:** Continuous procedural brownian noise buffer passed through a modulated low-pass biquad filter ($60\text{ Hz} - 120\text{ Hz}$), active exclusively during highway transit.
+
+### 9.2 CRT Display Pipeline
+* **Phosphor Color Palettes:**
+  - **Cyan Theme** (Default): High-contrast cyberpunk palette (`--neon-cyan: #00e5ff`, `--neon-amber: #ffb300`, `--neon-green: #00e676`).
+  - **Amber Theme**: Industrial orange monochrome (`--neon-amber: #ff9100`).
+  - **Green Theme**: Classic militarized phosphor (`--neon-green: #39ff14`).
+* **Visual Effects:** Dynamic CSS scanline overlay, text glow filters, and chromatic aberration styling on header badges and warning indicators.
+
+---
+
+## 10. Verification & Test Suite
+
+The system is validated through an extensive automated test suite run via **Vitest**:
+
+| Test Suite | Spec File | Coverage |
+| :--- | :--- | :--- |
+| **Movement Physics** | `tests/movement.test.ts` | Euclidean calculations, progress rates, arrival detection. |
+| **Simulation Clock** | `tests/clock.test.ts` | Tick progression, real-time day conversion, rollover. |
+| **GOAP Economy** | `tests/goap.test.ts` | Autonomous goal planning, world state mutations. |
+| **Market Pricing** | `tests/economy.test.ts` | Base prices, local multipliers, reputation discounts. |
+| **Commodity Trading** | `tests/trading.test.ts` | Hold limits, credit validation, buy/sell executions. |
+| **Courier Contracts** | `tests/contracts.test.ts` | Generation, expiration, cargo reservation, delivery turn-in. |
+| **Narrative Storylets** | `tests/storylets.test.ts` | Quality prerequisite checks, choice resolution, cargo rewards. |
+| **Graph Navigation** | `tests/navigation.test.ts` | Adjacency topology, shortest-hop BFS, auto-advance. |
+| **State Persistence** | `tests/persistence.test.ts` | Serialization, hydration, schema migration. |
+| **Authoritative Multiplayer** | `tests/multiplayer.test.ts` | WebSocket server end-to-end, presence, chat, leaderboard. |
+| **Procedural Audio** | `tests/audio.test.ts` | AudioContext synthesis and mute state toggling. |
+
+Execute test verification:
+```powershell
+npm.cmd test
+```
+
+---
+
+*Terminal Haul Specification v2.0.0 — Authoritative Open Architecture Reference.*
